@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bhbke6nd0s8oj"]
+
+[ext_resource type="Texture2D" uid="uid://cfgqq0m75sjuq" path="res://Weapons/test_cannon/test_cannon.png" id="1_lcoox"]
+[ext_resource type="Script" uid="uid://dooanq651yf2y" path="res://Weapons/Weapon.cs" id="2_lcoox"]
+
+[node name="test_cannon" type="Sprite2D" unique_id=123270467]
+scale = Vector2(0.48557708, 0.43778026)
+texture = ExtResource("1_lcoox")
+script = ExtResource("2_lcoox")
+
+[node name="Firerate" type="Timer" parent="." unique_id=1833182941]
+
+[connection signal="timeout" from="Firerate" to="." method="_OnReadyToFire"]

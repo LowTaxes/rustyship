@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://b7a2h0hw00vtn"]
+
+[ext_resource type="Script" uid="uid://b6vp4ncl38vhs" path="res://Scenes/Battle/GameManager.cs" id="1_7cxpe"]
+[ext_resource type="Script" uid="uid://dmy3itibpo1vx" path="res://UI/ShipStatsUi.cs" id="2_b7dir"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gbba"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="GameManager" type="Node2D" unique_id=1051907935]
+script = ExtResource("1_7cxpe")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=384355653]
+metadata/_edit_lock_ = true
+
+[node name="UI" type="Control" parent="." unique_id=1747322694]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -575.0
+offset_top = -323.0
+offset_right = 577.0
+offset_bottom = 322.0
+metadata/_edit_lock_ = true
+
+[node name="ShipStatsUI" type="Control" parent="UI" unique_id=886124562]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.998
+offset_right = 1.0
+offset_bottom = 0.28997803
+script = ExtResource("2_b7dir")
+metadata/_edit_lock_ = true
+
+[node name="PlayerStats" type="Control" parent="UI/ShipStatsUI" unique_id=1205070338]
+layout_mode = 1
+anchor_left = 0.04611362
+anchor_top = 0.73016775
+anchor_right = 0.24211363
+anchor_bottom = 0.94216776
+offset_left = -0.16900635
+offset_top = -0.22802734
+offset_right = 0.037902832
+offset_bottom = 0.034240723
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerHealthbar" type="ProgressBar" parent="UI/ShipStatsUI/PlayerStats" unique_id=1685011636]
+layout_mode = 1
+offset_right = 200.0
+offset_bottom = 30.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_8gbba")
+value = 50.0
+show_percentage = false
+
+[node name="HealthText" type="Label" parent="UI/ShipStatsUI/PlayerStats/PlayerHealthbar" unique_id=1134123757]
+layout_mode = 0
+offset_right = 198.0
+offset_bottom = 30.0
+text = "hi"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="PlayerArmorbar" type="ProgressBar" parent="UI/ShipStatsUI/PlayerStats" unique_id=521883214]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 200.0
+offset_bottom = 15.0
+grow_vertical = 2
+show_percentage = false
+
+[node name="ArmorText" type="Label" parent="UI/ShipStatsUI/PlayerStats/PlayerArmorbar" unique_id=957442801]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 0.5
+offset_right = 200.0
+offset_bottom = 30.5
+text = "hi"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="EnemyStats" type="Control" parent="UI/ShipStatsUI" unique_id=1550329543]
+layout_mode = 1
+anchor_left = 0.037
+anchor_top = 0.093
+anchor_right = 0.23300001
+anchor_bottom = 0.30600002
+offset_left = 0.33901596
+offset_top = 0.107997894
+offset_right = 0.54589844
+offset_bottom = -0.27371216
+metadata/_edit_use_anchors_ = true
+
+[node name="EnemyHealthbar" type="ProgressBar" parent="UI/ShipStatsUI/EnemyStats" unique_id=788560131]
+layout_mode = 1
+offset_right = 200.0
+offset_bottom = 30.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_8gbba")
+value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthText" type="Label" parent="UI/ShipStatsUI/EnemyStats/EnemyHealthbar" unique_id=1685338721]
+layout_mode = 0
+offset_right = 198.0
+offset_bottom = 30.0
+text = "hi"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="EnemyArmorbar" type="ProgressBar" parent="UI/ShipStatsUI/EnemyStats" unique_id=19448032]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 200.0
+offset_bottom = 15.0
+grow_vertical = 2
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="ArmorText" type="Label" parent="UI/ShipStatsUI/EnemyStats/EnemyArmorbar" unique_id=1356058417]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 0.5
+offset_right = 200.0
+offset_bottom = 30.5
+text = "hi"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true

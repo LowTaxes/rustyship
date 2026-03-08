@@ -1,0 +1,248 @@
+using Godot;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics.X86;
+
+public partial class Ship : CharacterBody2D
+{
+
+	public bool is_player;
+	public int max_health = 0;
+	public int health = 0;
+	public int max_armor = 0;
+
+	public int armor = 0;
+	public int maneuverability = 0;
+	
+	public List<Hardpoint> available_hardpoints;
+	public List<Hardpoint> hardpoints_in_use;
+	public Vector2[] hardpoint_locations;
+	public string[] hardpoint_weight_classes;
+
+
+    public override void _Ready()
+    {
+        
+		PackedScene hardpoint_scene = ResourceLoader.Load<PackedScene>("uid://djegmfpqrdo3e");
+
+		int max_guns = hardpoint_locations.Length;
+		int num_light_needed = 0;
+		int num_medium_needed = 0;
+		int num_heavy_needed = 0;
+		int num_superheavy_needed = 0;
+
+		int num_light_held = 0;
+		int num_medium_held = 0;
+		int num_heavy_held = 0;
+		int num_superheavy_held = 0;
+
+		List<Hardpoint> light = new List<Hardpoint>();
+		List<Hardpoint> medium = new List<Hardpoint>();
+		List<Hardpoint> heavy = new List<Hardpoint>();
+		List<Hardpoint> superheavy = new List<Hardpoint>();
+		
+		//finding how many hardpoints of each weight class is needed
+		for(int i = 0; i< hardpoint_weight_classes.Length; i++)
+		{
+			if(hardpoint_weight_classes[i].Equals("light"))
+			{
+				num_light_needed+=1;
+			}
+			else if(hardpoint_weight_classes[i].Equals("medium"))
+			{
+				num_medium_needed+=1;
+			}
+			else if(hardpoint_weight_classes[i].Equals("heavy"))
+			{
+				num_heavy_needed+=1;
+			}
+			else if(hardpoint_weight_classes[i].Equals("superheavy"))
+			{
+				num_superheavy_needed+=1;
+			}
+		}
+		//Finding how many hardpoints of each weigth class we have
+		for(int i = 0; i < available_hardpoints.Count; i++)
+		{
+			if(available_hardpoints[i].weight_class.Equals("light"))
+			{
+				num_light_held+=1;
+				light.Add(available_hardpoints[i]);
+				
+			}
+			if(available_hardpoints[i].weight_class.Equals("medium"))
+			{
+				num_medium_held+=1;
+				medium.Add(available_hardpoints[i]);
+				
+			}
+			if(available_hardpoints[i].weight_class.Equals("heavy"))
+			{
+				num_heavy_held+=1;
+				heavy.Add(available_hardpoints[i]);
+			}
+			if(available_hardpoints[i].weight_class.Equals("superheavy"))
+			{
+				num_superheavy_held+=1;
+				superheavy.Add(available_hardpoints[i]);
+				
+			}
+		}
+
+		//spawning and distributing light gun hardpoints
+		if(num_light_needed >= 1)
+		{
+			if(num_light_held < num_light_needed)
+			{
+				for(int i = 0; i < num_light_needed-num_light_held; i++)
+				{
+					Hardpoint new_hardpoint = new Hardpoint(1, "light", new Weapon("lightmachinegun"));
+					available_hardpoints.Add(new_hardpoint);
+					light.Add(new_hardpoint);
+				}
+			}
+
+			for(int i = 0; i < light.Count; i++)
+			{
+				Hardpoint largest = light[i];
+				int largest_index = i;
+				for(int k = i+1; k < light.Count; k++)
+				{
+					if(light[k].level > largest.level)
+					{
+						largest = light[k];
+						largest_index = k;
+					}
+				}
+				Hardpoint temp = light[i];
+				light[i] = largest;
+				light[largest_index] = temp;
+					
+			}
+			int light_inc = 0;
+
+
+			for(int i = 0; i< available_hardpoints.Count; i++)
+			{
+				Debug.Print(available_hardpoints[i].weight_class);
+			}
+
+
+
+			for( int i = 0; i< hardpoint_weight_classes.Length; i++)
+			{
+				if(hardpoint_weight_classes[i].Equals("light"))
+				{
+						
+					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(light[light_inc].attatched_weapon.weaponUID);
+					Sprite2D new_weapon = weapon_scene.Instantiate<Sprite2D>();
+					AddChild(new_weapon);
+					new_weapon.Translate(hardpoint_locations[i]);
+					//Debug.Print(hardpoint_locations[i].ToString());
+					light_inc +=1;
+				}
+			}
+		
+		}
+		
+    }
+
+
+	public void takeDamage(int damage)
+	{
+		
+		if(armor > 0 )
+		{
+			
+			armor -= damage;
+			if(is_player)
+			{
+				BattleConnect.Instance.emitdamagesignal(BattleConnect.SignalName.PlayerArmorDamageTaken.ToString(), damage);
+			}
+			else
+			{
+				BattleConnect.Instance.emitdamagesignal(BattleConnect.SignalName.EnemyArmorDamageTaken.ToString(), damage);
+			}
+			
+		}
+		else
+		{
+			health -= damage;
+			if(is_player)
+			{
+				//Debug.Print("playertakedamage");
+				BattleConnect.Instance.emitdamagesignal(BattleConnect.SignalName.PlayerHealthDamageTaken.ToString(), damage);
+			}
+			else
+			{
+				BattleConnect.Instance.emitdamagesignal(BattleConnect.SignalName.EnemyHealthDamageTaken.ToString(), damage);
+			}
+		}	
+			
+	}	
+		
+	public override void _Input(InputEvent @event)
+    {
+        if(@event is InputEventKey eventkey)
+		{
+			if(eventkey.IsReleased() && eventkey.Keycode == Key.Enter)
+			{
+				takeDamage(10);
+				
+			}
+		}
+    }
+
+/*
+	public int getHealth()
+	{
+		return health;
+	}
+	public void setHealth(int health)
+	{
+		this.health = health;
+	}
+	public int getMaxHealth()
+	{
+		return max_health;
+	}
+	public void setMaxHealth(int max_health)
+	{
+		this.max_health = max_health;
+	}
+	
+	public int getArmor()
+	{
+		return armor;
+	}
+	public void setArmor(int armor)
+	{
+		this.armor = armor;
+	}
+	public int getMaxArmor()
+	{
+		return max_armor;
+	}
+	public void setMaxArmor(int max_armor)
+	{
+		this.max_armor = max_armor;
+	}
+
+	public int getManeuverability()
+	{
+		return maneuverability;
+	}
+	public void setManeuverability(int maneuverability)
+	{
+		this.maneuverability = maneuverability;
+	}
+
+	*/
+	
+
+	
+	
+	
+}
