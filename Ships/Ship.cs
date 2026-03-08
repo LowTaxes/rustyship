@@ -123,14 +123,6 @@ public partial class Ship : CharacterBody2D
 			}
 			int light_inc = 0;
 
-
-			for(int i = 0; i< available_hardpoints.Count; i++)
-			{
-				Debug.Print(available_hardpoints[i].weight_class);
-			}
-
-
-
 			for( int i = 0; i< hardpoint_weight_classes.Length; i++)
 			{
 				if(hardpoint_weight_classes[i].Equals("light"))
@@ -140,8 +132,53 @@ public partial class Ship : CharacterBody2D
 					Sprite2D new_weapon = weapon_scene.Instantiate<Sprite2D>();
 					AddChild(new_weapon);
 					new_weapon.Translate(hardpoint_locations[i]);
-					//Debug.Print(hardpoint_locations[i].ToString());
 					light_inc +=1;
+				}
+			}
+		
+		}
+
+		if(num_medium_needed >= 1)
+		{
+			if(num_medium_held < num_medium_needed)
+			{
+				for(int i = 0; i < num_medium_needed-num_medium_held; i++)
+				{
+					Hardpoint new_hardpoint = new Hardpoint(1, "medium", new Weapon("mediumcannon"));
+					available_hardpoints.Add(new_hardpoint);
+					medium.Add(new_hardpoint);
+				}
+			}
+
+			for(int i = 0; i < medium.Count; i++)
+			{
+				Hardpoint largest = medium[i];
+				int largest_index = i;
+				for(int k = i+1; k < medium.Count; k++)
+				{
+					if(medium[k].level > largest.level)
+					{
+						largest = medium[k];
+						largest_index = k;
+					}
+				}
+				Hardpoint temp = medium[i];
+				medium[i] = largest;
+				medium[largest_index] = temp;
+					
+			}
+			int medium_inc = 0;
+
+			for( int i = 0; i< hardpoint_weight_classes.Length; i++)
+			{
+				if(hardpoint_weight_classes[i].Equals("medium"))
+				{
+						
+					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(medium[medium_inc].attatched_weapon.weaponUID);
+					Sprite2D new_weapon = weapon_scene.Instantiate<Sprite2D>();
+					AddChild(new_weapon);
+					new_weapon.Translate(hardpoint_locations[i]);
+					medium_inc +=1;
 				}
 			}
 		
