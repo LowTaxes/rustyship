@@ -11,10 +11,11 @@ public partial class Weapon : Sprite2D
 	public Timer fire_rate_timer;
 	public string weaponUID;
 	public string bulletUID;
+	public double bullet_speed;
 
 	public Weapon()
 	{
-		
+
 	}
 	public Weapon(string weaponname)
 	{
@@ -25,7 +26,8 @@ public partial class Weapon : Sprite2D
 			crit_chance = .01;
 			fire_rate = .5;
 			weaponUID = "uid://vwk20d4x7ag7";
-			bulletUID = null;
+			bulletUID = "uid://cbdlciicv5vn6";
+			bullet_speed = 1;
 		}
 
 		if (weaponname.Equals("mediumcannon"))
@@ -35,7 +37,8 @@ public partial class Weapon : Sprite2D
 			crit_chance = .05;
 			fire_rate = 6;
 			weaponUID = "uid://bhbke6nd0s8oj";
-			bulletUID = null;
+			bulletUID = "uid://cbdlciicv5vn6";
+			bullet_speed = .5; 
 		}
 	}
 	

@@ -7,7 +7,7 @@ using System.Runtime.Intrinsics.X86;
 
 public partial class Ship : CharacterBody2D
 {
-
+	
 	public bool is_player;
 	public int max_health = 0;
 	public int health = 0;
