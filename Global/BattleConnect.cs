@@ -8,18 +8,13 @@ public partial class BattleConnect : Node
 	[Signal] public delegate void PlayerArmorDamageTakenEventHandler();
 	[Signal] public delegate void EnemyHealthDamageTakenEventHandler();
 	[Signal] public delegate void EnemyArmorDamageTakenEventHandler();
-	
-	[Signal] public delegate void ManeuverabilitySetEventHandler();
+	[Signal] public delegate void BattleStartEventHandler();
 	
 	public override void _Ready()
 	{
 		Instance = this;
 	}
 
-	public void emitdamagesignal(string signal_name, int damage)
-	{
-		EmitSignal(signal_name, damage);
-	}
-
+	
 }
    

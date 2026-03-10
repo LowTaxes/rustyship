@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class Weapon : Sprite2D
 {
@@ -12,10 +13,34 @@ public partial class Weapon : Sprite2D
 	public string weaponUID;
 	public string bulletUID;
 	public double bullet_speed;
+	public bool is_active = false;
+	public bool is_player = false;
 
-	public Weapon()
+    public override void _Ready()
+    {
+        
+    }
+
+	public void Initialize()
 	{
+		BattleConnect.Instance.Connect(BattleConnect.SignalName.BattleStart, new Callable(this, "_OnBattleStart"));
+		Debug.Print(is_player.ToString());
+		if(is_player)
+		{
+			LookAt(new Vector2(Position.X, -1000));
+			
+		}
+		else
+		{
+			LookAt(new Vector2(Position.X, 1000));
+		}
+		
+	}
+	
 
+	public Weapon ()
+	{
+		//Called at some point so shit don't break / maybe when the node spawns in the tree
 	}
 	public Weapon(string weaponname)
 	{
@@ -40,6 +65,11 @@ public partial class Weapon : Sprite2D
 			bulletUID = "uid://cbdlciicv5vn6";
 			bullet_speed = .5; 
 		}
+	}
+
+	private void _OnBattleStart()
+	{
+		is_active = true;
 	}
 	
 }

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b6vp4ncl38vhs" path="res://Scenes/Battle/GameManager.cs" id="1_7cxpe"]
 [ext_resource type="Script" uid="uid://dmy3itibpo1vx" path="res://UI/ShipStatsUi.cs" id="2_b7dir"]
+[ext_resource type="Script" uid="uid://dgai80esm2hgi" path="res://UI/BattleStartButton.cs" id="3_xq50g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gbba"]
 bg_color = Color(1, 0, 0, 1)
@@ -133,3 +134,14 @@ text = "hi"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
+
+[node name="BattleStartButton" type="Button" parent="UI" unique_id=1915628727]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 296.0
+offset_right = 228.0
+offset_bottom = 346.0
+text = "Start"
+script = ExtResource("3_xq50g")
+
+[connection signal="button_up" from="UI/BattleStartButton" to="UI/BattleStartButton" method="_OnButtonPressed"]

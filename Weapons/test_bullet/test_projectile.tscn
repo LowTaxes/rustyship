@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://cbdlciicv5vn6"]
 
+[ext_resource type="Script" uid="uid://n6ae7by7jxyk" path="res://Weapons/test_bullet/TestProjectile.cs" id="1_kkag7"]
 [ext_resource type="Texture2D" uid="uid://b1l8yluydldat" path="res://Weapons/test_bullet/test_projectile.png" id="1_vlvla"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlvla"]
 radius = 6.0
 
-[node name="RigidBody2D" type="RigidBody2D" unique_id=125712083]
+[node name="test_projectile" type="RigidBody2D" unique_id=125712083]
+script = ExtResource("1_kkag7")
 
 [node name="TestProjectile" type="Sprite2D" parent="." unique_id=1428969002]
 scale = Vector2(0.07225434, 0.07225434)

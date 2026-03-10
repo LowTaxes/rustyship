@@ -129,9 +129,17 @@ public partial class Ship : CharacterBody2D
 				{
 						
 					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(light[light_inc].attatched_weapon.weaponUID);
-					Sprite2D new_weapon = weapon_scene.Instantiate<Sprite2D>();
+					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
 					AddChild(new_weapon);
 					new_weapon.Translate(hardpoint_locations[i]);
+					
+					if(is_player)
+					{
+						new_weapon.is_player = true;
+					}
+					new_weapon.Initialize();
+					
+					
 					light_inc +=1;
 				}
 			}
@@ -175,9 +183,13 @@ public partial class Ship : CharacterBody2D
 				{
 						
 					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(medium[medium_inc].attatched_weapon.weaponUID);
-					Sprite2D new_weapon = weapon_scene.Instantiate<Sprite2D>();
+					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
 					AddChild(new_weapon);
 					new_weapon.Translate(hardpoint_locations[i]);
+					if(is_player)
+					{
+						new_weapon.is_player = true;
+					}
 					medium_inc +=1;
 				}
 			}
@@ -196,11 +208,11 @@ public partial class Ship : CharacterBody2D
 			armor -= damage;
 			if(is_player)
 			{
-				BattleConnect.Instance.emitdamagesignal(BattleConnect.SignalName.PlayerArmorDamageTaken.ToString(), damage);
+				BattleConnect.Instance.EmitSignal(BattleConnect.SignalName.PlayerArmorDamageTaken.ToString(), damage);
 			}
 			else
 			{
-				BattleConnect.Instance.emitdamagesignal(BattleConnect.SignalName.EnemyArmorDamageTaken.ToString(), damage);
+				BattleConnect.Instance.EmitSignal(BattleConnect.SignalName.EnemyArmorDamageTaken.ToString(), damage);
 			}
 			
 		}
@@ -210,11 +222,11 @@ public partial class Ship : CharacterBody2D
 			if(is_player)
 			{
 				//Debug.Print("playertakedamage");
-				BattleConnect.Instance.emitdamagesignal(BattleConnect.SignalName.PlayerHealthDamageTaken.ToString(), damage);
+				BattleConnect.Instance.EmitSignal(BattleConnect.SignalName.PlayerHealthDamageTaken.ToString(), damage);
 			}
 			else
 			{
-				BattleConnect.Instance.emitdamagesignal(BattleConnect.SignalName.EnemyHealthDamageTaken.ToString(), damage);
+				BattleConnect.Instance.EmitSignal(BattleConnect.SignalName.EnemyHealthDamageTaken.ToString(), damage);
 			}
 		}	
 			
