@@ -8,13 +8,13 @@ public partial class MainMenu : Node2D
 {
 	
 	public PackedScene main_scene;
-	public PackedScene test_cannon;
+	
 	public PackedScene test_ship;
 
     public override void _Ready()
     {
         main_scene = ResourceLoader.Load<PackedScene>("uid://b7a2h0hw00vtn");// combat screen
-		test_cannon = ResourceLoader.Load<PackedScene>("uid://bhbke6nd0s8oj");
+		
 		
 
 		
@@ -30,9 +30,9 @@ public partial class MainMenu : Node2D
 
 		PlayerStats.Instance.available_hardpoints = new List<Hardpoint>
 		{
-			new Hardpoint(1, "light",  new Weapon("lightmachinegun")),
-			new Hardpoint(1, "medium",  new Weapon("mediumcannon")),
-			new Hardpoint(1, "light",  new Weapon("lightmachinegun"))
+			new Hardpoint(1, "light",  "lightmachinegun"),
+			new Hardpoint(1, "medium",  "mediumcannon"),
+			new Hardpoint(1, "light",  "lightmachinegun")
 		};
 
 		PlayerStats.Instance.hardpoint_locations = new Vector2[3] {
@@ -68,9 +68,9 @@ public partial class MainMenu : Node2D
 
 		EnemyStats.Instance.available_hardpoints = new List<Hardpoint>
 		{
-			new Hardpoint(1, "light",  new Weapon("lightmachinegun")),
-			new Hardpoint(1, "medium",  new Weapon("mediumcannon")),
-			new Hardpoint(1, "light",  new Weapon("lightmachinegun"))
+			new Hardpoint(1, "light",  "lightmachinegun"),
+			new Hardpoint(1, "medium",  "mediumcannon"),
+			new Hardpoint(1, "light",  "lightmachinegun")
 		};
 
 		EnemyStats.Instance.hardpoint_locations = new Vector2[3] {

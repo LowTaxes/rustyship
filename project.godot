@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 PlayerStats="*uid://bmlmujxtv16h1"
 EnemyStats="*uid://dtsow3dpgdxx7"
 BattleConnect="*uid://b07jfi3akov50"
+WeaponSceneUiDs="*uid://3yiw5tfjywlu"
 
 [dotnet]
 

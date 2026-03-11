@@ -10,21 +10,28 @@ public partial class Weapon : Sprite2D
 	public double crit_chance;
 	public double fire_rate;
 	public Timer fire_rate_timer;
-	public string weaponUID;
+	
 	public string bulletUID;
+	public PackedScene bullet_scene;
 	public double bullet_speed;
 	public bool is_active = false;
 	public bool is_player = false;
+	public string weapon_name;
 
-    public override void _Ready()
+    public override void _Process(double delta)
     {
-        
+        if(is_active)
+		{
+			Debug.Print(damage.ToString());
+		}
     }
 
-	public void Initialize()
+
+	public void Initialize(string weaon_name)
 	{
+		this.weapon_name = weaon_name;
 		BattleConnect.Instance.Connect(BattleConnect.SignalName.BattleStart, new Callable(this, "_OnBattleStart"));
-		Debug.Print(is_player.ToString());
+		//Debug.Print(is_player.ToString());
 		if(is_player)
 		{
 			LookAt(new Vector2(Position.X, -1000));
@@ -34,42 +41,51 @@ public partial class Weapon : Sprite2D
 		{
 			LookAt(new Vector2(Position.X, 1000));
 		}
-		
-	}
-	
 
-	public Weapon ()
-	{
-		//Called at some point so shit don't break / maybe when the node spawns in the tree
-	}
-	public Weapon(string weaponname)
-	{
-		if (weaponname.Equals("lightmachinegun"))
+		for(int i = 0; i < GetChildCount(); i++)
+		{
+			if(GetChild(i).GetType() == typeof(Timer))
+			{
+				fire_rate_timer = GetChild<Timer>(i);
+			}
+		}
+		
+		//bullet_scene = ResourceLoader.Load<PackedScene>(bulletUID);
+		if (weapon_name.Equals("lightmachinegun"))
 		{
 			damage = 1;
 			armor_damage_modifier = .25;
 			crit_chance = .01;
 			fire_rate = .5;
-			weaponUID = "uid://vwk20d4x7ag7";
 			bulletUID = "uid://cbdlciicv5vn6";
+			Debug.Print(bulletUID);
 			bullet_speed = 1;
 		}
 
-		if (weaponname.Equals("mediumcannon"))
+		if (weapon_name.Equals("mediumcannon"))
 		{
 			damage = 10;
 			armor_damage_modifier = 1;
 			crit_chance = .05;
 			fire_rate = 6;
-			weaponUID = "uid://bhbke6nd0s8oj";
 			bulletUID = "uid://cbdlciicv5vn6";
 			bullet_speed = .5; 
 		}
 	}
+	
+
+	
 
 	private void _OnBattleStart()
 	{
 		is_active = true;
+		fire_rate_timer.Start();
+		
+	}
+
+	private void _OnReadyToFire()
+	{
+		Debug.Print("yipee");
 	}
 	
 }

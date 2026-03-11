@@ -98,7 +98,7 @@ public partial class Ship : CharacterBody2D
 			{
 				for(int i = 0; i < num_light_needed-num_light_held; i++)
 				{
-					Hardpoint new_hardpoint = new Hardpoint(1, "light", new Weapon("lightmachinegun"));
+					Hardpoint new_hardpoint = new Hardpoint(1, "light", "lightmachinegun");
 					available_hardpoints.Add(new_hardpoint);
 					light.Add(new_hardpoint);
 				}
@@ -127,9 +127,10 @@ public partial class Ship : CharacterBody2D
 			{
 				if(hardpoint_weight_classes[i].Equals("light"))
 				{
-						
-					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(light[light_inc].attatched_weapon.weaponUID);
+					
+					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(WeaponSceneUIDs.Instance.getWeaponUID(light[light_inc].attatched_weapon_name));
 					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
+					
 					AddChild(new_weapon);
 					new_weapon.Translate(hardpoint_locations[i]);
 					
@@ -137,7 +138,7 @@ public partial class Ship : CharacterBody2D
 					{
 						new_weapon.is_player = true;
 					}
-					new_weapon.Initialize();
+					new_weapon.Initialize(light[light_inc].attatched_weapon_name);
 					
 					
 					light_inc +=1;
@@ -152,7 +153,7 @@ public partial class Ship : CharacterBody2D
 			{
 				for(int i = 0; i < num_medium_needed-num_medium_held; i++)
 				{
-					Hardpoint new_hardpoint = new Hardpoint(1, "medium", new Weapon("mediumcannon"));
+					Hardpoint new_hardpoint = new Hardpoint(1, "medium", "mediumcannon");
 					available_hardpoints.Add(new_hardpoint);
 					medium.Add(new_hardpoint);
 				}
@@ -182,7 +183,7 @@ public partial class Ship : CharacterBody2D
 				if(hardpoint_weight_classes[i].Equals("medium"))
 				{
 						
-					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(medium[medium_inc].attatched_weapon.weaponUID);
+					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(WeaponSceneUIDs.Instance.getWeaponUID(medium[medium_inc].attatched_weapon_name));
 					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
 					AddChild(new_weapon);
 					new_weapon.Translate(hardpoint_locations[i]);
@@ -190,6 +191,7 @@ public partial class Ship : CharacterBody2D
 					{
 						new_weapon.is_player = true;
 					}
+					new_weapon.Initialize(medium[medium_inc].attatched_weapon_name);
 					medium_inc +=1;
 				}
 			}
@@ -244,52 +246,6 @@ public partial class Ship : CharacterBody2D
 		}
     }
 
-/*
-	public int getHealth()
-	{
-		return health;
-	}
-	public void setHealth(int health)
-	{
-		this.health = health;
-	}
-	public int getMaxHealth()
-	{
-		return max_health;
-	}
-	public void setMaxHealth(int max_health)
-	{
-		this.max_health = max_health;
-	}
-	
-	public int getArmor()
-	{
-		return armor;
-	}
-	public void setArmor(int armor)
-	{
-		this.armor = armor;
-	}
-	public int getMaxArmor()
-	{
-		return max_armor;
-	}
-	public void setMaxArmor(int max_armor)
-	{
-		this.max_armor = max_armor;
-	}
-
-	public int getManeuverability()
-	{
-		return maneuverability;
-	}
-	public void setManeuverability(int maneuverability)
-	{
-		this.maneuverability = maneuverability;
-	}
-
-	*/
-	
 
 	
 	
