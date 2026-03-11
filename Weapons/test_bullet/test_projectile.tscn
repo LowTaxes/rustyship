@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cbdlciicv5vn6"]
 
-[ext_resource type="Script" uid="uid://n6ae7by7jxyk" path="res://Weapons/test_bullet/TestProjectile.cs" id="1_kkag7"]
+[ext_resource type="Script" uid="uid://n6ae7by7jxyk" path="res://Weapons/test_bullet/Projectile.cs" id="1_kkag7"]
 [ext_resource type="Texture2D" uid="uid://b1l8yluydldat" path="res://Weapons/test_bullet/test_projectile.png" id="1_vlvla"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlvla"]

@@ -1,9 +1,11 @@
 using Godot;
 using System;
 
-public partial class TestProjectile : RigidBody2D
+public partial class Projectile : RigidBody2D
 {
-	// Called when the node enters the scene tree for the first time.
+	public double damage;
+	public double speed;
+
 	public override void _Ready()
 	{
 	}

@@ -5,7 +5,7 @@ using System.Diagnostics;
 public partial class Weapon : Sprite2D
 {
 	
-	public int damage;
+	public double damage;
 	public double armor_damage_modifier;
 	public double crit_chance;
 	public double fire_rate;
@@ -17,19 +17,22 @@ public partial class Weapon : Sprite2D
 	public bool is_active = false;
 	public bool is_player = false;
 	public string weapon_name;
+	public double other_ship_width;
+	public Vector2 other_ship_start_point;
+	public Vector2 ship_start_point;
 
     public override void _Process(double delta)
     {
         if(is_active)
 		{
-			Debug.Print(damage.ToString());
+			//Debug.Print(damage.ToString());
 		}
     }
 
 
-	public void Initialize(string weaon_name)
+	public void Initialize()
 	{
-		this.weapon_name = weaon_name;
+		
 		BattleConnect.Instance.Connect(BattleConnect.SignalName.BattleStart, new Callable(this, "_OnBattleStart"));
 		//Debug.Print(is_player.ToString());
 		if(is_player)
@@ -71,6 +74,8 @@ public partial class Weapon : Sprite2D
 			bulletUID = "uid://cbdlciicv5vn6";
 			bullet_speed = .5; 
 		}
+
+		bullet_scene = ResourceLoader.Load<PackedScene>(bulletUID);
 	}
 	
 
@@ -81,10 +86,12 @@ public partial class Weapon : Sprite2D
 		is_active = true;
 		fire_rate_timer.Start();
 		
+		
 	}
 
 	private void _OnReadyToFire()
 	{
+		
 		Debug.Print("yipee");
 	}
 	

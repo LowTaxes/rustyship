@@ -15,8 +15,7 @@ public partial class GameManager : Node2D
 		PackedScene player_ship_scene = ResourceLoader.Load<PackedScene>(PlayerStats.Instance.current_ship_UID);
 		PackedScene enemy_ship_scene = ResourceLoader.Load<PackedScene>(EnemyStats.Instance.current_ship_UID);
 
-		player_start = new Vector2(0,200);
-		enemy_start = new Vector2(0,-200);
+		
 		
 		//Spawn Player Features
 		
@@ -30,6 +29,9 @@ public partial class GameManager : Node2D
 		player.available_hardpoints = PlayerStats.Instance.available_hardpoints;
 		player.hardpoint_locations = PlayerStats.Instance.hardpoint_locations;
 		player.hardpoint_weight_classes = PlayerStats.Instance.hardpoint_weight_classes;
+		player.other_ship_width = EnemyStats.Instance.ship_width;//get OTHER ship width to pass down to weapons
+		player.ship_start_point = PlayerStats.Instance.ship_start_point;
+		player.other_ship_start_point = EnemyStats.Instance.ship_start_point;
 		AddChild(player);
 		
 
@@ -44,11 +46,14 @@ public partial class GameManager : Node2D
 		enemy.available_hardpoints = EnemyStats.Instance.available_hardpoints;
 		enemy.hardpoint_locations = EnemyStats.Instance.hardpoint_locations;
 		enemy.hardpoint_weight_classes = EnemyStats.Instance.hardpoint_weight_classes;
+		enemy.other_ship_width = PlayerStats.Instance.ship_width;
+		enemy.ship_start_point = EnemyStats.Instance.ship_start_point;
+		enemy.other_ship_start_point = PlayerStats.Instance.ship_start_point;
 		AddChild(enemy);
 		
 	
-		player.Translate(player_start);
-		enemy.Translate(enemy_start);
+		player.Translate(PlayerStats.Instance.ship_start_point);
+		enemy.Translate(EnemyStats.Instance.ship_start_point);
 		
 		
 	}

@@ -9,17 +9,20 @@ public partial class Ship : CharacterBody2D
 {
 	
 	public bool is_player;
-	public int max_health = 0;
-	public int health = 0;
-	public int max_armor = 0;
+	public double max_health = 0;
+	public double health = 0;
+	public double max_armor = 0;
 
-	public int armor = 0;
-	public int maneuverability = 0;
+	public double armor = 0;
+	public double maneuverability = 0;
+	public double other_ship_width;
 	
 	public List<Hardpoint> available_hardpoints;
 	public List<Hardpoint> hardpoints_in_use;
 	public Vector2[] hardpoint_locations;
 	public string[] hardpoint_weight_classes;
+	public Vector2 other_ship_start_point;
+	public Vector2 ship_start_point;
 
 
     public override void _Ready()
@@ -138,7 +141,11 @@ public partial class Ship : CharacterBody2D
 					{
 						new_weapon.is_player = true;
 					}
-					new_weapon.Initialize(light[light_inc].attatched_weapon_name);
+					new_weapon.weapon_name = light[light_inc].attatched_weapon_name;
+					new_weapon.other_ship_width = other_ship_width;
+					new_weapon.ship_start_point = ship_start_point;
+					new_weapon.other_ship_start_point = other_ship_start_point;
+					new_weapon.Initialize();
 					
 					
 					light_inc +=1;
@@ -191,7 +198,11 @@ public partial class Ship : CharacterBody2D
 					{
 						new_weapon.is_player = true;
 					}
-					new_weapon.Initialize(medium[medium_inc].attatched_weapon_name);
+					new_weapon.weapon_name = medium[medium_inc].attatched_weapon_name;
+					new_weapon.other_ship_width = other_ship_width;
+					new_weapon.ship_start_point = ship_start_point;
+					new_weapon.other_ship_start_point = other_ship_start_point;
+					new_weapon.Initialize();
 					medium_inc +=1;
 				}
 			}
@@ -201,7 +212,7 @@ public partial class Ship : CharacterBody2D
     }
 
 
-	public void takeDamage(int damage)
+	public void takeDamage(double damage)
 	{
 		
 		if(armor > 0 )

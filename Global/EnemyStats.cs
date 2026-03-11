@@ -15,6 +15,8 @@ public partial class EnemyStats : Node
 	public List<Hardpoint> available_hardpoints;
 	public Vector2[] hardpoint_locations;
 	public string[] hardpoint_weight_classes;
+	public double ship_width;
+	public Vector2 ship_start_point;
 
 	public string current_ship_UID;
 	public override void _Ready()
