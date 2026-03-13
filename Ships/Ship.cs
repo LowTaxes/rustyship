@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics.X86;
 
+
 public partial class Ship : CharacterBody2D
 {
 	
@@ -15,7 +16,7 @@ public partial class Ship : CharacterBody2D
 
 	public double armor = 0;
 	public double maneuverability = 0;
-	public double other_ship_width;
+	public int other_ship_width;
 	
 	public List<Hardpoint> available_hardpoints;
 	public List<Hardpoint> hardpoints_in_use;
@@ -212,9 +213,9 @@ public partial class Ship : CharacterBody2D
     }
 
 
-	public void takeDamage(double damage)
+	public void takeDamage(double damage,  double armor_damage_modifier, double crit_chance)
 	{
-		
+		//Debug.Print("hi");
 		if(armor > 0 )
 		{
 			
@@ -245,18 +246,8 @@ public partial class Ship : CharacterBody2D
 			
 	}	
 		
-	public override void _Input(InputEvent @event)
-    {
-        if(@event is InputEventKey eventkey)
-		{
-			if(eventkey.IsReleased() && eventkey.Keycode == Key.Enter)
-			{
-				takeDamage(10);
-				
-			}
-		}
-    }
-
+	
+ 
 
 	
 	

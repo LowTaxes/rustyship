@@ -55,7 +55,12 @@ public partial class GameManager : Node2D
 		player.Translate(PlayerStats.Instance.ship_start_point);
 		enemy.Translate(EnemyStats.Instance.ship_start_point);
 		
+		//TEST
 		
+		PackedScene test = ResourceLoader.Load<PackedScene>("uid://cbdlciicv5vn6");
+		Projectile b = test.Instantiate<Projectile>();
+		AddChild(b);
+		b.Translate(new Vector2(PlayerStats.Instance.ship_width/2, PlayerStats.Instance.ship_start_point.Y));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlvla"]
 radius = 6.0
 
-[node name="test_projectile" type="RigidBody2D" unique_id=125712083]
+[node name="test_projectile" type="Area2D" unique_id=1172496951]
 script = ExtResource("1_kkag7")
 
 [node name="TestProjectile" type="Sprite2D" parent="." unique_id=1428969002]
@@ -15,3 +15,5 @@ texture = ExtResource("1_vlvla")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=4888520]
 shape = SubResource("CircleShape2D_vlvla")
+
+[connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
