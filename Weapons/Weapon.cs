@@ -21,22 +21,21 @@ public partial class Weapon : Sprite2D
 	public int other_ship_width;
 	public Vector2 other_ship_start_point;
 	public Vector2 ship_start_point;
-	public Vector2 target_look_at;
-	public Vector2 old_target_look_at;
+	public Vector2 global_target_look_at;
+	public Vector2 old_global_target_look_at;
+	private float rotation_angle;
+	private float speed_angle;
+	private int spread_radius;
 	
-	
-
     
 
     public override void _PhysicsProcess(double delta)
     {
+		
         if(is_active)
 		{
-			
-			Vector2 globalized_look_at = new Vector2(target_look_at.X - GlobalPosition.X, target_look_at.Y-GlobalPosition.Y);
-			double angle = old_target_look_at.AngleTo(globalized_look_at);
-			//Rotate((float)(angle*delta/fire_rate));
-			
+		Rotate(rotation_angle/ (int)(fire_rate*Engine.PhysicsTicksPerSecond));
+	
 		}
     }
 
@@ -48,8 +47,9 @@ public partial class Weapon : Sprite2D
 		BattleConnect.Instance.Connect(BattleConnect.SignalName.BattleStart, new Callable(this, "_OnBattleStart"));
 		//Debug.Print(is_player.ToString());
 		
-		LookAt(new Vector2(Position.X, other_ship_start_point.Y));
-		old_target_look_at = new Vector2(0, other_ship_start_point.Y);
+		global_target_look_at = new Vector2(Position.X, other_ship_start_point.Y);
+		LookAt(global_target_look_at);
+		
 		
 
 		for(int i = 0; i < GetChildCount(); i++)
@@ -66,10 +66,11 @@ public partial class Weapon : Sprite2D
 			damage = 1;
 			armor_damage_modifier = .25;
 			crit_chance = .01;
-			fire_rate = 1;
+			fire_rate = .1;
 			bulletUID = "uid://cbdlciicv5vn6";
 			Debug.Print(bulletUID);
 			bullet_speed = 20;
+			spread_radius = 50;
 		}
 
 		if (weapon_name.Equals("mediumcannon"))
@@ -80,6 +81,7 @@ public partial class Weapon : Sprite2D
 			fire_rate = 2;
 			bulletUID = "uid://cbdlciicv5vn6";
 			bullet_speed = 20; 
+			spread_radius = 100;
 		}
 
 		bullet_scene = ResourceLoader.Load<PackedScene>(bulletUID);
@@ -93,30 +95,31 @@ public partial class Weapon : Sprite2D
 		
 		fire_rate_timer.WaitTime = fire_rate;
 		fire_rate_timer.Start();
+
 		
-		int look_x = GD.RandRange(-other_ship_width/2, other_ship_width/2);
-		target_look_at = new Vector2(look_x-GlobalPosition.X, other_ship_start_point.Y);
+
+		old_global_target_look_at = global_target_look_at;
+
+		RandomNumberGenerator rng = new RandomNumberGenerator();
+		int new_target_x = rng.RandiRange(-other_ship_width/2, other_ship_width/2);
+		global_target_look_at = new Vector2(new_target_x, other_ship_start_point.Y);
+
+		Vector2 curr_look_direction = new Vector2(old_global_target_look_at.X - GlobalPosition.X, old_global_target_look_at.Y-GlobalPosition.Y);
+		Vector2 new_look__direction = new Vector2(global_target_look_at.X - GlobalPosition.X, global_target_look_at.Y-GlobalPosition.Y);
 		
-		
+		rotation_angle = curr_look_direction.AngleTo(new_look__direction);
+
+
 		is_active = true;
 	}
 
 	private void _OnReadyToFire()
 	{
+		//make lookat direction exact to smooth small errors in rotation
+		LookAt(global_target_look_at);
 		
-		Rotate(old_target_look_at.AngleTo(target_look_at));
-		
-		int look_x = GD.RandRange(-other_ship_width/2, other_ship_width/2);
-		old_target_look_at = target_look_at;
-		target_look_at = new Vector2(look_x-GlobalPosition.X, other_ship_start_point.Y);
-		
-		
-		
-		//Debug.Print("after rotate: " + Rotation.ToString());
-		//LookAt(new_look_at);
-		//Debug.Print("after Lookat: " + Rotation.ToString());
-
-		Vector2 bullet_travel_direction = new Vector2(target_look_at.X - GlobalPosition.X, target_look_at.Y-GlobalPosition.Y);
+		//Handle bullet firing
+		Vector2 bullet_travel_direction = new Vector2(global_target_look_at.X - GlobalPosition.X, global_target_look_at.Y-GlobalPosition.Y);
 		Projectile bullet = bullet_scene.Instantiate<Projectile>();
 		GetNode("/root/GameManager").AddChild(bullet);
 		bullet.is_player = is_player;
@@ -127,6 +130,33 @@ public partial class Weapon : Sprite2D
 		bullet.crit_chance = crit_chance;
 		bullet.Translate(GlobalPosition);
 		
+		//Generate a new position to fire at and rotate towards
+		old_global_target_look_at = global_target_look_at;
+
+		RandomNumberGenerator rng = new RandomNumberGenerator();
+		int left_x_bound = (int)old_global_target_look_at.X - spread_radius;
+		int right_x_bound = (int)old_global_target_look_at.X + spread_radius;
+
+		//Ensure spread does not go past the other ship's boundaries
+		if(left_x_bound < -other_ship_width/2)
+		{
+			left_x_bound = -other_ship_width/2;
+			right_x_bound = (-other_ship_width/2) + (spread_radius * 2);
+		}
+
+		if(right_x_bound > other_ship_width/2)
+		{
+			right_x_bound = other_ship_width/2;
+			left_x_bound = (other_ship_width/2) - (spread_radius * 2);
+		}
+
+		int new_target_x = rng.RandiRange(left_x_bound, right_x_bound);
+		global_target_look_at = new Vector2(new_target_x, other_ship_start_point.Y);
+
+		Vector2 curr_look_direction = new Vector2(old_global_target_look_at.X - GlobalPosition.X, old_global_target_look_at.Y-GlobalPosition.Y);
+		Vector2 new_look__direction = new Vector2(global_target_look_at.X - GlobalPosition.X, global_target_look_at.Y-GlobalPosition.Y);
+		
+		rotation_angle = curr_look_direction.AngleTo(new_look__direction);
 		
 	}
 	

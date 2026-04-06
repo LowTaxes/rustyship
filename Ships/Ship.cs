@@ -42,10 +42,10 @@ public partial class Ship : CharacterBody2D
 		int num_heavy_held = 0;
 		int num_superheavy_held = 0;
 
-		List<Hardpoint> light = new List<Hardpoint>();
-		List<Hardpoint> medium = new List<Hardpoint>();
-		List<Hardpoint> heavy = new List<Hardpoint>();
-		List<Hardpoint> superheavy = new List<Hardpoint>();
+		List<Hardpoint> light_hardpoints_available = new List<Hardpoint>();
+		List<Hardpoint> medium_hardpoints_available = new List<Hardpoint>();
+		List<Hardpoint> heavy_hardpoints_available = new List<Hardpoint>();
+		List<Hardpoint> superheavy_hardpoints_available = new List<Hardpoint>();
 		
 		//finding how many hardpoints of each weight class is needed
 		for(int i = 0; i< hardpoint_weight_classes.Length; i++)
@@ -73,24 +73,24 @@ public partial class Ship : CharacterBody2D
 			if(available_hardpoints[i].weight_class.Equals("light"))
 			{
 				num_light_held+=1;
-				light.Add(available_hardpoints[i]);
+				light_hardpoints_available.Add(available_hardpoints[i]);
 				
 			}
 			if(available_hardpoints[i].weight_class.Equals("medium"))
 			{
 				num_medium_held+=1;
-				medium.Add(available_hardpoints[i]);
+				medium_hardpoints_available.Add(available_hardpoints[i]);
 				
 			}
 			if(available_hardpoints[i].weight_class.Equals("heavy"))
 			{
 				num_heavy_held+=1;
-				heavy.Add(available_hardpoints[i]);
+				heavy_hardpoints_available.Add(available_hardpoints[i]);
 			}
 			if(available_hardpoints[i].weight_class.Equals("superheavy"))
 			{
 				num_superheavy_held+=1;
-				superheavy.Add(available_hardpoints[i]);
+				superheavy_hardpoints_available.Add(available_hardpoints[i]);
 				
 			}
 		}
@@ -104,25 +104,25 @@ public partial class Ship : CharacterBody2D
 				{
 					Hardpoint new_hardpoint = new Hardpoint(1, "light", "lightmachinegun");
 					available_hardpoints.Add(new_hardpoint);
-					light.Add(new_hardpoint);
+					light_hardpoints_available.Add(new_hardpoint);
 				}
 			}
 
-			for(int i = 0; i < light.Count; i++)
+			for(int i = 0; i < light_hardpoints_available.Count; i++)
 			{
-				Hardpoint largest = light[i];
+				Hardpoint largest = light_hardpoints_available[i];
 				int largest_index = i;
-				for(int k = i+1; k < light.Count; k++)
+				for(int k = i+1; k < light_hardpoints_available.Count; k++)
 				{
-					if(light[k].level > largest.level)
+					if(light_hardpoints_available[k].level > largest.level)
 					{
-						largest = light[k];
+						largest = light_hardpoints_available[k];
 						largest_index = k;
 					}
 				}
-				Hardpoint temp = light[i];
-				light[i] = largest;
-				light[largest_index] = temp;
+				Hardpoint temp = light_hardpoints_available[i];
+				light_hardpoints_available[i] = largest;
+				light_hardpoints_available[largest_index] = temp;
 					
 			}
 			int light_inc = 0;
@@ -132,7 +132,7 @@ public partial class Ship : CharacterBody2D
 				if(hardpoint_weight_classes[i].Equals("light"))
 				{
 					
-					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(WeaponSceneUIDs.Instance.getWeaponUID(light[light_inc].attatched_weapon_name));
+					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(WeaponSceneUIDs.Instance.getWeaponUID(light_hardpoints_available[light_inc].attatched_weapon_name));
 					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
 					
 					AddChild(new_weapon);
@@ -142,7 +142,7 @@ public partial class Ship : CharacterBody2D
 					{
 						new_weapon.is_player = true;
 					}
-					new_weapon.weapon_name = light[light_inc].attatched_weapon_name;
+					new_weapon.weapon_name = light_hardpoints_available[light_inc].attatched_weapon_name;
 					new_weapon.other_ship_width = other_ship_width;
 					new_weapon.ship_start_point = ship_start_point;
 					new_weapon.other_ship_start_point = other_ship_start_point;
@@ -163,25 +163,25 @@ public partial class Ship : CharacterBody2D
 				{
 					Hardpoint new_hardpoint = new Hardpoint(1, "medium", "mediumcannon");
 					available_hardpoints.Add(new_hardpoint);
-					medium.Add(new_hardpoint);
+					medium_hardpoints_available.Add(new_hardpoint);
 				}
 			}
 
-			for(int i = 0; i < medium.Count; i++)
+			for(int i = 0; i < medium_hardpoints_available.Count; i++)
 			{
-				Hardpoint largest = medium[i];
+				Hardpoint largest = medium_hardpoints_available[i];
 				int largest_index = i;
-				for(int k = i+1; k < medium.Count; k++)
+				for(int k = i+1; k < medium_hardpoints_available.Count; k++)
 				{
-					if(medium[k].level > largest.level)
+					if(medium_hardpoints_available[k].level > largest.level)
 					{
-						largest = medium[k];
+						largest = medium_hardpoints_available[k];
 						largest_index = k;
 					}
 				}
-				Hardpoint temp = medium[i];
-				medium[i] = largest;
-				medium[largest_index] = temp;
+				Hardpoint temp = medium_hardpoints_available[i];
+				medium_hardpoints_available[i] = largest;
+				medium_hardpoints_available[largest_index] = temp;
 					
 			}
 			int medium_inc = 0;
@@ -191,7 +191,7 @@ public partial class Ship : CharacterBody2D
 				if(hardpoint_weight_classes[i].Equals("medium"))
 				{
 						
-					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(WeaponSceneUIDs.Instance.getWeaponUID(medium[medium_inc].attatched_weapon_name));
+					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(WeaponSceneUIDs.Instance.getWeaponUID(medium_hardpoints_available[medium_inc].attatched_weapon_name));
 					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
 					AddChild(new_weapon);
 					new_weapon.Translate(hardpoint_locations[i]);
@@ -199,7 +199,7 @@ public partial class Ship : CharacterBody2D
 					{
 						new_weapon.is_player = true;
 					}
-					new_weapon.weapon_name = medium[medium_inc].attatched_weapon_name;
+					new_weapon.weapon_name = medium_hardpoints_available[medium_inc].attatched_weapon_name;
 					new_weapon.other_ship_width = other_ship_width;
 					new_weapon.ship_start_point = ship_start_point;
 					new_weapon.other_ship_start_point = other_ship_start_point;
