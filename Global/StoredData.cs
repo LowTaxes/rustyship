@@ -14,7 +14,8 @@ public partial class StoredData : Node
 	public override void _Ready()
 	{
 		Instance = this;
-		/*
+		Debug.Print(project_path);
+		
 		Dictionary weapon_data = new Dictionary();
 		weapon_data.Add("lightmachinegun", new Array
 		{
@@ -24,7 +25,8 @@ public partial class StoredData : Node
 			.1,
 			"uid://cbdlciicv5vn6",
 			20,
-			50
+			50,
+			"uid://vwk20d4x7ag7"
 		});
 		weapon_data.Add("mediumcannon", new Array
 		{
@@ -34,7 +36,8 @@ public partial class StoredData : Node
 			2,
 			"uid://cbdlciicv5vn6",
 			20,
-			100
+			100,
+			"uid://bhbke6nd0s8oj"
 		});
 		
 
@@ -42,13 +45,8 @@ public partial class StoredData : Node
 		string file_name = "WeaponData";
 		string formatted_data = Json.Stringify(weapon_data);
 
-		SaveTextToFile(project_path, file_name, formatted_data);
-		
-		string file_name = "WeaponData";
-		Dictionary retrieved_data = LoadData(project_path, file_name);
-
-		Debug.Print(retrieved_data["heavycannon"].ToString());
-		*/
+		SaveTextToFile(file_name, formatted_data);
+	
 	}
 
 	public void SaveTextToFile(string file_name, string data)
