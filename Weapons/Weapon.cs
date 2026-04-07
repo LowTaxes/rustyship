@@ -2,7 +2,9 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-
+using WeaponStats = Constants.WeaponStats;
+using Array = Godot.Collections.Array;
+using Dictionary = Godot.Collections.Dictionary;
 public partial class Weapon : Sprite2D
 {
 	
@@ -40,6 +42,7 @@ public partial class Weapon : Sprite2D
     }
 
 
+	
 
 	public void Initialize()
 	{
@@ -60,34 +63,20 @@ public partial class Weapon : Sprite2D
 			}
 		}
 		
-		//bullet_scene = ResourceLoader.Load<PackedScene>(bulletUID);
-		if (weapon_name.Equals("lightmachinegun"))
-		{
-			damage = 1;
-			armor_damage_modifier = .25;
-			crit_chance = .01;
-			fire_rate = .1;
-			bulletUID = "uid://cbdlciicv5vn6";
-			Debug.Print(bulletUID);
-			bullet_speed = 20;
-			spread_radius = 50;
-		}
+		Dictionary WeaponData = StoredData.Instance.LoadData("WeaponData");
+		Array weapon_data = (Array)WeaponData[weapon_name];
 
-		if (weapon_name.Equals("mediumcannon"))
-		{
-			damage = 10;
-			armor_damage_modifier = 1;
-			crit_chance = .05;
-			fire_rate = 2;
-			bulletUID = "uid://cbdlciicv5vn6";
-			bullet_speed = 20; 
-			spread_radius = 100;
-		}
-
+		//All values stored in WeaponData file
+		damage = (double)weapon_data[(int)WeaponStats.DAMAGE];
+		armor_damage_modifier = (double)weapon_data[(int)WeaponStats.ARMOR_DAMAGE_MODIFIER];
+		crit_chance = (double)weapon_data[(int)WeaponStats.CRIT_CHANCE];
+		fire_rate = (double)weapon_data[(int)WeaponStats.FIRE_RATE];
+		bulletUID = weapon_data[(int)WeaponStats.BULLET_UID].ToString();
+		bullet_speed = (double)weapon_data[(int)WeaponStats.BULLET_SPEED];
+		spread_radius = (int)weapon_data[(int)WeaponStats.SPREAD_RADIUS];
+		
 		bullet_scene = ResourceLoader.Load<PackedScene>(bulletUID);
 	}
-	
-
 	
 
 	private void _OnBattleStart()

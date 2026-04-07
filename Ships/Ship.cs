@@ -5,7 +5,9 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics.X86;
 
-
+using Dictionary = Godot.Collections.Dictionary;
+using Array = Godot.Collections.Array;
+using WeaponStats = Constants.WeaponStats;
 public partial class Ship : CharacterBody2D
 {
 	
@@ -67,7 +69,7 @@ public partial class Ship : CharacterBody2D
 				num_superheavy_needed+=1;
 			}
 		}
-		//Finding how many hardpoints of each weigth class we have
+		//Finding how many hardpoints of each weight class we have
 		for(int i = 0; i < available_hardpoints.Count; i++)
 		{
 			if(available_hardpoints[i].weight_class.Equals("light"))
@@ -131,8 +133,10 @@ public partial class Ship : CharacterBody2D
 			{
 				if(hardpoint_weight_classes[i].Equals("light"))
 				{
-					
-					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(WeaponSceneUIDs.Instance.getWeaponUID(light_hardpoints_available[light_inc].attatched_weapon_name));
+					Dictionary WeaponData = StoredData.Instance.LoadData("WeaponData");
+					Array weapon_data = (Array)WeaponData[light_hardpoints_available[light_inc].attatched_weapon_name];
+
+					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(weapon_data[(int)WeaponStats.WEAPONUID].ToString());
 					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
 					
 					AddChild(new_weapon);
@@ -191,8 +195,12 @@ public partial class Ship : CharacterBody2D
 				if(hardpoint_weight_classes[i].Equals("medium"))
 				{
 						
-					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(WeaponSceneUIDs.Instance.getWeaponUID(medium_hardpoints_available[medium_inc].attatched_weapon_name));
+					Dictionary WeaponData = StoredData.Instance.LoadData("WeaponData");
+					Array weapon_data = (Array)WeaponData[medium_hardpoints_available[medium_inc].attatched_weapon_name];
+
+					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(weapon_data[(int)WeaponStats.WEAPONUID].ToString());
 					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
+					
 					AddChild(new_weapon);
 					new_weapon.Translate(hardpoint_locations[i]);
 					if(is_player)
@@ -215,7 +223,8 @@ public partial class Ship : CharacterBody2D
 
 	public void takeDamage(double damage,  double armor_damage_modifier, double crit_chance)
 	{
-		//Debug.Print("hi");
+		//Debug.
+		// ("hi");
 		if(armor > 0 )
 		{
 			

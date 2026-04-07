@@ -20,6 +20,8 @@ PlayerStats="*uid://bmlmujxtv16h1"
 EnemyStats="*uid://dtsow3dpgdxx7"
 BattleConnect="*uid://b07jfi3akov50"
 WeaponSceneUiDs="*uid://3yiw5tfjywlu"
+Constants="*uid://clpk3q5nm4xjj"
+StoredData="*uid://b0ucavndy3mlq"
 
 [dotnet]
 
