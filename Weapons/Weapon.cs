@@ -2,9 +2,10 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-using WeaponStats = Constants.WeaponStats;
+using WeaponDataEnum = Constants.WeaponDataEnum;
 using Array = Godot.Collections.Array;
 using Dictionary = Godot.Collections.Dictionary;
+
 public partial class Weapon : Sprite2D
 {
 	
@@ -48,7 +49,6 @@ public partial class Weapon : Sprite2D
 	{
 		
 		BattleConnect.Instance.Connect(BattleConnect.SignalName.BattleStart, new Callable(this, "_OnBattleStart"));
-		//Debug.Print(is_player.ToString());
 		
 		global_target_look_at = new Vector2(Position.X, other_ship_start_point.Y);
 		LookAt(global_target_look_at);
@@ -63,17 +63,17 @@ public partial class Weapon : Sprite2D
 			}
 		}
 		
-		Dictionary WeaponData = StoredData.Instance.LoadData("WeaponData");
-		Array weapon_data = (Array)WeaponData[weapon_name];
+		
+		
 
 		//All values stored in WeaponData file
-		damage = (double)weapon_data[(int)WeaponStats.DAMAGE];
-		armor_damage_modifier = (double)weapon_data[(int)WeaponStats.ARMOR_DAMAGE_MODIFIER];
-		crit_chance = (double)weapon_data[(int)WeaponStats.CRIT_CHANCE];
-		fire_rate = (double)weapon_data[(int)WeaponStats.FIRE_RATE];
-		bulletUID = weapon_data[(int)WeaponStats.BULLET_UID].ToString();
-		bullet_speed = (double)weapon_data[(int)WeaponStats.BULLET_SPEED];
-		spread_radius = (int)weapon_data[(int)WeaponStats.SPREAD_RADIUS];
+		damage = (double) ((Array)ConstantData.WeaponData[weapon_name])[(int)WeaponDataEnum.DAMAGE];
+		armor_damage_modifier = (double) ((Array)ConstantData.WeaponData[weapon_name])[(int)WeaponDataEnum.ARMOR_DAMAGE_MODIFIER];
+		crit_chance = (double) ((Array)ConstantData.WeaponData[weapon_name])[(int)WeaponDataEnum.CRIT_CHANCE];
+		fire_rate = (double) ((Array)ConstantData.WeaponData[weapon_name])[(int)WeaponDataEnum.FIRE_RATE];
+		bulletUID = ((Array)ConstantData.WeaponData[weapon_name])[(int)WeaponDataEnum.BULLET_UID].ToString();
+		bullet_speed = (double) ((Array)ConstantData.WeaponData[weapon_name])[(int)WeaponDataEnum.BULLET_SPEED];
+		spread_radius = (int) ((Array)ConstantData.WeaponData[weapon_name])[(int)WeaponDataEnum.SPREAD_RADIUS];
 		
 		bullet_scene = ResourceLoader.Load<PackedScene>(bulletUID);
 	}

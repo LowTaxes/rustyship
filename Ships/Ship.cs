@@ -7,7 +7,8 @@ using System.Runtime.Intrinsics.X86;
 
 using Dictionary = Godot.Collections.Dictionary;
 using Array = Godot.Collections.Array;
-using WeaponStats = Constants.WeaponStats;
+
+using WeaponDataEnum = Constants.WeaponDataEnum;
 public partial class Ship : CharacterBody2D
 {
 	
@@ -30,7 +31,7 @@ public partial class Ship : CharacterBody2D
 
     public override void _Ready()
     {
-        
+		
 		PackedScene hardpoint_scene = ResourceLoader.Load<PackedScene>("uid://djegmfpqrdo3e");
 
 		int max_guns = hardpoint_locations.Length;
@@ -127,16 +128,15 @@ public partial class Ship : CharacterBody2D
 				light_hardpoints_available[largest_index] = temp;
 					
 			}
-			int light_inc = 0;
+			int light_hardpoint_available_inc = 0;
 
 			for( int i = 0; i< hardpoint_weight_classes.Length; i++)
 			{
 				if(hardpoint_weight_classes[i].Equals("light"))
 				{
-					Dictionary WeaponData = StoredData.Instance.LoadData("WeaponData");
-					Array weapon_data = (Array)WeaponData[light_hardpoints_available[light_inc].attatched_weapon_name];
-
-					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(weapon_data[(int)WeaponStats.WEAPONUID].ToString());
+					
+					
+					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(((Array)(ConstantData.WeaponData[light_hardpoints_available[light_hardpoint_available_inc].attatched_weapon_name]))[(int)WeaponDataEnum.WEAPON_UID].ToString());
 					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
 					
 					AddChild(new_weapon);
@@ -146,14 +146,14 @@ public partial class Ship : CharacterBody2D
 					{
 						new_weapon.is_player = true;
 					}
-					new_weapon.weapon_name = light_hardpoints_available[light_inc].attatched_weapon_name;
+					new_weapon.weapon_name = light_hardpoints_available[light_hardpoint_available_inc].attatched_weapon_name;
 					new_weapon.other_ship_width = other_ship_width;
 					new_weapon.ship_start_point = ship_start_point;
 					new_weapon.other_ship_start_point = other_ship_start_point;
 					new_weapon.Initialize();
 					
 					
-					light_inc +=1;
+					light_hardpoint_available_inc +=1;
 				}
 			}
 		
@@ -188,17 +188,16 @@ public partial class Ship : CharacterBody2D
 				medium_hardpoints_available[largest_index] = temp;
 					
 			}
-			int medium_inc = 0;
+			int medium_hardpoint_available_inc = 0;
 
 			for( int i = 0; i< hardpoint_weight_classes.Length; i++)
 			{
 				if(hardpoint_weight_classes[i].Equals("medium"))
 				{
 						
-					Dictionary WeaponData = StoredData.Instance.LoadData("WeaponData");
-					Array weapon_data = (Array)WeaponData[medium_hardpoints_available[medium_inc].attatched_weapon_name];
-
-					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(weapon_data[(int)WeaponStats.WEAPONUID].ToString());
+					
+					
+					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(((Array)(ConstantData.WeaponData[medium_hardpoints_available[medium_hardpoint_available_inc].attatched_weapon_name]))[(int)WeaponDataEnum.WEAPON_UID].ToString());
 					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
 					
 					AddChild(new_weapon);
@@ -207,12 +206,12 @@ public partial class Ship : CharacterBody2D
 					{
 						new_weapon.is_player = true;
 					}
-					new_weapon.weapon_name = medium_hardpoints_available[medium_inc].attatched_weapon_name;
+					new_weapon.weapon_name = medium_hardpoints_available[medium_hardpoint_available_inc].attatched_weapon_name;
 					new_weapon.other_ship_width = other_ship_width;
 					new_weapon.ship_start_point = ship_start_point;
 					new_weapon.other_ship_start_point = other_ship_start_point;
 					new_weapon.Initialize();
-					medium_inc +=1;
+					medium_hardpoint_available_inc +=1;
 				}
 			}
 		
@@ -223,8 +222,6 @@ public partial class Ship : CharacterBody2D
 
 	public void takeDamage(double damage,  double armor_damage_modifier, double crit_chance)
 	{
-		//Debug.
-		// ("hi");
 		if(armor > 0 )
 		{
 			
@@ -244,7 +241,7 @@ public partial class Ship : CharacterBody2D
 			health -= damage;
 			if(is_player)
 			{
-				//Debug.Print("playertakedamage");
+				
 				BattleConnect.Instance.EmitSignal(BattleConnect.SignalName.PlayerHealthDamageTaken.ToString(), damage);
 			}
 			else

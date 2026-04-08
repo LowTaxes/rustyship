@@ -2,7 +2,9 @@ using Godot;
 using GodotPlugins.Game;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 public partial class MainMenu : Node2D
 {
@@ -15,8 +17,6 @@ public partial class MainMenu : Node2D
     {
         main_scene = ResourceLoader.Load<PackedScene>("uid://b7a2h0hw00vtn");// combat screen
 		
-		
-
 		
 		//TEST PLAYER STATS
 		PlayerStats.Instance.max_health = 100;

@@ -3,7 +3,7 @@ using System;
 
 public partial class Constants : Node
 {
-	public enum WeaponStats
+	public enum WeaponDataEnum
 	{
 		DAMAGE,
 		ARMOR_DAMAGE_MODIFIER,
@@ -12,7 +12,7 @@ public partial class Constants : Node
 		BULLET_UID,
 		BULLET_SPEED,
 		SPREAD_RADIUS,
-		WEAPONUID
+		WEAPON_UID
 	}
 
 
