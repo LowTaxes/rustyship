@@ -48,7 +48,7 @@ public partial class MainMenu : Node2D
 			"medium",
 			"light"
 		};
-		PlayerStats.Instance.current_ship_UID = "uid://55gey740o2lm";
+		PlayerStats.Instance.ship_UID = "uid://55gey740o2lm";
 		PlayerStats.Instance.ship_width = 400;
 		PlayerStats.Instance.ship_start_point = new Vector2(0,200);
 
@@ -86,7 +86,7 @@ public partial class MainMenu : Node2D
 			"medium",
 			"light"
 		};
-		EnemyStats.Instance.current_ship_UID = "uid://55gey740o2lm";
+		EnemyStats.Instance.ship_UID = "uid://55gey740o2lm";
 		EnemyStats.Instance.ship_width = 400;
 		EnemyStats.Instance.ship_start_point = new Vector2(0,-200);
 		

@@ -20,7 +20,26 @@ public partial class ConstantData : Node
 		
 		WeaponData = LoadJsonFile("WeaponData.json");
 		
-		
+		Dictionary ship_dic = new Dictionary();
+		ship_dic.Add("s_player_start", new Array{
+			100,
+			100,
+			10,
+			new Vector2[3] {
+			new Vector2(-100,0),
+			new Vector2(0,0),
+			new Vector2(100,0),
+			},
+			new string[3]
+			{
+				"light",
+				"medium",
+				"light"
+			},
+			400,
+			"uid://55gey740o2lm"
+
+		});
 
 	}
 
@@ -52,9 +71,9 @@ public partial class ConstantData : Node
 		
 	
 	}
-}
 
-/*
+
+
 	public void SaveTextToFile(string file_name, string data)
 	{
 		if(!Directory.Exists(user_path))
@@ -102,4 +121,5 @@ public partial class ConstantData : Node
 		return (Dictionary)json_loader.Data;
 
 	}
-	*/
+	
+}

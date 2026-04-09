@@ -31,7 +31,16 @@ public partial class Ship : CharacterBody2D
 
     public override void _Ready()
     {
-		
+		if(is_player)
+		{
+			ship_start_point = Constants.PLAYER_START_LOCATION;
+			other_ship_start_point = Constants.ENEMY_START_LOCATION;
+		}
+		else
+		{
+			other_ship_start_point = Constants.PLAYER_START_LOCATION;
+			ship_start_point = Constants.ENEMY_START_LOCATION;
+		}
 		PackedScene hardpoint_scene = ResourceLoader.Load<PackedScene>("uid://djegmfpqrdo3e");
 
 		int max_guns = hardpoint_locations.Length;
