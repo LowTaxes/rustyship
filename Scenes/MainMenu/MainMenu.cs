@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-
+using Dictionary = Godot.Collections.Dictionary;
+using Array = Godot.Collections.Array;
 public partial class MainMenu : Node2D
 {
 	
@@ -17,7 +18,46 @@ public partial class MainMenu : Node2D
     {
         main_scene = ResourceLoader.Load<PackedScene>("uid://b7a2h0hw00vtn");// combat screen
 		
+		/*
+		User data should store:
+		player ship template ID
+		HealthModifierCount (from level ups)
+		ArmorModifierCount (from level ups)
+		ManeuverabilityModifierCount(from level ups)
+		CritChanceModifierCount (from level ups)
+		Level
 		
+		Enemy ship template ID
+		EnemyHealthModifierCount (from level ups)
+		EnemyArmorModifierCount (from level ups)
+		EnemyManeuverabilityModifierCount(from level ups)
+		EnemyCritChanceModifierCount (from level ups)
+		EnemyLevel
+
+
+		*/
+		Dictionary run_data = new Dictionary();
+		run_data.Add("player", new Array
+		{
+			"s_player_start",
+			0,
+			0,
+			0,
+			0,
+			1
+		});
+		run_data.Add("enemy", new Array
+		{
+			"s_player_start",
+			0,
+			0,
+			0,
+			0,
+			1
+		});
+		
+		RunData.Instance.SaveToUserData(Json.Stringify(run_data));
+		/*
 		//TEST PLAYER STATS
 		PlayerStats.Instance.max_health = 100;
 		PlayerStats.Instance.health = PlayerStats.Instance.max_health;
@@ -50,7 +90,7 @@ public partial class MainMenu : Node2D
 		};
 		PlayerStats.Instance.ship_UID = "uid://55gey740o2lm";
 		PlayerStats.Instance.ship_width = 400;
-		PlayerStats.Instance.ship_start_point = new Vector2(0,200);
+		
 
 
 
@@ -88,8 +128,8 @@ public partial class MainMenu : Node2D
 		};
 		EnemyStats.Instance.ship_UID = "uid://55gey740o2lm";
 		EnemyStats.Instance.ship_width = 400;
-		EnemyStats.Instance.ship_start_point = new Vector2(0,-200);
-		
+	
+		*/
     }
 
 	private void _OnStartGame()

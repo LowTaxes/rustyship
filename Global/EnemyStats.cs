@@ -6,10 +6,7 @@ public partial class EnemyStats : Node
 {
 	public static EnemyStats Instance;
 	public int max_health = 0;
-	public int health = 0;
 	public int max_armor = 0;
-
-	public int armor = 0;
 	public int maneuverability = 0;
 	
 	public List<Hardpoint> available_hardpoints;

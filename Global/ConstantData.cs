@@ -12,34 +12,20 @@ public partial class ConstantData : Node
 {
 	public static ConstantData Instance;
 	string data_path = "res://Data/ConstantData/";
+
 	public static Dictionary WeaponData;
+	public static Dictionary ShipData;
+
 	
 	public override void _Ready()
 	{
 		Instance = this;
 		
 		WeaponData = LoadJsonFile("WeaponData.json");
-		
-		Dictionary ship_dic = new Dictionary();
-		ship_dic.Add("s_player_start", new Array{
-			100,
-			100,
-			10,
-			new Vector2[3] {
-			new Vector2(-100,0),
-			new Vector2(0,0),
-			new Vector2(100,0),
-			},
-			new string[3]
-			{
-				"light",
-				"medium",
-				"light"
-			},
-			400,
-			"uid://55gey740o2lm"
+		ShipData = LoadJsonFile("ShipData.json");
 
-		});
+		
+		
 
 	}
 
@@ -74,52 +60,6 @@ public partial class ConstantData : Node
 
 
 
-	public void SaveTextToFile(string file_name, string data)
-	{
-		if(!Directory.Exists(user_path))
-		{
-			Directory.CreateDirectory(user_path);
-		}
-		string path = Path.Join(user_path,file_name);
-		Debug.Print(path);
-		try
-		{
-			File.WriteAllText(path, data);
-		}
-		catch (Exception e)
-		{
-			Debug.Print(e.ToString());
-		}
-	}
-
-	public Dictionary LoadData(string file_name)
-	{
-		
-		string loaded_data = null;
-
-		Json json_loader = new Json();
-		
-		string path = Path.Join(user_path,file_name);
-
-		if(!File.Exists(path))
-		{
-			return null;
-		}
-
-		try
-		{
-			loaded_data = File.ReadAllText(path);
-		}
-		catch(Exception e)
-		{
-			Debug.Print(e.ToString());
-		}
-
-		json_loader.Parse(loaded_data);
-
-		
-		return (Dictionary)json_loader.Data;
-
-	}
+	
 	
 }

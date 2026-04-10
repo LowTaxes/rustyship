@@ -1,7 +1,10 @@
 using Godot;
 using System;
 using System.Diagnostics;
-
+using Dictionary = Godot.Collections.Dictionary;
+using Array = Godot.Collections.Array;
+using RunDataEnum = Constants.RunDataEnum;
+using ShipDataEnum = Constants.ShipDataEnum;
 public partial class GameManager : Node2D
 {
 	public Ship player;
@@ -11,25 +14,31 @@ public partial class GameManager : Node2D
 	public Vector2 enemy_start;
 	public override void _Ready()
 	{
-		
-		PackedScene player_ship_scene = ResourceLoader.Load<PackedScene>(PlayerStats.Instance.ship_UID);
-		PackedScene enemy_ship_scene = ResourceLoader.Load<PackedScene>(EnemyStats.Instance.ship_UID);
+		Array p_run_data_arr =(Array)RunData.Instance.LoadUserData()["player"];
+		Array e_run_data_arr =(Array)RunData.Instance.LoadUserData()["enemy"];
 
+		PackedScene player_ship_scene = ResourceLoader.Load<PackedScene>(((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.SHIP_UID].ToString());
+		PackedScene enemy_ship_scene = ResourceLoader.Load<PackedScene>(((Array)ConstantData.ShipData[e_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.SHIP_UID].ToString());
+		
+		
+		//ship TEMPLATE ID 
+		
 		
 		
 		//Spawn Player Features
 		
+		
 		player = player_ship_scene.Instantiate<Ship>();
 		player.is_player = true;
-		player.max_health = PlayerStats.Instance.max_health;
-		player.health = PlayerStats.Instance.health;
-		player.max_armor = PlayerStats.Instance.max_armor;
-		player.armor = PlayerStats.Instance.armor;
-		player.maneuverability = PlayerStats.Instance.maneuverability;
-		player.available_hardpoints = PlayerStats.Instance.available_hardpoints;
-		player.hardpoint_locations = PlayerStats.Instance.hardpoint_locations;
-		player.hardpoint_weight_classes = PlayerStats.Instance.hardpoint_weight_classes;
-		player.other_ship_width = EnemyStats.Instance.ship_width;
+		player.max_health = (double)((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.MAX_HEALTH];
+		player.health = player.max_health;
+		player.max_armor = (double)((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.MAX_ARMOR];
+		player.armor = player.max_armor;
+		player.maneuverability = (double)((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.MANEUVERABILITY];
+		//player.available_hardpoints =  RETURN TO 
+		player.hardpoint_locations = (Vector2[])((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.HARDPOINT_LOCATIONS]; // RETURN TO
+		player.hardpoint_weight_classes = (string[])((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.HARDPOINT_WEIGHT_CLASSES];
+		player.other_ship_width = (int)((Array)ConstantData.ShipData[e_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.SHIP_WIDTH];
 		AddChild(player);
 		
 
