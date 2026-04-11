@@ -22,11 +22,6 @@ public partial class GameManager : Node2D
 		PackedScene enemy_ship_scene = ResourceLoader.Load<PackedScene>(((Array)ConstantData.ShipData[e_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.SHIP_UID].ToString());
 		
 		Json json_loader = new Json();
-		//ship TEMPLATE ID 
-		
-		
-		
-		//Spawn Player Features
 		
 		
 		player = player_ship_scene.Instantiate<Ship>();
@@ -48,9 +43,10 @@ public partial class GameManager : Node2D
 		Array template_data_p = (Array)(json_loader.Data);
 		json_loader.Parse(Json.Stringify(template_data_p[(int)ShipDataEnum.HARDPOINT_LOCATIONS]));
 		Array hardpoint_locs_p = (Array)json_loader.Data;
-		player.hardpoint_locations = RunData.UnpackListOfVector2(Json.Stringify(hardpoint_locs_p));
+		player.hardpoint_locations = RunData.UnpackArrayOfVector2(Json.Stringify(hardpoint_locs_p));
 
-		player.hardpoint_weight_classes = (Array)((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.HARDPOINT_WEIGHT_CLASSES];
+		player.hardpoint_weight_classes = (string[])((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.HARDPOINT_WEIGHT_CLASSES];
+
 		player.other_ship_width = (int)((Array)ConstantData.ShipData[e_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.SHIP_WIDTH];
 		AddChild(player);
 		
@@ -75,9 +71,9 @@ public partial class GameManager : Node2D
 		Array template_data_e = (Array)(json_loader.Data);
 		json_loader.Parse(Json.Stringify(template_data_e[(int)ShipDataEnum.HARDPOINT_LOCATIONS]));
 		Array hardpoint_locs_e = (Array)json_loader.Data;
-		enemy.hardpoint_locations = RunData.UnpackListOfVector2(Json.Stringify(hardpoint_locs_e));
+		enemy.hardpoint_locations = RunData.UnpackArrayOfVector2(Json.Stringify(hardpoint_locs_e));
 
-		enemy.hardpoint_weight_classes = (Array)((Array)ConstantData.ShipData[e_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.HARDPOINT_WEIGHT_CLASSES];
+		enemy.hardpoint_weight_classes = (string[])((Array)ConstantData.ShipData[e_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.HARDPOINT_WEIGHT_CLASSES];
 		enemy.other_ship_width = (int)((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.SHIP_WIDTH];
 		
 		AddChild(enemy);
@@ -89,8 +85,5 @@ public partial class GameManager : Node2D
 		
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+	
 }

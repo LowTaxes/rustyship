@@ -49,23 +49,23 @@ public partial class ShipStatsUi : Control
     }
 	
 
-	private void _OnPlayerHealthDamageTaken(int damage)
+	private void _OnPlayerHealthDamageTaken(double damage)
 	{
 		player_health_bar.Value -= damage;
 		player_health_bar.GetNode<Label>("HealthText").Text = player_health_bar.Value.ToString() + "/" + player_health_bar.MaxValue.ToString();
 	}
-	private void _OnPlayerArmorDamageTaken(int damage)
+	private void _OnPlayerArmorDamageTaken(double damage)
 	{
 		player_armor_bar.Value -= damage;
 		player_armor_bar.GetNode<Label>("ArmorText").Text = player_armor_bar.Value.ToString() + "/" + player_armor_bar.MaxValue.ToString();
 	}
 
-	private void _OnEnemyHealthDamageTaken(int damage)
+	private void _OnEnemyHealthDamageTaken(double damage)
 	{
 		enemy_health_bar.Value -= damage;
 		enemy_health_bar.GetNode<Label>("HealthText").Text = enemy_health_bar.Value.ToString() + "/" + enemy_health_bar.MaxValue.ToString();
 	}
-	private void _OnEnemyArmorDamageTaken(int damage)
+	private void _OnEnemyArmorDamageTaken(double damage)
 	{
 		//Debug.Print("hi");
 		enemy_armor_bar.Value -= damage;

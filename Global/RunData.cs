@@ -89,7 +89,7 @@ public partial class RunData : Node
 
 	}
 
-	public static Array UnpackListOfVector2(string stringified_array)
+	public static Vector2[] UnpackArrayOfVector2(string stringified_array)
 	{
 		Json json_loader = new Json();
 		Array unpacked_vectors = new Array();
@@ -97,14 +97,15 @@ public partial class RunData : Node
 		json_loader.Parse(stringified_array);
 		unpacked_vectors = (Array)json_loader.Data;
 
+		Vector2[] returning_array = new Vector2[unpacked_vectors.Count];
 		for (int i = 0; i < unpacked_vectors.Count; i++)
 		{
 			json_loader.Parse(Json.Stringify(unpacked_vectors[i]));
 			Dictionary vector2 = (Dictionary)json_loader.Data;
-			unpacked_vectors[i] = new Vector2((float)vector2["x"], (float)vector2["y"]);
+			returning_array[i] = new Vector2((float)vector2["x"], (float)vector2["y"]);
 		}
 		
-		return unpacked_vectors;
+		return returning_array;
 
 	}
 }
