@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Diagnostics;
+using System.Collections.Generic;
 using Dictionary = Godot.Collections.Dictionary;
 using Array = Godot.Collections.Array;
 using RunDataEnum = Constants.RunDataEnum;
@@ -20,7 +21,7 @@ public partial class GameManager : Node2D
 		PackedScene player_ship_scene = ResourceLoader.Load<PackedScene>(((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.SHIP_UID].ToString());
 		PackedScene enemy_ship_scene = ResourceLoader.Load<PackedScene>(((Array)ConstantData.ShipData[e_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.SHIP_UID].ToString());
 		
-		
+		Json json_loader = new Json();
 		//ship TEMPLATE ID 
 		
 		
@@ -35,9 +36,21 @@ public partial class GameManager : Node2D
 		player.max_armor = (double)((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.MAX_ARMOR];
 		player.armor = player.max_armor;
 		player.maneuverability = (double)((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.MANEUVERABILITY];
-		//player.available_hardpoints =  RETURN TO 
-		player.hardpoint_locations = (Vector2[])((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.HARDPOINT_LOCATIONS]; // RETURN TO
-		player.hardpoint_weight_classes = (string[])((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.HARDPOINT_WEIGHT_CLASSES];
+
+		player.available_hardpoints = new List<Hardpoint>
+		{
+			new Hardpoint(1, "light",  "lightmachinegun"),
+			new Hardpoint(1, "medium",  "mediumcannon"),
+			new Hardpoint(1, "light",  "lightmachinegun")
+		};
+
+		json_loader.Parse(Json.Stringify(ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()]));
+		Array template_data_p = (Array)(json_loader.Data);
+		json_loader.Parse(Json.Stringify(template_data_p[(int)ShipDataEnum.HARDPOINT_LOCATIONS]));
+		Array hardpoint_locs_p = (Array)json_loader.Data;
+		player.hardpoint_locations = RunData.UnpackListOfVector2(Json.Stringify(hardpoint_locs_p));
+
+		player.hardpoint_weight_classes = (Array)((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.HARDPOINT_WEIGHT_CLASSES];
 		player.other_ship_width = (int)((Array)ConstantData.ShipData[e_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.SHIP_WIDTH];
 		AddChild(player);
 		
@@ -45,15 +58,27 @@ public partial class GameManager : Node2D
 		//Spawn Enemy Features
 		enemy = enemy_ship_scene.Instantiate<Ship>();
 		enemy.is_player = false;
-		enemy.max_health = EnemyStats.Instance.max_health;
-		enemy.health = EnemyStats.Instance.health;
-		enemy.max_armor = EnemyStats.Instance.max_armor;
-		enemy.armor = EnemyStats.Instance.armor;
-		enemy.maneuverability = EnemyStats.Instance.maneuverability;
-		enemy.available_hardpoints = EnemyStats.Instance.available_hardpoints;
-		enemy.hardpoint_locations = EnemyStats.Instance.hardpoint_locations;
-		enemy.hardpoint_weight_classes = EnemyStats.Instance.hardpoint_weight_classes;
-		enemy.other_ship_width = PlayerStats.Instance.ship_width;
+		enemy.max_health = (double)((Array)ConstantData.ShipData[e_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.MAX_HEALTH];
+		enemy.health = enemy.max_health;
+		enemy.max_armor = (double)((Array)ConstantData.ShipData[e_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.MAX_ARMOR];
+		enemy.armor = enemy.max_armor;
+		enemy.maneuverability = (double)((Array)ConstantData.ShipData[e_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.MANEUVERABILITY];
+
+		enemy.available_hardpoints = new List<Hardpoint>
+		{
+			new Hardpoint(1, "light",  "lightmachinegun"),
+			new Hardpoint(1, "medium",  "mediumcannon"),
+			new Hardpoint(1, "light",  "lightmachinegun")
+		};
+
+		json_loader.Parse(Json.Stringify(ConstantData.ShipData[e_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()]));
+		Array template_data_e = (Array)(json_loader.Data);
+		json_loader.Parse(Json.Stringify(template_data_e[(int)ShipDataEnum.HARDPOINT_LOCATIONS]));
+		Array hardpoint_locs_e = (Array)json_loader.Data;
+		enemy.hardpoint_locations = RunData.UnpackListOfVector2(Json.Stringify(hardpoint_locs_e));
+
+		enemy.hardpoint_weight_classes = (Array)((Array)ConstantData.ShipData[e_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.HARDPOINT_WEIGHT_CLASSES];
+		enemy.other_ship_width = (int)((Array)ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()])[(int)ShipDataEnum.SHIP_WIDTH];
 		
 		AddChild(enemy);
 		

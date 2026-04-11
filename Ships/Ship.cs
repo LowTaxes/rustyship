@@ -23,14 +23,19 @@ public partial class Ship : CharacterBody2D
 	
 	public List<Hardpoint> available_hardpoints;
 	public List<Hardpoint> hardpoints_in_use;
-	public Vector2[] hardpoint_locations;
-	public string[] hardpoint_weight_classes;
+	public Array hardpoint_locations;
+	public Array hardpoint_weight_classes;
 	public Vector2 other_ship_start_point;
 	public Vector2 ship_start_point;
 
 
     public override void _Ready()
-    {
+    {/*
+		for(int i = 0; i < hardpoint_locations.Count; i ++)
+		{
+			Debug.Print(is_player.ToString() + " " + hardpoint_locations[i]);
+		}
+		*/
 		if(is_player)
 		{
 			ship_start_point = Constants.PLAYER_START_LOCATION;
@@ -43,7 +48,7 @@ public partial class Ship : CharacterBody2D
 		}
 		PackedScene hardpoint_scene = ResourceLoader.Load<PackedScene>("uid://djegmfpqrdo3e");
 
-		int max_guns = hardpoint_locations.Length;
+		int max_guns = hardpoint_locations.Count;
 		int num_light_needed = 0;
 		int num_medium_needed = 0;
 		int num_heavy_needed = 0;
@@ -60,7 +65,7 @@ public partial class Ship : CharacterBody2D
 		List<Hardpoint> superheavy_hardpoints_available = new List<Hardpoint>();
 		
 		//finding how many hardpoints of each weight class is needed
-		for(int i = 0; i< hardpoint_weight_classes.Length; i++)
+		for(int i = 0; i< hardpoint_weight_classes.Count; i++)
 		{
 			if(hardpoint_weight_classes[i].Equals("light"))
 			{
@@ -139,7 +144,7 @@ public partial class Ship : CharacterBody2D
 			}
 			int light_hardpoint_available_inc = 0;
 
-			for( int i = 0; i< hardpoint_weight_classes.Length; i++)
+			for( int i = 0; i< hardpoint_weight_classes.Count; i++)
 			{
 				if(hardpoint_weight_classes[i].Equals("light"))
 				{
@@ -149,7 +154,7 @@ public partial class Ship : CharacterBody2D
 					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
 					
 					AddChild(new_weapon);
-					new_weapon.Translate(hardpoint_locations[i]);
+					new_weapon.Translate((Vector2)hardpoint_locations[i]);
 					
 					if(is_player)
 					{
@@ -199,7 +204,7 @@ public partial class Ship : CharacterBody2D
 			}
 			int medium_hardpoint_available_inc = 0;
 
-			for( int i = 0; i< hardpoint_weight_classes.Length; i++)
+			for( int i = 0; i< hardpoint_weight_classes.Count; i++)
 			{
 				if(hardpoint_weight_classes[i].Equals("medium"))
 				{
@@ -210,7 +215,7 @@ public partial class Ship : CharacterBody2D
 					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
 					
 					AddChild(new_weapon);
-					new_weapon.Translate(hardpoint_locations[i]);
+					new_weapon.Translate((Vector2)hardpoint_locations[i]);
 					if(is_player)
 					{
 						new_weapon.is_player = true;

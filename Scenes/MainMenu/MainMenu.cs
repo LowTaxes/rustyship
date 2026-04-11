@@ -7,6 +7,8 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Dictionary = Godot.Collections.Dictionary;
 using Array = Godot.Collections.Array;
+using RunDataEnum = Constants.RunDataEnum;
+using ShipDataEnum = Constants.ShipDataEnum;
 public partial class MainMenu : Node2D
 {
 	
@@ -44,7 +46,7 @@ public partial class MainMenu : Node2D
 			0,
 			0,
 			0,
-			1
+			1,
 		});
 		run_data.Add("enemy", new Array
 		{
@@ -56,7 +58,58 @@ public partial class MainMenu : Node2D
 			1
 		});
 		
+		Dictionary ship_data = new Dictionary();
+		Dictionary first = new Dictionary();
+		first.Add("x", -100);
+		first.Add("y", 0);
+
+		Dictionary second = new Dictionary();
+		second.Add("x", 0);
+		second.Add("y", 0);
+		
+		Dictionary third = new Dictionary();
+		third.Add("x", 100);
+		third.Add("y", 0);
+		
+		ship_data.Add("s_player_start", new Array
+		{
+			100,
+			100,
+			10,
+			new Array{first, second, third},
+			new Array{"light", "medium", "light"},
+			400,
+			"uid://55gey740o2lm"
+
+
+
+		});
+		
+
+
+
+
+
+
+
+
+
 		RunData.Instance.SaveToUserData(Json.Stringify(run_data));
+
+		Array p_run_data_arr =(Array)RunData.Instance.LoadUserData()["player"];
+		
+
+		Json json_loader = new Json();
+		json_loader.Parse(Json.Stringify(ConstantData.ShipData[p_run_data_arr[(int)RunDataEnum.SHIP_TEMPLATE_ID].ToString()]));
+		Array template_data = (Array)(json_loader.Data);
+		json_loader.Parse(Json.Stringify(template_data[(int)ShipDataEnum.HARDPOINT_LOCATIONS]));
+		Array hardpoint_locs = (Array)json_loader.Data;
+		//Debug.Print(hardpoint_locs.ToString());
+		
+		
+		
+		
+		
 		/*
 		//TEST PLAYER STATS
 		PlayerStats.Instance.max_health = 100;

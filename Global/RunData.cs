@@ -15,6 +15,8 @@ public partial class RunData : Node
 	public override void _Ready()
 	{
 		Instance = this;
+		Debug.Print(user_path);
+
 		/*
 		User data should store:
 		player ship template ID
@@ -84,6 +86,25 @@ public partial class RunData : Node
 
 		
 		return (Dictionary)json_loader.Data;
+
+	}
+
+	public static Array UnpackListOfVector2(string stringified_array)
+	{
+		Json json_loader = new Json();
+		Array unpacked_vectors = new Array();
+
+		json_loader.Parse(stringified_array);
+		unpacked_vectors = (Array)json_loader.Data;
+
+		for (int i = 0; i < unpacked_vectors.Count; i++)
+		{
+			json_loader.Parse(Json.Stringify(unpacked_vectors[i]));
+			Dictionary vector2 = (Dictionary)json_loader.Data;
+			unpacked_vectors[i] = new Vector2((float)vector2["x"], (float)vector2["y"]);
+		}
+		
+		return unpacked_vectors;
 
 	}
 }
