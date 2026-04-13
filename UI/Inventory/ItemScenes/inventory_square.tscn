@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b8wpkoljgdqgh"]
+
+[ext_resource type="Texture2D" uid="uid://drs654f1iosgt" path="res://UI/Inventory/Unselected_Inventory_Square.png" id="1_jvapf"]
+[ext_resource type="Script" uid="uid://dugww2o4wdohy" path="res://UI/Inventory/InventorySquare.cs" id="2_3j0fw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvapf"]
+size = Vector2(416, 416)
+
+[node name="InventorySquare" type="Sprite2D" unique_id=358422143]
+texture = ExtResource("1_jvapf")
+script = ExtResource("2_3j0fw")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=464828853]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=276359316]
+shape = SubResource("RectangleShape2D_jvapf")

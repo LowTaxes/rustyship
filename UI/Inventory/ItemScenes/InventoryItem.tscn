@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cedh3uq18etis"]
+
+[ext_resource type="Texture2D" uid="uid://bh4kj5jjobnvp" path="res://UI/Inventory/ItemSprites/light_machinegun_itemsprite.png" id="1_pelil"]
+
+[node name="LightMachinegunItemsprite" type="Sprite2D" unique_id=1772004056]
+texture = ExtResource("1_pelil")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2070184083]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=521375674]
