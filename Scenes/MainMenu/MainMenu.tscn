@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://clxiljmcnv82e" path="res://Scenes/MainMenu/MainMenu.cs" id="1_cdkru"]
 [ext_resource type="Script" uid="uid://by322wwjr83sn" path="res://UI/Inventory/Inventory.cs" id="3_kpx3y"]
-[ext_resource type="PackedScene" uid="uid://cedh3uq18etis" path="res://UI/Inventory/ItemScenes/InventoryItem.tscn" id="3_sg7ab"]
 
 [node name="MainMenu" type="Node2D" unique_id=1794823425]
 script = ExtResource("1_cdkru")
@@ -20,13 +19,10 @@ text = "Start
 [node name="Inventory" type="Control" parent="." unique_id=25646326]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -272.0
-offset_top = -207.0
-offset_right = -33.0
-offset_bottom = -89.0
+offset_left = -226.0
+offset_top = -272.0
+offset_right = 13.0
+offset_bottom = -154.0
 script = ExtResource("3_kpx3y")
-
-[node name="LightMachinegunItemsprite2" parent="." unique_id=1772004056 instance=ExtResource("3_sg7ab")]
-position = Vector2(-552, 308)
 
 [connection signal="button_up" from="StartGame" to="." method="_OnStartGame"]

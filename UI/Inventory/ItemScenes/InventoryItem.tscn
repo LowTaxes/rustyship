@@ -1,10 +1,17 @@
 [gd_scene format=3 uid="uid://cedh3uq18etis"]
 
 [ext_resource type="Texture2D" uid="uid://bh4kj5jjobnvp" path="res://UI/Inventory/ItemSprites/light_machinegun_itemsprite.png" id="1_pelil"]
+[ext_resource type="Script" uid="uid://bv6fvbdknx03l" path="res://UI/Inventory/InventoryItem.cs" id="2_6reim"]
 
-[node name="LightMachinegunItemsprite" type="Sprite2D" unique_id=1772004056]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vp88w"]
+size = Vector2(1248, 417)
+
+[node name="InventoryItem" type="Sprite2D" unique_id=1772004056]
 texture = ExtResource("1_pelil")
+script = ExtResource("2_6reim")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2070184083]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=521375674]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_vp88w")

@@ -5,6 +5,7 @@ public partial class Constants : Node
 {
 	public static Vector2 PLAYER_START_LOCATION = new Vector2(0,200);
 	public static Vector2 ENEMY_START_LOCATION = new Vector2(0,-200);
+	public static int inv_square_pixel_width = 40;
 	
 	public enum WeaponDataEnum
 	{
@@ -15,7 +16,8 @@ public partial class Constants : Node
 		BULLET_UID,
 		BULLET_SPEED,
 		SPREAD_RADIUS,
-		WEAPON_UID
+		WEAPON_UID,
+		INVENTORY_ITEM_SIZE
 	}
 
 	public enum ShipDataEnum

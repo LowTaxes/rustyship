@@ -3,9 +3,10 @@ using System;
 
 public partial class InventoryItem : Node
 {
-	// Called when the node enters the scene tree for the first time.
+	public string weapon_name;
 	public override void _Ready()
 	{
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -13,3 +14,4 @@ public partial class InventoryItem : Node
 	{
 	}
 }
+	
