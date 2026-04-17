@@ -6,12 +6,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vp88w"]
 size = Vector2(1248, 417)
 
-[node name="InventoryItem" type="Sprite2D" unique_id=1772004056]
-texture = ExtResource("1_pelil")
+[node name="InventoryItem" type="Control" unique_id=186025791]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("2_6reim")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=2070184083]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=857854086]
+texture = ExtResource("1_pelil")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=521375674]
+[node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=2070184083]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=521375674]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_vp88w")

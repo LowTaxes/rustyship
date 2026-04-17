@@ -38,6 +38,30 @@ public partial class MainMenu : Node2D
 
 
 		*/
+
+
+		Dictionary active_inv_size = new Dictionary();
+		active_inv_size.Add("x", 12);
+		active_inv_size.Add("y", 7);
+		
+		Dictionary storage_inv_size = new Dictionary();
+		storage_inv_size.Add("x", 12);
+		storage_inv_size.Add("y", 6);
+
+		Dictionary light_1 = new Dictionary();
+		light_1.Add("weaponID", "lightmachinegun");
+		light_1.Add("level", 1);
+		light_1.Add("x", 1);
+		light_1.Add("y", 1);
+
+		Dictionary medium_1 = new Dictionary();
+		medium_1.Add("weaponID", "mediumcannon");
+		medium_1.Add("level", 1);
+		medium_1.Add("x", 1);
+		medium_1.Add("y", 1);
+		
+
+
 		Dictionary run_data = new Dictionary();
 		run_data.Add("player", new Array
 		{
@@ -47,6 +71,10 @@ public partial class MainMenu : Node2D
 			0,
 			0,
 			1,
+			new Array{light_1},
+			active_inv_size,
+			new Array{medium_1},
+			storage_inv_size
 		});
 		run_data.Add("enemy", new Array
 		{
@@ -55,9 +83,13 @@ public partial class MainMenu : Node2D
 			0,
 			0,
 			0,
-			1
+			1,
+			new Array{light_1},
+			active_inv_size,
+			new Array{medium_1},
+			storage_inv_size
 		});
-		
+		/*
 		Dictionary ship_data = new Dictionary();
 		Dictionary first = new Dictionary();
 		first.Add("x", -100);
@@ -84,7 +116,7 @@ public partial class MainMenu : Node2D
 
 
 		});
-		
+		*/
 		RunData.Instance.SaveToUserData(Json.Stringify(run_data));
 
 		

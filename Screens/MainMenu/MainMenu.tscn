@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://gcgayuk17jnf"]
+
+[ext_resource type="Script" uid="uid://clxiljmcnv82e" path="res://Screens/MainMenu/MainMenu.cs" id="1_cdkru"]
+
+[node name="MainMenu" type="Node2D" unique_id=1794823425]
+script = ExtResource("1_cdkru")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1336999363]
+
+[node name="StartGame" type="Button" parent="." unique_id=2086798081]
+offset_left = -107.0
+offset_top = -37.0
+offset_right = 114.0
+offset_bottom = 34.0
+text = "Start
+"
+
+[connection signal="button_up" from="StartGame" to="." method="_OnStartGame"]
