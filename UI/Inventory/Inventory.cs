@@ -20,7 +20,7 @@ public partial class Inventory : Control
 	{
 		
 		
-		inventory_square_scene = ResourceLoader.Load<PackedScene>("uid://b8wpkoljgdqgh");
+		inventory_square_scene = GD.Load<PackedScene>("uid://b1wteem6372ip");
 
 		v_box_container = GetChild<Control>(0).GetChild<VBoxContainer>(0);
 		v_box_container.AddThemeConstantOverride("separation", Constants.inv_square_pixel_width);

@@ -9,6 +9,7 @@ size = Vector2(1248, 417)
 [node name="InventoryItem" type="Control" unique_id=186025791]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 script = ExtResource("2_6reim")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=857854086]
@@ -19,3 +20,6 @@ texture = ExtResource("1_pelil")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=521375674]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_vp88w")
+
+[connection signal="mouse_entered" from="Sprite2D/Area2D" to="." method="_On_Mouse_Entered"]
+[connection signal="mouse_exited" from="Sprite2D/Area2D" to="." method="_On_Mouse_Exited"]
