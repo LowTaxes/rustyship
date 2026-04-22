@@ -18,3 +18,6 @@ texture = ExtResource("1_jvapf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=276359316]
 shape = SubResource("RectangleShape2D_jvapf")
+
+[connection signal="area_entered" from="Sprite2D/Area2D" to="." method="_OnArea2DEntered"]
+[connection signal="area_exited" from="Sprite2D/Area2D" to="." method="_OnArea2DExited"]

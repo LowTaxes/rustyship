@@ -15,6 +15,8 @@ public partial class Inventory : Control
 	[Export] public bool is_player;
 	[Export] public bool is_active_storage;
 
+	public bool[][] occupied_squares;
+
 
 	public override void _Ready()
 	{
@@ -50,6 +52,19 @@ public partial class Inventory : Control
 			size_y = (int)((Dictionary)run_data[(int)RunDataEnum.STORAGE_INVENTORY_SIZE])["y"];
 		}
 
+		occupied_squares = new bool[size_y][];
+
+		for(int i = 0; i < size_y; i++)
+		{
+			bool[] new_row = new bool[size_x];
+			for(int k = 0; k < size_x; k++)
+			{
+				new_row[k] = false;
+			}
+			occupied_squares[i] = new_row;
+		}
+
+
 		HBoxContainer[] h_box_containers = new HBoxContainer[size_y];
 
 		GetChild<Control>(0).CustomMinimumSize = new Vector2(Constants.inv_square_pixel_width * size_x,Constants.inv_square_pixel_width * size_y);
@@ -65,8 +80,6 @@ public partial class Inventory : Control
 			
 		}
 
-	
-
 
 		for (int i = 0; i < size_x; i++)
 		{
@@ -75,6 +88,7 @@ public partial class Inventory : Control
 				InventorySquare new_square = inventory_square_scene.Instantiate<InventorySquare>();
 				new_square.tile_x = i;
 				new_square.tile_y = k;
+				new_square.attatched_inventory = this;
 				h_box_containers[k].AddChild(new_square);
 				
 				/*
@@ -85,9 +99,12 @@ public partial class Inventory : Control
 			}
 		}
 
-
-		
 	}
 
+
+	public void AddItem(InventoryItem new_inventory_item)
+	{
+		
+	}
 	
 }

@@ -21,5 +21,7 @@ texture = ExtResource("1_pelil")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_vp88w")
 
+[connection signal="area_entered" from="Sprite2D/Area2D" to="." method="_OnArea2DEntered"]
+[connection signal="area_exited" from="Sprite2D/Area2D" to="." method="_OnArea2DExited"]
 [connection signal="mouse_entered" from="Sprite2D/Area2D" to="." method="_On_Mouse_Entered"]
 [connection signal="mouse_exited" from="Sprite2D/Area2D" to="." method="_On_Mouse_Exited"]
