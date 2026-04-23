@@ -17,6 +17,7 @@ public partial class InventoryItem : Control
 	public bool mouse_dragging = false;
 	public List<InventorySquare> touching_squares;
 	
+	
 	public override void _Ready()
 	{
 
@@ -56,12 +57,16 @@ public partial class InventoryItem : Control
 			if(mouse_hovering && @event.IsActionPressed("left_click"))
 			{
 				mouse_dragging = true;
-				Debug.Print(@event.ToString());
+				
 			}
 			else if(mouse_hovering && @event.IsActionReleased("left_click"))
 			{
 				mouse_dragging = false;
-				Debug.Print(@event.ToString());
+				if(touching_squares.Count >= size_x*size_y)
+				{
+					touching_squares[0].attatched_inventory.AddItem(this);
+				}
+				
 			}
 			if(@event is InputEventMouseMotion mouse_motion && mouse_dragging)
 			{
@@ -77,7 +82,7 @@ public partial class InventoryItem : Control
 		if(other_area2D.GetParent().GetParent() is InventorySquare entered_inv_square)
 		{
 			touching_squares.Add(entered_inv_square);
-			Debug.Print(touching_squares.Count.ToString());
+			
 		}
 		
 	}
@@ -87,7 +92,7 @@ public partial class InventoryItem : Control
 		if(other_area2D.GetParent().GetParent() is InventorySquare entered_inv_square)
 		{
 			touching_squares.Remove(entered_inv_square);
-			Debug.Print(touching_squares.Count.ToString());
+			
 		}
 		
 	}

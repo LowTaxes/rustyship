@@ -10,6 +10,7 @@ public partial class Inventory : Control
 {
 
 	PackedScene inventory_square_scene;
+	Control control_child;
 	VBoxContainer v_box_container;
 	HBoxContainer[] h_box_containers;
 	[Export] public bool is_player;
@@ -23,8 +24,8 @@ public partial class Inventory : Control
 		
 		
 		inventory_square_scene = GD.Load<PackedScene>("uid://b1wteem6372ip");
-
-		v_box_container = GetChild<Control>(0).GetChild<VBoxContainer>(0);
+		control_child = GetChild<Control>(0);
+		v_box_container = control_child.GetChild<VBoxContainer>(0);
 		v_box_container.AddThemeConstantOverride("separation", Constants.inv_square_pixel_width);
 		v_box_container.Position = new Vector2(Constants.inv_square_pixel_width/2,Constants.inv_square_pixel_width/2);
 
@@ -104,7 +105,108 @@ public partial class Inventory : Control
 
 	public void AddItem(InventoryItem new_inventory_item)
 	{
+		Debug.Print("1");
+		bool placeable = true;
+		List<InventorySquare> organized_list = new List<InventorySquare>();
+		/*
+		This loop organizes the inventory squares by 
+		distance from the inventory item least to greatest
+		into organized_list
+		*/
+		for(int i = 0; i < new_inventory_item.touching_squares.Count; i++)
+		{
+			double distance_x = Mathf.Abs(new_inventory_item.GlobalPosition.X - new_inventory_item.touching_squares[i].GlobalPosition.X);
+			double distance_y = Mathf.Abs(new_inventory_item.GlobalPosition.Y - new_inventory_item.touching_squares[i].GlobalPosition.Y);
+			double distance = Mathf.Sqrt(Mathf.Pow(distance_x, 2) + Mathf.Pow(distance_y, 2));
+			new_inventory_item.touching_squares[i].distance_to_inv_item = distance;
+			
+			if(organized_list.Count == 0)
+			{
+				organized_list.Add(new_inventory_item.touching_squares[i]);
+			}
+			
+			else
+			{
+				bool organized = false;
+
+				for(int k = 0; k < organized_list.Count; k++)
+				{
+					Debug.Print("hi");
+					if(distance < organized_list[k].distance_to_inv_item && organized == false)
+					{
+
+						//organized_list.Insert(k, new_inventory_item.touching_squares[i]);
+						//organized = true;
+					}
+					if(k == organized_list.Count - 1 && organized == false)
+					{
+						organized_list.Add(new_inventory_item.touching_squares[i]);
+					}
+				}
+			}
+			
+		}
+		/*
 		
+		//this loop cuts the size of the organized_list down to the 
+		//itemsizex * itemsizey closest squares that are the squares actually being
+		//attatched to
+		
+		for (int i = new_inventory_item.size_x * new_inventory_item.size_y; i < organized_list.Count; i++)
+		{
+			organized_list.RemoveAt(i);
+			i--;
+		}
+
+		
+		//This loop checks if the squares are already occupied
+		//If one of them is then placeable is false, the placing fails and nothing happens
+		
+		for (int i = 0; i < organized_list.Count; i++)
+		{
+			if (occupied_squares[organized_list[i].tile_y][organized_list[i].tile_x] == true)
+			{
+				placeable = false;
+			}
+		}
+		
+
+		if(placeable)
+		{
+		
+		//this loop finds the closest square to the control_node in order to be used as
+		//a reference point for placement INCOMPLETE
+		 
+
+		InventorySquare closest_to_control = organized_list[0];
+
+		for(int i = 1; i < organized_list.Count; i++)
+		{
+			float distance_x_closest = Mathf.Abs(control_child.GlobalPosition.X - closest_to_control.GlobalPosition.X);
+			float distance_y_closest = Mathf.Abs(control_child.GlobalPosition.Y - closest_to_control.GlobalPosition.Y);
+			float distance_closest = Mathf.Sqrt(Mathf.Pow(distance_x_closest,2) + Mathf.Pow(distance_y_closest,2));
+
+			float distance_x_current = Mathf.Abs(control_child.GlobalPosition.X - organized_list[i].GlobalPosition.X);
+			float distance_y_current = Mathf.Abs(control_child.GlobalPosition.Y - organized_list[i].GlobalPosition.Y);
+			float distance_current = Mathf.Sqrt(Mathf.Pow(distance_x_current,2) + Mathf.Pow(distance_y_current,2));
+
+			if(distance_current < distance_closest)
+			{
+				closest_to_control = organized_list[i];
+			}
+		}	
+		
+
+		
+		//adds the new_inventory_item as a child of the control node of this inventory
+		//and moves it accordingly relative to that control node INCOMPLETE
+		
+		new_inventory_item.Reparent(control_child);
+		new_inventory_item.Position = new Vector2(control_child.GlobalPosition.X + (closest_to_control.tile_x * Constants.inv_square_pixel_width), control_child.GlobalPosition.Y + (closest_to_control.tile_y * Constants.inv_square_pixel_width));
+		Debug.Print("attatched");
+		}
+		
+		*/
 	}
 	
 }

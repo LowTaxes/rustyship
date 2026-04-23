@@ -12,6 +12,8 @@ public partial class InventorySquare : Control
 	public Texture2D selected_inv_square;
 	public Inventory attatched_inventory;
 	public bool selectable = false;
+
+	public double distance_to_inv_item = 0;
 	
 	public override void _Ready()
 	{
