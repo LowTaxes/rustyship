@@ -82,7 +82,7 @@ public partial class InventoryItem : Control
 		if(other_area2D.GetParent().GetParent() is InventorySquare entered_inv_square)
 		{
 			touching_squares.Add(entered_inv_square);
-			
+			Debug.Print(touching_squares.Count.ToString());
 		}
 		
 	}
@@ -92,7 +92,7 @@ public partial class InventoryItem : Control
 		if(other_area2D.GetParent().GetParent() is InventorySquare entered_inv_square)
 		{
 			touching_squares.Remove(entered_inv_square);
-			
+			Debug.Print(touching_squares.Count.ToString());
 		}
 		
 	}

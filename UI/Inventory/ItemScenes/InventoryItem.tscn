@@ -21,6 +21,13 @@ texture = ExtResource("1_pelil")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_vp88w")
 
+[node name="Panel" type="Panel" parent="." unique_id=1709076712]
+layout_mode = 0
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+
 [connection signal="area_entered" from="Sprite2D/Area2D" to="." method="_OnArea2DEntered"]
 [connection signal="area_exited" from="Sprite2D/Area2D" to="." method="_OnArea2DExited"]
 [connection signal="mouse_entered" from="Sprite2D/Area2D" to="." method="_On_Mouse_Entered"]
