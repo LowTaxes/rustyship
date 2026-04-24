@@ -28,12 +28,14 @@ public partial class InventoryItem : Control
 
         Array weapon_data = (Array)ConstantData.WeaponData[weapon_name];
 		Dictionary inv_size = (Dictionary) weapon_data[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SIZE];
-
+		/*
 		size_x = (int)inv_size["x"];
 		size_y = (int)inv_size["y"];
 		float scale_x = Constants.inv_square_pixel_width/(float)sprite2D.Texture.GetWidth() * (int)inv_size["x"];
 		float scale_y = Constants.inv_square_pixel_width/(float)sprite2D.Texture.GetHeight() * (int)inv_size["y"];
+		
 		sprite2D.Scale = new Vector2(sprite2D.Scale.X * scale_x, sprite2D.Scale.Y * scale_y);
+		*/
 		Debug.Print(mouse_hovering.ToString());
 	}
 
@@ -64,7 +66,7 @@ public partial class InventoryItem : Control
 				mouse_dragging = false;
 				if(touching_squares.Count >= size_x*size_y)
 				{
-					touching_squares[0].attatched_inventory.AddItem(this);
+					//touching_squares[0].attatched_inventory.AddItem(this);
 				}
 				
 			}

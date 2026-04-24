@@ -13,13 +13,14 @@ public partial class MainMenu : Node2D
 {
 	
 	public PackedScene main_scene;
+	public PackedScene ship_editing_scene;
 	
 	public PackedScene test_ship;
 
     public override void _Ready()
     {
         main_scene = ResourceLoader.Load<PackedScene>("uid://b7a2h0hw00vtn");// combat screen
-		
+		ship_editing_scene = ResourceLoader.Load<PackedScene>("uid://drqy04x8yiama");
 		/*
 		User data should store:
 		player ship template ID
@@ -124,7 +125,7 @@ public partial class MainMenu : Node2D
 
 	private void _OnStartGame()
 	{
-		GetTree().ChangeSceneToPacked(main_scene);
+		GetTree().ChangeSceneToPacked(ship_editing_scene);
 		
 	}
 

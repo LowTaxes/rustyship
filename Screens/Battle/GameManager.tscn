@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://b6vp4ncl38vhs" path="res://Screens/Battle/GameManager.cs" id="1_7cxpe"]
 [ext_resource type="Script" uid="uid://dmy3itibpo1vx" path="res://UI/ShipStatsUi.cs" id="2_b7dir"]
 [ext_resource type="Script" uid="uid://dgai80esm2hgi" path="res://UI/BattleStartButton.cs" id="3_xq50g"]
-[ext_resource type="PackedScene" uid="uid://dwpr1acgraxmt" path="res://UI/Inventory/inventory.tscn" id="4_3tuk0"]
 [ext_resource type="PackedScene" uid="uid://cedh3uq18etis" path="res://UI/Inventory/ItemScenes/InventoryItem.tscn" id="5_iqs24"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gbba"]
@@ -159,14 +158,6 @@ mouse_filter = 1
 text = "Start"
 script = ExtResource("3_xq50g")
 metadata/_edit_use_anchors_ = true
-
-[node name="Inventory" parent="." unique_id=1030688329 instance=ExtResource("4_3tuk0")]
-offset_left = 1.0
-offset_top = -55.0
-offset_right = 567.0
-offset_bottom = 115.0
-is_player = true
-is_active_storage = true
 
 [node name="InventoryItem" parent="." unique_id=186025791 instance=ExtResource("5_iqs24")]
 offset_left = 540.0

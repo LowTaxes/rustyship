@@ -18,7 +18,7 @@ public partial class Inventory : Control
 
 	public bool[][] occupied_squares;
 
-
+/*
 	public override void _Ready()
 	{
 		
@@ -91,30 +91,29 @@ public partial class Inventory : Control
 				new_square.tile_y = k;
 				new_square.attatched_inventory = this;
 				h_box_containers[k].AddChild(new_square);
-				//Debug.Print(new_square.Position.ToString());
+				Debug.Print(new_square.relative_position.ToString());
 				
-				/*
+				
 				Label new_label = new Label();
 				new_label.Text = "hi";
 				h_box_containers[k].AddChild(new_label);
-				*/
+				
 			}
 		}
 
 	}
 
-
 	public void AddItem(InventoryItem new_inventory_item)
 	{
-		Debug.Print("1");
+		//Debug.Print("1");
 		bool placeable = true;
 		
-		/*
+		
 		This loop organizes the inventory squares by 
 		distance from the inventory item least to greatest
 		
-		*/
-		/*
+		
+		
 		Debug.Print("-----------");
 		for(int i = 0; i < new_inventory_item.touching_squares.Count; i++)
 		{
@@ -123,12 +122,12 @@ public partial class Inventory : Control
 			double distance_x_closest = Mathf.Abs(new_inventory_item.GlobalPosition.X - closest.GlobalPosition.X);
 			double distance_y_closest = Mathf.Abs(new_inventory_item.GlobalPosition.Y - closest.GlobalPosition.Y);
 			double distance_closest = Mathf.Sqrt(Mathf.Pow(distance_x_closest, 2) + Mathf.Pow(distance_y_closest, 2));
-			Debug.Print(distance_closest.ToString());
+			Debug.Print(closest.relative_position.ToString());
 			
 		}
 		Debug.Print("-----------");
-		*/
-
+		
+		/*
 		for(int i = 0; i < new_inventory_item.touching_squares.Count; i++)
 		{
 			
@@ -142,18 +141,19 @@ public partial class Inventory : Control
 			}
 			
 		}
+		
 
 		for(int i = 0; i < new_inventory_item.touching_squares.Count; i++)
 		{
 			InventorySquare closest = new_inventory_item.touching_squares[i];
-			double distance_x_closest = Mathf.Abs(new_inventory_item.GlobalPosition.X - closest.GlobalPosition.X);
-			double distance_y_closest = Mathf.Abs(new_inventory_item.GlobalPosition.Y - closest.GlobalPosition.Y);
+			double distance_x_closest = Mathf.Abs(new_inventory_item.GlobalPosition.X - closest.relative_position.X);
+			double distance_y_closest = Mathf.Abs(new_inventory_item.GlobalPosition.Y - closest.relative_position.Y);
 			double distance_closest = Mathf.Sqrt(Mathf.Pow(distance_x_closest, 2) + Mathf.Pow(distance_y_closest, 2));
 			
 			for (int k = i + 1; k < new_inventory_item.touching_squares.Count; k++)
 			{
-				double distance_x_current = Mathf.Abs(new_inventory_item.GlobalPosition.X - new_inventory_item.touching_squares[k].GlobalPosition.X);
-				double distance_y_current = Mathf.Abs(new_inventory_item.GlobalPosition.Y - new_inventory_item.touching_squares[k].GlobalPosition.Y);
+				double distance_x_current = Mathf.Abs(new_inventory_item.GlobalPosition.X - new_inventory_item.touching_squares[k].relative_position.X);
+				double distance_y_current = Mathf.Abs(new_inventory_item.GlobalPosition.Y - new_inventory_item.touching_squares[k].relative_position.Y);
 				double distance_current = Mathf.Sqrt(Mathf.Pow(distance_x_current, 2) + Mathf.Pow(distance_y_current, 2));
 
 				if (distance_current < distance_closest)
@@ -180,7 +180,7 @@ public partial class Inventory : Control
 		for (int i = 0; i < new_inventory_item.size_x * new_inventory_item.size_y; i++)
 		{
 			organized_list.Add(new_inventory_item.touching_squares[i]);
-			//Debug.Print(new_inventory_item.touching_squares[i].tile_y.ToString());
+			Debug.Print(new_inventory_item.touching_squares[i].tile_y.ToString());
 			
 		}
 
@@ -208,12 +208,12 @@ public partial class Inventory : Control
 
 		for(int i = 1; i < organized_list.Count; i++)
 		{
-			float distance_x_closest = Mathf.Abs(control_child.GlobalPosition.X - closest_to_control.GlobalPosition.X);
-			float distance_y_closest = Mathf.Abs(control_child.GlobalPosition.Y - closest_to_control.GlobalPosition.Y);
+			float distance_x_closest = Mathf.Abs(control_child.GlobalPosition.X - closest_to_control.relative_position.X);
+			float distance_y_closest = Mathf.Abs(control_child.GlobalPosition.Y - closest_to_control.relative_position.Y);
 			float distance_closest = Mathf.Sqrt(Mathf.Pow(distance_x_closest,2) + Mathf.Pow(distance_y_closest,2));
 
-			float distance_x_current = Mathf.Abs(control_child.GlobalPosition.X - organized_list[i].GlobalPosition.X);
-			float distance_y_current = Mathf.Abs(control_child.GlobalPosition.Y - organized_list[i].GlobalPosition.Y);
+			float distance_x_current = Mathf.Abs(control_child.GlobalPosition.X - organized_list[i].relative_position.X);
+			float distance_y_current = Mathf.Abs(control_child.GlobalPosition.Y - organized_list[i].relative_position.Y);
 			float distance_current = Mathf.Sqrt(Mathf.Pow(distance_x_current,2) + Mathf.Pow(distance_y_current,2));
 
 			if(distance_current < distance_closest)
@@ -234,5 +234,5 @@ public partial class Inventory : Control
 		
 		
 	}
-	
+	*/
 }
