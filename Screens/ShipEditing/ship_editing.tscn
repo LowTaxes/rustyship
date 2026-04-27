@@ -1,17 +1,24 @@
 [gd_scene format=3 uid="uid://drqy04x8yiama"]
 
-[ext_resource type="Script" uid="uid://bitywnov6avb8" path="res://Screens/ShipEditing/PlayerStorage.cs" id="1_05wi7"]
+[ext_resource type="Script" uid="uid://bitywnov6avb8" path="res://UI/PlayerStorage/PlayerStorage.cs" id="1_05wi7"]
 
 [node name="ShipEditing" type="Node2D" unique_id=1898970925]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=941865901]
 
-[node name="PlayerStorage" type="GridContainer" parent="." unique_id=712895681]
-offset_left = 269.0
-offset_top = -240.0
-offset_right = 519.0
-offset_bottom = 260.0
-theme_override_constants/h_separation = 50
-theme_override_constants/v_separation = 50
-columns = 5
+[node name="PlayerStorage" type="Control" parent="." unique_id=731979415]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 270.0
+offset_top = -248.0
+offset_right = 310.0
+offset_bottom = -208.0
+mouse_filter = 2
 script = ExtResource("1_05wi7")
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="PlayerStorage" unique_id=906527731]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 500.0
+mouse_filter = 2

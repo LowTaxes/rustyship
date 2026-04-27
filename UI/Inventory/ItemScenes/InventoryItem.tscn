@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cedh3uq18etis"]
 
-[ext_resource type="Texture2D" uid="uid://bh4kj5jjobnvp" path="res://UI/Inventory/ItemSprites/light_machinegun_itemsprite.png" id="1_pelil"]
 [ext_resource type="Script" uid="uid://bv6fvbdknx03l" path="res://UI/Inventory/InventoryItem.cs" id="2_6reim"]
+[ext_resource type="Texture2D" uid="uid://drs654f1iosgt" path="res://UI/Inventory/Unselected_Inventory_Square.png" id="2_8dqt5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vp88w"]
-size = Vector2(1248, 417)
+size = Vector2(416, 416)
 
 [node name="InventoryItem" type="Control" unique_id=186025791]
 layout_mode = 3
@@ -13,22 +13,14 @@ mouse_filter = 2
 script = ExtResource("2_6reim")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=857854086]
-texture = ExtResource("1_pelil")
+texture = ExtResource("2_8dqt5")
 
-[node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=2070184083]
+[node name="Area2D" type="Area2D" parent="." unique_id=2070184083]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=521375674]
-position = Vector2(0, -0.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=521375674]
 shape = SubResource("RectangleShape2D_vp88w")
 
-[node name="Panel" type="Panel" parent="." unique_id=1709076712]
-layout_mode = 0
-offset_left = -7.0
-offset_top = -7.0
-offset_right = 7.0
-offset_bottom = 7.0
-
-[connection signal="area_entered" from="Sprite2D/Area2D" to="." method="_OnArea2DEntered"]
-[connection signal="area_exited" from="Sprite2D/Area2D" to="." method="_OnArea2DExited"]
-[connection signal="mouse_entered" from="Sprite2D/Area2D" to="." method="_On_Mouse_Entered"]
-[connection signal="mouse_exited" from="Sprite2D/Area2D" to="." method="_On_Mouse_Exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_OnArea2DEntered"]
+[connection signal="area_exited" from="Area2D" to="." method="_OnArea2DExited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_On_Mouse_Entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_On_Mouse_Exited"]

@@ -15,29 +15,31 @@ public partial class InventoryItem : Control
 	public Area2D area2D;
 	public bool mouse_hovering = false;
 	public bool mouse_dragging = false;
-	public List<InventorySquare> touching_squares;
+	public bool attatched = false;
+	public float sprite_scale_x;
+	public float sprite_scale_y;
 	
 	
 	public override void _Ready()
 	{
 
 		sprite2D = GetChild<Sprite2D>(0);
-		area2D = sprite2D.GetChild<Area2D>(0);
+		area2D = GetChild<Area2D>(1);
 
-		touching_squares = new List<InventorySquare>();
+		
 
         Array weapon_data = (Array)ConstantData.WeaponData[weapon_name];
 		Dictionary inv_size = (Dictionary) weapon_data[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SIZE];
-		/*
-		size_x = (int)inv_size["x"];
-		size_y = (int)inv_size["y"];
-		float scale_x = Constants.inv_square_pixel_width/(float)sprite2D.Texture.GetWidth() * (int)inv_size["x"];
-		float scale_y = Constants.inv_square_pixel_width/(float)sprite2D.Texture.GetHeight() * (int)inv_size["y"];
-		
-		sprite2D.Scale = new Vector2(sprite2D.Scale.X * scale_x, sprite2D.Scale.Y * scale_y);
-		*/
-		Debug.Print(mouse_hovering.ToString());
+		size_x = (int) inv_size["x"];
+		size_y = (int) inv_size["y"];
+		sprite2D.Texture = GD.Load<Texture2D>(weapon_data[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SPRITE_UID].ToString());
+
 	}
+    public override void _Process(double delta)
+    {
+        //Debug.Print(Position.ToString());
+    }
+
 
 	private void _On_Mouse_Entered()
 	{
@@ -59,16 +61,34 @@ public partial class InventoryItem : Control
 			if(mouse_hovering && @event.IsActionPressed("left_click"))
 			{
 				mouse_dragging = true;
-				
+				attatched = false;
 			}
 			else if(mouse_hovering && @event.IsActionReleased("left_click"))
 			{
 				mouse_dragging = false;
-				if(touching_squares.Count >= size_x*size_y)
+				Array<Area2D> overlapping_areas = area2D.GetOverlappingAreas();
+				if(overlapping_areas.Count > 0)
 				{
-					//touching_squares[0].attatched_inventory.AddItem(this);
+					InventorySquare reference = null;
+					for(int i = 0; i < overlapping_areas.Count; i++)
+					{
+						
+						if (overlapping_areas[i].GetParent() is InventorySquare inv_square)
+						{
+							attatched = true;
+							reference = inv_square;
+						}
+						
+					}
+					if (attatched && reference != null)
+					{
+						if (reference.attatched_container.GetParent() is PlayerStorage storage)
+						{
+							storage.AddItem(this);
+						}
+						
+					}
 				}
-				
 			}
 			if(@event is InputEventMouseMotion mouse_motion && mouse_dragging)
 			{
@@ -83,8 +103,7 @@ public partial class InventoryItem : Control
 	{
 		if(other_area2D.GetParent().GetParent() is InventorySquare entered_inv_square)
 		{
-			touching_squares.Add(entered_inv_square);
-			Debug.Print(touching_squares.Count.ToString());
+			
 		}
 		
 	}
@@ -93,8 +112,7 @@ public partial class InventoryItem : Control
 	{
 		if(other_area2D.GetParent().GetParent() is InventorySquare entered_inv_square)
 		{
-			touching_squares.Remove(entered_inv_square);
-			Debug.Print(touching_squares.Count.ToString());
+			
 		}
 		
 	}
