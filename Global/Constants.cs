@@ -31,7 +31,8 @@ public partial class Constants : Node
 		HARDPOINT_LOCATIONS,
 		HARDPOINT_WEIGHT_CLASSES,
 		SHIP_WIDTH,
-		SHIP_UID
+		SHIP_UID,
+		SHIP_MODEL_UID
 	}
 
 	public enum RunDataEnum

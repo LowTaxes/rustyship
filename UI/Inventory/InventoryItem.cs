@@ -9,10 +9,12 @@ using System.Runtime.Serialization;
 public partial class InventoryItem : Control
 {
 	public string weapon_name = "lightmachinegun";
+	public int level = 0;
 	public int size_x = 1;
 	public int size_y = 1;
 	public Sprite2D sprite2D;
 	public Area2D area2D;
+	public Node2D reference_point;
 	public bool mouse_hovering = false;
 	public bool mouse_dragging = false;
 	public bool attatched = false;
@@ -25,6 +27,7 @@ public partial class InventoryItem : Control
 
 		sprite2D = GetChild<Sprite2D>(0);
 		area2D = GetChild<Area2D>(1);
+		reference_point = GetChild<Node2D>(2);
 
 		
 

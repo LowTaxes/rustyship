@@ -1,14 +1,28 @@
 [gd_scene format=3 uid="uid://drqy04x8yiama"]
 
-[ext_resource type="Script" uid="uid://bitywnov6avb8" path="res://UI/PlayerStorage/PlayerStorage.cs" id="1_05wi7"]
+[ext_resource type="Script" uid="uid://bitywnov6avb8" path="res://UI/Inventory/PlayerStorage/PlayerStorage.cs" id="1_05wi7"]
+[ext_resource type="Script" uid="uid://bnbs4igcgxatg" path="res://Screens/ShipEditing/EditablePlayer.cs" id="2_8mwx7"]
 
 [node name="ShipEditing" type="Node2D" unique_id=1898970925]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=941865901]
 
-[node name="PlayerStorage" type="Control" parent="." unique_id=731979415]
+[node name="UI" type="Control" parent="." unique_id=1161361305]
 layout_mode = 3
 anchors_preset = 0
+offset_left = -574.0
+offset_top = -333.0
+offset_right = 579.0
+offset_bottom = 318.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="PlayerStorage" type="Control" parent="UI" unique_id=731979415]
+layout_mode = 1
+anchor_left = 0.48915872
+anchor_top = 0.516129
+anchor_right = 0.48915872
+anchor_bottom = 0.516129
 offset_left = 270.0
 offset_top = -248.0
 offset_right = 310.0
@@ -17,8 +31,29 @@ mouse_filter = 2
 script = ExtResource("1_05wi7")
 metadata/_edit_use_anchors_ = true
 
-[node name="GridContainer" type="GridContainer" parent="PlayerStorage" unique_id=906527731]
+[node name="GridContainer" type="GridContainer" parent="UI/PlayerStorage" unique_id=906527731]
 layout_mode = 0
 offset_right = 250.0
 offset_bottom = 500.0
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="EditablePlayer" type="Control" parent="UI" unique_id=1864648424]
+anchors_preset = 0
+offset_left = 101.0
+offset_top = 122.0
+offset_right = 701.0
+offset_bottom = 322.0
+script = ExtResource("2_8mwx7")
+
+[node name="ShipModel" type="Sprite2D" parent="UI/EditablePlayer" unique_id=2117749857]
+
+[node name="EquippedItemsScrollBox" type="ScrollContainer" parent="UI" unique_id=741737907]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 381.0
+offset_right = 717.0
+offset_bottom = 534.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/EquippedItemsScrollBox" unique_id=601719014]
+layout_mode = 2

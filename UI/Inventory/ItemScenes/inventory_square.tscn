@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b1wteem6372ip"]
 
-[ext_resource type="Texture2D" uid="uid://drs654f1iosgt" path="res://UI/Inventory/Unselected_Inventory_Square.png" id="1_jvapf"]
-[ext_resource type="Script" uid="uid://dugww2o4wdohy" path="res://UI/Inventory/InventorySquare.cs" id="2_3j0fw"]
+[ext_resource type="Texture2D" uid="uid://drs654f1iosgt" path="res://UI/Inventory/InventorySquare/Unselected_Inventory_Square.png" id="1_jvapf"]
+[ext_resource type="Script" uid="uid://dugww2o4wdohy" path="res://UI/Inventory/InventorySquare/InventorySquare.cs" id="2_3j0fw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvapf"]
 size = Vector2(416, 416)
