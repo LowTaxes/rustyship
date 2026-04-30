@@ -63,6 +63,7 @@ public partial class PlayerStorage : Control
 			InventoryItem new_item = inventory_item_scene.Instantiate<InventoryItem>();
 			new_item.weapon_name = ((Dictionary)(run_data_weapon_dicts[i]))["weaponID"].ToString();
 			new_item.level = (int)((Dictionary)(run_data_weapon_dicts[i]))["level"];
+			Debug.Print(((Dictionary)run_data_weapon_dicts[i])["x"].ToString());
 			AddChild(new_item);
 			held_items.Add(new_item);
 	

@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using Dictionary = Godot.Collections.Dictionary;
 using Array = Godot.Collections.Array;
 using FileAccess = Godot.FileAccess;
+using System.Collections.Generic;
 public partial class RunData : Node
 {
 	public static RunData Instance;
@@ -88,6 +89,93 @@ public partial class RunData : Node
 		return (Dictionary)json_loader.Data;
 
 	}
+
+	public static string GetPlayerShipTemplateID()
+	{
+		Dictionary run_data = Instance.LoadUserData();
+		return ((Array)run_data["player"])[(int)Constants.RunDataEnum.SHIP_TEMPLATE_ID].ToString();
+	}
+	public static string GetEnemyShipTemplateID()
+	{
+		Dictionary run_data = Instance.LoadUserData();
+		return ((Array)run_data["Enemy"])[(int)Constants.RunDataEnum.SHIP_TEMPLATE_ID].ToString();
+	}
+
+	public static int GetPlayerHealthModifierCount()
+	{
+		Dictionary run_data = Instance.LoadUserData();
+		return (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.HEALTH_MODIFIER_COUNT];
+	}
+
+	public static int GetEnemyHealthModifierCount()
+	{
+		Dictionary run_data = Instance.LoadUserData();
+		return (int)((Array)run_data["enemy"])[(int)Constants.RunDataEnum.HEALTH_MODIFIER_COUNT];
+	}
+
+	public static int GetPlayerArmorModifierCount()
+	{
+		Dictionary run_data = Instance.LoadUserData();
+		return (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.ARMOR_MODIFIER_COUNT];
+	}
+	public static int GetEnemyArmorModifierCount()
+	{
+		Dictionary run_data = Instance.LoadUserData();
+		return (int)((Array)run_data["enemy"])[(int)Constants.RunDataEnum.ARMOR_MODIFIER_COUNT];
+	}
+	public static int GetPlayerCritChanceModifierCount()
+	{
+		Dictionary run_data = Instance.LoadUserData();
+		return (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.CRIT_CHANCE_MODIFIER_COUNT];
+	}
+	public static int GetEnemyCritChanceModifierCount()
+	{
+		Dictionary run_data = Instance.LoadUserData();
+		return (int)((Array)run_data["enemy"])[(int)Constants.RunDataEnum.CRIT_CHANCE_MODIFIER_COUNT];
+	}
+
+	public static int GetPlayerLevel()
+	{
+		Dictionary run_data = Instance.LoadUserData();
+		return (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.LEVEL];
+	}
+	public static int GetEnemyLevel()
+	{
+		Dictionary run_data = Instance.LoadUserData();
+		return (int)((Array)run_data["enemy"])[(int)Constants.RunDataEnum.LEVEL];
+	}
+	public static List<InventoryItem> GetPlayerActiveInventoryItems()
+	{
+		List<InventoryItem> return_list = new List<InventoryItem>();
+
+		Array active_inventory_items = (Array)((Array)Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.ACTIVE_INVENTORY];
+		for (int i = 0; i < active_inventory_items.Count; i ++)
+		{
+			Dictionary new_item_dict = (Dictionary)active_inventory_items[i];
+			InventoryItem new_inv_item = (GD.Load<PackedScene>("uid://cedh3uq18etis")).Instantiate<InventoryItem>();
+			new_inv_item.weapon_name = new_item_dict["weaponID"].ToString();
+			new_inv_item.level = (int)new_item_dict["level"];
+			return_list.Add(new_inv_item);
+		}
+		return return_list;
+	}
+	public static List<InventoryItem> GetEnemyActiveInventoryItems()
+	{
+		List<InventoryItem> return_list = new List<InventoryItem>();
+
+		Array active_inventory_items = (Array)((Array)Instance.LoadUserData()["enemy"])[(int)Constants.RunDataEnum.ACTIVE_INVENTORY];
+		for (int i = 0; i < active_inventory_items.Count; i ++)
+		{
+			Dictionary new_item_dict = (Dictionary)active_inventory_items[i];
+			InventoryItem new_inv_item = (GD.Load<PackedScene>("uid://cedh3uq18etis")).Instantiate<InventoryItem>();
+			new_inv_item.weapon_name = new_item_dict["weaponID"].ToString();
+			new_inv_item.level = (int)new_item_dict["level"];
+			return_list.Add(new_inv_item);
+		}
+		return return_list;
+	}
+
+
 
 	public static Vector2[] UnpackArrayOfVector2(string stringified_array)
 	{

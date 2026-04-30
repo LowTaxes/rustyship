@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://55gey740o2lm"]
 
 [ext_resource type="Script" uid="uid://cim88ua7umql8" path="res://Ships/Ship.cs" id="1_0gky2"]
-[ext_resource type="Texture2D" uid="uid://djycup8vny1to" path="res://Ships/tempship/ship_temp.png" id="2_5mm7q"]
+[ext_resource type="Texture2D" uid="uid://cea3littf66ot" path="res://Ships/tempship/ship_temp.png" id="2_5mm7q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjvhh"]
 size = Vector2(418, 101)

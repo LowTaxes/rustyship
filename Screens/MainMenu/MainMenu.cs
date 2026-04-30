@@ -52,14 +52,25 @@ public partial class MainMenu : Node2D
 		Dictionary light_1 = new Dictionary();
 		light_1.Add("weaponID", "lightmachinegun");
 		light_1.Add("level", 1);
-		light_1.Add("x", 2);
-		light_1.Add("y", 7);
+		light_1.Add("x", 3);
+		light_1.Add("y", 3);
 
 		Dictionary medium_1 = new Dictionary();
 		medium_1.Add("weaponID", "mediumcannon");
 		medium_1.Add("level", 4);
 		medium_1.Add("x", 1);
 		medium_1.Add("y", 1);
+
+		Dictionary light_2 = new Dictionary();
+		light_2.Add("weaponID", "lightmachinegun");
+		light_2.Add("level", 1);
+
+		Dictionary medium_2 = new Dictionary();
+		medium_2.Add("weaponID", "mediumcannon");
+		medium_2.Add("level", 3);
+		
+
+		
 		
 
 
@@ -72,7 +83,7 @@ public partial class MainMenu : Node2D
 			0,
 			0,
 			1,
-			new Array{light_1},
+			new Array{light_2, medium_2},
 			active_inv_size,
 			new Array{medium_1, light_1},
 			storage_inv_size

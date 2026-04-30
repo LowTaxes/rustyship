@@ -151,7 +151,7 @@ public partial class Ship : CharacterBody2D
 				{
 					
 					
-					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(((Array)(ConstantData.WeaponData[light_hardpoints_available[light_hardpoint_available_inc].attatched_weapon_name]))[(int)WeaponDataEnum.WEAPON_UID].ToString());
+					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(((Array)(ConstantData.WeaponData[light_hardpoints_available[light_hardpoint_available_inc].attatched_weapon_name]))[(int)WeaponDataEnum.WEAPON_MODEL_UID].ToString());
 					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
 					
 					AddChild(new_weapon);
@@ -212,7 +212,7 @@ public partial class Ship : CharacterBody2D
 						
 					
 					
-					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(((Array)(ConstantData.WeaponData[medium_hardpoints_available[medium_hardpoint_available_inc].attatched_weapon_name]))[(int)WeaponDataEnum.WEAPON_UID].ToString());
+					PackedScene weapon_scene = ResourceLoader.Load<PackedScene>(((Array)(ConstantData.WeaponData[medium_hardpoints_available[medium_hardpoint_available_inc].attatched_weapon_name]))[(int)WeaponDataEnum.WEAPON_MODEL_UID].ToString());
 					Weapon new_weapon = weapon_scene.Instantiate<Weapon>();
 					
 					AddChild(new_weapon);

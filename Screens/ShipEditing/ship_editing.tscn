@@ -38,16 +38,6 @@ offset_bottom = 500.0
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="EditablePlayer" type="Control" parent="UI" unique_id=1864648424]
-anchors_preset = 0
-offset_left = 101.0
-offset_top = 122.0
-offset_right = 701.0
-offset_bottom = 322.0
-script = ExtResource("2_8mwx7")
-
-[node name="ShipModel" type="Sprite2D" parent="UI/EditablePlayer" unique_id=2117749857]
-
 [node name="EquippedItemsScrollBox" type="ScrollContainer" parent="UI" unique_id=741737907]
 layout_mode = 0
 offset_left = 109.0
@@ -57,3 +47,11 @@ offset_bottom = 534.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/EquippedItemsScrollBox" unique_id=601719014]
 layout_mode = 2
+
+[node name="EditablePlayer" type="Control" parent="UI" unique_id=1053002508]
+anchors_preset = 0
+offset_left = 53.0
+offset_top = 147.0
+offset_right = 661.0
+offset_bottom = 314.0
+script = ExtResource("2_8mwx7")
