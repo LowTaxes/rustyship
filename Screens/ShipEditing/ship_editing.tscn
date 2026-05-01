@@ -2,6 +2,30 @@
 
 [ext_resource type="Script" uid="uid://bitywnov6avb8" path="res://UI/Inventory/PlayerStorage/PlayerStorage.cs" id="1_05wi7"]
 [ext_resource type="Script" uid="uid://bnbs4igcgxatg" path="res://Screens/ShipEditing/EditablePlayer.cs" id="2_8mwx7"]
+[ext_resource type="Script" uid="uid://b1yv8nmn6i7dd" path="res://UI/ActiveInventoryItemBox.cs" id="3_05wi7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkrqp"]
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05wi7"]
+bg_color = Color(0.5525131, 0, 0.019779235, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbtyd"]
+bg_color = Color(0.8892422, 0.64869916, 0.07971195, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plw3h"]
+bg_color = Color(2.4065375e-06, 0.67071575, 0.7872184, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2aooa"]
+bg_color = Color(1, 0.33128595, 0.3649292, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iriiy"]
+bg_color = Color(0.50534403, 0.5053441, 0.50534385, 1)
+corner_detail = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05wi7"]
+size = Vector2(200, 122)
 
 [node name="ShipEditing" type="Node2D" unique_id=1898970925]
 
@@ -40,10 +64,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="EquippedItemsScrollBox" type="ScrollContainer" parent="UI" unique_id=741737907]
 layout_mode = 0
-offset_left = 109.0
-offset_top = 381.0
-offset_right = 717.0
-offset_bottom = 534.0
+offset_left = 79.0
+offset_top = 410.0
+offset_right = 716.0
+offset_bottom = 573.0
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/EquippedItemsScrollBox" unique_id=601719014]
 layout_mode = 2
@@ -54,4 +79,126 @@ offset_left = 53.0
 offset_top = 147.0
 offset_right = 661.0
 offset_bottom = 314.0
+mouse_filter = 2
 script = ExtResource("2_8mwx7")
+
+[node name="ActiveInventoryItemBox" type="Control" parent="UI" unique_id=1222455435]
+anchors_preset = 0
+offset_left = -1.0
+offset_top = 12.0
+offset_right = 199.0
+offset_bottom = 132.0
+mouse_filter = 2
+script = ExtResource("3_05wi7")
+
+[node name="LowerStats" type="Panel" parent="UI/ActiveInventoryItemBox" unique_id=419802647]
+layout_mode = 0
+offset_top = 70.0
+offset_right = 200.0
+offset_bottom = 122.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gkrqp")
+
+[node name="DamagePanel" type="Panel" parent="UI/ActiveInventoryItemBox/LowerStats" unique_id=482911229]
+self_modulate = Color(1, 1, 1, 0.56078434)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 26.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_05wi7")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="UI/ActiveInventoryItemBox/LowerStats/DamagePanel" unique_id=1229157540]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Damage - 999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FireratePanel" type="Panel" parent="UI/ActiveInventoryItemBox/LowerStats" unique_id=252184538]
+self_modulate = Color(1, 1, 1, 0.56078434)
+layout_mode = 0
+offset_left = 100.0
+offset_right = 200.0
+offset_bottom = 26.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gbtyd")
+
+[node name="Label" type="Label" parent="UI/ActiveInventoryItemBox/LowerStats/FireratePanel" unique_id=83649490]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Firerate - 2/s"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ArmorModifierPanel" type="Panel" parent="UI/ActiveInventoryItemBox/LowerStats" unique_id=879016381]
+self_modulate = Color(1, 1, 1, 0.56078434)
+layout_mode = 0
+offset_top = 26.0
+offset_right = 100.0
+offset_bottom = 52.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_plw3h")
+
+[node name="Label" type="Label" parent="UI/ActiveInventoryItemBox/LowerStats/ArmorModifierPanel" unique_id=134465744]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "AD - 200%"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="CritChancePanel" type="Panel" parent="UI/ActiveInventoryItemBox/LowerStats" unique_id=653578553]
+self_modulate = Color(1, 1, 1, 0.56078434)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 26.0
+offset_right = 200.0
+offset_bottom = 52.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2aooa")
+
+[node name="Label" type="Label" parent="UI/ActiveInventoryItemBox/LowerStats/CritChancePanel" unique_id=1387526472]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Crit - 10%"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="UpperInventoryItem" type="Panel" parent="UI/ActiveInventoryItemBox" unique_id=277007318]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 70.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iriiy")
+
+[node name="InventoryItemHolder" type="Control" parent="UI/ActiveInventoryItemBox/UpperInventoryItem" unique_id=1275669054]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -28.0
+offset_right = 89.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Area2D" type="Area2D" parent="UI/ActiveInventoryItemBox" unique_id=1504828687]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/ActiveInventoryItemBox/Area2D" unique_id=183245369]
+position = Vector2(100, 61)
+shape = SubResource("RectangleShape2D_05wi7")
+metadata/_edit_lock_ = true

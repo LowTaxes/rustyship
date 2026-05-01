@@ -243,11 +243,11 @@ public partial class Ship : CharacterBody2D
 			armor -= damage;
 			if(is_player)
 			{
-				BattleConnect.Instance.EmitSignal(BattleConnect.SignalName.PlayerArmorDamageTaken.ToString(), damage);
+				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.PlayerArmorDamageTaken.ToString(), damage);
 			}
 			else
 			{
-				BattleConnect.Instance.EmitSignal(BattleConnect.SignalName.EnemyArmorDamageTaken.ToString(), damage);
+				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.EnemyArmorDamageTaken.ToString(), damage);
 			}
 			
 		}
@@ -257,11 +257,11 @@ public partial class Ship : CharacterBody2D
 			if(is_player)
 			{
 				
-				BattleConnect.Instance.EmitSignal(BattleConnect.SignalName.PlayerHealthDamageTaken.ToString(), damage);
+				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.PlayerHealthDamageTaken.ToString(), damage);
 			}
 			else
 			{
-				BattleConnect.Instance.EmitSignal(BattleConnect.SignalName.EnemyHealthDamageTaken.ToString(), damage);
+				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.EnemyHealthDamageTaken.ToString(), damage);
 			}
 		}	
 			

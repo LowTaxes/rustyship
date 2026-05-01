@@ -40,11 +40,11 @@ public partial class ShipStatsUi : Control
 		enemy_armor_bar.GetNode<Label>("ArmorText").Text = enemy_armor_bar.Value.ToString() + "/" + enemy_armor_bar.MaxValue.ToString();
 		
 
-		BattleConnect.Instance.Connect(BattleConnect.SignalName.PlayerHealthDamageTaken, new Callable(this, "_OnPlayerHealthDamageTaken"));
-		BattleConnect.Instance.Connect(BattleConnect.SignalName.PlayerArmorDamageTaken, new Callable(this, "_OnPlayerArmorDamageTaken"));
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.PlayerHealthDamageTaken, new Callable(this, "_OnPlayerHealthDamageTaken"));
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.PlayerArmorDamageTaken, new Callable(this, "_OnPlayerArmorDamageTaken"));
 
-		BattleConnect.Instance.Connect(BattleConnect.SignalName.EnemyHealthDamageTaken, new Callable(this, "_OnEnemyHealthDamageTaken"));
-		BattleConnect.Instance.Connect(BattleConnect.SignalName.EnemyArmorDamageTaken, new Callable(this, "_OnEnemyArmorDamageTaken"));
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.EnemyHealthDamageTaken, new Callable(this, "_OnEnemyHealthDamageTaken"));
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.EnemyArmorDamageTaken, new Callable(this, "_OnEnemyArmorDamageTaken"));
 		
     }
 	

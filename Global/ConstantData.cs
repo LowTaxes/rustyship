@@ -63,6 +63,11 @@ public partial class ConstantData : Node
 	{
 		return (((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.WEAPON_MODEL_UID]).ToString();
 	}
+
+	public static string GetWeaponInventoryItemSpriteUID(string weapon_name)
+	{
+		return (((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SPRITE_UID]).ToString();
+	}
 	
 	
 }

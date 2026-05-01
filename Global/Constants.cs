@@ -7,6 +7,7 @@ public partial class Constants : Node
 	public static Vector2 ENEMY_START_LOCATION = new Vector2(0,-200);
 	public static int player_storage_size_x = 5;
 	public static int player_storage_size_y = 10;
+	public static int inventory_square_size = 50;
 
 	
 	public enum WeaponDataEnum

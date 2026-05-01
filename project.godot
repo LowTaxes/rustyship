@@ -18,7 +18,7 @@ config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 
 PlayerStats="*uid://bmlmujxtv16h1"
 EnemyStats="*uid://dtsow3dpgdxx7"
-BattleConnect="*uid://b07jfi3akov50"
+SignalConnect="*uid://b07jfi3akov50"
 Constants="*uid://clpk3q5nm4xjj"
 ConstantData="*uid://d2trn07mvv4oq"
 RunData="*uid://crsdlwnamb0mv"

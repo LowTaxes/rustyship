@@ -48,7 +48,7 @@ public partial class Weapon : Sprite2D
 	public void Initialize()
 	{
 		
-		BattleConnect.Instance.Connect(BattleConnect.SignalName.BattleStart, new Callable(this, "_OnBattleStart"));
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.BattleStart, new Callable(this, "_OnBattleStart"));
 		
 		global_target_look_at = new Vector2(Position.X, other_ship_start_point.Y);
 		LookAt(global_target_look_at);

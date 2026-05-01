@@ -22,7 +22,7 @@ public partial class PlayerStorage : Control
 		inventory_item_scene = GD.Load<PackedScene>("uid://cedh3uq18etis");
 		grid_container = GetChild<GridContainer>(0);
 		grid_container.Columns = Constants.player_storage_size_x;
-		adjusted_inv_square_width = (int) (grid_container.Size.X/Constants.player_storage_size_x);
+		adjusted_inv_square_width = Constants.inventory_square_size;//(int) (grid_container.Size.X/Constants.player_storage_size_x);
 
 		grid_container.AddThemeConstantOverride("h_separation", (int)adjusted_inv_square_width);
 		grid_container.AddThemeConstantOverride("v_separation", (int)adjusted_inv_square_width);
@@ -63,7 +63,7 @@ public partial class PlayerStorage : Control
 			InventoryItem new_item = inventory_item_scene.Instantiate<InventoryItem>();
 			new_item.weapon_name = ((Dictionary)(run_data_weapon_dicts[i]))["weaponID"].ToString();
 			new_item.level = (int)((Dictionary)(run_data_weapon_dicts[i]))["level"];
-			Debug.Print(((Dictionary)run_data_weapon_dicts[i])["x"].ToString());
+			
 			AddChild(new_item);
 			held_items.Add(new_item);
 	
@@ -72,7 +72,7 @@ public partial class PlayerStorage : Control
 			new_item.sprite2D.Scale = new Vector2(new_item.sprite_scale_x, new_item.sprite_scale_y);
 			new_item.reference_point.Position = new Vector2(-new_item.sprite2D.Texture.GetWidth() * new_item.sprite_scale_x/2, -new_item.sprite2D.Texture.GetHeight()*new_item.sprite_scale_y/2);
 			//new_item.reference_point.Position = new Vector2(0,0);
-
+			
 			float area_scale_x = (float)adjusted_inv_square_width / new_item.area2D.GetChild<CollisionShape2D>(0).Shape.GetRect().Size.X * new_item.size_x;
 			float area_scale_y = (float)adjusted_inv_square_width / new_item.area2D.GetChild<CollisionShape2D>(0).Shape.GetRect().Size.Y * new_item.size_y;
 			new_item.area2D.Scale = new Vector2(area_scale_x, area_scale_y);

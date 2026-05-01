@@ -59,41 +59,31 @@ public partial class InventoryItem : Control
 
     public override void _Input(InputEvent @event)
     {
-		 if(@event is InputEventMouse)
+		 if(@event is InputEventMouse mouse_event)
 		{
-			if(mouse_hovering && @event.IsActionPressed("left_click"))
+			if(mouse_hovering && mouse_event.IsActionPressed("left_click"))
 			{
 				mouse_dragging = true;
-				attatched = false;
 			}
-			else if(mouse_hovering && @event.IsActionReleased("left_click"))
+			else if(mouse_hovering && mouse_event.IsActionReleased("left_click"))
 			{
-				mouse_dragging = false;
-				Array<Area2D> overlapping_areas = area2D.GetOverlappingAreas();
-				if(overlapping_areas.Count > 0)
+				Array<Area2D> over_lapping_areas = area2D.GetOverlappingAreas();
+				bool touching_attatchment = false;
+				for (int i = 0; i <over_lapping_areas.Count; i++)
 				{
-					InventorySquare reference = null;
-					for(int i = 0; i < overlapping_areas.Count; i++)
+					if(over_lapping_areas[i].GetParent() is ActiveInventoryItemBox || over_lapping_areas[i].GetParent() is InventorySquare)
 					{
-						
-						if (overlapping_areas[i].GetParent() is InventorySquare inv_square)
-						{
-							attatched = true;
-							reference = inv_square;
-						}
-						
+						touching_attatchment = true;
 					}
-					if (attatched && reference != null)
-					{
-						if (reference.attatched_container.GetParent() is PlayerStorage storage)
-						{
-							storage.AddItem(this);
-						}
-						
-					}
+					
+				}
+				if(!touching_attatchment)
+				{
+					mouse_dragging = false;
+					
 				}
 			}
-			if(@event is InputEventMouseMotion mouse_motion && mouse_dragging)
+			if(mouse_event is InputEventMouseMotion mouse_motion && mouse_dragging)
 			{
 				Position = Position + mouse_motion.Relative;
 			}
