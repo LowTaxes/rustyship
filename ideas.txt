@@ -1,0 +1,16 @@
+NEW FEATURE IDEAS:
+- Add items that can attatched to weapons or support weapons 
+that have certain effects such as +20% firerate or 
++50% damage with -30% attack speed. The better weapons should be able
+to equip multiple of these items to create synergies such as inflicting
+armor break and attack speed or smthn like that. Whether they can be removed
+from an item is to be determined
+
+BALANCING IDEAS:
+- to make balancing easier to find out number wise, try to find out a way to
+find how much harder the next fight should be compared to the last or to
+the first fight. An example of this might be if the first fight involves an
+enemy with 100 HP and 10 dmg/s, the next fight involving 150 HP and 10 dmg/s
+would be 50% harder as the fight takes 50% longer with the sme damage.
+A fight with 200 HP and 20 dmg/s would be 300% harder as it is twice as long
+with twice the damage (4x as difficult)

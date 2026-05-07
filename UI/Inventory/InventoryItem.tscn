@@ -17,19 +17,28 @@ script = ExtResource("2_6reim")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=857854086]
 texture = ExtResource("2_8dqt5")
+metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2070184083]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=521375674]
 shape = SubResource("RectangleShape2D_vp88w")
 
-[node name="ReferencePoint" type="Node2D" parent="." unique_id=640187503]
+[node name="ReferencePoint" type="Node2D" parent="Area2D" unique_id=640187503]
 position = Vector2(-208, -208)
 
 [node name="Label" type="Label" parent="." unique_id=497601771]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -207.0
+offset_right = -147.0
+offset_bottom = 110.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 30
+text = "4"
 
 [connection signal="area_entered" from="Area2D" to="." method="_OnArea2DEntered"]
 [connection signal="area_exited" from="Area2D" to="." method="_OnArea2DExited"]

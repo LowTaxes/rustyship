@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b6vp4ncl38vhs" path="res://Screens/Battle/GameManager.cs" id="1_7cxpe"]
 [ext_resource type="Script" uid="uid://dmy3itibpo1vx" path="res://UI/ShipStatsUi.cs" id="2_b7dir"]
 [ext_resource type="Script" uid="uid://dgai80esm2hgi" path="res://UI/BattleStartButton.cs" id="3_xq50g"]
-[ext_resource type="PackedScene" uid="uid://cedh3uq18etis" path="res://UI/Inventory/ItemScenes/InventoryItem.tscn" id="5_iqs24"]
+[ext_resource type="PackedScene" uid="uid://cedh3uq18etis" path="res://UI/Inventory/InventoryItem.tscn" id="5_iqs24"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gbba"]
 bg_color = Color(1, 0, 0, 1)

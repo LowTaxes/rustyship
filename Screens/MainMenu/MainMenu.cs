@@ -69,6 +69,9 @@ public partial class MainMenu : Node2D
 		medium_2.Add("weaponID", "mediumcannon");
 		medium_2.Add("level", 3);
 		
+		Dictionary empty_1 = new Dictionary();
+		empty_1.Add("weaponID", "empty");
+		empty_1.Add("level", 0);
 
 		
 		
@@ -81,12 +84,9 @@ public partial class MainMenu : Node2D
 			0,
 			0,
 			0,
-			0,
 			1,
-			new Array{light_2, medium_2},
-			active_inv_size,
+			new Array{light_2, medium_2, empty_1},
 			new Array{medium_1, light_1},
-			storage_inv_size
 		});
 		run_data.Add("enemy", new Array
 		{
@@ -94,12 +94,8 @@ public partial class MainMenu : Node2D
 			0,
 			0,
 			0,
-			0,
 			1,
 			new Array{light_1},
-			active_inv_size,
-			new Array{medium_1},
-			storage_inv_size
 		});
 		/*
 		Dictionary ship_data = new Dictionary();

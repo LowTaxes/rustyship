@@ -15,8 +15,14 @@ public partial class SignalConnect : Node
 
 	//Ship Editing signals
 
-	[Signal] public delegate void NewItemAttatchedEventHandler();
+	[Signal] public delegate void InvItemClickedEventHandler();
+	[Signal] public delegate void InvItemReleasedEventHandler();
+	[Signal] public delegate void ActiveItemAddedEventHandler();
+	[Signal] public delegate void ActiveItemRemovedEventHandler();
+
 	
+	//Scene Swapping Signals
+	[Signal] public delegate void ChangeToNextSceneEventHandler();
 	public override void _Ready()
 	{
 		Instance = this;

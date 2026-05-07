@@ -13,10 +13,51 @@ public partial class RunData : Node
 {
 	public static RunData Instance;
 	string user_path = ProjectSettings.GlobalizePath("user://");
+
+
+	//RunData Variables are to be used for packaging data between scenes,
+	//not direct retrieval of data
+
+
+	//Player Run Data
+	public string p_ship_template_id;
+	public int p_health_m_count;
+	public int p_armor_m_count;
+	public int p_crit_chance_m_count;
+	public int p_level;
+	public Array p_active_inv;
+	public Array p_storage_inv;
+
+	//Enemy Run Data
+	public string e_ship_template_id;
+	public int e_health_m_count;
+	public int e_armor_m_count;
+	public int e_crit_chance_m_count;
+	public int e_level;
+	public Array e_active_inv;
+
 	public override void _Ready()
 	{
 		Instance = this;
 		Debug.Print(user_path);
+
+
+
+
+
+		p_ship_template_id = GetPlayerShipTemplateID();
+		p_health_m_count = GetPlayerHealthModifierCount();
+		p_armor_m_count = GetPlayerArmorModifierCount();
+		p_level = GetPlayerLevel();
+		p_active_inv = (Array)((Array)Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.ACTIVE_INVENTORY];
+		p_storage_inv = (Array)((Array)RunData.Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.STORAGE_INVENTORY];
+
+		e_ship_template_id = GetEnemyShipTemplateID();
+		e_health_m_count = GetEnemyHealthModifierCount();
+		e_armor_m_count = GetEnemyArmorModifierCount();
+		e_crit_chance_m_count = GetEnemyCritChanceModifierCount();
+		e_level = GetEnemyLevel();
+		e_active_inv = (Array)((Array)Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.ACTIVE_INVENTORY]; 
 
 		/*
 		User data should store:
@@ -90,6 +131,14 @@ public partial class RunData : Node
 
 	}
 
+	public static InventoryItem GetEmptyInvItem()
+	{
+		InventoryItem inventoryItem = new InventoryItem();
+		inventoryItem.weapon_name = "empty";
+		inventoryItem.level = 0;
+		return inventoryItem;
+	}
+
 	public static string GetPlayerShipTemplateID()
 	{
 		Dictionary run_data = Instance.LoadUserData();
@@ -98,7 +147,7 @@ public partial class RunData : Node
 	public static string GetEnemyShipTemplateID()
 	{
 		Dictionary run_data = Instance.LoadUserData();
-		return ((Array)run_data["Enemy"])[(int)Constants.RunDataEnum.SHIP_TEMPLATE_ID].ToString();
+		return ((Array)run_data["enemy"])[(int)Constants.RunDataEnum.SHIP_TEMPLATE_ID].ToString();
 	}
 
 	public static int GetPlayerHealthModifierCount()

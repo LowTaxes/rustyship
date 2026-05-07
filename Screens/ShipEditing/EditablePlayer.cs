@@ -14,6 +14,13 @@ public partial class EditablePlayer : Control
 	
 	public override void _Ready()
 	{
+
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.ActiveItemAdded, new Callable(this, "_ActiveItemAdded"));
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.ActiveItemRemoved, new Callable(this, "_ActiveItemRemoved"));
+
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.ChangeToNextScene, new Callable(this, "_ChangeToNextScene"));
+
+
 		//get ship and run data
 		Dictionary run_data = RunData.Instance.LoadUserData();
 		Array player_data = (Array) run_data["player"];
@@ -38,18 +45,62 @@ public partial class EditablePlayer : Control
 		{
 			if(!(i >= attatched_inventory_items.Count))
 			{
-				PackedScene new_model_scene = ResourceLoader.Load<PackedScene>(ConstantData.GetWeaponModelUID(attatched_inventory_items[i].weapon_name));
-				Sprite2D new_weapon_model = new_model_scene.Instantiate<Sprite2D>();
-				//new_weapon_model.Scale = new Vector2(scale, scale);
-				ship_model.hardpoints[i].AddChild(new_weapon_model);
-				new_weapon_model.LookAt(new Vector2(new_weapon_model.GlobalPosition.X, new_weapon_model.GlobalPosition.Y *2));
+				if(!(attatched_inventory_items[i].weapon_name.Equals("empty")))
+				{
+					PackedScene new_model_scene = ResourceLoader.Load<PackedScene>(ConstantData.GetWeaponModelUID(attatched_inventory_items[i].weapon_name));
+					Sprite2D new_weapon_model = new_model_scene.Instantiate<Sprite2D>();
+					//new_weapon_model.Scale = new Vector2(scale, scale);
+					ship_model.hardpoints[i].AddChild(new_weapon_model);
+					new_weapon_model.LookAt(new Vector2(new_weapon_model.GlobalPosition.X, new_weapon_model.GlobalPosition.Y *2));
+				}
+				
 			}
 			
 		}
 
 
-
 	
+	}
+
+	private void _ActiveItemAdded(InventoryItem inv_item, int hardpoint_index)
+	{
+		PackedScene new_model_scene = ResourceLoader.Load<PackedScene>(ConstantData.GetWeaponModelUID(inv_item.weapon_name));
+		Sprite2D new_weapon_model = new_model_scene.Instantiate<Sprite2D>();
+
+		foreach (Sprite2D model in ship_model.hardpoints[hardpoint_index].GetChildren())
+		{
+			model.Free();
+		}
+		ship_model.hardpoints[hardpoint_index].AddChild(new_weapon_model);
+		new_weapon_model.LookAt(new Vector2(new_weapon_model.GlobalPosition.X, new_weapon_model.GlobalPosition.Y *2));
+
+		attatched_inventory_items[hardpoint_index] = inv_item;
+
+	}
+
+	private void _ActiveItemRemoved(int hardpoint_index)
+	{
+		foreach (Sprite2D model in ship_model.hardpoints[hardpoint_index].GetChildren())
+		{
+			model.Free();
+		}
+		attatched_inventory_items[hardpoint_index] = RunData.GetEmptyInvItem();
+
+		
+	}
+
+
+	private void _ChangeToNextScene()
+	{
+		Array array_attatched_items = new Array();
+		for(int i = 0; i < attatched_inventory_items.Count; i++)
+		{
+			Dictionary curr_item = new Dictionary();
+			curr_item.Add("weaponID", attatched_inventory_items[i].weapon_name);
+			curr_item.Add("level", attatched_inventory_items[i].level);
+			array_attatched_items.Add(curr_item);
+		}
+		RunData.Instance.p_active_inv = array_attatched_items;
 	}
 
 	

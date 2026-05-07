@@ -12,6 +12,8 @@ public partial class InventoryItem : Control
 	public int level = 0;
 	public int size_x = 1;
 	public int size_y = 1;
+	public int storage_x = 0;
+	public int storage_y = 0;
 	public Sprite2D sprite2D;
 	public Area2D area2D;
 	public Node2D reference_point;
@@ -27,20 +29,23 @@ public partial class InventoryItem : Control
 
 		sprite2D = GetChild<Sprite2D>(0);
 		area2D = GetChild<Area2D>(1);
-		reference_point = GetChild<Node2D>(2);
+		reference_point = area2D.GetChild<Node2D>(1);
 
 		
+		if(!(weapon_name.Equals("empty")))
+		{
+			Array weapon_data = (Array)ConstantData.WeaponData[weapon_name];
+			Dictionary inv_size = (Dictionary) weapon_data[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SIZE];
+			size_x = (int) inv_size["x"];
+			size_y = (int) inv_size["y"];
+			sprite2D.Texture = GD.Load<Texture2D>(weapon_data[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SPRITE_UID].ToString());
 
-        Array weapon_data = (Array)ConstantData.WeaponData[weapon_name];
-		Dictionary inv_size = (Dictionary) weapon_data[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SIZE];
-		size_x = (int) inv_size["x"];
-		size_y = (int) inv_size["y"];
-		sprite2D.Texture = GD.Load<Texture2D>(weapon_data[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SPRITE_UID].ToString());
-
+		}
+        
 	}
     public override void _Process(double delta)
     {
-        //Debug.Print(Position.ToString());
+        
     }
 
 
@@ -59,29 +64,17 @@ public partial class InventoryItem : Control
 
     public override void _Input(InputEvent @event)
     {
-		 if(@event is InputEventMouse mouse_event)
+		 if(@event is InputEventMouse mouse_event && !(weapon_name.Equals("empty")))
 		{
 			if(mouse_hovering && mouse_event.IsActionPressed("left_click"))
 			{
 				mouse_dragging = true;
+				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.InvItemClicked.ToString(), this);
 			}
 			else if(mouse_hovering && mouse_event.IsActionReleased("left_click"))
 			{
-				Array<Area2D> over_lapping_areas = area2D.GetOverlappingAreas();
-				bool touching_attatchment = false;
-				for (int i = 0; i <over_lapping_areas.Count; i++)
-				{
-					if(over_lapping_areas[i].GetParent() is ActiveInventoryItemBox || over_lapping_areas[i].GetParent() is InventorySquare)
-					{
-						touching_attatchment = true;
-					}
-					
-				}
-				if(!touching_attatchment)
-				{
-					mouse_dragging = false;
-					
-				}
+				mouse_dragging = false;
+				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.InvItemReleased.ToString(), this);
 			}
 			if(mouse_event is InputEventMouseMotion mouse_motion && mouse_dragging)
 			{
@@ -92,23 +85,7 @@ public partial class InventoryItem : Control
 		
     }
 
-	private void _OnArea2DEntered(Area2D other_area2D)
-	{
-		if(other_area2D.GetParent().GetParent() is InventorySquare entered_inv_square)
-		{
-			
-		}
-		
-	}
-
-	private void _OnArea2DExited(Area2D other_area2D)
-	{
-		if(other_area2D.GetParent().GetParent() is InventorySquare entered_inv_square)
-		{
-			
-		}
-		
-	}
+	
 
 
 	

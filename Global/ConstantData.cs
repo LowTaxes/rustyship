@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using Dictionary = Godot.Collections.Dictionary;
 using Array = Godot.Collections.Array;
 using FileAccess = Godot.FileAccess;
+using System.Collections.Generic;
 public partial class ConstantData : Node
 {
 	public static ConstantData Instance;
@@ -58,6 +59,23 @@ public partial class ConstantData : Node
 	
 	}
 
+	public static double GetWeaponDamage(string weapon_name)
+	{
+		return (double)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.DAMAGE];
+	}
+
+	public static double GetWeaponFirerate(string weapon_name)
+	{
+		return (double)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.FIRE_RATE];
+	}
+	public static double GetWeaponArmorDamageModifier(string weapon_name)
+	{
+		return (double)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.ARMOR_DAMAGE_MODIFIER];
+	}
+	public static double GetWeaponCritChance(string weapon_name)
+	{
+		return (double)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.CRIT_CHANCE];
+	}
 
 	public static string GetWeaponModelUID(string weapon_name)
 	{
@@ -69,5 +87,18 @@ public partial class ConstantData : Node
 		return (((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SPRITE_UID]).ToString();
 	}
 	
+
+	public static List<string> GetShipHardpointWeightClasses(string ship_ID)
+	{
+		List<string> return_list = new List<string>();
+
+		Array hardpoints = (Array)((Array)ShipData[ship_ID])[(int)Constants.ShipDataEnum.HARDPOINT_WEIGHT_CLASSES];
+		for (int i = 0; i < hardpoints.Count; i++)
+		{
+			return_list.Add(hardpoints[i].ToString());
+		}
+
+		return return_list;
+	}
 	
 }
