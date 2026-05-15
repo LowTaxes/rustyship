@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cea3littf66ot" path="res://Ships/tempship/ship_temp.png" id="1_jjsps"]
 [ext_resource type="Script" uid="uid://dewasgvmwgwqm" path="res://Ships/ShipModel.cs" id="2_34jgg"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34jgg"]
+size = Vector2(418, 102)
+
 [node name="test_ship_model" type="Sprite2D" unique_id=39373419]
 texture = ExtResource("1_jjsps")
 script = ExtResource("2_34jgg")
@@ -13,12 +16,14 @@ anchors_preset = 0
 offset_left = -120.0
 offset_right = -100.0
 offset_bottom = 15.0
+mouse_filter = 2
 
 [node name="medium" type="Control" parent="." unique_id=823010999]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 20.0
 offset_bottom = 15.0
+mouse_filter = 2
 
 [node name="light2" type="Control" parent="." unique_id=1835619776]
 layout_mode = 3
@@ -26,3 +31,9 @@ anchors_preset = 0
 offset_left = 120.0
 offset_right = 140.0
 offset_bottom = 15.0
+mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1521764887]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1310971136]
+shape = SubResource("RectangleShape2D_34jgg")

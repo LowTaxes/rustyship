@@ -20,6 +20,7 @@ public partial class PlayerStorage : Control
 	
 	public override void _Ready()
 	{
+	
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.InvItemClicked, new Callable(this, "_OnInvItemClicked"));
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.InvItemReleased, new Callable(this, "_OnInvItemReleased"));
 

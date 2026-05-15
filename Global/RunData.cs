@@ -12,7 +12,7 @@ using System.Collections.Generic;
 public partial class RunData : Node
 {
 	public static RunData Instance;
-	string user_path = ProjectSettings.GlobalizePath("user://");
+	public string user_path = ProjectSettings.GlobalizePath("user://");
 
 
 	//RunData Variables are to be used for packaging data between scenes,
@@ -27,6 +27,7 @@ public partial class RunData : Node
 	public int p_level;
 	public Array p_active_inv;
 	public Array p_storage_inv;
+	public string level_id;
 
 	//Enemy Run Data
 	public string e_ship_template_id;
@@ -40,44 +41,18 @@ public partial class RunData : Node
 	{
 		Instance = this;
 		Debug.Print(user_path);
+	
+	}
 
-
-
-
-
+	public void InitializeDataVariables()
+	{
 		p_ship_template_id = GetPlayerShipTemplateID();
 		p_health_m_count = GetPlayerHealthModifierCount();
 		p_armor_m_count = GetPlayerArmorModifierCount();
 		p_level = GetPlayerLevel();
 		p_active_inv = (Array)((Array)Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.ACTIVE_INVENTORY];
 		p_storage_inv = (Array)((Array)RunData.Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.STORAGE_INVENTORY];
-
-		e_ship_template_id = GetEnemyShipTemplateID();
-		e_health_m_count = GetEnemyHealthModifierCount();
-		e_armor_m_count = GetEnemyArmorModifierCount();
-		e_crit_chance_m_count = GetEnemyCritChanceModifierCount();
-		e_level = GetEnemyLevel();
-		e_active_inv = (Array)((Array)Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.ACTIVE_INVENTORY]; 
-
-		/*
-		User data should store:
-		player ship template ID
-		HealthModifierCount (from level ups)
-		ArmorModifierCount (from level ups)
-		ManeuverabilityModifierCount(from level ups)
-		CritChanceModifierCount (from level ups)
-		
-		Enemy ship template ID
-		EnemyHealthModifierCount (from level ups)
-		EnemyArmorModifierCount (from level ups)
-		EnemyManeuverabilityModifierCount(from level ups)
-		EnemyCritChanceModifierCount (from level ups)
-		EnemyLevel
-
-
-		*/
-		//SaveTextToFile("test", Json.Stringify(ship_dic));
-
+		level_id = GetLevelID();
 	}
 
 	public void SaveToUserData(string data)
@@ -144,55 +119,32 @@ public partial class RunData : Node
 		Dictionary run_data = Instance.LoadUserData();
 		return ((Array)run_data["player"])[(int)Constants.RunDataEnum.SHIP_TEMPLATE_ID].ToString();
 	}
-	public static string GetEnemyShipTemplateID()
-	{
-		Dictionary run_data = Instance.LoadUserData();
-		return ((Array)run_data["enemy"])[(int)Constants.RunDataEnum.SHIP_TEMPLATE_ID].ToString();
-	}
-
 	public static int GetPlayerHealthModifierCount()
 	{
 		Dictionary run_data = Instance.LoadUserData();
 		return (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.HEALTH_MODIFIER_COUNT];
 	}
 
-	public static int GetEnemyHealthModifierCount()
-	{
-		Dictionary run_data = Instance.LoadUserData();
-		return (int)((Array)run_data["enemy"])[(int)Constants.RunDataEnum.HEALTH_MODIFIER_COUNT];
-	}
-
+	
 	public static int GetPlayerArmorModifierCount()
 	{
 		Dictionary run_data = Instance.LoadUserData();
 		return (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.ARMOR_MODIFIER_COUNT];
 	}
-	public static int GetEnemyArmorModifierCount()
-	{
-		Dictionary run_data = Instance.LoadUserData();
-		return (int)((Array)run_data["enemy"])[(int)Constants.RunDataEnum.ARMOR_MODIFIER_COUNT];
-	}
+	
 	public static int GetPlayerCritChanceModifierCount()
 	{
 		Dictionary run_data = Instance.LoadUserData();
 		return (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.CRIT_CHANCE_MODIFIER_COUNT];
 	}
-	public static int GetEnemyCritChanceModifierCount()
-	{
-		Dictionary run_data = Instance.LoadUserData();
-		return (int)((Array)run_data["enemy"])[(int)Constants.RunDataEnum.CRIT_CHANCE_MODIFIER_COUNT];
-	}
+	
 
 	public static int GetPlayerLevel()
 	{
 		Dictionary run_data = Instance.LoadUserData();
 		return (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.LEVEL];
 	}
-	public static int GetEnemyLevel()
-	{
-		Dictionary run_data = Instance.LoadUserData();
-		return (int)((Array)run_data["enemy"])[(int)Constants.RunDataEnum.LEVEL];
-	}
+
 	public static List<InventoryItem> GetPlayerActiveInventoryItems()
 	{
 		List<InventoryItem> return_list = new List<InventoryItem>();
@@ -208,20 +160,12 @@ public partial class RunData : Node
 		}
 		return return_list;
 	}
-	public static List<InventoryItem> GetEnemyActiveInventoryItems()
-	{
-		List<InventoryItem> return_list = new List<InventoryItem>();
 
-		Array active_inventory_items = (Array)((Array)Instance.LoadUserData()["enemy"])[(int)Constants.RunDataEnum.ACTIVE_INVENTORY];
-		for (int i = 0; i < active_inventory_items.Count; i ++)
-		{
-			Dictionary new_item_dict = (Dictionary)active_inventory_items[i];
-			InventoryItem new_inv_item = (GD.Load<PackedScene>("uid://cedh3uq18etis")).Instantiate<InventoryItem>();
-			new_inv_item.weapon_name = new_item_dict["weaponID"].ToString();
-			new_inv_item.level = (int)new_item_dict["level"];
-			return_list.Add(new_inv_item);
-		}
-		return return_list;
+
+	public static string GetLevelID()
+	{
+		Dictionary run_data = Instance.LoadUserData();
+		return (((Array)run_data["player"])[(int)Constants.RunDataEnum.LEVEL_ID]).ToString();
 	}
 
 

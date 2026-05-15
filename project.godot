@@ -23,6 +23,11 @@ Constants="*uid://clpk3q5nm4xjj"
 ConstantData="*uid://d2trn07mvv4oq"
 RunData="*uid://crsdlwnamb0mv"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [dotnet]
 
 project/assembly_name="shipshenanegans"

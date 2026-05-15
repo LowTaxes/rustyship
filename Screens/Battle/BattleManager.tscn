@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://b7a2h0hw00vtn"]
 
-[ext_resource type="Script" uid="uid://b6vp4ncl38vhs" path="res://Screens/Battle/GameManager.cs" id="1_7cxpe"]
-[ext_resource type="Script" uid="uid://dmy3itibpo1vx" path="res://UI/ShipStatsUi.cs" id="2_b7dir"]
-[ext_resource type="Script" uid="uid://dgai80esm2hgi" path="res://UI/BattleStartButton.cs" id="3_xq50g"]
-[ext_resource type="PackedScene" uid="uid://cedh3uq18etis" path="res://UI/Inventory/InventoryItem.tscn" id="5_iqs24"]
+[ext_resource type="Script" uid="uid://dgai80esm2hgi" path="res://UI/BattleStartButton.cs" id="1_j8ewb"]
+[ext_resource type="Script" uid="uid://dmy3itibpo1vx" path="res://UI/ShipStatsUi.cs" id="1_u601c"]
+[ext_resource type="Script" uid="uid://gxdu1m0s41gk" path="res://Screens/Battle/BattlePort.cs" id="3_ilq27"]
+[ext_resource type="PackedScene" uid="uid://dfk85q5d2j7o8" path="res://Weapons/weapon.tscn" id="4_p7q1g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gbba"]
 bg_color = Color(1, 0, 0, 1)
 
-[node name="GameManager" type="Node2D" unique_id=1051907935]
-script = ExtResource("1_7cxpe")
+[node name="BattleManager" type="Node2D" unique_id=1051907935]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=384355653]
 
@@ -29,7 +28,7 @@ anchor_bottom = 0.998
 offset_right = 1.0
 offset_bottom = 0.28997803
 mouse_filter = 1
-script = ExtResource("2_b7dir")
+script = ExtResource("1_u601c")
 metadata/_edit_lock_ = true
 
 [node name="PlayerStats" type="Control" parent="UI/ShipStatsUI" unique_id=1205070338]
@@ -156,13 +155,31 @@ offset_right = 228.0
 offset_bottom = 346.0
 mouse_filter = 1
 text = "Start"
-script = ExtResource("3_xq50g")
+script = ExtResource("1_j8ewb")
 metadata/_edit_use_anchors_ = true
 
-[node name="InventoryItem" parent="." unique_id=186025791 instance=ExtResource("5_iqs24")]
-offset_left = 540.0
-offset_top = -279.0
-offset_right = 540.0
-offset_bottom = -279.0
+[node name="BattlePort" type="Control" parent="." unique_id=278661927]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -200.0
+offset_top = -250.0
+offset_right = 500.0
+offset_bottom = 250.0
+script = ExtResource("3_ilq27")
+
+[node name="EnemySlot" type="Control" parent="BattlePort" unique_id=392289835]
+anchors_preset = 0
+offset_left = 150.0
+offset_right = 550.0
+offset_bottom = 150.0
+
+[node name="PlayerSlot" type="Control" parent="BattlePort" unique_id=1503892144]
+anchors_preset = 0
+offset_left = 150.0
+offset_top = 350.0
+offset_right = 550.0
+offset_bottom = 500.0
+
+[node name="Weapon" parent="." unique_id=1961994654 instance=ExtResource("4_p7q1g")]
 
 [connection signal="button_up" from="UI/BattleStartButton" to="UI/BattleStartButton" method="_OnButtonPressed"]

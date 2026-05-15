@@ -8,6 +8,8 @@ public partial class Constants : Node
 	public static int player_storage_size_x = 5;
 	public static int player_storage_size_y = 10;
 	public static int inventory_square_size = 50;
+	public static float health_modifier = .1f;
+	public static float armor_modifier = .1f;
 
 	
 	public enum WeaponDataEnum
@@ -45,6 +47,19 @@ public partial class Constants : Node
 		LEVEL,
 		ACTIVE_INVENTORY,
 		STORAGE_INVENTORY,
+		LEVEL_ID,
+	}
+
+	public enum LevelDataEnum
+	{
+		SHIP_TEMPLATE_ID,
+		ENEMY_NAME,
+		HEALTH_MODIFIER_COUNT,
+		ARMOR_MODIFIER_COUNT,
+		CRIT_CHANCE_MODIFIER_COUNT,
+		LEVEL,
+		ACTIVE_INVENTORY,
+		
 	}
 
 

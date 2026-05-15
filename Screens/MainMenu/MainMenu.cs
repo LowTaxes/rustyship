@@ -9,18 +9,19 @@ using Dictionary = Godot.Collections.Dictionary;
 using Array = Godot.Collections.Array;
 using RunDataEnum = Constants.RunDataEnum;
 using ShipDataEnum = Constants.ShipDataEnum;
+
 public partial class MainMenu : Node2D
 {
 	
 	public PackedScene main_scene;
-	public PackedScene ship_editing_scene;
+	public PackedScene enemy_select_scene;
 	
 	public PackedScene test_ship;
 
     public override void _Ready()
     {
         main_scene = ResourceLoader.Load<PackedScene>("uid://b7a2h0hw00vtn");// combat screen
-		ship_editing_scene = ResourceLoader.Load<PackedScene>("uid://drqy04x8yiama");
+		enemy_select_scene = ResourceLoader.Load<PackedScene>("uid://b7mnb6qawif3y");
 		/*
 		User data should store:
 		player ship template ID
@@ -41,6 +42,12 @@ public partial class MainMenu : Node2D
 		*/
 
 
+		
+		
+    }
+
+	private void _OnNewGame()
+	{
 		Dictionary active_inv_size = new Dictionary();
 		active_inv_size.Add("x", 12);
 		active_inv_size.Add("y", 7);
@@ -87,52 +94,23 @@ public partial class MainMenu : Node2D
 			1,
 			new Array{light_2, medium_2, empty_1},
 			new Array{medium_1, light_1},
+			"0-0",
 		});
-		run_data.Add("enemy", new Array
-		{
-			"s_enemy_start",
-			0,
-			0,
-			0,
-			1,
-			new Array{light_1},
-		});
-		/*
-		Dictionary ship_data = new Dictionary();
-		Dictionary first = new Dictionary();
-		first.Add("x", -100);
-		first.Add("y", 0);
 
-		Dictionary second = new Dictionary();
-		second.Add("x", 0);
-		second.Add("y", 0);
 		
-		Dictionary third = new Dictionary();
-		third.Add("x", 100);
-		third.Add("y", 0);
-		
-		ship_data.Add("s_player_start", new Array
-		{
-			100,
-			100,
-			10,
-			new Array{first, second, third},
-			new Array{"light", "medium", "light"},
-			400,
-			"uid://55gey740o2lm"
-
-
-
-		});
-		*/
 		RunData.Instance.SaveToUserData(Json.Stringify(run_data));
+		RunData.Instance.InitializeDataVariables();
 
+		GetTree().ChangeSceneToPacked(enemy_select_scene);
 		
-    }
-
-	private void _OnStartGame()
+	}
+	private void _OnContinueGame()
 	{
-		GetTree().ChangeSceneToPacked(ship_editing_scene);
+
+		RunData.Instance.InitializeDataVariables();
+		
+		PackedScene player_editing_scene = ResourceLoader.Load<PackedScene>("uid://drqy04x8yiama");
+		GetTree().ChangeSceneToPacked(player_editing_scene);
 		
 	}
 

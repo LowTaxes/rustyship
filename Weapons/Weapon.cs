@@ -6,7 +6,7 @@ using WeaponDataEnum = Constants.WeaponDataEnum;
 using Array = Godot.Collections.Array;
 using Dictionary = Godot.Collections.Dictionary;
 
-public partial class Weapon : Sprite2D
+public partial class Weapon : Node2D
 {
 	
 	public double damage;
@@ -20,16 +20,18 @@ public partial class Weapon : Sprite2D
 	public double bullet_speed;
 	public bool is_active = false;
 	public bool is_player = false;
-	public string weapon_name;
-	public int other_ship_width;
-	public Vector2 other_ship_start_point;
-	public Vector2 ship_start_point;
 	public Vector2 global_target_look_at;
 	public Vector2 old_global_target_look_at;
 	private float rotation_angle;
 	private float speed_angle;
 	private int spread_radius;
 	
+
+	//What needs to be set before initializing
+	public string weapon_name;
+	public int other_ship_width;
+	public Vector2 other_ship_start_point;
+	public Vector2 ship_start_point;
     
 
     public override void _PhysicsProcess(double delta)
@@ -49,21 +51,20 @@ public partial class Weapon : Sprite2D
 	{
 		
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.BattleStart, new Callable(this, "_OnBattleStart"));
+
+		Sprite2D weapon_model = ResourceLoader.Load<PackedScene>(ConstantData.GetWeaponModelUID(weapon_name)).Instantiate<Sprite2D>();
+		AddChild(weapon_model);
 		
-		global_target_look_at = new Vector2(Position.X, other_ship_start_point.Y);
+		global_target_look_at = new Vector2(GlobalPosition.X, other_ship_start_point.Y);
 		LookAt(global_target_look_at);
-		
-		
 
 		for(int i = 0; i < GetChildCount(); i++)
 		{
-			if(GetChild(i).GetType() == typeof(Timer))
+			if(GetChild(i) is Timer)
 			{
 				fire_rate_timer = GetChild<Timer>(i);
 			}
 		}
-		
-		
 		
 
 		//All values stored in WeaponData file
@@ -102,7 +103,7 @@ public partial class Weapon : Sprite2D
 		is_active = true;
 	}
 
-	private void _OnReadyToFire()
+	private void _On_Ready_To_Fire()
 	{
 		//make lookat direction exact to smooth small errors in rotation
 		LookAt(global_target_look_at);
@@ -110,7 +111,7 @@ public partial class Weapon : Sprite2D
 		//Handle bullet firing
 		Vector2 bullet_travel_direction = new Vector2(global_target_look_at.X - GlobalPosition.X, global_target_look_at.Y-GlobalPosition.Y);
 		Projectile bullet = bullet_scene.Instantiate<Projectile>();
-		GetNode("/root/GameManager").AddChild(bullet);
+		GetNode("/root").AddChild(bullet);
 		bullet.is_player = is_player;
 		bullet.travel_direction = bullet_travel_direction.Normalized();
 		bullet.speed = bullet_speed;

@@ -1,0 +1,31 @@
+{
+	"1-1":[
+		"s_player_start",
+		"bob",
+		5,
+		3,
+		0,
+		1,
+		[{"level":1,"weaponID":"lightmachinegun"},
+		{"level":3,"weaponID":"mediumcannon"},
+		{"level":0,"weaponID":"empty"}]
+	],
+
+	"1-2":[
+		"s_enemy_start",
+		"joe",
+		0,
+		0,
+		0,
+		1,
+		[{"level":1,"weaponID":"lightmachinegun"},
+		{"level":3,"weaponID":"lightmachinegun"},
+		{"level":1,"weaponID":"lightmachinegun"}]
+	]
+
+
+
+
+
+
+}

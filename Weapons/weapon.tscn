@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dfk85q5d2j7o8"]
+
+[ext_resource type="Script" uid="uid://dooanq651yf2y" path="res://Weapons/Weapon.cs" id="1_rphr7"]
+
+[node name="Weapon" type="Node2D" unique_id=1961994654]
+script = ExtResource("1_rphr7")
+
+[node name="Firerate" type="Timer" parent="." unique_id=204875814]
+
+[connection signal="timeout" from="Firerate" to="." method="_On_Ready_To_Fire"]

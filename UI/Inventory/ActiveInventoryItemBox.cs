@@ -35,7 +35,7 @@ public partial class ActiveInventoryItemBox : Control
 	public void UpdateItem(InventoryItem inv_item)
 	{
 		
-		if(!(inv_item.weapon_name.Equals("empty")))
+		if(!(inv_item.weapon_name.Equals("empty")) && (attatched_item == null))
 		{
 			if(inv_item.GetParent() != null)
 			{
