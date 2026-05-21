@@ -21,6 +21,30 @@
 		[{"level":1,"weaponID":"lightmachinegun"},
 		{"level":3,"weaponID":"lightmachinegun"},
 		{"level":1,"weaponID":"lightmachinegun"}]
+	],
+
+	"2-1":[
+		"s_enemy_start",
+		"dan",
+		0,
+		0,
+		0,
+		1,
+		[{"level":1,"weaponID":"mediumcannon"},
+		{"level":3,"weaponID":"mediumcannon"},
+		{"level":1,"weaponID":"mediumcannon"}]
+	],
+
+	"2-2":[
+		"s_enemy_start",
+		"ryan",
+		0,
+		0,
+		0,
+		1,
+		[{"level":1,"weaponID":"mediumcannon"},
+		{"level":3,"weaponID":"lightmachinegun"},
+		{"level":1,"weaponID":"mediumcannon"}]
 	]
 
 

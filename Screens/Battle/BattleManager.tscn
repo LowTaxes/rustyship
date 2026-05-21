@@ -11,25 +11,26 @@ bg_color = Color(1, 0, 0, 1)
 [node name="BattleManager" type="Node2D" unique_id=1051907935]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=384355653]
+zoom = Vector2(0.5, 0.5)
 
 [node name="UI" type="Control" parent="." unique_id=1747322694]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -575.0
-offset_top = -323.0
-offset_right = 577.0
-offset_bottom = 322.0
+offset_left = -1145.0
+offset_top = -655.0
+offset_right = 1294.0
+offset_bottom = 290.0
+scale = Vector2(1.5, 1.5)
 mouse_filter = 1
 
 [node name="ShipStatsUI" type="Control" parent="UI" unique_id=886124562]
 layout_mode = 1
 anchor_right = 1.0
 anchor_bottom = 0.998
-offset_right = 1.0
-offset_bottom = 0.28997803
+offset_right = -911.6666
+offset_bottom = -61.110046
 mouse_filter = 1
 script = ExtResource("1_u601c")
-metadata/_edit_lock_ = true
 
 [node name="PlayerStats" type="Control" parent="UI/ShipStatsUI" unique_id=1205070338]
 layout_mode = 1
@@ -46,8 +47,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PlayerHealthbar" type="ProgressBar" parent="UI/ShipStatsUI/PlayerStats" unique_id=1685011636]
 layout_mode = 1
-offset_right = 200.0
-offset_bottom = 30.0
+anchors_preset = -1
+anchor_right = -0.025809063
+anchor_bottom = 0.031896826
+offset_right = 212.34827
+offset_bottom = 23.612244
 mouse_filter = 1
 theme_override_styles/fill = SubResource("StyleBoxFlat_8gbba")
 value = 50.0
@@ -120,7 +124,6 @@ mouse_filter = 1
 text = "hi"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="EnemyArmorbar" type="ProgressBar" parent="UI/ShipStatsUI/EnemyStats" unique_id=19448032]
 layout_mode = 1
@@ -145,10 +148,14 @@ mouse_filter = 1
 text = "hi"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="BattleStartButton" type="Button" parent="UI" unique_id=1915628727]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.008063413
+anchor_top = 0.12627864
+anchor_right = 0.008931465
+anchor_bottom = 0.12627864
 offset_left = 51.0
 offset_top = 296.0
 offset_right = 228.0
@@ -161,25 +168,36 @@ metadata/_edit_use_anchors_ = true
 [node name="BattlePort" type="Control" parent="." unique_id=278661927]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -200.0
-offset_top = -250.0
-offset_right = 500.0
-offset_bottom = 250.0
+offset_left = -541.0
+offset_top = -500.0
+offset_right = 1065.0
+offset_bottom = 533.0
 script = ExtResource("3_ilq27")
 
 [node name="EnemySlot" type="Control" parent="BattlePort" unique_id=392289835]
-anchors_preset = 0
-offset_left = 150.0
-offset_right = 550.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
 offset_bottom = 150.0
+grow_horizontal = 2
 
 [node name="PlayerSlot" type="Control" parent="BattlePort" unique_id=1503892144]
-anchors_preset = 0
-offset_left = 150.0
-offset_top = 350.0
-offset_right = 550.0
-offset_bottom = 500.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="Weapon" parent="." unique_id=1961994654 instance=ExtResource("4_p7q1g")]
+position = Vector2(-52, 150)
 
 [connection signal="button_up" from="UI/BattleStartButton" to="UI/BattleStartButton" method="_OnButtonPressed"]

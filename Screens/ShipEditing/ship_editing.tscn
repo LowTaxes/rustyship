@@ -4,15 +4,37 @@
 [ext_resource type="Script" uid="uid://d0dv4w3xlr3g5" path="res://UI/Inventory/EquippedItemsScrollBox.cs" id="2_05wi7"]
 [ext_resource type="Script" uid="uid://bnbs4igcgxatg" path="res://Screens/ShipEditing/EditablePlayer.cs" id="2_8mwx7"]
 [ext_resource type="Script" uid="uid://dxruus0xfat2b" path="res://UI/EditingToBattle.cs" id="4_gkrqp"]
+[ext_resource type="PackedScene" uid="uid://dw0pyrobfgxr5" path="res://Ships/Battleship/battleship_hv.tscn" id="5_2aooa"]
+[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="5_plw3h"]
+[ext_resource type="Texture2D" uid="uid://du4ojat5g0yf" path="res://Ships/HeavyCruiser/Heavy_CruiserModel.png" id="6_2aooa"]
+[ext_resource type="Texture2D" uid="uid://db4rrkekki0f" path="res://WIPAssets/Drydock.png" id="6_hdowv"]
+[ext_resource type="Texture2D" uid="uid://cob6855cvlqfx" path="res://WIPAssets/ShipModels/Destroyer.png" id="7_jbqk2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0k6sv"]
+shader = ExtResource("5_plw3h")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j66eb"]
+shader = ExtResource("5_plw3h")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i3f7b"]
+shader = ExtResource("5_plw3h")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_05wi7"]
-size = Vector2(250, 500)
+size = Vector2(742.5, 746)
 
 [node name="ShipEditing" type="Node2D" unique_id=1898970925]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=941865901]
+zoom = Vector2(0.5, 0.5)
 
-[node name="UI" type="Control" parent="." unique_id=1161361305]
+[node name="oldui" type="Control" parent="." unique_id=1161361305]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -574.0
@@ -22,56 +44,33 @@ offset_bottom = 318.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="PlayerStorage" type="Control" parent="UI" unique_id=731979415]
-layout_mode = 1
-anchor_left = 0.48915872
-anchor_top = 0.516129
-anchor_right = 0.48915872
-anchor_bottom = 0.516129
-offset_left = 270.0
-offset_top = -248.0
-offset_right = 310.0
-offset_bottom = -208.0
-mouse_filter = 2
-script = ExtResource("1_05wi7")
-metadata/_edit_use_anchors_ = true
-
-[node name="GridContainer" type="GridContainer" parent="UI/PlayerStorage" unique_id=906527731]
-layout_mode = 0
-offset_right = 250.0
-offset_bottom = 500.0
-mouse_filter = 2
-metadata/_edit_use_anchors_ = true
-metadata/_edit_lock_ = true
-
-[node name="Area2D" type="Area2D" parent="UI/PlayerStorage" unique_id=316636663]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/PlayerStorage/Area2D" unique_id=52998821]
-position = Vector2(125, 250)
-shape = SubResource("RectangleShape2D_05wi7")
-
-[node name="EquippedItemsScrollBox" type="ScrollContainer" parent="UI" unique_id=741737907]
+[node name="EquippedItemsScrollBox" type="ScrollContainer" parent="oldui" unique_id=741737907]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 0
 offset_left = 69.0
 offset_top = 289.0
-offset_right = 706.0
-offset_bottom = 452.0
+offset_right = 762.0
+offset_bottom = 468.0
 mouse_filter = 2
+mouse_behavior_recursive = 2
 script = ExtResource("2_05wi7")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/EquippedItemsScrollBox" unique_id=601719014]
+[node name="HBoxContainer" type="HBoxContainer" parent="oldui/EquippedItemsScrollBox" unique_id=601719014]
 layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 250
 
-[node name="EditablePlayer" type="Control" parent="UI" unique_id=1053002508]
+[node name="EditablePlayer" type="Control" parent="oldui" unique_id=1053002508]
 anchors_preset = 0
-offset_left = 84.0
-offset_top = 99.0
-offset_right = 692.0
-offset_bottom = 266.0
+offset_left = -504.0
+offset_top = -45.0
+offset_right = 104.0
+offset_bottom = 122.0
 mouse_filter = 2
 script = ExtResource("2_8mwx7")
 
-[node name="EditingToBattle" type="Button" parent="UI" unique_id=1868211604]
+[node name="EditingToBattle" type="Button" parent="oldui" unique_id=1868211604]
 layout_mode = 0
 offset_left = 375.0
 offset_top = 513.0
@@ -82,4 +81,64 @@ text = "Continue
 "
 script = ExtResource("4_gkrqp")
 
-[connection signal="pressed" from="UI/EditingToBattle" to="UI/EditingToBattle" method="_On_Pressed"]
+[node name="BattleshipHV" parent="oldui" unique_id=533729998 instance=ExtResource("5_2aooa")]
+position = Vector2(-1516, -71)
+
+[node name="Drydock" type="Sprite2D" parent="." unique_id=408985539]
+material = SubResource("ShaderMaterial_0k6sv")
+position = Vector2(-2.5, -369.5)
+scale = Vector2(1.6147888, 1.2556561)
+texture = ExtResource("6_hdowv")
+
+[node name="Destroyer" type="Sprite2D" parent="." unique_id=303876197]
+material = SubResource("ShaderMaterial_j66eb")
+position = Vector2(-1927, -6)
+texture = ExtResource("7_jbqk2")
+
+[node name="HeavyCruiserModel" type="Sprite2D" parent="." unique_id=951119763]
+material = SubResource("ShaderMaterial_i3f7b")
+position = Vector2(28, -375)
+texture = ExtResource("6_2aooa")
+
+[node name="UI" type="Control" parent="." unique_id=2097500494]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1154.0
+offset_top = -650.0
+offset_right = 1157.0
+offset_bottom = 648.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="PlayerStorage" type="Control" parent="UI" unique_id=731979415]
+layout_mode = 1
+anchor_left = -0.12183219
+anchor_top = 0.62878335
+anchor_right = -0.12183219
+anchor_bottom = 0.62878335
+offset_left = 283.5542
+offset_top = -265.9032
+offset_right = 323.5542
+offset_bottom = -225.9032
+mouse_filter = 2
+script = ExtResource("1_05wi7")
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="UI/PlayerStorage" unique_id=906527731]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 14.25
+anchor_bottom = 6.225
+offset_right = 180.0
+offset_bottom = 501.0
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="UI/PlayerStorage" unique_id=316636663]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/PlayerStorage/Area2D" unique_id=52998821]
+position = Vector2(373.75, 374.74243)
+shape = SubResource("RectangleShape2D_05wi7")
+
+[connection signal="pressed" from="oldui/EditingToBattle" to="oldui/EditingToBattle" method="_On_Pressed"]

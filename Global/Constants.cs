@@ -5,9 +5,9 @@ public partial class Constants : Node
 {
 	public static Vector2 PLAYER_START_LOCATION = new Vector2(0,200);
 	public static Vector2 ENEMY_START_LOCATION = new Vector2(0,-200);
-	public static int player_storage_size_x = 5;
+	public static int player_storage_size_x = 10;
 	public static int player_storage_size_y = 10;
-	public static int inventory_square_size = 50;
+	public static int inventory_square_size = 75;
 	public static float health_modifier = .1f;
 	public static float armor_modifier = .1f;
 
@@ -30,11 +30,8 @@ public partial class Constants : Node
 	{
 		MAX_HEALTH,
 		MAX_ARMOR,
-		MANEUVERABILITY,
-		HARDPOINT_LOCATIONS,
 		HARDPOINT_WEIGHT_CLASSES,
 		SHIP_WIDTH,
-		SHIP_UID,
 		SHIP_MODEL_UID
 	}
 

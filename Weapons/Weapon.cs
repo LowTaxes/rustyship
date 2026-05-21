@@ -91,8 +91,13 @@ public partial class Weapon : Node2D
 		old_global_target_look_at = global_target_look_at;
 
 		RandomNumberGenerator rng = new RandomNumberGenerator();
-		int new_target_x = rng.RandiRange(-other_ship_width/2, other_ship_width/2);
+		int new_target_x = (int)rng.RandfRange((-other_ship_width/2) + other_ship_start_point.X, (other_ship_width/2)+other_ship_start_point.X);
+
+		
 		global_target_look_at = new Vector2(new_target_x, other_ship_start_point.Y);
+
+		//Debug.Print("leftbound: " + ((-other_ship_width/2) + other_ship_start_point.X).ToString());
+		//Debug.Print("rightbound: " + ((other_ship_width/2)+other_ship_start_point.X).ToString());
 
 		Vector2 curr_look_direction = new Vector2(old_global_target_look_at.X - GlobalPosition.X, old_global_target_look_at.Y-GlobalPosition.Y);
 		Vector2 new_look__direction = new Vector2(global_target_look_at.X - GlobalPosition.X, global_target_look_at.Y-GlobalPosition.Y);
@@ -118,27 +123,29 @@ public partial class Weapon : Node2D
 		bullet.damage = damage;
 		bullet.armor_damage_modifier = armor_damage_modifier;
 		bullet.crit_chance = crit_chance;
+		bullet.is_player = is_player;
 		bullet.Translate(GlobalPosition);
 		
 		//Generate a new position to fire at and rotate towards
 		old_global_target_look_at = global_target_look_at;
 
 		RandomNumberGenerator rng = new RandomNumberGenerator();
-		int left_x_bound = (int)old_global_target_look_at.X - spread_radius;
-		int right_x_bound = (int)old_global_target_look_at.X + spread_radius;
+		int left_x_bound = (int)(old_global_target_look_at.X - spread_radius);
+		int right_x_bound = (int)(old_global_target_look_at.X + spread_radius);
 
 		//Ensure spread does not go past the other ship's boundaries
-		if(left_x_bound < -other_ship_width/2)
+		if(left_x_bound < -other_ship_width/2 + other_ship_start_point.X)
 		{
-			left_x_bound = -other_ship_width/2;
-			right_x_bound = (-other_ship_width/2) + (spread_radius * 2);
+			left_x_bound = (int)(-other_ship_width/2 + other_ship_start_point.X);
+			right_x_bound = (int)((-other_ship_width/2) + (spread_radius * 2) + other_ship_start_point.X);
 		}
 
-		if(right_x_bound > other_ship_width/2)
+		if(right_x_bound > other_ship_width/2 + other_ship_start_point.X)
 		{
-			right_x_bound = other_ship_width/2;
-			left_x_bound = (other_ship_width/2) - (spread_radius * 2);
+			right_x_bound = (int)(other_ship_width/2 + other_ship_start_point.X);
+			left_x_bound = (int)((other_ship_width/2) - (spread_radius * 2) + other_ship_start_point.X);
 		}
+		//Debug.Print("")
 
 		int new_target_x = rng.RandiRange(left_x_bound, right_x_bound);
 		global_target_look_at = new Vector2(new_target_x, other_ship_start_point.Y);

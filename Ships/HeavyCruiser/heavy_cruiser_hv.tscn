@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://db7cs3poxsgpi"]
+
+[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="1_wb04b"]
+[ext_resource type="Texture2D" uid="uid://du4ojat5g0yf" path="res://Ships/HeavyCruiser/Heavy_CruiserModel.png" id="2_i3tcq"]
+[ext_resource type="Script" uid="uid://dewasgvmwgwqm" path="res://Ships/ShipModel.cs" id="3_630vw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwgau"]
+shader = ExtResource("1_wb04b")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
+
+[node name="HeavyCruiserHV" type="Sprite2D" unique_id=145218541]
+material = SubResource("ShaderMaterial_jwgau")
+texture = ExtResource("2_i3tcq")
+script = ExtResource("3_630vw")
+
+[node name="Medium" type="Control" parent="." unique_id=1514539601]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -563.0
+offset_right = -523.0
+offset_bottom = 40.0
+
+[node name="Medium2" type="Control" parent="." unique_id=1238551312]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -400.0
+offset_right = -360.0
+offset_bottom = 40.0
+
+[node name="Heavy" type="Control" parent="." unique_id=957651883]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -236.0
+offset_top = 1.0
+offset_right = -196.0
+offset_bottom = 41.0
+
+[node name="Medium3" type="Control" parent="." unique_id=958707355]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 336.0
+offset_top = -1.0
+offset_right = 376.0
+offset_bottom = 39.0
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1063795023]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1739616193]
+visible = false
+polygon = PackedVector2Array(-672, -88, 304, -88, 434.5758, -70.92047, 541, -57, 677, -10, 678, 8, 541, 56, 289, 90, -670, 89)

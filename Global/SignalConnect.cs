@@ -6,10 +6,8 @@ public partial class SignalConnect : Node
 	public static SignalConnect Instance;
 	
 	//Combat Signals
-	[Signal] public delegate void PlayerHealthDamageTakenEventHandler();
-	[Signal] public delegate void PlayerArmorDamageTakenEventHandler();
-	[Signal] public delegate void EnemyHealthDamageTakenEventHandler();
-	[Signal] public delegate void EnemyArmorDamageTakenEventHandler();
+	[Signal] public delegate void PlayerDamageTakenEventHandler();
+	[Signal] public delegate void EnemyDamageTakenEventHandler();
 	[Signal] public delegate void BattleStartEventHandler();
 
 

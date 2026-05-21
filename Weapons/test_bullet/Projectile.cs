@@ -24,18 +24,24 @@ public partial class Projectile : Area2D
 	}
 
 
-	private void _OnBodyEntered(Node other)
+	private void _OnAreaEntered(Area2D other_area2d)
 	{
-		
-		if(other is Ship)
+		//Debug.Print("touching");
+		if(other_area2d.GetParent() is ShipModel model)
 		{
-			Ship ship = (Ship)other;
-			if (ship.is_player != is_player)
+			//Debug.Print("yipee");
+			if(this.is_player == true && model.is_player == false)
 			{
-				//Debug.Print("hi");
-				ship.takeDamage(damage, armor_damage_modifier, crit_chance);
+				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.EnemyDamageTaken, damage, armor_damage_modifier, crit_chance);
 				QueueFree();
 			}
+			if(this.is_player == false && model.is_player == true)
+			{
+				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.PlayerDamageTaken, damage, armor_damage_modifier, crit_chance);
+				QueueFree();
+			}
+			
+			
 		}
 	}
 }

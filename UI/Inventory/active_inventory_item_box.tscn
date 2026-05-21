@@ -26,12 +26,13 @@ corner_detail = 1
 size = Vector2(200, 122)
 
 [node name="ActiveInventoryItemBox" type="Control" unique_id=1253425221]
+custom_minimum_size = Vector2(200, 120)
 layout_mode = 3
 anchors_preset = 0
-offset_left = -1.0
-offset_top = 12.0
-offset_right = 199.0
-offset_bottom = 132.0
+offset_right = 200.0
+offset_bottom = 120.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("1_6j0gl")
 
@@ -50,7 +51,6 @@ offset_right = 100.0
 offset_bottom = 26.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_05wi7")
-metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="LowerStats/DamagePanel" unique_id=410076719]
 layout_mode = 0

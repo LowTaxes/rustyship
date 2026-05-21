@@ -107,9 +107,9 @@ vertical_alignment = 1
 
 [node name="Select" type="Button" parent="EnemyPreview" unique_id=1720394629]
 layout_mode = 0
-offset_left = 175.0
+offset_left = 140.0
 offset_top = 469.0
-offset_right = 275.0
+offset_right = 310.0
 offset_bottom = 500.0
 text = "Select
 "
@@ -209,9 +209,9 @@ vertical_alignment = 1
 
 [node name="Select" type="Button" parent="EnemyPreview2" unique_id=564249024]
 layout_mode = 0
-offset_left = 175.0
+offset_left = 140.0
 offset_top = 469.0
-offset_right = 275.0
+offset_right = 310.0
 offset_bottom = 500.0
 text = "Select
 "

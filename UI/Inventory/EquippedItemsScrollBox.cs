@@ -11,7 +11,8 @@ public partial class EquippedItemsScrollBox : ScrollContainer
 	public override void _Ready()
 	{
 		h_box = GetChild<HBoxContainer>(0);
-		h_box.AddThemeConstantOverride("separation", 250);
+		h_box.AddThemeConstantOverride("separation", 50);
+		
 		active_inv_item_box_scene = ResourceLoader.Load<PackedScene>("uid://cf2pa4xcr1xj8");
 		
 		List<string> hardpoint_weight_classes = ConstantData.GetShipHardpointWeightClasses(RunData.GetPlayerShipTemplateID());

@@ -87,12 +87,12 @@ public partial class MainMenu : Node2D
 		Dictionary run_data = new Dictionary();
 		run_data.Add("player", new Array
 		{
-			"s_player_start",
+			"BattleshipHV",
 			0,
 			0,
 			0,
 			1,
-			new Array{light_2, medium_2, empty_1},
+			new Array{light_2, medium_2, empty_1, empty_1, empty_1},
 			new Array{medium_1, light_1},
 			"0-0",
 		});

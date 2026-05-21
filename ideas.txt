@@ -6,6 +6,13 @@ to equip multiple of these items to create synergies such as inflicting
 armor break and attack speed or smthn like that. Whether they can be removed
 from an item is to be determined
 
+-make the economy use a currency that can be used to buy new ship models, 
+upgrade the current ship, upgrade weapons, and more (have a gambling option ofc))
+
+
+-Instead of having fixed hardpoints for each ship, have the option to buy
+hardpoints and move them around
+
 BALANCING IDEAS:
 - to make balancing easier to find out number wise, try to find out a way to
 find how much harder the next fight should be compared to the last or to
@@ -14,3 +21,8 @@ enemy with 100 HP and 10 dmg/s, the next fight involving 150 HP and 10 dmg/s
 would be 50% harder as the fight takes 50% longer with the sme damage.
 A fight with 200 HP and 20 dmg/s would be 300% harder as it is twice as long
 with twice the damage (4x as difficult)
+
+
+WEAPON IDEAS:
+-missile batteries of all weight classes with each weight class having more
+missiles. They would all launch one after another in a swarm

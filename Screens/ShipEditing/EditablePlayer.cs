@@ -34,10 +34,10 @@ public partial class EditablePlayer : Control
 		AddChild(ship_model);
 		ship_model.Position = new Vector2(this.Size.X/2, Size.Y/2);
 
-		float scale = this.Size.X/ship_model.Texture.GetWidth();
+		//float scale = this.Size.X/ship_model.Texture.GetWidth();
 		//Debug.Print(this.Size.X.ToString());
 		//Debug.Print(scale.ToString());
-		ship_model.Scale = new Vector2(scale, scale);
+		//ship_model.Scale = new Vector2(scale, scale);
 
 		//Debug.Print("scale: " + scale.ToString());
 		//Debug.Print("UID:   " + ConstantData.GetWeaponModelUID(attatched_inventory_items[0].weapon_name));

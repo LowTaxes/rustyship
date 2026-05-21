@@ -34,6 +34,7 @@ public partial class PlayerStorage : Control
 
 		grid_container.AddThemeConstantOverride("h_separation", (int)Constants.inventory_square_size);
 		grid_container.AddThemeConstantOverride("v_separation", (int)Constants.inventory_square_size);
+		grid_container.Position += new Vector2(Constants.inventory_square_size/2, Constants.inventory_square_size/2);
 		
 		grid_squares = new List<InventorySquare>();
 		rowed_grid_squares = new List<List<InventorySquare>>();
@@ -88,8 +89,8 @@ public partial class PlayerStorage : Control
 			new_item.area2D.Scale = new Vector2(area_scale_x, area_scale_y);
 			//Debug.Print(new_item.area2D.GetChild<CollisionShape2D>(0).Shape.GetRect().Size.X.ToString());
 
-			float pos_x = (new_item.storage_x)*Constants.inventory_square_size + (new_item.sprite2D.Texture.GetWidth()*new_item.sprite_scale_x/2) - (Constants.inventory_square_size/2);
-			float pos_y = (new_item.storage_y)*Constants.inventory_square_size + (new_item.sprite2D.Texture.GetHeight()*new_item.sprite_scale_y/2) - (Constants.inventory_square_size/2);
+			float pos_x = (new_item.storage_x)*Constants.inventory_square_size + (new_item.sprite2D.Texture.GetWidth()*new_item.sprite_scale_x/2);
+			float pos_y = (new_item.storage_y)*Constants.inventory_square_size + (new_item.sprite2D.Texture.GetHeight()*new_item.sprite_scale_y/2);
 
 			Label level_label = new_item.GetChild<Label>(2);
 			level_label.Text = new_item.level.ToString();
@@ -179,8 +180,8 @@ public partial class PlayerStorage : Control
 
 			}
 
-			float pos_x = closest_square.Position.X + (new_item.sprite2D.Texture.GetWidth()/2 * new_item.sprite_scale_x) - (Constants.inventory_square_size/2);
-			float pos_y = closest_square.Position.Y + (new_item.sprite2D.Texture.GetHeight()/2 * new_item.sprite_scale_y) - (Constants.inventory_square_size/2);
+			float pos_x = closest_square.Position.X + (new_item.sprite2D.Texture.GetWidth()/2 * new_item.sprite_scale_x);
+			float pos_y = closest_square.Position.Y + (new_item.sprite2D.Texture.GetHeight()/2 * new_item.sprite_scale_y);
 			new_item.Position = new Vector2(pos_x, pos_y);
 		}
 		

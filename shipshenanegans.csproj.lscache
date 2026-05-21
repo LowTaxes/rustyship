@@ -58,20 +58,15 @@ TemporaryDependencyNodeTargetIdentifier=net8.0
 Global/
  ConstantData.cs
  Constants.cs
- EnemyStats.cs
- PlayerStats.cs
  RunData.cs
  SignalConnect.cs
 Screens/Battle/
  BattlePort.cs
- GameManager.cs
  ShipSlot.cs
 Screens/
  MainMenu/MainMenu.cs
  ShipEditing/EditablePlayer.cs
-Ships/
- Ship.cs
- ShipModel.cs
+Ships/ShipModel.cs
 UI/
  BattleStartButton.cs
  EditingToBattle.cs
@@ -84,7 +79,6 @@ UI/
   PlayerStorage.cs
  ShipStatsUi.cs
 Weapons/
- hardpoint/Hardpoint.cs
  test_bullet/Projectile.cs
  Weapon.cs
 

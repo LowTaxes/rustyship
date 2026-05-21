@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public partial class BattlePort : Control
 {
@@ -12,20 +13,22 @@ public partial class BattlePort : Control
 		PlayerSlot = GetNode<Control>("PlayerSlot");
 		EnemySlot = GetNode<Control>("EnemySlot");
 
-		Vector2 global_player_spawn = new Vector2(this.GlobalPosition.X + PlayerSlot.Size.X/2, this.GlobalPosition.Y + PlayerSlot.Size.Y/2);
-		Vector2 global_enemy_spawn = new Vector2(this.GlobalPosition.X + EnemySlot.Size.X/2, this.GlobalPosition.Y + EnemySlot.Size.Y/2);
+		Vector2 global_player_spawn = new Vector2(PlayerSlot.GlobalPosition.X + PlayerSlot.Size.X/2, PlayerSlot.GlobalPosition.Y + PlayerSlot.Size.Y/2);
+		Vector2 global_enemy_spawn = new Vector2(EnemySlot.GlobalPosition.X + EnemySlot.Size.X/2, EnemySlot.GlobalPosition.Y + EnemySlot.Size.Y/2);
 
 		//spawn player and enemy models
 
 		ShipModel player_ship_model = ResourceLoader.Load<PackedScene>(ConstantData.GetShipModelUID(RunData.GetPlayerShipTemplateID())).Instantiate<ShipModel>();
+		player_ship_model.is_player = true;
 		PlayerSlot.AddChild(player_ship_model);
 		player_ship_model.Position = new Vector2(PlayerSlot.Size.X/2, PlayerSlot.Size.Y/2);
 
 		ShipModel enemy_ship_model = ResourceLoader.Load<PackedScene>(ConstantData.GetShipModelUID(ConstantData.GetLevelShipTemplateID(RunData.GetLevelID()))).Instantiate<ShipModel>();
+		enemy_ship_model.is_player = false;
 		EnemySlot.AddChild(enemy_ship_model);
 		enemy_ship_model.Position = new Vector2(EnemySlot.Size.X/2, EnemySlot.Size.Y/2);
 
-
+		//Debug.Print(enemy_ship_model.Texture.GetWidth().ToString());
 		//spawn player weapons
 		List<InventoryItem> player_active_weapons = RunData.GetPlayerActiveInventoryItems();
 		for(int i = 0; i < player_active_weapons.Count; i++)
@@ -38,6 +41,7 @@ public partial class BattlePort : Control
 				new_weapon.other_ship_width = enemy_ship_model.Texture.GetWidth();
 				new_weapon.other_ship_start_point = global_enemy_spawn;
 				new_weapon.ship_start_point = global_player_spawn;
+				new_weapon.is_player = true;
 
 				new_weapon.Initialize();
 			}
@@ -57,6 +61,7 @@ public partial class BattlePort : Control
 				new_weapon.other_ship_width = player_ship_model.Texture.GetWidth();
 				new_weapon.other_ship_start_point = global_player_spawn;
 				new_weapon.ship_start_point = global_enemy_spawn;
+				new_weapon.is_player = false;
 
 				new_weapon.Initialize();
 			}

@@ -78,7 +78,7 @@ public partial class InventoryItem : Control
 			}
 			if(mouse_event is InputEventMouseMotion mouse_motion && mouse_dragging)
 			{
-				Position = Position + mouse_motion.Relative;
+				Position = Position + mouse_motion.Relative *2;
 			}
 		}
        
