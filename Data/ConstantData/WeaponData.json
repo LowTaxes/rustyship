@@ -12,7 +12,7 @@
         "uid://bh4kj5jjobnvp"
 	],
 
-	"lightmachinegun":[
+	"autocannon":[
 		1,
 		0.25,
 		0.01,
@@ -25,7 +25,7 @@
         "uid://dem6gc8x0evym"
 	],
 
-	"mediumcannon":[
+	"203mm":[
 		10,
 		1,
 		0.05,
@@ -35,7 +35,7 @@
 		100,
 		"uid://bhbke6nd0s8oj",
 		{"x":3,"y":2},
-        "uid://vii0wy2u8blu"
+        "uid://cywxw6pjblpkj"
 	]
 
 

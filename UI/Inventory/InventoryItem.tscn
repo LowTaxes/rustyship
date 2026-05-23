@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bv6fvbdknx03l" path="res://UI/Inventory/InventoryItem.cs" id="2_6reim"]
 [ext_resource type="Texture2D" uid="uid://drs654f1iosgt" path="res://UI/Inventory/InventorySquare/Unselected_Inventory_Square.png" id="2_8dqt5"]
+[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="2_c4c7o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vb5ey"]
+shader = ExtResource("2_c4c7o")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vp88w"]
 size = Vector2(416, 416)
@@ -16,6 +22,7 @@ mouse_filter = 2
 script = ExtResource("2_6reim")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=857854086]
+material = SubResource("ShaderMaterial_vb5ey")
 texture = ExtResource("2_8dqt5")
 metadata/_edit_lock_ = true
 
@@ -24,9 +31,11 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=521375674]
 shape = SubResource("RectangleShape2D_vp88w")
+metadata/_edit_lock_ = true
 
 [node name="ReferencePoint" type="Node2D" parent="Area2D" unique_id=640187503]
 position = Vector2(-208, -208)
+metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="." unique_id=497601771]
 layout_mode = 1
@@ -39,6 +48,7 @@ offset_bottom = 110.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 30
 text = "4"
+metadata/_edit_lock_ = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_OnArea2DEntered"]
 [connection signal="area_exited" from="Area2D" to="." method="_OnArea2DExited"]

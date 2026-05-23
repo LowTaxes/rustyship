@@ -4,9 +4,16 @@
 [ext_resource type="Script" uid="uid://dmy3itibpo1vx" path="res://UI/ShipStatsUi.cs" id="1_u601c"]
 [ext_resource type="Script" uid="uid://gxdu1m0s41gk" path="res://Screens/Battle/BattlePort.cs" id="3_ilq27"]
 [ext_resource type="PackedScene" uid="uid://dfk85q5d2j7o8" path="res://Weapons/weapon.tscn" id="4_p7q1g"]
+[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="5_qmbbe"]
+[ext_resource type="Texture2D" uid="uid://du4ojat5g0yf" path="res://Ships/HeavyCruiser/Heavy_CruiserModel.png" id="6_3es18"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gbba"]
 bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbetu"]
+shader = ExtResource("5_qmbbe")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
 
 [node name="BattleManager" type="Node2D" unique_id=1051907935]
 
@@ -48,6 +55,7 @@ metadata/_edit_use_anchors_ = true
 [node name="PlayerHealthbar" type="ProgressBar" parent="UI/ShipStatsUI/PlayerStats" unique_id=1685011636]
 layout_mode = 1
 anchors_preset = -1
+anchor_left = -0.025809063
 anchor_right = -0.025809063
 anchor_bottom = 0.031896826
 offset_right = 212.34827
@@ -199,5 +207,10 @@ grow_vertical = 0
 
 [node name="Weapon" parent="." unique_id=1961994654 instance=ExtResource("4_p7q1g")]
 position = Vector2(-52, 150)
+
+[node name="HeavyCruiserModel" type="Sprite2D" parent="." unique_id=1440807925]
+material = SubResource("ShaderMaterial_bbetu")
+position = Vector2(-2340, 422)
+texture = ExtResource("6_3es18")
 
 [connection signal="button_up" from="UI/BattleStartButton" to="UI/BattleStartButton" method="_OnButtonPressed"]

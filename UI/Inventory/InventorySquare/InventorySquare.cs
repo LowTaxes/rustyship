@@ -20,8 +20,8 @@ public partial class InventorySquare : Control
 	
 	public override void _Ready()
 	{
-		unselected_inv_square = ResourceLoader.Load<Texture2D>("uid://drs654f1iosgt");
-		selected_inv_square = ResourceLoader.Load<Texture2D>("uid://clp2ac87p6wbi");
+		unselected_inv_square = ResourceLoader.Load<Texture2D>("uid://dov14l11no8wt");
+		selected_inv_square = ResourceLoader.Load<Texture2D>("uid://dov14l11no8wt");
 
 		sprite2D = GetChild<Sprite2D>(0);
 		area2d = GetChild<Area2D>(1);

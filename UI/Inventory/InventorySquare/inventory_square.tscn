@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b1wteem6372ip"]
 
-[ext_resource type="Texture2D" uid="uid://drs654f1iosgt" path="res://UI/Inventory/InventorySquare/Unselected_Inventory_Square.png" id="1_jvapf"]
+[ext_resource type="Texture2D" uid="uid://dov14l11no8wt" path="res://UI/Inventory/InventorySquare/inv_square_sprite.png" id="2_1mcax"]
 [ext_resource type="Script" uid="uid://dugww2o4wdohy" path="res://UI/Inventory/InventorySquare/InventorySquare.cs" id="2_3j0fw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvapf"]
-size = Vector2(416, 416)
+size = Vector2(72, 72)
 
 [node name="InventorySquare" type="Control" unique_id=914946530]
 layout_mode = 3
@@ -13,7 +13,7 @@ mouse_filter = 1
 script = ExtResource("2_3j0fw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=448677983]
-texture = ExtResource("1_jvapf")
+texture = ExtResource("2_1mcax")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=464828853]
 

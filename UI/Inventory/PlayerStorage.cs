@@ -32,8 +32,8 @@ public partial class PlayerStorage : Control
 		grid_container.Columns = Constants.player_storage_size_x;
 		area2D = GetChild<Area2D>(1);
 
-		grid_container.AddThemeConstantOverride("h_separation", (int)Constants.inventory_square_size);
-		grid_container.AddThemeConstantOverride("v_separation", (int)Constants.inventory_square_size);
+		grid_container.AddThemeConstantOverride("h_separation", (int)Constants.inventory_square_size-Constants.pixel_size);
+		grid_container.AddThemeConstantOverride("v_separation", (int)Constants.inventory_square_size-Constants.pixel_size);
 		grid_container.Position += new Vector2(Constants.inventory_square_size/2, Constants.inventory_square_size/2);
 		
 		grid_squares = new List<InventorySquare>();
@@ -78,19 +78,19 @@ public partial class PlayerStorage : Control
 			AddChild(new_item);
 			held_items.Add(new_item);
 	
-			new_item.sprite_scale_x = (float)Constants.inventory_square_size / new_item.sprite2D.Texture.GetWidth() * new_item.size_x;
-			new_item.sprite_scale_y = (float)Constants.inventory_square_size / new_item.sprite2D.Texture.GetHeight() * new_item.size_y;
+			new_item.sprite_scale_x = ((float)Constants.inventory_square_size-Constants.pixel_size) / new_item.sprite2D.Texture.GetWidth() * new_item.size_x;
+			new_item.sprite_scale_y = ((float)Constants.inventory_square_size-Constants.pixel_size) / new_item.sprite2D.Texture.GetHeight() * new_item.size_y;
 			new_item.sprite2D.Scale = new Vector2(new_item.sprite_scale_x, new_item.sprite_scale_y);
 			new_item.reference_point.Position = new Vector2(-new_item.sprite2D.Texture.GetWidth() * new_item.sprite_scale_x/2, -new_item.sprite2D.Texture.GetHeight()*new_item.sprite_scale_y/2);
 			//new_item.reference_point.Position = new Vector2(0,0);
 			
-			float area_scale_x = (float)Constants.inventory_square_size / new_item.area2D.GetChild<CollisionShape2D>(0).Shape.GetRect().Size.X * new_item.size_x;
-			float area_scale_y = (float)Constants.inventory_square_size / new_item.area2D.GetChild<CollisionShape2D>(0).Shape.GetRect().Size.Y * new_item.size_y;
+			float area_scale_x = ((float)Constants.inventory_square_size-Constants.pixel_size) / new_item.area2D.GetChild<CollisionShape2D>(0).Shape.GetRect().Size.X * new_item.size_x;
+			float area_scale_y = ((float)Constants.inventory_square_size-Constants.pixel_size) / new_item.area2D.GetChild<CollisionShape2D>(0).Shape.GetRect().Size.Y * new_item.size_y;
 			new_item.area2D.Scale = new Vector2(area_scale_x, area_scale_y);
 			//Debug.Print(new_item.area2D.GetChild<CollisionShape2D>(0).Shape.GetRect().Size.X.ToString());
 
-			float pos_x = (new_item.storage_x)*Constants.inventory_square_size + (new_item.sprite2D.Texture.GetWidth()*new_item.sprite_scale_x/2);
-			float pos_y = (new_item.storage_y)*Constants.inventory_square_size + (new_item.sprite2D.Texture.GetHeight()*new_item.sprite_scale_y/2);
+			float pos_x = (new_item.storage_x)*(Constants.inventory_square_size-Constants.pixel_size) + (new_item.sprite2D.Texture.GetWidth()*new_item.sprite_scale_x/2);
+			float pos_y = (new_item.storage_y)*(Constants.inventory_square_size-Constants.pixel_size) + (new_item.sprite2D.Texture.GetHeight()*new_item.sprite_scale_y/2);
 
 			Label level_label = new_item.GetChild<Label>(2);
 			level_label.Text = new_item.level.ToString();
