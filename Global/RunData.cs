@@ -28,6 +28,7 @@ public partial class RunData : Node
 	public Array p_active_inv;
 	public Array p_storage_inv;
 	public string level_id;
+	public Array p_active_hardpoints;
 
 	//Enemy Run Data
 	public string e_ship_template_id;
@@ -36,6 +37,7 @@ public partial class RunData : Node
 	public int e_crit_chance_m_count;
 	public int e_level;
 	public Array e_active_inv;
+	public Array e_active_hardpoints;
 
 	public override void _Ready()
 	{
@@ -53,6 +55,8 @@ public partial class RunData : Node
 		p_active_inv = (Array)((Array)Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.ACTIVE_INVENTORY];
 		p_storage_inv = (Array)((Array)RunData.Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.STORAGE_INVENTORY];
 		level_id = GetLevelID();
+		p_active_hardpoints = (Array)((Array)Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.ACTIVE_HARDPOINTS];
+		Debug.Print(p_active_hardpoints.Count.ToString());
 	}
 
 	public void SaveToUserData(string data)
@@ -158,6 +162,25 @@ public partial class RunData : Node
 			new_inv_item.level = (int)new_item_dict["level"];
 			return_list.Add(new_inv_item);
 		}
+		return return_list;
+	}
+
+	public static List<Hardpoint> GetPlayerActiveHardpoints()
+	{
+		List<Hardpoint> return_list = new List<Hardpoint>();
+
+		Array active_hardpoints = (Array)((Array)Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.ACTIVE_HARDPOINTS];
+		for (int i = 0; i < active_hardpoints.Count; i ++)
+		{
+			Dictionary new_hardpoint_dict = (Dictionary)active_hardpoints[i];
+			Hardpoint new_hardpoint = (GD.Load<PackedScene>("uid://1h4nrs17ravr")).Instantiate<Hardpoint>();
+			new_hardpoint.level = (int)new_hardpoint_dict["level"];
+			new_hardpoint.attatched_weaponID = new_hardpoint_dict["weaponID"].ToString();
+			new_hardpoint.placement_position = new Vector2((int)new_hardpoint_dict["x"], (int)new_hardpoint_dict["y"]);
+			new_hardpoint.weight_class = new_hardpoint_dict["weight_class"].ToString();
+			return_list.Add(new_hardpoint);
+		}
+		
 		return return_list;
 	}
 

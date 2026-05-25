@@ -17,6 +17,12 @@ public partial class SignalConnect : Node
 	[Signal] public delegate void InvItemReleasedEventHandler();
 	[Signal] public delegate void ActiveItemAddedEventHandler();
 	[Signal] public delegate void ActiveItemRemovedEventHandler();
+	[Signal] public delegate void HardpointAddedEventHandler();
+	[Signal] public delegate void HardpointRemovedEventHandler();
+	[Signal] public delegate void CanEditHardpointsEventHandler();
+	[Signal] public delegate void WeaponInfoChangeEventHandler();
+
+
 
 	
 	//Scene Swapping Signals

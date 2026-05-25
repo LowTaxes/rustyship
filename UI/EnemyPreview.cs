@@ -66,8 +66,8 @@ public partial class EnemyPreview : Control
 		//Debug.Print("NewLevelID: " + new_level_id);
 		RunData.Instance.level_id = new_level_id;
 		Dictionary run_data = new Dictionary();
-
-		Debug.Print(RunData.GetPlayerActiveInventoryItems().Count.ToString());
+		//Debug.Print(RunData.GetPlayerActiveHardpoints().Count.ToString());
+		//Debug.Print(RunData.GetPlayerActiveInventoryItems().Count.ToString());
 		run_data.Add("player", new Array
 		{
 			RunData.Instance.p_ship_template_id,
@@ -77,13 +77,14 @@ public partial class EnemyPreview : Control
 			RunData.Instance.p_level,
 			RunData.Instance.p_active_inv,
 			RunData.Instance.p_storage_inv,
-			RunData.Instance.level_id
+			RunData.Instance.level_id,
+			RunData.Instance.p_active_hardpoints,
 		});
 		
 		RunData.Instance.SaveToUserData(Json.Stringify(run_data));
 
 		//Debug.Print("NewLevelIDaftersaving: " + RunData.GetLevelID());
-		
+		//Debug.Print(RunData.GetPlayerActiveHardpoints().Count.ToString());
 		//load editing screen
 		PackedScene editing_scene = ResourceLoader.Load<PackedScene>("uid://drqy04x8yiama");
 		GetTree().ChangeSceneToPacked(editing_scene);

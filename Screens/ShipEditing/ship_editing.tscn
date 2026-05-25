@@ -1,37 +1,42 @@
 [gd_scene format=3 uid="uid://drqy04x8yiama"]
 
 [ext_resource type="Script" uid="uid://bitywnov6avb8" path="res://UI/Inventory/PlayerStorage.cs" id="1_05wi7"]
-[ext_resource type="Script" uid="uid://d0dv4w3xlr3g5" path="res://UI/Inventory/EquippedItemsScrollBox.cs" id="2_05wi7"]
 [ext_resource type="Script" uid="uid://bnbs4igcgxatg" path="res://Screens/ShipEditing/EditablePlayer.cs" id="2_8mwx7"]
 [ext_resource type="Script" uid="uid://dxruus0xfat2b" path="res://UI/EditingToBattle.cs" id="4_gkrqp"]
-[ext_resource type="PackedScene" uid="uid://dw0pyrobfgxr5" path="res://Ships/Battleship/battleship_hv.tscn" id="5_2aooa"]
 [ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="5_plw3h"]
-[ext_resource type="Texture2D" uid="uid://du4ojat5g0yf" path="res://Ships/HeavyCruiser/Heavy_CruiserModel.png" id="6_2aooa"]
-[ext_resource type="Texture2D" uid="uid://cob6855cvlqfx" path="res://WIPAssets/ShipModels/Destroyer.png" id="7_jbqk2"]
+[ext_resource type="Script" uid="uid://cbja04x7gto1l" path="res://UI/ShipEditingUI/LeftDoor.cs" id="7_ccf4u"]
+[ext_resource type="Texture2D" uid="uid://cm32g01janed6" path="res://rshipadobefiles/LeftDoor.png" id="7_i3f7b"]
+[ext_resource type="Script" uid="uid://la5xrqtemtpc" path="res://UI/ShipEditingUI/RightDoor.cs" id="7_wcns4"]
+[ext_resource type="Texture2D" uid="uid://ci7xxw7enl1vp" path="res://rshipadobefiles/RightDoor.png" id="8_ccf4u"]
 [ext_resource type="Texture2D" uid="uid://cffk7onk65va" path="res://UI/seperator_bar_lower.png" id="10_0k6sv"]
 [ext_resource type="VideoStream" uid="uid://c73lbh7pdl41b" path="res://WIPAssets/waves_1.ogv" id="10_jbqk2"]
+[ext_resource type="Script" uid="uid://dokh5i2xs3kae" path="res://UI/ShipEditingUI/WeaponInfo.cs" id="10_tp3oy"]
 [ext_resource type="FontFile" uid="uid://d2rks27jo02t5" path="res://WIPAssets/Fonts/tinypixel.otf" id="11_0k6sv"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j66eb"]
-shader = ExtResource("5_plw3h")
-shader_parameter/pixel_size = 8.0
-shader_parameter/handle_edges = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdowv"]
-bg_color = Color(0.004019165, 0.004019165, 0.004019165, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_05wi7"]
-size = Vector2(835.5, 347.25757)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i3f7b"]
-shader = ExtResource("5_plw3h")
-shader_parameter/pixel_size = 8.0
-shader_parameter/handle_edges = false
+[ext_resource type="Script" uid="uid://cquh30fqiixf5" path="res://UI/ShipEditingUI/UpperPanel.cs" id="12_hbp8y"]
+[ext_resource type="Texture2D" uid="uid://ig15gvmyqxhe" path="res://UI/ShipEditingUI/shop_button.png" id="15_qjfym"]
+[ext_resource type="Script" uid="uid://6gn317cjk1mi" path="res://UI/ShipEditingUI/HardpointEditingButton.cs" id="17_qjfym"]
+[ext_resource type="Texture2D" uid="uid://bwkig3ju3fopf" path="res://UI/ShipEditingUI/WeaponInfoScreen.png" id="18_tp3oy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbqk2"]
 shader = ExtResource("5_plw3h")
 shader_parameter/pixel_size = 8.0
 shader_parameter/handle_edges = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wcns4"]
+shader = ExtResource("5_plw3h")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tp3oy"]
+shader = ExtResource("5_plw3h")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05wi7"]
+size = Vector2(996.5, 498.25757)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdowv"]
+bg_color = Color(0.004019165, 0.004019165, 0.004019165, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j66eb"]
 bg_color = Color(0.92156863, 0, 0.07058824, 1)
@@ -41,6 +46,17 @@ bg_color = Color(1.92523e-06, 0.6497147, 0.8947482, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3f7b"]
 bg_color = Color(0, 0.72760344, 0.101276435, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjfym"]
+shader = ExtResource("5_plw3h")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbp8y"]
+bg_color = Color(0.7921569, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjfym"]
+bg_color = Color(0, 0.7176471, 0, 1)
 
 [node name="ShipEditing" type="Node2D" unique_id=1898970925]
 
@@ -58,32 +74,6 @@ offset_bottom = 318.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="EquippedItemsScrollBox" type="ScrollContainer" parent="oldui" unique_id=741737907]
-custom_minimum_size = Vector2(600, 0)
-layout_mode = 0
-offset_left = 69.0
-offset_top = 289.0
-offset_right = 762.0
-offset_bottom = 468.0
-mouse_filter = 2
-mouse_behavior_recursive = 2
-script = ExtResource("2_05wi7")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="oldui/EquippedItemsScrollBox" unique_id=601719014]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_constants/separation = 250
-
-[node name="EditablePlayer" type="Control" parent="oldui" unique_id=1053002508]
-anchors_preset = 0
-offset_left = -504.0
-offset_top = -45.0
-offset_right = 104.0
-offset_bottom = 122.0
-mouse_filter = 2
-script = ExtResource("2_8mwx7")
-
 [node name="EditingToBattle" type="Button" parent="oldui" unique_id=1868211604]
 layout_mode = 0
 offset_left = 375.0
@@ -95,14 +85,6 @@ text = "Continue
 "
 script = ExtResource("4_gkrqp")
 
-[node name="BattleshipHV" parent="oldui" unique_id=533729998 instance=ExtResource("5_2aooa")]
-position = Vector2(-1516, -71)
-
-[node name="Destroyer" type="Sprite2D" parent="." unique_id=303876197]
-material = SubResource("ShaderMaterial_j66eb")
-position = Vector2(-2137, -946)
-texture = ExtResource("7_jbqk2")
-
 [node name="UI" type="Control" parent="." unique_id=2097500494]
 layout_mode = 3
 anchors_preset = 0
@@ -113,68 +95,12 @@ offset_bottom = 648.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="UpperBlackBorder" type="Panel" parent="UI" unique_id=353862428]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 2.0
-offset_right = 2306.0
-offset_bottom = 225.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hdowv")
-
-[node name="LowerBlackBorder" type="Panel" parent="UI" unique_id=722532213]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 759.0
-offset_right = 2306.0
-offset_bottom = 1298.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hdowv")
-
-[node name="PlayerStorage" type="Control" parent="UI" unique_id=731979415]
-layout_mode = 1
-anchor_left = -0.094138555
-anchor_top = 0.8689547
-anchor_right = -0.094138555
-anchor_bottom = 0.8689547
-offset_left = 283.5542
-offset_top = -265.9032
-offset_right = 323.5542
-offset_bottom = -225.9032
-mouse_filter = 2
-script = ExtResource("1_05wi7")
-metadata/_edit_use_anchors_ = true
-
-[node name="GridContainer" type="GridContainer" parent="UI/PlayerStorage" unique_id=906527731]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 14.25
-anchor_bottom = 6.225
-offset_right = 270.0
-offset_bottom = 101.0
-mouse_filter = 2
-metadata/_edit_use_anchors_ = true
-metadata/_edit_lock_ = true
-
-[node name="Area2D" type="Area2D" parent="UI/PlayerStorage" unique_id=316636663]
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/PlayerStorage/Area2D" unique_id=52998821]
-position = Vector2(420.25, 175.37122)
-shape = SubResource("RectangleShape2D_05wi7")
-metadata/_edit_lock_ = true
-
-[node name="HeavyCruiserModel" type="Sprite2D" parent="UI" unique_id=951119763]
-material = SubResource("ShaderMaterial_i3f7b")
-position = Vector2(1159, 483)
-texture = ExtResource("6_2aooa")
-
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="UI" unique_id=1315817294]
 z_index = -1
 material = SubResource("ShaderMaterial_jbqk2")
 layout_mode = 0
-offset_left = -18.00003
-offset_top = -18.999985
+offset_left = -18.0
+offset_top = -19.0
 offset_right = 1962.7407
 offset_bottom = 1095.1666
 scale = Vector2(1.2, 1.2)
@@ -186,27 +112,179 @@ expand = true
 loop = true
 metadata/_edit_lock_ = true
 
-[node name="LowerSeperator" type="Sprite2D" parent="UI" unique_id=767885574]
-position = Vector2(1154, 739)
-texture = ExtResource("10_0k6sv")
+[node name="EditablePlayer" type="Control" parent="UI" unique_id=1316919949]
+anchors_preset = 0
+offset_left = 1154.0
+offset_top = 490.0
+offset_right = 1194.0
+offset_bottom = 530.0
+mouse_filter = 2
+script = ExtResource("2_8mwx7")
 
-[node name="UpperSeperator" type="Sprite2D" parent="UI" unique_id=1164318536]
-position = Vector2(1154, 244)
+[node name="RightDoor" type="Control" parent="UI" unique_id=1406313812]
+anchors_preset = 0
+offset_left = 1729.0
+offset_top = 1009.0
+offset_right = 1769.0
+offset_bottom = 1049.0
+script = ExtResource("7_wcns4")
+
+[node name="RightDoor" type="Sprite2D" parent="UI/RightDoor" unique_id=1710193721]
+material = SubResource("ShaderMaterial_wcns4")
+scale = Vector2(0.245, 0.245)
+texture = ExtResource("8_ccf4u")
+metadata/_edit_lock_ = true
+
+[node name="WeaponInfoScreen" type="Sprite2D" parent="UI/RightDoor" unique_id=1706138338]
+position = Vector2(18, 17)
+texture = ExtResource("18_tp3oy")
+
+[node name="WeaponInfo" type="Control" parent="UI/RightDoor" unique_id=1946766319]
+anchors_preset = 0
+offset_left = -510.0
+offset_top = -231.0
+offset_right = 546.0
+offset_bottom = 265.0
+script = ExtResource("10_tp3oy")
+metadata/_edit_lock_ = true
+
+[node name="WeaponInfoSprite" type="Control" parent="UI/RightDoor/WeaponInfo" unique_id=1454782336]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 500.0
+offset_bottom = 244.0
+
+[node name="WeaponInfoSprite" type="Sprite2D" parent="UI/RightDoor/WeaponInfo/WeaponInfoSprite" unique_id=2028450495]
+material = SubResource("ShaderMaterial_tp3oy")
+
+[node name="WeaponInfoDamage" type="Label" parent="UI/RightDoor/WeaponInfo" unique_id=1912820007]
+layout_mode = 0
+offset_left = 549.0
+offset_top = 8.0
+offset_right = 1046.0
+offset_bottom = 124.0
+theme_override_fonts/font = ExtResource("11_0k6sv")
+theme_override_font_sizes/font_size = 40
+text = "Damage: 0"
+vertical_alignment = 1
+
+[node name="WeaponInfoFirerate" type="Label" parent="UI/RightDoor/WeaponInfo" unique_id=1192671700]
+layout_mode = 0
+offset_left = 549.0
+offset_top = 132.0
+offset_right = 1046.0
+offset_bottom = 244.0
+theme_override_fonts/font = ExtResource("11_0k6sv")
+theme_override_font_sizes/font_size = 40
+text = "Firerate: 0/S"
+vertical_alignment = 1
+
+[node name="WeaponInfoArmorDamage" type="Label" parent="UI/RightDoor/WeaponInfo" unique_id=359066542]
+layout_mode = 0
+offset_left = 549.0
+offset_top = 252.0
+offset_right = 1046.0
+offset_bottom = 372.0
+theme_override_fonts/font = ExtResource("11_0k6sv")
+theme_override_font_sizes/font_size = 40
+text = "Armor Damage: 0%"
+vertical_alignment = 1
+
+[node name="WeaponInfoVolleyCount" type="Label" parent="UI/RightDoor/WeaponInfo" unique_id=2022099636]
+layout_mode = 0
+offset_left = 549.0
+offset_top = 380.0
+offset_right = 1046.0
+offset_bottom = 488.0
+theme_override_fonts/font = ExtResource("11_0k6sv")
+theme_override_font_sizes/font_size = 40
+text = "Per Volley: 0"
+vertical_alignment = 1
+
+[node name="LeftDoor" type="Control" parent="UI" unique_id=1789016229]
+anchors_preset = 0
+offset_left = 591.0
+offset_top = 1010.0
+offset_right = 631.0
+offset_bottom = 1050.0
+script = ExtResource("7_ccf4u")
+
+[node name="LeftDoor" type="Sprite2D" parent="UI/LeftDoor" unique_id=1260123778]
+material = SubResource("ShaderMaterial_wcns4")
+scale = Vector2(0.245, 0.245)
+texture = ExtResource("7_i3f7b")
+metadata/_edit_lock_ = true
+
+[node name="PlayerStorage" type="Control" parent="UI/LeftDoor" unique_id=731979415]
+layout_mode = 1
+anchor_left = 0.5308609
+anchor_top = -0.83104515
+anchor_right = 0.5308617
+anchor_bottom = -0.83104515
+offset_left = -521.23444
+offset_top = -182.7582
+offset_right = -481.23447
+offset_bottom = -142.7582
+mouse_filter = 2
+script = ExtResource("1_05wi7")
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="UI/LeftDoor/PlayerStorage" unique_id=906527731]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 19.85
+anchor_bottom = 10.15
+offset_right = 206.0
+offset_bottom = 94.0
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="UI/LeftDoor/PlayerStorage" unique_id=316636663]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/LeftDoor/PlayerStorage/Area2D" unique_id=52998821]
+position = Vector2(500.75, 250.87122)
+shape = SubResource("RectangleShape2D_05wi7")
+metadata/_edit_lock_ = true
+
+[node name="UpperPanel" type="Control" parent="UI" unique_id=1317415216]
+anchors_preset = 0
+offset_left = 1154.0
+offset_top = 2.0
+offset_right = 1194.0
+offset_bottom = 42.0
+script = ExtResource("12_hbp8y")
+
+[node name="UpperBlackBorder" type="Panel" parent="UI/UpperPanel" unique_id=353862428]
+layout_mode = 0
+offset_left = -1153.0
+offset_top = -455.0
+offset_right = 1152.0
+offset_bottom = 223.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hdowv")
+
+[node name="UpperSeperator" type="Sprite2D" parent="UI/UpperPanel" unique_id=1164318536]
+position = Vector2(0, 242)
 rotation = -3.1415925
 texture = ExtResource("10_0k6sv")
+metadata/_edit_lock_ = true
 
-[node name="HealthBar" type="ProgressBar" parent="UI" unique_id=851538430]
+[node name="HealthBar" type="ProgressBar" parent="UI/UpperPanel" unique_id=851538430]
 layout_mode = 0
-offset_left = 219.0
-offset_top = 54.0
-offset_right = 652.0
-offset_bottom = 95.0
+offset_left = -935.0
+offset_top = 52.0
+offset_right = -502.0
+offset_bottom = 93.0
 theme_override_fonts/font = ExtResource("11_0k6sv")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/background = SubResource("StyleBoxFlat_j66eb")
 show_percentage = false
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="UI/HealthBar" unique_id=108794757]
+[node name="Label" type="Label" parent="UI/UpperPanel/HealthBar" unique_id=108794757]
 layout_mode = 0
 offset_right = 432.0
 offset_bottom = 40.0
@@ -217,18 +295,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="ArmorBar" type="ProgressBar" parent="UI" unique_id=1116405246]
+[node name="ArmorBar" type="ProgressBar" parent="UI/UpperPanel" unique_id=1116405246]
 layout_mode = 0
-offset_left = 219.0
-offset_top = 95.0
-offset_right = 652.0
-offset_bottom = 136.0
+offset_left = -935.0
+offset_top = 93.0
+offset_right = -502.0
+offset_bottom = 134.0
 theme_override_fonts/font = ExtResource("11_0k6sv")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/background = SubResource("StyleBoxFlat_0k6sv")
 show_percentage = false
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="UI/ArmorBar" unique_id=1312204976]
+[node name="Label" type="Label" parent="UI/UpperPanel/ArmorBar" unique_id=1312204976]
 layout_mode = 0
 offset_right = 432.0
 offset_bottom = 40.0
@@ -239,18 +318,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="WeightBar" type="ProgressBar" parent="UI" unique_id=222180936]
+[node name="WeightBar" type="ProgressBar" parent="UI/UpperPanel" unique_id=222180936]
 layout_mode = 0
-offset_left = 219.0
-offset_top = 136.0
-offset_right = 652.0
-offset_bottom = 177.0
+offset_left = -935.0
+offset_top = 134.0
+offset_right = -502.0
+offset_bottom = 175.0
 theme_override_fonts/font = ExtResource("11_0k6sv")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/background = SubResource("StyleBoxFlat_i3f7b")
 show_percentage = false
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="UI/WeightBar" unique_id=1941779299]
+[node name="Label" type="Label" parent="UI/UpperPanel/WeightBar" unique_id=1941779299]
 layout_mode = 0
 offset_right = 432.0
 offset_bottom = 40.0
@@ -261,14 +341,62 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="MoneyLabel" type="Label" parent="." unique_id=1940368085]
+[node name="MoneyLabel" type="Label" parent="UI/UpperPanel" unique_id=1940368085]
+visible = false
+layout_mode = 0
 offset_left = 780.0
-offset_top = -571.0
+offset_top = 77.0
 offset_right = 1070.0
-offset_bottom = -462.0
-theme_override_colors/font_color = Color(0.87749475, 0.87749493, 3.85046e-07, 1)
+offset_bottom = 186.0
 theme_override_fonts/font = ExtResource("11_0k6sv")
 theme_override_font_sizes/font_size = 80
 text = "$ 12"
+metadata/_edit_lock_ = true
+
+[node name="ShopButton" type="TextureButton" parent="UI/UpperPanel" unique_id=1909634925]
+material = SubResource("ShaderMaterial_qjfym")
+layout_mode = 0
+offset_left = -400.0
+offset_right = -96.0
+offset_bottom = 64.0
+texture_normal = ExtResource("15_qjfym")
+texture_pressed = ExtResource("15_qjfym")
+texture_hover = ExtResource("15_qjfym")
+texture_disabled = ExtResource("15_qjfym")
+texture_focused = ExtResource("15_qjfym")
+
+[node name="Label" type="Label" parent="UI/UpperPanel/ShopButton" unique_id=1426688878]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 7.0
+offset_right = 230.0
+offset_bottom = 65.0
+theme_override_fonts/font = ExtResource("11_0k6sv")
+theme_override_font_sizes/font_size = 50
+text = "SHOP"
+metadata/_edit_lock_ = true
+
+[node name="HardpointEditingButton" type="Button" parent="UI/UpperPanel" unique_id=1774956118]
+layout_mode = 0
+offset_left = 631.0
+offset_top = 108.0
+offset_right = 721.0
+offset_bottom = 140.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_hbp8y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qjfym")
+toggle_mode = true
+script = ExtResource("17_qjfym")
+
+[node name="Label" type="Label" parent="UI/UpperPanel/HardpointEditingButton" unique_id=584412242]
+layout_mode = 0
+offset_left = -521.0
+offset_top = -11.0
+offset_right = -21.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("11_0k6sv")
+theme_override_font_sizes/font_size = 50
+text = "EDIT HARDPOINTS"
 
 [connection signal="pressed" from="oldui/EditingToBattle" to="oldui/EditingToBattle" method="_On_Pressed"]
+[connection signal="pressed" from="UI/UpperPanel/ShopButton" to="UI/UpperPanel" method="_OnShopButtonPressed"]
+[connection signal="toggled" from="UI/UpperPanel/HardpointEditingButton" to="UI/UpperPanel/HardpointEditingButton" method="_on_toggled"]

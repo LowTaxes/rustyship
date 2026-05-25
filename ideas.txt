@@ -26,3 +26,10 @@ with twice the damage (4x as difficult)
 WEAPON IDEAS:
 -missile batteries of all weight classes with each weight class having more
 missiles. They would all launch one after another in a swarm
+
+
+All weapon stats that must be displayed:
+	-damage
+	-firerate
+	-armor damage modifier
+	-projectiles fired per volley

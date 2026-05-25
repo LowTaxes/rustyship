@@ -4,12 +4,14 @@
 		1,
 		1,
 		1,
+		1,
 		"uid://cbdlciicv5vn6",
 		20,
 		50,
 		"uid://vwk20d4x7ag7", 
 		{"x":2,"y":1},
-        "uid://bh4kj5jjobnvp"
+		"uid://bh4kj5jjobnvp",
+		"uid://cwb520ghg1a4g"
 	],
 
 	"autocannon":[
@@ -17,12 +19,14 @@
 		0.25,
 		0.01,
 		0.2,
+		1,
 		"uid://cbdlciicv5vn6",
 		20,
 		50,
 		"uid://cmbunrqtfr00l",
 		{"x":2,"y":1},
-        "uid://dem6gc8x0evym"
+		"uid://dem6gc8x0evym",
+		"uid://cwb520ghg1a4g"
 	],
 
 	"203mm":[
@@ -30,12 +34,14 @@
 		1,
 		0.05,
 		0.5,
+		2,
 		"uid://cbdlciicv5vn6",
 		20,
 		100,
-		"uid://bhbke6nd0s8oj",
+		"uid://tmwh3dr3v4s8",
 		{"x":3,"y":2},
-        "uid://cywxw6pjblpkj"
+		"uid://cywxw6pjblpkj",
+		"uid://b3evjafulrtmj"
 	]
 
 

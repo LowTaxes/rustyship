@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://1h4nrs17ravr"]
+
+[ext_resource type="Script" uid="uid://cgdetc718ceyn" path="res://Ships/Hardpoint.cs" id="1_dtjfk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2j3j"]
+size = Vector2(40, 40)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwo2k"]
+bg_color = Color(0.77591664, 0.07843367, 0, 1)
+
+[node name="Hardpoint" type="Sprite2D" unique_id=131088000]
+script = ExtResource("1_dtjfk")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1220134282]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1196563741]
+shape = SubResource("RectangleShape2D_m2j3j")
+
+[node name="Panel" type="Panel" parent="." unique_id=57546676]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwo2k")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_OnMouseEntered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_OnMouseExited"]

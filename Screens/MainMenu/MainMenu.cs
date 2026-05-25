@@ -81,7 +81,19 @@ public partial class MainMenu : Node2D
 		empty_1.Add("level", 0);
 
 		
-		
+		Dictionary hardpoint_1 = new Dictionary();
+		hardpoint_1.Add("level", 1);
+		hardpoint_1.Add("weaponID", "autocannon");
+		hardpoint_1.Add("x", 0);
+		hardpoint_1.Add("y", 0);
+		hardpoint_1.Add("weight_class", "light");
+
+		Dictionary hardpoint_2 = new Dictionary();
+		hardpoint_2.Add("level", 1);
+		hardpoint_2.Add("weaponID", "203mm");
+		hardpoint_2.Add("x", 100);
+		hardpoint_2.Add("y", 0);
+		hardpoint_2.Add("weight_class", "medium");
 
 
 		Dictionary run_data = new Dictionary();
@@ -95,12 +107,13 @@ public partial class MainMenu : Node2D
 			new Array{light_2, medium_2, empty_1, empty_1, empty_1},
 			new Array{medium_1, light_1},
 			"0-0",
+			new Array{hardpoint_1, hardpoint_2},
 		});
 
 		
 		RunData.Instance.SaveToUserData(Json.Stringify(run_data));
 		RunData.Instance.InitializeDataVariables();
-
+		//Debug.Print(RunData.GetPlayerActiveInventoryItems().Count.ToString());
 		GetTree().ChangeSceneToPacked(enemy_select_scene);
 		
 	}

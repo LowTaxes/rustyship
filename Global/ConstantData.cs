@@ -91,6 +91,11 @@ public partial class ConstantData : Node
 	{
 		return (double)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.FIRE_RATE];
 	}
+	public static int GetVolleyCount(string weapon_name)
+	{
+		return (int)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.VOLLEY_COUNT];
+	}
+	
 	public static double GetWeaponArmorDamageModifier(string weapon_name)
 	{
 		return (double)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.ARMOR_DAMAGE_MODIFIER];
@@ -108,6 +113,10 @@ public partial class ConstantData : Node
 	public static string GetWeaponInventoryItemSpriteUID(string weapon_name)
 	{
 		return (((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SPRITE_UID]).ToString();
+	}
+	public static string GetWeaponInfoSpriteUID(string weapon_name)
+	{
+		return (((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.INFO_SPRITE_UID]).ToString();
 	}
 	
 

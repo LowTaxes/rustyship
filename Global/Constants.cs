@@ -5,12 +5,13 @@ public partial class Constants : Node
 {
 	public static Vector2 PLAYER_START_LOCATION = new Vector2(0,200);
 	public static Vector2 ENEMY_START_LOCATION = new Vector2(0,-200);
-	public static int player_storage_size_x = 12;
+	public static int player_storage_size_x = 10;
 	public static int player_storage_size_y = 5;
-	public static int inventory_square_size = 70;
+	public static int inventory_square_size = 100;
 	public static int pixel_size = 8;
 	public static float health_modifier = .1f;
 	public static float armor_modifier = .1f;
+	public static float camera_zoom_dragging_modifier = 2;
 
 	
 	public enum WeaponDataEnum
@@ -19,12 +20,14 @@ public partial class Constants : Node
 		ARMOR_DAMAGE_MODIFIER,
 		CRIT_CHANCE,
 		FIRE_RATE,
+		VOLLEY_COUNT,
 		BULLET_UID,
 		BULLET_SPEED,
 		SPREAD_RADIUS,
 		WEAPON_MODEL_UID,
 		INVENTORY_ITEM_SIZE,
-		INVENTORY_ITEM_SPRITE_UID
+		INVENTORY_ITEM_SPRITE_UID,
+		INFO_SPRITE_UID,
 	}
 
 	public enum ShipDataEnum
@@ -46,6 +49,7 @@ public partial class Constants : Node
 		ACTIVE_INVENTORY,
 		STORAGE_INVENTORY,
 		LEVEL_ID,
+		ACTIVE_HARDPOINTS,
 	}
 
 	public enum LevelDataEnum
