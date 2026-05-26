@@ -36,7 +36,7 @@ public partial class EnemyPreview : Control
 		weapons_box = GetNode<Control>("Details").GetNode<VBoxContainer>("Weapons");
 		enemy_name_label = GetNode<Label>("EnemyName");
 		
-		int old_level_index = Convert.ToInt32(RunData.GetLevelID()[0].ToString());
+		int old_level_index = Convert.ToInt32(RunData.Instance.level_id[0].ToString());
 		new_level_id = (old_level_index+1).ToString() + "-" + index.ToString();
 
 		enemy_name_label.Text = ConstantData.GetLevelEnemyName(new_level_id);
@@ -65,6 +65,7 @@ public partial class EnemyPreview : Control
 	{
 		//Debug.Print("NewLevelID: " + new_level_id);
 		RunData.Instance.level_id = new_level_id;
+		/*
 		Dictionary run_data = new Dictionary();
 		//Debug.Print(RunData.GetPlayerActiveHardpoints().Count.ToString());
 		//Debug.Print(RunData.GetPlayerActiveInventoryItems().Count.ToString());
@@ -88,6 +89,7 @@ public partial class EnemyPreview : Control
 		//load editing screen
 		PackedScene editing_scene = ResourceLoader.Load<PackedScene>("uid://drqy04x8yiama");
 		GetTree().ChangeSceneToPacked(editing_scene);
+		*/
 	}
 		
 	

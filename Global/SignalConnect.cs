@@ -22,6 +22,12 @@ public partial class SignalConnect : Node
 	[Signal] public delegate void CanEditHardpointsEventHandler();
 	[Signal] public delegate void WeaponInfoChangeEventHandler();
 
+	//UI movement signals n shit
+
+	[Signal] public delegate void EditablePlayerReadyEventHandler();
+	[Signal] public delegate void EnemySelectPanelRetractedEventHandler();
+	[Signal] public delegate void LootTakenEventHandler();
+
 
 
 	

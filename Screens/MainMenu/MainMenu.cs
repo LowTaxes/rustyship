@@ -14,14 +14,14 @@ public partial class MainMenu : Node2D
 {
 	
 	public PackedScene main_scene;
-	public PackedScene enemy_select_scene;
+	public PackedScene game_loop_scene;
 	
 	public PackedScene test_ship;
 
     public override void _Ready()
     {
         main_scene = ResourceLoader.Load<PackedScene>("uid://b7a2h0hw00vtn");// combat screen
-		enemy_select_scene = ResourceLoader.Load<PackedScene>("uid://b7mnb6qawif3y");
+		game_loop_scene = ResourceLoader.Load<PackedScene>("uid://bkxbp4irv6s6o");
 		/*
 		User data should store:
 		player ship template ID
@@ -114,7 +114,7 @@ public partial class MainMenu : Node2D
 		RunData.Instance.SaveToUserData(Json.Stringify(run_data));
 		RunData.Instance.InitializeDataVariables();
 		//Debug.Print(RunData.GetPlayerActiveInventoryItems().Count.ToString());
-		GetTree().ChangeSceneToPacked(enemy_select_scene);
+		GetTree().ChangeSceneToPacked(game_loop_scene);
 		
 	}
 	private void _OnContinueGame()
@@ -122,8 +122,7 @@ public partial class MainMenu : Node2D
 
 		RunData.Instance.InitializeDataVariables();
 		
-		PackedScene player_editing_scene = ResourceLoader.Load<PackedScene>("uid://drqy04x8yiama");
-		GetTree().ChangeSceneToPacked(player_editing_scene);
+		GetTree().ChangeSceneToPacked(game_loop_scene);
 		
 	}
 

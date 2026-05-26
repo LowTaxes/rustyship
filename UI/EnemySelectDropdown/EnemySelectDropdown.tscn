@@ -1,0 +1,250 @@
+[gd_scene format=3 uid="uid://irm0pguxeib6"]
+
+[ext_resource type="Script" uid="uid://ccdslel3rw7ex" path="res://UI/EnemySelectDropdown/EnemySelectDropdown.cs" id="1_qvtqn"]
+[ext_resource type="Texture2D" uid="uid://cffk7onk65va" path="res://UI/seperator_bar_lower.png" id="2_7le4i"]
+[ext_resource type="Script" uid="uid://c4gmn6ecg1bvu" path="res://UI/EnemyPreview.cs" id="3_v6t20"]
+[ext_resource type="PackedScene" uid="uid://bt1qd77c1hu7s" path="res://Ships/tempship/test_ship_model.tscn" id="4_ybuyv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6t20"]
+bg_color = Color(0.004019165, 0.004019165, 0.004019165, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuiri"]
+bg_color = Color(0.55029315, 0.5502932, 0.550293, 1)
+corner_detail = 1
+
+[node name="EnemySelectDropdown" type="Node2D" unique_id=78660647]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1974923934]
+zoom = Vector2(0.5, 0.5)
+
+[node name="UpperPanel" type="Control" parent="." unique_id=679116711]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -648.0
+offset_right = 40.0
+offset_bottom = -608.0
+script = ExtResource("1_qvtqn")
+metadata/_edit_lock_ = true
+
+[node name="UpperBlackBorder" type="Panel" parent="UpperPanel" unique_id=961071509]
+layout_mode = 0
+offset_left = -1153.0
+offset_top = -455.0
+offset_right = 1152.0
+offset_bottom = 223.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6t20")
+metadata/_edit_lock_ = true
+
+[node name="UpperSeperator" type="Sprite2D" parent="UpperPanel" unique_id=1823219815]
+position = Vector2(0, 242)
+rotation = -3.1415925
+texture = ExtResource("2_7le4i")
+metadata/_edit_lock_ = true
+
+[node name="EnemyPreview" type="Control" parent="UpperPanel" unique_id=900733887]
+anchors_preset = 0
+offset_left = -499.0
+offset_top = -387.0
+offset_right = -49.0
+offset_bottom = 163.0
+script = ExtResource("3_v6t20")
+index = 1
+
+[node name="Panel" type="Panel" parent="UpperPanel/EnemyPreview" unique_id=1626465817]
+self_modulate = Color(1, 1, 1, 0.5882353)
+layout_mode = 0
+offset_right = 450.0
+offset_bottom = 550.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yuiri")
+
+[node name="ShipPreview" type="Control" parent="UpperPanel/EnemyPreview" unique_id=1386956262]
+layout_mode = 1
+anchor_left = 0.351
+anchor_top = 0.186
+anchor_right = 0.592
+anchor_bottom = 0.284
+offset_left = -132.95001
+offset_top = -52.300003
+offset_right = 158.6
+offset_bottom = 37.799988
+
+[node name="test_ship_model" parent="UpperPanel/EnemyPreview/ShipPreview" unique_id=39373419 instance=ExtResource("4_ybuyv")]
+position = Vector2(200.00003, 70)
+scale = Vector2(0.7911552, 0.8333333)
+
+[node name="Details" type="Control" parent="UpperPanel/EnemyPreview" unique_id=328850309]
+anchors_preset = 0
+offset_top = 216.0
+offset_right = 450.0
+offset_bottom = 550.0
+
+[node name="Stats" type="VBoxContainer" parent="UpperPanel/EnemyPreview/Details" unique_id=1597223661]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 200.0
+offset_bottom = 334.0
+
+[node name="Health" type="Label" parent="UpperPanel/EnemyPreview/Details/Stats" unique_id=1941137358]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Health: 100"
+
+[node name="Armor" type="Label" parent="UpperPanel/EnemyPreview/Details/Stats" unique_id=551688538]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Armor: 100"
+
+[node name="HealthModifier" type="Label" parent="UpperPanel/EnemyPreview/Details/Stats" unique_id=231606577]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Health M: 1"
+
+[node name="ArmorModifier" type="Label" parent="UpperPanel/EnemyPreview/Details/Stats" unique_id=1001732938]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Armor M: 1"
+
+[node name="CritModifier" type="Label" parent="UpperPanel/EnemyPreview/Details/Stats" unique_id=178272497]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Crit M: 1"
+
+[node name="Weapons" type="VBoxContainer" parent="UpperPanel/EnemyPreview/Details" unique_id=393568633]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 425.0
+offset_bottom = 334.0
+theme_override_constants/separation = 5
+
+[node name="title" type="Label" parent="UpperPanel/EnemyPreview/Details/Weapons" unique_id=744609814]
+layout_mode = 2
+theme_override_constants/line_spacing = -18
+theme_override_font_sizes/font_size = 20
+text = "Weapons:
+"
+
+[node name="EnemyName" type="Label" parent="UpperPanel/EnemyPreview" unique_id=1499209514]
+layout_mode = 0
+offset_top = 17.0
+offset_right = 450.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 20
+text = "NAMENAMENAMENAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="UpperPanel/EnemyPreview" unique_id=1891853036]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 469.0
+offset_right = 310.0
+offset_bottom = 500.0
+text = "Select
+"
+
+[node name="EnemyPreview2" type="Control" parent="UpperPanel" unique_id=370019015]
+anchors_preset = 0
+offset_left = 51.0
+offset_top = -387.0
+offset_right = 501.0
+offset_bottom = 163.0
+script = ExtResource("3_v6t20")
+index = 2
+
+[node name="Panel" type="Panel" parent="UpperPanel/EnemyPreview2" unique_id=357885035]
+self_modulate = Color(1, 1, 1, 0.5882353)
+layout_mode = 0
+offset_right = 450.0
+offset_bottom = 550.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yuiri")
+
+[node name="ShipPreview" type="Control" parent="UpperPanel/EnemyPreview2" unique_id=950924799]
+layout_mode = 1
+anchor_left = 0.351
+anchor_top = 0.186
+anchor_right = 0.592
+anchor_bottom = 0.284
+offset_left = -132.95001
+offset_top = -52.300003
+offset_right = 158.6
+offset_bottom = 37.799988
+
+[node name="test_ship_model" parent="UpperPanel/EnemyPreview2/ShipPreview" unique_id=1311950369 instance=ExtResource("4_ybuyv")]
+position = Vector2(200.00003, 70)
+scale = Vector2(0.7911552, 0.8333333)
+
+[node name="Details" type="Control" parent="UpperPanel/EnemyPreview2" unique_id=528858182]
+anchors_preset = 0
+offset_top = 216.0
+offset_right = 450.0
+offset_bottom = 550.0
+
+[node name="Stats" type="VBoxContainer" parent="UpperPanel/EnemyPreview2/Details" unique_id=536043578]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 200.0
+offset_bottom = 334.0
+
+[node name="Health" type="Label" parent="UpperPanel/EnemyPreview2/Details/Stats" unique_id=1429485716]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Health: 100"
+
+[node name="Armor" type="Label" parent="UpperPanel/EnemyPreview2/Details/Stats" unique_id=747548699]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Armor: 100"
+
+[node name="HealthModifier" type="Label" parent="UpperPanel/EnemyPreview2/Details/Stats" unique_id=1618440184]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Health M: 1"
+
+[node name="ArmorModifier" type="Label" parent="UpperPanel/EnemyPreview2/Details/Stats" unique_id=1952243469]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Armor M: 1"
+
+[node name="CritModifier" type="Label" parent="UpperPanel/EnemyPreview2/Details/Stats" unique_id=723069659]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Crit M: 1"
+
+[node name="Weapons" type="VBoxContainer" parent="UpperPanel/EnemyPreview2/Details" unique_id=703114901]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 425.0
+offset_bottom = 334.0
+theme_override_constants/separation = 5
+
+[node name="title" type="Label" parent="UpperPanel/EnemyPreview2/Details/Weapons" unique_id=3899773]
+layout_mode = 2
+theme_override_constants/line_spacing = -18
+theme_override_font_sizes/font_size = 20
+text = "Weapons:
+"
+
+[node name="EnemyName" type="Label" parent="UpperPanel/EnemyPreview2" unique_id=297073778]
+layout_mode = 0
+offset_top = 17.0
+offset_right = 450.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 20
+text = "NAMENAMENAMENAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="UpperPanel/EnemyPreview2" unique_id=994348323]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 469.0
+offset_right = 310.0
+offset_bottom = 500.0
+text = "Select
+"
+
+[connection signal="pressed" from="UpperPanel/EnemyPreview/Select" to="UpperPanel" method="_OptionSelected"]
+[connection signal="pressed" from="UpperPanel/EnemyPreview/Select" to="UpperPanel/EnemyPreview" method="_On_Selected"]
+[connection signal="pressed" from="UpperPanel/EnemyPreview2/Select" to="UpperPanel" method="_OptionSelected"]
+[connection signal="pressed" from="UpperPanel/EnemyPreview2/Select" to="UpperPanel/EnemyPreview2" method="_On_Selected"]

@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://cc8rvmj88yvh"]
+
+[ext_resource type="Script" uid="uid://la5xrqtemtpc" path="res://UI/BottomDoors/RightDoor.cs" id="1_owkkl"]
+[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="2_gl48u"]
+[ext_resource type="Texture2D" uid="uid://ci7xxw7enl1vp" path="res://rshipadobefiles/RightDoor.png" id="3_4qdc5"]
+[ext_resource type="Texture2D" uid="uid://bwkig3ju3fopf" path="res://UI/ShipEditingUI/WeaponInfoScreen.png" id="4_ni6d2"]
+[ext_resource type="Script" uid="uid://dokh5i2xs3kae" path="res://UI/ShipEditingUI/WeaponInfo.cs" id="5_iw6qo"]
+[ext_resource type="FontFile" uid="uid://d2rks27jo02t5" path="res://WIPAssets/Fonts/tinypixel.otf" id="6_6yctm"]
+[ext_resource type="Script" uid="uid://cbja04x7gto1l" path="res://UI/BottomDoors/LeftDoor.cs" id="7_ok8oj"]
+[ext_resource type="Texture2D" uid="uid://cm32g01janed6" path="res://rshipadobefiles/LeftDoor.png" id="8_hp8wr"]
+[ext_resource type="Script" uid="uid://bitywnov6avb8" path="res://UI/Inventory/PlayerStorage.cs" id="9_6aie6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rt4ib"]
+shader = ExtResource("2_gl48u")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nfbju"]
+shader = ExtResource("2_gl48u")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4yhu"]
+size = Vector2(996.5, 498.25757)
+
+[node name="BottomDoors" type="Node2D" unique_id=1894333025]
+
+[node name="RightDoor" type="Control" parent="." unique_id=253472664]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 572.0
+offset_top = 356.0
+offset_right = 612.0
+offset_bottom = 396.0
+script = ExtResource("1_owkkl")
+
+[node name="RightDoor" type="Sprite2D" parent="RightDoor" unique_id=2144252106]
+material = SubResource("ShaderMaterial_rt4ib")
+scale = Vector2(0.245, 0.245)
+texture = ExtResource("3_4qdc5")
+metadata/_edit_lock_ = true
+
+[node name="WeaponInfoScreen" type="Sprite2D" parent="RightDoor" unique_id=1096506799]
+position = Vector2(18, 17)
+texture = ExtResource("4_ni6d2")
+
+[node name="WeaponInfo" type="Control" parent="RightDoor" unique_id=2075774697]
+anchors_preset = 0
+offset_left = -510.0
+offset_top = -231.0
+offset_right = 546.0
+offset_bottom = 265.0
+script = ExtResource("5_iw6qo")
+metadata/_edit_lock_ = true
+
+[node name="WeaponInfoSprite" type="Control" parent="RightDoor/WeaponInfo" unique_id=993451217]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 500.0
+offset_bottom = 244.0
+
+[node name="WeaponInfoSprite" type="Sprite2D" parent="RightDoor/WeaponInfo/WeaponInfoSprite" unique_id=1754557984]
+material = SubResource("ShaderMaterial_nfbju")
+
+[node name="WeaponInfoDamage" type="Label" parent="RightDoor/WeaponInfo" unique_id=1740607539]
+layout_mode = 0
+offset_left = 549.0
+offset_top = 8.0
+offset_right = 1046.0
+offset_bottom = 124.0
+theme_override_fonts/font = ExtResource("6_6yctm")
+theme_override_font_sizes/font_size = 40
+text = "Damage: 0"
+vertical_alignment = 1
+
+[node name="WeaponInfoFirerate" type="Label" parent="RightDoor/WeaponInfo" unique_id=1962635798]
+layout_mode = 0
+offset_left = 549.0
+offset_top = 132.0
+offset_right = 1046.0
+offset_bottom = 244.0
+theme_override_fonts/font = ExtResource("6_6yctm")
+theme_override_font_sizes/font_size = 40
+text = "Firerate: 0/S"
+vertical_alignment = 1
+
+[node name="WeaponInfoArmorDamage" type="Label" parent="RightDoor/WeaponInfo" unique_id=465785171]
+layout_mode = 0
+offset_left = 549.0
+offset_top = 252.0
+offset_right = 1046.0
+offset_bottom = 372.0
+theme_override_fonts/font = ExtResource("6_6yctm")
+theme_override_font_sizes/font_size = 40
+text = "Armor Damage: 0%"
+vertical_alignment = 1
+
+[node name="WeaponInfoVolleyCount" type="Label" parent="RightDoor/WeaponInfo" unique_id=1416370085]
+layout_mode = 0
+offset_left = 549.0
+offset_top = 380.0
+offset_right = 1046.0
+offset_bottom = 488.0
+theme_override_fonts/font = ExtResource("6_6yctm")
+theme_override_font_sizes/font_size = 40
+text = "Per Volley: 0"
+vertical_alignment = 1
+
+[node name="LeftDoor" type="Control" parent="." unique_id=1571696167]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -566.0
+offset_top = 357.0
+offset_right = -526.0
+offset_bottom = 397.0
+script = ExtResource("7_ok8oj")
+
+[node name="LeftDoor" type="Sprite2D" parent="LeftDoor" unique_id=868699418]
+material = SubResource("ShaderMaterial_rt4ib")
+scale = Vector2(0.245, 0.245)
+texture = ExtResource("8_hp8wr")
+metadata/_edit_lock_ = true
+
+[node name="PlayerStorage" type="Control" parent="LeftDoor" unique_id=794730882]
+layout_mode = 1
+anchor_left = 0.5308609
+anchor_top = -0.83104515
+anchor_right = 0.5308617
+anchor_bottom = -0.83104515
+offset_left = -521.23444
+offset_top = -182.7582
+offset_right = -481.23447
+offset_bottom = -142.7582
+mouse_filter = 2
+script = ExtResource("9_6aie6")
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="LeftDoor/PlayerStorage" unique_id=857207705]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 19.85
+anchor_bottom = 10.15
+offset_right = 206.0
+offset_bottom = 94.0
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="LeftDoor/PlayerStorage" unique_id=1816932977]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDoor/PlayerStorage/Area2D" unique_id=44277202]
+position = Vector2(500.75, 250.87122)
+shape = SubResource("RectangleShape2D_o4yhu")
+metadata/_edit_lock_ = true

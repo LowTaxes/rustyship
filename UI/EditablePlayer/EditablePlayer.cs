@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 public partial class EditablePlayer : Control
 {
@@ -51,6 +52,11 @@ public partial class EditablePlayer : Control
 			active_hardpoints[i].AddChild(weapon_model);
 			weapon_model.LookAt(new Vector2(weapon_model.GlobalPosition.X, weapon_model.GlobalPosition.Y-1));
 		}
+
+		Tween tween = GetTree().CreateTween();
+		tween.TweenProperty(this, "position", new Vector2(0,this.Position.Y), 1);
+		
+		tween.Finished += _OnLoadInFinished;
 		
 	}
 
@@ -96,7 +102,14 @@ public partial class EditablePlayer : Control
 	{
 		hardpoint_editing = can_edit;
 	}
+
+	private void _OnLoadInFinished()
+	{
+		SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.EditablePlayerReady.ToString());
+	}
+
 /*
+
 	private void _ActiveItemAdded(InventoryItem inv_item, int hardpoint_index)
 	{
 		PackedScene new_model_scene = ResourceLoader.Load<PackedScene>(ConstantData.GetWeaponModelUID(inv_item.weapon_name));

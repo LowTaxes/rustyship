@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bcacvxnn2iq3a"]
+
+[ext_resource type="Script" uid="uid://o674mphjrc6e" path="res://UI/LootDropdown/LootDropdown.cs" id="1_7k7ys"]
+[ext_resource type="Texture2D" uid="uid://cffk7onk65va" path="res://UI/seperator_bar_lower.png" id="2_uyvpf"]
+[ext_resource type="Script" uid="uid://chcvs6aipob0m" path="res://UI/LootDropdown/Lootspawn.cs" id="3_uyvpf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqjx5"]
+bg_color = Color(0.004019165, 0.004019165, 0.004019165, 1)
+
+[node name="LootDropdown" type="Node2D" unique_id=639368358]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=418339744]
+zoom = Vector2(0.5, 0.5)
+
+[node name="LootDropdown" type="Control" parent="." unique_id=210334446]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -648.0
+offset_right = 40.0
+offset_bottom = -608.0
+script = ExtResource("1_7k7ys")
+metadata/_edit_lock_ = true
+
+[node name="UpperBlackBorder" type="Panel" parent="LootDropdown" unique_id=906067875]
+layout_mode = 0
+offset_left = -1153.0
+offset_top = -455.0
+offset_right = 1152.0
+offset_bottom = 223.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tqjx5")
+metadata/_edit_lock_ = true
+
+[node name="UpperSeperator" type="Sprite2D" parent="LootDropdown" unique_id=64634217]
+position = Vector2(0, 242)
+rotation = -3.1415925
+texture = ExtResource("2_uyvpf")
+metadata/_edit_lock_ = true
+
+[node name="lootspawn1" type="Control" parent="LootDropdown" unique_id=1511753632]
+anchors_preset = 0
+offset_left = -710.0
+offset_top = -257.0
+offset_right = -269.0
+offset_bottom = -151.0
+mouse_filter = 2
+script = ExtResource("3_uyvpf")
+
+[node name="lootspawn2" type="Control" parent="LootDropdown" unique_id=171582236]
+anchors_preset = 0
+offset_left = -712.0
+offset_top = -157.0
+offset_right = -271.0
+offset_bottom = -51.0
+mouse_filter = 2
+script = ExtResource("3_uyvpf")
+
+[node name="lootspawn3" type="Control" parent="LootDropdown" unique_id=711832634]
+anchors_preset = 0
+offset_left = 248.0
+offset_top = -268.0
+offset_right = 689.0
+offset_bottom = -162.0
+mouse_filter = 2
+script = ExtResource("3_uyvpf")
+
+[node name="lootspawn4" type="Control" parent="LootDropdown" unique_id=1950942358]
+anchors_preset = 0
+offset_left = 240.0
+offset_top = -114.0
+offset_right = 681.0
+offset_bottom = -8.0
+mouse_filter = 2
+script = ExtResource("3_uyvpf")

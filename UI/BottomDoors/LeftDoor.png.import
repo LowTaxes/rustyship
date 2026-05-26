@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v0nky1csvg1a"
-path="res://.godot/imported/Rightdoor.png-6547641789255d9fe2f4fa3f9d217c7c.ctex"
+uid="uid://cv0oyo055vklv"
+path="res://.godot/imported/LeftDoor.png-efbb09ed12856572558cc0d6e838677b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://WIPAssets/Rightdoor.png"
-dest_files=["res://.godot/imported/Rightdoor.png-6547641789255d9fe2f4fa3f9d217c7c.ctex"]
+source_file="res://UI/BottomDoors/LeftDoor.png"
+dest_files=["res://.godot/imported/LeftDoor.png-efbb09ed12856572558cc0d6e838677b.ctex"]
 
 [params]
 

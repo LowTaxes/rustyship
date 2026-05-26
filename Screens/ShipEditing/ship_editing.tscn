@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://drqy04x8yiama"]
 
 [ext_resource type="Script" uid="uid://bitywnov6avb8" path="res://UI/Inventory/PlayerStorage.cs" id="1_05wi7"]
-[ext_resource type="Script" uid="uid://bnbs4igcgxatg" path="res://Screens/ShipEditing/EditablePlayer.cs" id="2_8mwx7"]
+[ext_resource type="Script" uid="uid://bnbs4igcgxatg" path="res://UI/EditablePlayer/EditablePlayer.cs" id="2_8mwx7"]
 [ext_resource type="Script" uid="uid://dxruus0xfat2b" path="res://UI/EditingToBattle.cs" id="4_gkrqp"]
 [ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="5_plw3h"]
-[ext_resource type="Script" uid="uid://cbja04x7gto1l" path="res://UI/ShipEditingUI/LeftDoor.cs" id="7_ccf4u"]
+[ext_resource type="Script" uid="uid://cbja04x7gto1l" path="res://UI/BottomDoors/LeftDoor.cs" id="7_ccf4u"]
 [ext_resource type="Texture2D" uid="uid://cm32g01janed6" path="res://rshipadobefiles/LeftDoor.png" id="7_i3f7b"]
-[ext_resource type="Script" uid="uid://la5xrqtemtpc" path="res://UI/ShipEditingUI/RightDoor.cs" id="7_wcns4"]
+[ext_resource type="Script" uid="uid://la5xrqtemtpc" path="res://UI/BottomDoors/RightDoor.cs" id="7_wcns4"]
 [ext_resource type="Texture2D" uid="uid://ci7xxw7enl1vp" path="res://rshipadobefiles/RightDoor.png" id="8_ccf4u"]
 [ext_resource type="Texture2D" uid="uid://cffk7onk65va" path="res://UI/seperator_bar_lower.png" id="10_0k6sv"]
 [ext_resource type="VideoStream" uid="uid://c73lbh7pdl41b" path="res://WIPAssets/waves_1.ogv" id="10_jbqk2"]
@@ -74,17 +74,6 @@ offset_bottom = 318.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="EditingToBattle" type="Button" parent="oldui" unique_id=1868211604]
-layout_mode = 0
-offset_left = 375.0
-offset_top = 513.0
-offset_right = 522.0
-offset_bottom = 593.0
-theme_override_font_sizes/font_size = 24
-text = "Continue
-"
-script = ExtResource("4_gkrqp")
-
 [node name="UI" type="Control" parent="." unique_id=2097500494]
 layout_mode = 3
 anchors_preset = 0
@@ -111,15 +100,6 @@ autoplay = true
 expand = true
 loop = true
 metadata/_edit_lock_ = true
-
-[node name="EditablePlayer" type="Control" parent="UI" unique_id=1316919949]
-anchors_preset = 0
-offset_left = 1154.0
-offset_top = 490.0
-offset_right = 1194.0
-offset_bottom = 530.0
-mouse_filter = 2
-script = ExtResource("2_8mwx7")
 
 [node name="RightDoor" type="Control" parent="UI" unique_id=1406313812]
 anchors_preset = 0
@@ -249,15 +229,35 @@ position = Vector2(500.75, 250.87122)
 shape = SubResource("RectangleShape2D_05wi7")
 metadata/_edit_lock_ = true
 
-[node name="UpperPanel" type="Control" parent="UI" unique_id=1317415216]
+[node name="EditingToBattle" type="Button" parent="UI" unique_id=1868211604]
+layout_mode = 0
+offset_left = 2033.0
+offset_top = 87.0
+offset_right = 2180.0
+offset_bottom = 167.0
+theme_override_font_sizes/font_size = 24
+text = "Continue
+"
+script = ExtResource("4_gkrqp")
+
+[node name="EditablePlayer" type="Control" parent="." unique_id=1316919949]
+layout_mode = 3
 anchors_preset = 0
-offset_left = 1154.0
-offset_top = 2.0
-offset_right = 1194.0
-offset_bottom = 42.0
+offset_top = -160.0
+offset_right = 40.0
+offset_bottom = -120.0
+mouse_filter = 2
+script = ExtResource("2_8mwx7")
+
+[node name="UpperPanel" type="Control" parent="." unique_id=1317415216]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -648.0
+offset_right = 40.0
+offset_bottom = -608.0
 script = ExtResource("12_hbp8y")
 
-[node name="UpperBlackBorder" type="Panel" parent="UI/UpperPanel" unique_id=353862428]
+[node name="UpperBlackBorder" type="Panel" parent="UpperPanel" unique_id=353862428]
 layout_mode = 0
 offset_left = -1153.0
 offset_top = -455.0
@@ -266,13 +266,13 @@ offset_bottom = 223.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hdowv")
 
-[node name="UpperSeperator" type="Sprite2D" parent="UI/UpperPanel" unique_id=1164318536]
+[node name="UpperSeperator" type="Sprite2D" parent="UpperPanel" unique_id=1164318536]
 position = Vector2(0, 242)
 rotation = -3.1415925
 texture = ExtResource("10_0k6sv")
 metadata/_edit_lock_ = true
 
-[node name="HealthBar" type="ProgressBar" parent="UI/UpperPanel" unique_id=851538430]
+[node name="HealthBar" type="ProgressBar" parent="UpperPanel" unique_id=851538430]
 layout_mode = 0
 offset_left = -935.0
 offset_top = 52.0
@@ -284,7 +284,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_j66eb")
 show_percentage = false
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="UI/UpperPanel/HealthBar" unique_id=108794757]
+[node name="Label" type="Label" parent="UpperPanel/HealthBar" unique_id=108794757]
 layout_mode = 0
 offset_right = 432.0
 offset_bottom = 40.0
@@ -295,7 +295,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="ArmorBar" type="ProgressBar" parent="UI/UpperPanel" unique_id=1116405246]
+[node name="ArmorBar" type="ProgressBar" parent="UpperPanel" unique_id=1116405246]
 layout_mode = 0
 offset_left = -935.0
 offset_top = 93.0
@@ -307,7 +307,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_0k6sv")
 show_percentage = false
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="UI/UpperPanel/ArmorBar" unique_id=1312204976]
+[node name="Label" type="Label" parent="UpperPanel/ArmorBar" unique_id=1312204976]
 layout_mode = 0
 offset_right = 432.0
 offset_bottom = 40.0
@@ -318,7 +318,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="WeightBar" type="ProgressBar" parent="UI/UpperPanel" unique_id=222180936]
+[node name="WeightBar" type="ProgressBar" parent="UpperPanel" unique_id=222180936]
 layout_mode = 0
 offset_left = -935.0
 offset_top = 134.0
@@ -330,7 +330,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_i3f7b")
 show_percentage = false
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="UI/UpperPanel/WeightBar" unique_id=1941779299]
+[node name="Label" type="Label" parent="UpperPanel/WeightBar" unique_id=1941779299]
 layout_mode = 0
 offset_right = 432.0
 offset_bottom = 40.0
@@ -341,7 +341,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="MoneyLabel" type="Label" parent="UI/UpperPanel" unique_id=1940368085]
+[node name="MoneyLabel" type="Label" parent="UpperPanel" unique_id=1940368085]
 visible = false
 layout_mode = 0
 offset_left = 780.0
@@ -353,7 +353,7 @@ theme_override_font_sizes/font_size = 80
 text = "$ 12"
 metadata/_edit_lock_ = true
 
-[node name="ShopButton" type="TextureButton" parent="UI/UpperPanel" unique_id=1909634925]
+[node name="ShopButton" type="TextureButton" parent="UpperPanel" unique_id=1909634925]
 material = SubResource("ShaderMaterial_qjfym")
 layout_mode = 0
 offset_left = -400.0
@@ -365,7 +365,7 @@ texture_hover = ExtResource("15_qjfym")
 texture_disabled = ExtResource("15_qjfym")
 texture_focused = ExtResource("15_qjfym")
 
-[node name="Label" type="Label" parent="UI/UpperPanel/ShopButton" unique_id=1426688878]
+[node name="Label" type="Label" parent="UpperPanel/ShopButton" unique_id=1426688878]
 layout_mode = 0
 offset_left = 87.0
 offset_top = 7.0
@@ -376,7 +376,7 @@ theme_override_font_sizes/font_size = 50
 text = "SHOP"
 metadata/_edit_lock_ = true
 
-[node name="HardpointEditingButton" type="Button" parent="UI/UpperPanel" unique_id=1774956118]
+[node name="HardpointEditingButton" type="Button" parent="UpperPanel" unique_id=1774956118]
 layout_mode = 0
 offset_left = 631.0
 offset_top = 108.0
@@ -387,7 +387,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_qjfym")
 toggle_mode = true
 script = ExtResource("17_qjfym")
 
-[node name="Label" type="Label" parent="UI/UpperPanel/HardpointEditingButton" unique_id=584412242]
+[node name="Label" type="Label" parent="UpperPanel/HardpointEditingButton" unique_id=584412242]
 layout_mode = 0
 offset_left = -521.0
 offset_top = -11.0
@@ -397,6 +397,6 @@ theme_override_fonts/font = ExtResource("11_0k6sv")
 theme_override_font_sizes/font_size = 50
 text = "EDIT HARDPOINTS"
 
-[connection signal="pressed" from="oldui/EditingToBattle" to="oldui/EditingToBattle" method="_On_Pressed"]
-[connection signal="pressed" from="UI/UpperPanel/ShopButton" to="UI/UpperPanel" method="_OnShopButtonPressed"]
-[connection signal="toggled" from="UI/UpperPanel/HardpointEditingButton" to="UI/UpperPanel/HardpointEditingButton" method="_on_toggled"]
+[connection signal="pressed" from="UI/EditingToBattle" to="UI/EditingToBattle" method="_On_Pressed"]
+[connection signal="pressed" from="UpperPanel/ShopButton" to="UpperPanel" method="_OnShopButtonPressed"]
+[connection signal="toggled" from="UpperPanel/HardpointEditingButton" to="UpperPanel/HardpointEditingButton" method="_on_toggled"]

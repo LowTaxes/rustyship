@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bkxbp4irv6s6o"]
+
+[ext_resource type="Script" uid="uid://dsuudes54lbx3" path="res://Screens/GameLoop/GameLoop.cs" id="1_pufhl"]
+[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="2_n6itl"]
+[ext_resource type="VideoStream" uid="uid://c73lbh7pdl41b" path="res://WIPAssets/waves_1.ogv" id="3_aeulu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_msvx0"]
+shader = ExtResource("2_n6itl")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
+
+[node name="GameLoop" type="Node2D" unique_id=1531476535]
+script = ExtResource("1_pufhl")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1830395599]
+zoom = Vector2(0.5, 0.5)
+metadata/_edit_lock_ = true
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1259685134]
+z_index = -1
+material = SubResource("ShaderMaterial_msvx0")
+offset_left = -1195.0
+offset_top = -679.0
+offset_right = 785.7407
+offset_bottom = 435.16663
+scale = Vector2(1.2, 1.2)
+mouse_filter = 2
+stream = ExtResource("3_aeulu")
+volume_db = -80.0
+autoplay = true
+expand = true
+loop = true
+metadata/_edit_lock_ = true

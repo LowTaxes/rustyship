@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Runtime.Serialization;
 public partial class InventoryItem : Control
 {
-	public string weapon_name = "lightmachinegun";
+	public string weapon_name = "autocannon";
 	public int level = 0;
 	public int size_x = 1;
 	public int size_y = 1;
@@ -20,8 +20,10 @@ public partial class InventoryItem : Control
 	public bool mouse_hovering = false;
 	public bool mouse_dragging = false;
 	public bool attatched = false;
+	public bool is_lootspawn = false;
 	public float sprite_scale_x;
 	public float sprite_scale_y;
+
 	
 	
 	public override void _Ready()
@@ -68,6 +70,11 @@ public partial class InventoryItem : Control
 		{
 			if(mouse_hovering && mouse_event.IsActionPressed("left_click"))
 			{
+				if(is_lootspawn)
+				{
+					is_lootspawn = false;
+					SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.LootTaken);
+				}
 				mouse_dragging = true;
 				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.InvItemClicked.ToString(), this);
 			}
