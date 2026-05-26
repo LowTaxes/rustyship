@@ -40,7 +40,7 @@ public partial class InventoryItem : Control
 			Dictionary inv_size = (Dictionary) weapon_data[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SIZE];
 			size_x = (int) inv_size["x"];
 			size_y = (int) inv_size["y"];
-			sprite2D.Texture = GD.Load<Texture2D>(weapon_data[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SPRITE_UID].ToString());
+			
 
 		}
         
@@ -54,6 +54,7 @@ public partial class InventoryItem : Control
 	private void _On_Mouse_Entered()
 	{
 		mouse_hovering = true;
+		Debug.Print("hi");
 		//Debug.Print(mouse_hovering.ToString());
 	}
 
@@ -75,6 +76,7 @@ public partial class InventoryItem : Control
 					is_lootspawn = false;
 					SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.LootTaken);
 				}
+				this.Reparent(GetNode("/root"), true);
 				mouse_dragging = true;
 				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.InvItemClicked.ToString(), this);
 			}

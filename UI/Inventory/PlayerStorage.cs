@@ -69,7 +69,9 @@ public partial class PlayerStorage : Control
 
 		for(int i = 0; i < run_data_weapon_dicts.Count; i++)
 		{
-			InventoryItem new_item = inventory_item_scene.Instantiate<InventoryItem>();
+			//Debug.Print(ConstantData.GetWeaponInvItemUID(((Dictionary)(run_data_weapon_dicts[i]))["weaponID"].ToString()));
+			PackedScene weapon_inv_item_scene = ResourceLoader.Load<PackedScene>(ConstantData.GetWeaponInvItemUID(((Dictionary)(run_data_weapon_dicts[i]))["weaponID"].ToString()));
+			InventoryItem new_item = weapon_inv_item_scene.Instantiate<InventoryItem>();
 			new_item.weapon_name = ((Dictionary)(run_data_weapon_dicts[i]))["weaponID"].ToString();
 			new_item.level = (int)((Dictionary)(run_data_weapon_dicts[i]))["level"];
 			new_item.storage_x = (int)((Dictionary)run_data_weapon_dicts[i])["x"];
@@ -77,7 +79,7 @@ public partial class PlayerStorage : Control
 
 			AddChild(new_item);
 			held_items.Add(new_item);
-	
+			/*
 			new_item.sprite_scale_x = ((float)Constants.inventory_square_size-Constants.pixel_size) / new_item.sprite2D.Texture.GetWidth() * new_item.size_x;
 			new_item.sprite_scale_y = ((float)Constants.inventory_square_size-Constants.pixel_size) / new_item.sprite2D.Texture.GetHeight() * new_item.size_y;
 			new_item.sprite2D.Scale = new Vector2(new_item.sprite_scale_x, new_item.sprite_scale_y);
@@ -88,14 +90,16 @@ public partial class PlayerStorage : Control
 			float area_scale_y = ((float)Constants.inventory_square_size-Constants.pixel_size) / new_item.area2D.GetChild<CollisionShape2D>(0).Shape.GetRect().Size.Y * new_item.size_y;
 			new_item.area2D.Scale = new Vector2(area_scale_x, area_scale_y);
 			//Debug.Print(new_item.area2D.GetChild<CollisionShape2D>(0).Shape.GetRect().Size.X.ToString());
-
-			float pos_x = (new_item.storage_x)*(Constants.inventory_square_size-Constants.pixel_size) + (new_item.sprite2D.Texture.GetWidth()*new_item.sprite_scale_x/2);
-			float pos_y = (new_item.storage_y)*(Constants.inventory_square_size-Constants.pixel_size) + (new_item.sprite2D.Texture.GetHeight()*new_item.sprite_scale_y/2);
-
+			*/
+			float pos_x = (new_item.storage_x)*(Constants.inventory_square_size-Constants.pixel_size) + (new_item.sprite2D.Texture.GetWidth()/2);
+			float pos_y = (new_item.storage_y)*(Constants.inventory_square_size-Constants.pixel_size) + (new_item.sprite2D.Texture.GetHeight()/2);
+			
 			Label level_label = new_item.GetChild<Label>(2);
 			level_label.Text = new_item.level.ToString();
+			/*
 			level_label.Position = new Vector2(-Constants.inventory_square_size*new_item.size_x/2,-Constants.inventory_square_size*new_item.size_y/2);
 			level_label.AddThemeConstantOverride("font_size", 30);
+			*/
 			//level_label.Scale = new Vector2(new_item.sprite_scale_x, new_item.sprite_scale_y);
 
 			
@@ -180,8 +184,8 @@ public partial class PlayerStorage : Control
 
 			}
 
-			float pos_x = closest_square.Position.X + (new_item.sprite2D.Texture.GetWidth()/2 * new_item.sprite_scale_x);
-			float pos_y = closest_square.Position.Y + (new_item.sprite2D.Texture.GetHeight()/2 * new_item.sprite_scale_y);
+			float pos_x = closest_square.Position.X + (new_item.sprite2D.Texture.GetWidth()/2);
+			float pos_y = closest_square.Position.Y + (new_item.sprite2D.Texture.GetHeight()/2);
 			new_item.Position = new Vector2(pos_x, pos_y);
 		}
 		

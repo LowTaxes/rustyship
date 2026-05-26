@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cedh3uq18etis"]
 
-[ext_resource type="Script" uid="uid://bv6fvbdknx03l" path="res://UI/Inventory/InventoryItem.cs" id="2_6reim"]
 [ext_resource type="Texture2D" uid="uid://drs654f1iosgt" path="res://UI/Inventory/InventorySquare/Unselected_Inventory_Square.png" id="2_8dqt5"]
 [ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="2_c4c7o"]
 
@@ -12,9 +11,6 @@ shader_parameter/handle_edges = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vp88w"]
 size = Vector2(416, 416)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4c7o"]
-bg_color = Color(1, 0.3204234, 0.42444074, 1)
-
 [node name="InventoryItem" type="Control" unique_id=186025791]
 custom_minimum_size = Vector2(10, 20)
 layout_mode = 3
@@ -22,7 +18,6 @@ anchors_preset = 0
 offset_right = 207.0
 offset_bottom = 206.0
 mouse_filter = 2
-script = ExtResource("2_6reim")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=857854086]
 material = SubResource("ShaderMaterial_vb5ey")
@@ -39,15 +34,6 @@ metadata/_edit_lock_ = true
 [node name="ReferencePoint" type="Node2D" parent="Area2D" unique_id=640187503]
 position = Vector2(-208, -208)
 metadata/_edit_lock_ = true
-
-[node name="Panel" type="Panel" parent="Area2D" unique_id=206282789]
-modulate = Color(1, 1, 1, 0.34509805)
-offset_left = -208.0
-offset_top = -208.0
-offset_right = 209.0
-offset_bottom = 209.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c4c7o")
 
 [node name="Label" type="Label" parent="." unique_id=497601771]
 layout_mode = 1

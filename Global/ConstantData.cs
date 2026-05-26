@@ -118,6 +118,12 @@ public partial class ConstantData : Node
 	{
 		return (((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.INFO_SPRITE_UID]).ToString();
 	}
+
+	public static string GetWeaponInvItemUID(string weapon_name)
+	{
+		return (((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.INV_ITEM_UID]).ToString();
+	}
+	
 	
 
 	public static List<string> GetShipHardpointWeightClasses(string ship_ID)
@@ -174,7 +180,8 @@ public partial class ConstantData : Node
 		for (int i = 0; i < active_inventory_items.Count; i ++)
 		{
 			Dictionary new_item_dict = (Dictionary)active_inventory_items[i];
-			InventoryItem new_inv_item = (GD.Load<PackedScene>("uid://cedh3uq18etis")).Instantiate<InventoryItem>();
+			//Debug.Print(new_item_dict["weaponID"].ToString());
+			InventoryItem new_inv_item = (GD.Load<PackedScene>(ConstantData.GetWeaponInvItemUID(new_item_dict["weaponID"].ToString()))).Instantiate<InventoryItem>();
 			new_inv_item.weapon_name = new_item_dict["weaponID"].ToString();
 			new_inv_item.level = (int)new_item_dict["level"];
 			return_list.Add(new_inv_item);
