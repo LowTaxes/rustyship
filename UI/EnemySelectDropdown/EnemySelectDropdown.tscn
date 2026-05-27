@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://irm0pguxeib6"]
 
 [ext_resource type="Script" uid="uid://ccdslel3rw7ex" path="res://UI/EnemySelectDropdown/EnemySelectDropdown.cs" id="1_qvtqn"]
-[ext_resource type="Texture2D" uid="uid://cffk7onk65va" path="res://UI/seperator_bar_lower.png" id="2_7le4i"]
+[ext_resource type="Texture2D" uid="uid://dudcsmueecpnj" path="res://UI/LootDropdown/SeperatorBar.png" id="2_v6t20"]
 [ext_resource type="Script" uid="uid://c4gmn6ecg1bvu" path="res://UI/EnemyPreview.cs" id="3_v6t20"]
 [ext_resource type="PackedScene" uid="uid://bt1qd77c1hu7s" path="res://Ships/tempship/test_ship_model.tscn" id="4_ybuyv"]
 
@@ -29,17 +29,15 @@ metadata/_edit_lock_ = true
 [node name="UpperBlackBorder" type="Panel" parent="UpperPanel" unique_id=961071509]
 layout_mode = 0
 offset_left = -1153.0
-offset_top = -455.0
+offset_top = -467.0
 offset_right = 1152.0
 offset_bottom = 223.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_v6t20")
-metadata/_edit_lock_ = true
 
 [node name="UpperSeperator" type="Sprite2D" parent="UpperPanel" unique_id=1823219815]
 position = Vector2(0, 242)
-rotation = -3.1415925
-texture = ExtResource("2_7le4i")
+texture = ExtResource("2_v6t20")
 metadata/_edit_lock_ = true
 
 [node name="EnemyPreview" type="Control" parent="UpperPanel" unique_id=900733887]

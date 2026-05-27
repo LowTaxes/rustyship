@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1wteem6372ip"]
 
-[ext_resource type="Texture2D" uid="uid://dov14l11no8wt" path="res://UI/Inventory/InventorySquare/inv_square_sprite.png" id="2_1mcax"]
+[ext_resource type="Texture2D" uid="uid://bhvalct2pq5fg" path="res://UI/BottomDoors/InventorySquareSprite.png" id="2_1mcax"]
 [ext_resource type="Script" uid="uid://dugww2o4wdohy" path="res://UI/Inventory/InventorySquare/InventorySquare.cs" id="2_3j0fw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvapf"]
@@ -13,7 +13,7 @@ mouse_filter = 1
 script = ExtResource("2_3j0fw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=448677983]
-visible = false
+self_modulate = Color(1, 1, 1, 0.30588236)
 texture = ExtResource("2_1mcax")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=464828853]

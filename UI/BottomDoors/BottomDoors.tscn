@@ -1,20 +1,17 @@
 [gd_scene format=3 uid="uid://cc8rvmj88yvh"]
 
 [ext_resource type="Script" uid="uid://la5xrqtemtpc" path="res://UI/BottomDoors/RightDoor.cs" id="1_owkkl"]
+[ext_resource type="Texture2D" uid="uid://v0nky1csvg1a" path="res://UI/BottomDoors/Rightdoor.png" id="2_4qdc5"]
 [ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="2_gl48u"]
-[ext_resource type="Texture2D" uid="uid://ci7xxw7enl1vp" path="res://rshipadobefiles/RightDoor.png" id="3_4qdc5"]
 [ext_resource type="Texture2D" uid="uid://bwkig3ju3fopf" path="res://UI/ShipEditingUI/WeaponInfoScreen.png" id="4_ni6d2"]
 [ext_resource type="Script" uid="uid://dokh5i2xs3kae" path="res://UI/ShipEditingUI/WeaponInfo.cs" id="5_iw6qo"]
 [ext_resource type="FontFile" uid="uid://d2rks27jo02t5" path="res://WIPAssets/Fonts/tinypixel.otf" id="6_6yctm"]
 [ext_resource type="Script" uid="uid://cbja04x7gto1l" path="res://UI/BottomDoors/LeftDoor.cs" id="7_ok8oj"]
-[ext_resource type="Texture2D" uid="uid://cm32g01janed6" path="res://rshipadobefiles/LeftDoor.png" id="8_hp8wr"]
+[ext_resource type="Texture2D" uid="uid://cvbrjaeqf7hxb" path="res://UI/BottomDoors/LeftDoorCracked.png" id="8_4qdc5"]
 [ext_resource type="Script" uid="uid://bitywnov6avb8" path="res://UI/Inventory/PlayerStorage.cs" id="9_6aie6"]
-[ext_resource type="Texture2D" uid="uid://bqpklk8ma2gxe" path="res://UI/BottomDoors/InventoryContainer_resized.png" id="10_gl48u"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rt4ib"]
-shader = ExtResource("2_gl48u")
-shader_parameter/pixel_size = 8.0
-shader_parameter/handle_edges = false
+[ext_resource type="Texture2D" uid="uid://dv7j7k3qdhpa1" path="res://UI/BottomDoors/InventoryContainer2_nocrack.png" id="10_ni6d2"]
+[ext_resource type="Texture2D" uid="uid://hdc6a8x6vmi" path="res://UI/BottomDoors/HeavyHardpointInv.png" id="12_iw6qo"]
+[ext_resource type="Texture2D" uid="uid://dudcsmueecpnj" path="res://UI/LootDropdown/SeperatorBar.png" id="12_ni6d2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nfbju"]
 shader = ExtResource("2_gl48u")
@@ -29,23 +26,24 @@ size = Vector2(996.5, 498.25757)
 [node name="RightDoor" type="Control" parent="." unique_id=253472664]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 572.0
-offset_top = 356.0
-offset_right = 612.0
-offset_bottom = 396.0
+offset_left = 590.0
+offset_top = 360.0
+offset_right = 630.0
+offset_bottom = 400.0
 script = ExtResource("1_owkkl")
 
 [node name="RightDoor" type="Sprite2D" parent="RightDoor" unique_id=2144252106]
-material = SubResource("ShaderMaterial_rt4ib")
-scale = Vector2(0.245, 0.245)
-texture = ExtResource("3_4qdc5")
+texture = ExtResource("2_4qdc5")
 metadata/_edit_lock_ = true
 
 [node name="WeaponInfoScreen" type="Sprite2D" parent="RightDoor" unique_id=1096506799]
+visible = false
 position = Vector2(18, 17)
 texture = ExtResource("4_ni6d2")
+metadata/_edit_lock_ = true
 
 [node name="WeaponInfo" type="Control" parent="RightDoor" unique_id=2075774697]
+visible = false
 anchors_preset = 0
 offset_left = -510.0
 offset_top = -231.0
@@ -111,25 +109,22 @@ vertical_alignment = 1
 [node name="LeftDoor" type="Control" parent="." unique_id=1571696167]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -566.0
-offset_top = 357.0
-offset_right = -526.0
-offset_bottom = 397.0
+offset_left = -565.0
+offset_top = 360.0
+offset_right = -525.0
+offset_bottom = 400.0
 script = ExtResource("7_ok8oj")
 
 [node name="LeftDoor" type="Sprite2D" parent="LeftDoor" unique_id=868699418]
-material = SubResource("ShaderMaterial_rt4ib")
-scale = Vector2(0.245, 0.245)
-texture = ExtResource("8_hp8wr")
+texture = ExtResource("8_4qdc5")
 metadata/_edit_lock_ = true
 
 [node name="PlayerStorage" type="Control" parent="LeftDoor" unique_id=794730882]
-visible = false
 layout_mode = 1
-anchor_left = 0.5308609
-anchor_top = -0.83104515
-anchor_right = 0.5308617
-anchor_bottom = -0.83104515
+anchor_left = 3.055861
+anchor_top = -0.15604515
+anchor_right = 3.055861
+anchor_bottom = -0.15604515
 offset_left = -521.23444
 offset_top = -182.7582
 offset_right = -481.23447
@@ -143,13 +138,14 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 19.85
 anchor_bottom = 10.15
-offset_right = 206.0
-offset_bottom = 94.0
+offset_right = 6.0
+offset_bottom = -6.0
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="LeftDoor/PlayerStorage" unique_id=1816932977]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDoor/PlayerStorage/Area2D" unique_id=44277202]
@@ -157,7 +153,26 @@ position = Vector2(500.75, 250.87122)
 shape = SubResource("RectangleShape2D_o4yhu")
 metadata/_edit_lock_ = true
 
-[node name="InventoryContainerResized" type="Sprite2D" parent="LeftDoor" unique_id=1215881116]
-position = Vector2(-76.00006, 9)
-scale = Vector2(1.0655241, 1.0655242)
-texture = ExtResource("10_gl48u")
+[node name="InventoryContainer2" type="Sprite2D" parent="LeftDoor/PlayerStorage" unique_id=901341915]
+position = Vector2(419, 200)
+texture = ExtResource("10_ni6d2")
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="." unique_id=425954072]
+visible = false
+offset_left = -1029.0
+offset_top = 171.0
+offset_right = -979.0
+offset_bottom = 221.0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1900643265]
+zoom = Vector2(0.5, 0.5)
+
+[node name="SeperatorBar" type="Sprite2D" parent="." unique_id=1253865047]
+visible = false
+position = Vector2(3, 52)
+texture = ExtResource("12_ni6d2")
+
+[node name="HeavyHardpointInv" type="Sprite2D" parent="." unique_id=57505067]
+position = Vector2(464, 358)
+texture = ExtResource("12_iw6qo")

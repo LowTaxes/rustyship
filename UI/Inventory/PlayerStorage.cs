@@ -32,8 +32,8 @@ public partial class PlayerStorage : Control
 		grid_container.Columns = Constants.player_storage_size_x;
 		area2D = GetChild<Area2D>(1);
 
-		grid_container.AddThemeConstantOverride("h_separation", (int)Constants.inventory_square_size-Constants.pixel_size);
-		grid_container.AddThemeConstantOverride("v_separation", (int)Constants.inventory_square_size-Constants.pixel_size);
+		grid_container.AddThemeConstantOverride("h_separation", (int)Constants.inventory_square_size);
+		grid_container.AddThemeConstantOverride("v_separation", (int)Constants.inventory_square_size);
 		grid_container.Position += new Vector2(Constants.inventory_square_size/2, Constants.inventory_square_size/2);
 		
 		grid_squares = new List<InventorySquare>();
@@ -50,11 +50,12 @@ public partial class PlayerStorage : Control
 				new_square.attatched_container = grid_container;
 				
 				grid_container.AddChild(new_square);
-				float scale_x = Constants.inventory_square_size/(float)new_square.sprite2D.Texture.GetWidth();
-				float scale_y = Constants.inventory_square_size/(float)new_square.sprite2D.Texture.GetHeight();
-				new_square.sprite2D.Scale = new Vector2(scale_x, scale_y);
 				
-				new_square.area2d.Scale = new Vector2(scale_x, scale_y);
+				//float scale_x = Constants.inventory_square_size/(float)new_square.sprite2D.Texture.GetWidth();
+				//float scale_y = Constants.inventory_square_size/(float)new_square.sprite2D.Texture.GetHeight();
+				//new_square.sprite2D.Scale = new Vector2(scale_x, scale_y);
+				
+				//new_square.area2d.Scale = new Vector2(scale_x, scale_y);
 				grid_squares.Add(new_square);
 				new_row.Add(new_square);
 
@@ -91,8 +92,8 @@ public partial class PlayerStorage : Control
 			new_item.area2D.Scale = new Vector2(area_scale_x, area_scale_y);
 			//Debug.Print(new_item.area2D.GetChild<CollisionShape2D>(0).Shape.GetRect().Size.X.ToString());
 			*/
-			float pos_x = (new_item.storage_x)*(Constants.inventory_square_size-Constants.pixel_size) + (new_item.sprite2D.Texture.GetWidth()/2);
-			float pos_y = (new_item.storage_y)*(Constants.inventory_square_size-Constants.pixel_size) + (new_item.sprite2D.Texture.GetHeight()/2);
+			float pos_x = (new_item.storage_x)*(Constants.inventory_square_size) + (new_item.sprite2D.Texture.GetWidth()/2);
+			float pos_y = (new_item.storage_y)*(Constants.inventory_square_size) + (new_item.sprite2D.Texture.GetHeight()/2);
 			
 			Label level_label = new_item.GetChild<Label>(2);
 			level_label.Text = new_item.level.ToString();

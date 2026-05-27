@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqpklk8ma2gxe"
-path="res://.godot/imported/InventoryContainer_resized.png-67c6162fcd78369afc071d7c1c95c783.ctex"
+uid="uid://dudcsmueecpnj"
+path="res://.godot/imported/SeperatorBar.png-da2392f9bf103aa54abc02b8d1e75e92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/BottomDoors/InventoryContainer_resized.png"
-dest_files=["res://.godot/imported/InventoryContainer_resized.png-67c6162fcd78369afc071d7c1c95c783.ctex"]
+source_file="res://UI/LootDropdown/SeperatorBar.png"
+dest_files=["res://.godot/imported/SeperatorBar.png-da2392f9bf103aa54abc02b8d1e75e92.ctex"]
 
 [params]
 

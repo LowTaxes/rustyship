@@ -18,7 +18,7 @@ public partial class LootDropdown : Control
 
 		outer_position = new Vector2(this.Position.X,this.Position.Y - (panel.Size.Y + border_sprite.Texture.GetHeight()));
 		inner_position = this.Position; // this assumes the door in the scene starts on the inside
-		lowest_position = new Vector2(this.Position.X, this.Position.Y + 452);
+		lowest_position = new Vector2(this.Position.X, this.Position.Y + 458);
 
 		this.Position = outer_position;
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bcacvxnn2iq3a"]
 
 [ext_resource type="Script" uid="uid://o674mphjrc6e" path="res://UI/LootDropdown/LootDropdown.cs" id="1_7k7ys"]
-[ext_resource type="Texture2D" uid="uid://cffk7onk65va" path="res://UI/seperator_bar_lower.png" id="2_uyvpf"]
+[ext_resource type="Texture2D" uid="uid://dudcsmueecpnj" path="res://UI/LootDropdown/SeperatorBar.png" id="3_tqjx5"]
 [ext_resource type="Script" uid="uid://chcvs6aipob0m" path="res://UI/LootDropdown/Lootspawn.cs" id="3_uyvpf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqjx5"]
@@ -24,17 +24,15 @@ metadata/_edit_lock_ = true
 [node name="UpperBlackBorder" type="Panel" parent="LootDropdown" unique_id=906067875]
 layout_mode = 0
 offset_left = -1153.0
-offset_top = -455.0
+offset_top = -492.0
 offset_right = 1152.0
 offset_bottom = 223.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tqjx5")
-metadata/_edit_lock_ = true
 
 [node name="UpperSeperator" type="Sprite2D" parent="LootDropdown" unique_id=64634217]
-position = Vector2(0, 242)
-rotation = -3.1415925
-texture = ExtResource("2_uyvpf")
+position = Vector2(3, 242)
+texture = ExtResource("3_tqjx5")
 metadata/_edit_lock_ = true
 
 [node name="lootspawn1" type="Control" parent="LootDropdown" unique_id=1511753632]
