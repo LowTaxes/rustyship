@@ -25,7 +25,7 @@ public partial class WeaponInfo : Control
 		armor_damage_label.Text = "";
 		volley_count_label.Text = "";
 
-		SignalConnect.Instance.Connect(SignalConnect.SignalName.WeaponInfoChange, new Callable(this, "_WeaponInfoChange"));
+		//SignalConnect.Instance.Connect(SignalConnect.SignalName.WeaponInfoChange, new Callable(this, "_WeaponInfoChange"));
 
 	}
 

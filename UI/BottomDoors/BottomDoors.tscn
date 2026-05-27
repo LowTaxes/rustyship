@@ -2,24 +2,21 @@
 
 [ext_resource type="Script" uid="uid://la5xrqtemtpc" path="res://UI/BottomDoors/RightDoor.cs" id="1_owkkl"]
 [ext_resource type="Texture2D" uid="uid://v0nky1csvg1a" path="res://UI/BottomDoors/Rightdoor.png" id="2_4qdc5"]
-[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="2_gl48u"]
 [ext_resource type="Texture2D" uid="uid://bwkig3ju3fopf" path="res://UI/ShipEditingUI/WeaponInfoScreen.png" id="4_ni6d2"]
-[ext_resource type="Script" uid="uid://dokh5i2xs3kae" path="res://UI/ShipEditingUI/WeaponInfo.cs" id="5_iw6qo"]
-[ext_resource type="FontFile" uid="uid://d2rks27jo02t5" path="res://WIPAssets/Fonts/tinypixel.otf" id="6_6yctm"]
 [ext_resource type="Script" uid="uid://cbja04x7gto1l" path="res://UI/BottomDoors/LeftDoor.cs" id="7_ok8oj"]
 [ext_resource type="Texture2D" uid="uid://cvbrjaeqf7hxb" path="res://UI/BottomDoors/LeftDoorCracked.png" id="8_4qdc5"]
 [ext_resource type="Script" uid="uid://bitywnov6avb8" path="res://UI/Inventory/PlayerStorage.cs" id="9_6aie6"]
 [ext_resource type="Texture2D" uid="uid://dv7j7k3qdhpa1" path="res://UI/BottomDoors/InventoryContainer2_nocrack.png" id="10_ni6d2"]
+[ext_resource type="Script" uid="uid://dtvcj10nilf2k" path="res://UI/BottomDoors/HardpointInventory.cs" id="10_ok8oj"]
 [ext_resource type="Texture2D" uid="uid://hdc6a8x6vmi" path="res://UI/BottomDoors/HeavyHardpointInv.png" id="12_iw6qo"]
 [ext_resource type="Texture2D" uid="uid://dudcsmueecpnj" path="res://UI/LootDropdown/SeperatorBar.png" id="12_ni6d2"]
+[ext_resource type="Texture2D" uid="uid://bejm522e8o7is" path="res://UI/BottomDoors/MediumHardpointInv.png" id="13_6yctm"]
+[ext_resource type="Texture2D" uid="uid://g3h4i7w70c6a" path="res://UI/BottomDoors/LightHardpointInv.png" id="14_ok8oj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nfbju"]
-shader = ExtResource("2_gl48u")
-shader_parameter/pixel_size = 8.0
-shader_parameter/handle_edges = false
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hp8wr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4yhu"]
-size = Vector2(996.5, 498.25757)
+size = Vector2(801, 400)
 
 [node name="BottomDoors" type="Node2D" unique_id=1894333025]
 
@@ -42,69 +39,38 @@ position = Vector2(18, 17)
 texture = ExtResource("4_ni6d2")
 metadata/_edit_lock_ = true
 
-[node name="WeaponInfo" type="Control" parent="RightDoor" unique_id=2075774697]
+[node name="HeavyHardpointInv" type="Sprite2D" parent="RightDoor" unique_id=57505067]
 visible = false
+position = Vector2(27, 28)
+texture = ExtResource("12_iw6qo")
+
+[node name="MediumHardpointInv" type="Sprite2D" parent="RightDoor" unique_id=1350996962]
+visible = false
+position = Vector2(26, 27)
+texture = ExtResource("13_6yctm")
+
+[node name="LightHardpointInv" type="Sprite2D" parent="RightDoor" unique_id=917470533]
+visible = false
+position = Vector2(26, 28)
+texture = ExtResource("14_ok8oj")
+
+[node name="HardpointInventory" type="Control" parent="RightDoor" unique_id=461111993]
 anchors_preset = 0
-offset_left = -510.0
-offset_top = -231.0
-offset_right = 546.0
-offset_bottom = 265.0
-script = ExtResource("5_iw6qo")
-metadata/_edit_lock_ = true
+offset_left = -249.0
+offset_top = 23.0
+offset_right = -209.0
+offset_bottom = 63.0
+script = ExtResource("10_ok8oj")
 
-[node name="WeaponInfoSprite" type="Control" parent="RightDoor/WeaponInfo" unique_id=993451217]
-anchors_preset = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 500.0
-offset_bottom = 244.0
-
-[node name="WeaponInfoSprite" type="Sprite2D" parent="RightDoor/WeaponInfo/WeaponInfoSprite" unique_id=1754557984]
-material = SubResource("ShaderMaterial_nfbju")
-
-[node name="WeaponInfoDamage" type="Label" parent="RightDoor/WeaponInfo" unique_id=1740607539]
+[node name="GridContainer" type="GridContainer" parent="RightDoor/HardpointInventory" unique_id=2069001864]
 layout_mode = 0
-offset_left = 549.0
-offset_top = 8.0
-offset_right = 1046.0
-offset_bottom = 124.0
-theme_override_fonts/font = ExtResource("6_6yctm")
-theme_override_font_sizes/font_size = 40
-text = "Damage: 0"
-vertical_alignment = 1
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="WeaponInfoFirerate" type="Label" parent="RightDoor/WeaponInfo" unique_id=1962635798]
-layout_mode = 0
-offset_left = 549.0
-offset_top = 132.0
-offset_right = 1046.0
-offset_bottom = 244.0
-theme_override_fonts/font = ExtResource("6_6yctm")
-theme_override_font_sizes/font_size = 40
-text = "Firerate: 0/S"
-vertical_alignment = 1
+[node name="Area2D" type="Area2D" parent="RightDoor/HardpointInventory" unique_id=215474985]
 
-[node name="WeaponInfoArmorDamage" type="Label" parent="RightDoor/WeaponInfo" unique_id=465785171]
-layout_mode = 0
-offset_left = 549.0
-offset_top = 252.0
-offset_right = 1046.0
-offset_bottom = 372.0
-theme_override_fonts/font = ExtResource("6_6yctm")
-theme_override_font_sizes/font_size = 40
-text = "Armor Damage: 0%"
-vertical_alignment = 1
-
-[node name="WeaponInfoVolleyCount" type="Label" parent="RightDoor/WeaponInfo" unique_id=1416370085]
-layout_mode = 0
-offset_left = 549.0
-offset_top = 380.0
-offset_right = 1046.0
-offset_bottom = 488.0
-theme_override_fonts/font = ExtResource("6_6yctm")
-theme_override_font_sizes/font_size = 40
-text = "Per Volley: 0"
-vertical_alignment = 1
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightDoor/HardpointInventory/Area2D" unique_id=266017845]
+shape = SubResource("RectangleShape2D_hp8wr")
 
 [node name="LeftDoor" type="Control" parent="." unique_id=1571696167]
 layout_mode = 3
@@ -145,25 +111,15 @@ metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="LeftDoor/PlayerStorage" unique_id=1816932977]
-visible = false
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDoor/PlayerStorage/Area2D" unique_id=44277202]
-position = Vector2(500.75, 250.87122)
+position = Vector2(399.5, 200)
 shape = SubResource("RectangleShape2D_o4yhu")
-metadata/_edit_lock_ = true
 
 [node name="InventoryContainer2" type="Sprite2D" parent="LeftDoor/PlayerStorage" unique_id=901341915]
 position = Vector2(419, 200)
 texture = ExtResource("10_ni6d2")
 metadata/_edit_lock_ = true
-
-[node name="Panel" type="Panel" parent="." unique_id=425954072]
-visible = false
-offset_left = -1029.0
-offset_top = 171.0
-offset_right = -979.0
-offset_bottom = 221.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1900643265]
 zoom = Vector2(0.5, 0.5)
@@ -172,7 +128,3 @@ zoom = Vector2(0.5, 0.5)
 visible = false
 position = Vector2(3, 52)
 texture = ExtResource("12_ni6d2")
-
-[node name="HeavyHardpointInv" type="Sprite2D" parent="." unique_id=57505067]
-position = Vector2(464, 358)
-texture = ExtResource("12_iw6qo")

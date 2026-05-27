@@ -29,6 +29,7 @@ public partial class Constants : Node
 		INVENTORY_ITEM_SPRITE_UID,
 		INFO_SPRITE_UID,
 		INV_ITEM_UID,
+		WEIGHT_CLASS
 	}
 
 	public enum ShipDataEnum

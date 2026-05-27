@@ -12,7 +12,8 @@
 		{"x":2,"y":1},
 		"uid://bh4kj5jjobnvp",
 		"uid://cwb520ghg1a4g",
-		"uid://cm70no81qpt1p"
+		"uid://cm70no81qpt1p",
+		"light"
 	],
 
 	"autocannon":[
@@ -28,7 +29,8 @@
 		{"x":2,"y":1},
 		"uid://dem6gc8x0evym",
 		"uid://cwb520ghg1a4g",
-		"uid://cm70no81qpt1p"
+		"uid://cm70no81qpt1p",
+		"light"
 	],
 
 	"203mm":[
@@ -44,7 +46,8 @@
 		{"x":3,"y":2},
 		"uid://cywxw6pjblpkj",
 		"uid://b3evjafulrtmj",
-		"uid://baip04150onwf"
+		"uid://baip04150onwf",
+		"medium"
 	]
 
 

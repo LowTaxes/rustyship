@@ -87,6 +87,8 @@ public partial class MainMenu : Node2D
 		hardpoint_1.Add("x", 0);
 		hardpoint_1.Add("y", 0);
 		hardpoint_1.Add("weight_class", "light");
+		hardpoint_1.Add("inv_x", 0);
+		hardpoint_1.Add("inv_y", 0);
 
 		Dictionary hardpoint_2 = new Dictionary();
 		hardpoint_2.Add("level", 1);
@@ -94,6 +96,8 @@ public partial class MainMenu : Node2D
 		hardpoint_2.Add("x", 100);
 		hardpoint_2.Add("y", 0);
 		hardpoint_2.Add("weight_class", "medium");
+		hardpoint_2.Add("inv_x", 0);
+		hardpoint_2.Add("inv_y", 0);
 
 
 		Dictionary run_data = new Dictionary();

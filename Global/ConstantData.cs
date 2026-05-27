@@ -123,6 +123,10 @@ public partial class ConstantData : Node
 	{
 		return (((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.INV_ITEM_UID]).ToString();
 	}
+	public static string GetWeaponWeightClass(string weapon_name)
+	{
+		return (((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.WEIGHT_CLASS]).ToString();
+	}
 	
 	
 

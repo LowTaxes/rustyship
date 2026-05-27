@@ -20,7 +20,7 @@ public partial class SignalConnect : Node
 	[Signal] public delegate void HardpointAddedEventHandler();
 	[Signal] public delegate void HardpointRemovedEventHandler();
 	[Signal] public delegate void CanEditHardpointsEventHandler();
-	[Signal] public delegate void WeaponInfoChangeEventHandler();
+	[Signal] public delegate void HardpointInfoChangeEventHandler();
 
 	//UI movement signals n shit
 

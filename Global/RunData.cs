@@ -178,6 +178,8 @@ public partial class RunData : Node
 			new_hardpoint.attatched_weaponID = new_hardpoint_dict["weaponID"].ToString();
 			new_hardpoint.placement_position = new Vector2((int)new_hardpoint_dict["x"], (int)new_hardpoint_dict["y"]);
 			new_hardpoint.weight_class = new_hardpoint_dict["weight_class"].ToString();
+			new_hardpoint.inv_x = (int)new_hardpoint_dict["inv_x"];
+			new_hardpoint.inv_y = (int)new_hardpoint_dict["inv_y"];
 			return_list.Add(new_hardpoint);
 		}
 		
