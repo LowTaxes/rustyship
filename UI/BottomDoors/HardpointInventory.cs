@@ -17,9 +17,9 @@ public partial class HardpointInventory : Control
 	public string attatched_weapon_name = "empty";
 	public int size_x;
 	public int size_y;
-	public PackedScene light_container;
-	public PackedScene medium_container;
-	public PackedScene heavy_container;
+	public Texture2D light_container;
+	public Texture2D medium_container;
+	public Texture2D heavy_container;
 
 	public PackedScene cur_background_container_scene;
 
@@ -31,9 +31,9 @@ public partial class HardpointInventory : Control
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.InvItemReleased, new Callable(this, "_OnInvItemReleased"));
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.HardpointInfoChange, new Callable(this, "_OnHardpointInfoChange"));
 		
-		light_container = ResourceLoader.Load<PackedScene>("uid://g3h4i7w70c6a");
-		medium_container = ResourceLoader.Load<PackedScene>("uid://bejm522e8o7is");
-		heavy_container = ResourceLoader.Load<PackedScene>("uid://hdc6a8x6vmi");
+		light_container = ResourceLoader.Load<Texture2D>("uid://g3h4i7w70c6a");
+		medium_container = ResourceLoader.Load<Texture2D>("uid://bejm522e8o7is");
+		heavy_container = ResourceLoader.Load<Texture2D>("uid://hdc6a8x6vmi");
 		/*
 		string weight_class = ConstantData.GetWeaponWeightClass(attatched_weapon_name);
 
@@ -67,7 +67,8 @@ public partial class HardpointInventory : Control
 		*/
 
 
-		background_container_sprite = light_container.Instantiate<Sprite2D>();
+		background_container_sprite = GetChild<Sprite2D>(0);
+		background_container_sprite.Texture = light_container;
 		size_x = 2;
 		size_y = 2;
 
@@ -75,26 +76,26 @@ public partial class HardpointInventory : Control
 
 		inventory_square_scene = GD.Load<PackedScene>("uid://b1wteem6372ip");
 		
-		grid_container = GetChild<GridContainer>(0);
+		grid_container = GetChild<GridContainer>(1);
 		grid_container.Columns = size_x;
-		area2D = GetChild<Area2D>(1);
+		area2D = GetChild<Area2D>(2);
 
 		grid_container.AddThemeConstantOverride("h_separation", (int)Constants.inventory_square_size);
 		grid_container.AddThemeConstantOverride("v_separation", (int)Constants.inventory_square_size);
 
 		
-		this.AddChild(background_container_sprite);
+		
 
-		grid_container.Position += new Vector2(-Constants.inventory_square_size*size_x, -Constants.inventory_square_size*size_y);
-		area2D.Position += new Vector2(-Constants.inventory_square_size*size_x, -Constants.inventory_square_size*size_y);
+		grid_container.Position += new Vector2(-Constants.inventory_square_size*size_x/2 + Constants.inventory_square_size/2, -Constants.inventory_square_size*size_y/2 + Constants.inventory_square_size/2);
+		area2D.Position += new Vector2(-Constants.inventory_square_size*size_x/2 + Constants.inventory_square_size/2, -Constants.inventory_square_size*size_y/2 + Constants.inventory_square_size/2);
 
 		grid_squares = new List<InventorySquare>();
 		rowed_grid_squares = new List<List<InventorySquare>>();
 		//Spawn all inventory squares
-		for(int i = 0; i < Constants.player_storage_size_y; i ++)
+		for(int i = 0; i < size_y; i ++)
 		{
 			List<InventorySquare> new_row = new List<InventorySquare>();
-			for(int k = 0; k < Constants.player_storage_size_x; k ++)
+			for(int k = 0; k < size_x; k ++)
 			{
 				InventorySquare new_square = inventory_square_scene.Instantiate<InventorySquare>();
 				new_square.tile_x = k;
