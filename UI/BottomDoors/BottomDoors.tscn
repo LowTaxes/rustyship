@@ -11,16 +11,18 @@
 [ext_resource type="Texture2D" uid="uid://hdc6a8x6vmi" path="res://UI/BottomDoors/HeavyHardpointInv.png" id="12_iw6qo"]
 [ext_resource type="Texture2D" uid="uid://dudcsmueecpnj" path="res://UI/LootDropdown/SeperatorBar.png" id="12_ni6d2"]
 [ext_resource type="Texture2D" uid="uid://bejm522e8o7is" path="res://UI/BottomDoors/MediumHardpointInv.png" id="13_6yctm"]
+[ext_resource type="Texture2D" uid="uid://dgwugbk5idi1w" path="res://UI/BottomDoors/BottomPanel.png" id="13_iw6qo"]
 [ext_resource type="Texture2D" uid="uid://g3h4i7w70c6a" path="res://UI/BottomDoors/LightHardpointInv.png" id="14_ok8oj"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hp8wr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4yhu"]
 size = Vector2(801, 400)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hp8wr"]
+
 [node name="BottomDoors" type="Node2D" unique_id=1894333025]
 
 [node name="RightDoor" type="Control" parent="." unique_id=253472664]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 590.0
@@ -54,27 +56,8 @@ visible = false
 position = Vector2(26, 28)
 texture = ExtResource("14_ok8oj")
 
-[node name="HardpointInventory" type="Control" parent="RightDoor" unique_id=461111993]
-anchors_preset = 0
-offset_left = -249.0
-offset_top = 23.0
-offset_right = -209.0
-offset_bottom = 63.0
-script = ExtResource("10_ok8oj")
-
-[node name="Sprite2D" type="Sprite2D" parent="RightDoor/HardpointInventory" unique_id=1737189960]
-
-[node name="GridContainer" type="GridContainer" parent="RightDoor/HardpointInventory" unique_id=2069001864]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Area2D" type="Area2D" parent="RightDoor/HardpointInventory" unique_id=215474985]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightDoor/HardpointInventory/Area2D" unique_id=266017845]
-shape = SubResource("RectangleShape2D_hp8wr")
-
 [node name="LeftDoor" type="Control" parent="." unique_id=1571696167]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -565.0
@@ -87,21 +70,34 @@ script = ExtResource("7_ok8oj")
 texture = ExtResource("8_4qdc5")
 metadata/_edit_lock_ = true
 
-[node name="PlayerStorage" type="Control" parent="LeftDoor" unique_id=794730882]
-layout_mode = 1
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1900643265]
+zoom = Vector2(0.5, 0.5)
+
+[node name="SeperatorBar" type="Sprite2D" parent="." unique_id=1253865047]
+visible = false
+position = Vector2(3, 52)
+texture = ExtResource("12_ni6d2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1293397332]
+position = Vector2(0, 360)
+texture = ExtResource("13_iw6qo")
+metadata/_edit_lock_ = true
+
+[node name="PlayerStorage" type="Control" parent="." unique_id=794730882]
+layout_mode = 3
 anchor_left = 3.055861
 anchor_top = -0.15604515
 anchor_right = 3.055861
 anchor_bottom = -0.15604515
-offset_left = -521.23444
-offset_top = -182.7582
-offset_right = -481.23447
-offset_bottom = -142.7582
+offset_left = -464.0
+offset_top = 152.0
+offset_right = -424.0
+offset_bottom = 192.0
 mouse_filter = 2
 script = ExtResource("9_6aie6")
 metadata/_edit_use_anchors_ = true
 
-[node name="GridContainer" type="GridContainer" parent="LeftDoor/PlayerStorage" unique_id=857207705]
+[node name="GridContainer" type="GridContainer" parent="PlayerStorage" unique_id=857207705]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 19.85
@@ -112,21 +108,37 @@ mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="Area2D" type="Area2D" parent="LeftDoor/PlayerStorage" unique_id=1816932977]
+[node name="Area2D" type="Area2D" parent="PlayerStorage" unique_id=1816932977]
+metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDoor/PlayerStorage/Area2D" unique_id=44277202]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerStorage/Area2D" unique_id=44277202]
 position = Vector2(399.5, 200)
 shape = SubResource("RectangleShape2D_o4yhu")
+metadata/_edit_lock_ = true
 
-[node name="InventoryContainer2" type="Sprite2D" parent="LeftDoor/PlayerStorage" unique_id=901341915]
+[node name="InventoryContainer2" type="Sprite2D" parent="PlayerStorage" unique_id=901341915]
+visible = false
 position = Vector2(419, 200)
 texture = ExtResource("10_ni6d2")
 metadata/_edit_lock_ = true
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1900643265]
-zoom = Vector2(0.5, 0.5)
+[node name="HardpointInventory" type="Control" parent="." unique_id=461111993]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 341.0
+offset_top = 383.0
+offset_right = 381.0
+offset_bottom = 423.0
+script = ExtResource("10_ok8oj")
 
-[node name="SeperatorBar" type="Sprite2D" parent="." unique_id=1253865047]
-visible = false
-position = Vector2(3, 52)
-texture = ExtResource("12_ni6d2")
+[node name="Sprite2D" type="Sprite2D" parent="HardpointInventory" unique_id=1737189960]
+
+[node name="GridContainer" type="GridContainer" parent="HardpointInventory" unique_id=2069001864]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="HardpointInventory" unique_id=215474985]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HardpointInventory/Area2D" unique_id=266017845]
+shape = SubResource("RectangleShape2D_hp8wr")
