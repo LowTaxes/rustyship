@@ -27,6 +27,7 @@ public partial class SignalConnect : Node
 	[Signal] public delegate void EditablePlayerReadyEventHandler();
 	[Signal] public delegate void EnemySelectPanelRetractedEventHandler();
 	[Signal] public delegate void LootTakenEventHandler();
+	[Signal] public delegate void ToBattleEventHandler();
 
 
 

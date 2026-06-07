@@ -54,7 +54,7 @@ public partial class InventoryItem : Control
 	private void _On_Mouse_Entered()
 	{
 		mouse_hovering = true;
-		Debug.Print("hi");
+		//Debug.Print("hi");
 		//Debug.Print(mouse_hovering.ToString());
 	}
 

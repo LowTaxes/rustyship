@@ -26,15 +26,16 @@ public partial class GameLoop : Node2D
 
 	public void StartNewLoop()
 	{
-		bottom_doors = Bottom_Doors_Scene.Instantiate<Node2D>();
-		editable_player = Editable_Player_Scene.Instantiate<Node2D>();
 		enemy_select_dropdown = Enemy_Select_dropdown_Scene.Instantiate<Node2D>();
 		loot_dropdown = Loot_Dropdown_Scene.Instantiate<Node2D>();
-
-		this.AddChild(bottom_doors);
+		bottom_doors = Bottom_Doors_Scene.Instantiate<Node2D>();
+		editable_player = Editable_Player_Scene.Instantiate<Node2D>();
 		this.AddChild(editable_player);
 		this.AddChild(enemy_select_dropdown);
 		this.AddChild(loot_dropdown);
+		this.AddChild(bottom_doors);
+		
+		
 	}
 
 	

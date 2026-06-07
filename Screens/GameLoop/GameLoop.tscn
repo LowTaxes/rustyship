@@ -1,13 +1,23 @@
 [gd_scene format=3 uid="uid://bkxbp4irv6s6o"]
 
 [ext_resource type="Script" uid="uid://dsuudes54lbx3" path="res://Screens/GameLoop/GameLoop.cs" id="1_pufhl"]
+[ext_resource type="Shader" uid="uid://px7wljgnx6qv" path="res://WIPAssets/Shaders/pixelated_16.gdshader" id="2_7b0jq"]
 [ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="2_n6itl"]
 [ext_resource type="VideoStream" uid="uid://c73lbh7pdl41b" path="res://WIPAssets/waves_1.ogv" id="3_aeulu"]
+[ext_resource type="Texture2D" uid="uid://ijdj872hweis" path="res://WIPAssets/wave_static.png" id="4_msvx0"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_msvx0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8a1q"]
+shader = ExtResource("2_7b0jq")
+shader_parameter/pixel_size = 16.0
+shader_parameter/handle_edges = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7b0jq"]
 shader = ExtResource("2_n6itl")
 shader_parameter/pixel_size = 8.0
 shader_parameter/handle_edges = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7b0jq"]
+bg_color = Color(0.08627451, 0.16470589, 0.20784314, 1)
 
 [node name="GameLoop" type="Node2D" unique_id=1531476535]
 script = ExtResource("1_pufhl")
@@ -19,7 +29,7 @@ metadata/_edit_lock_ = true
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1259685134]
 z_index = -1
-material = SubResource("ShaderMaterial_msvx0")
+material = SubResource("ShaderMaterial_w8a1q")
 offset_left = -1195.0
 offset_top = -679.0
 offset_right = 785.7407
@@ -28,7 +38,23 @@ scale = Vector2(1.2, 1.2)
 mouse_filter = 2
 stream = ExtResource("3_aeulu")
 volume_db = -80.0
+speed_scale = 0.509
 autoplay = true
 expand = true
 loop = true
 metadata/_edit_lock_ = true
+
+[node name="WaveStatic" type="Sprite2D" parent="." unique_id=1736379826]
+visible = false
+material = SubResource("ShaderMaterial_7b0jq")
+position = Vector2(206.75, -0.5)
+scale = Vector2(2.357502, 2.3885016)
+texture = ExtResource("4_msvx0")
+
+[node name="Panel" type="Panel" parent="." unique_id=805561041]
+offset_left = -1174.0
+offset_top = -660.0
+offset_right = 1194.0
+offset_bottom = 666.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7b0jq")

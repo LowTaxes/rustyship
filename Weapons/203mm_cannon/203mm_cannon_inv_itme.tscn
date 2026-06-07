@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bv6fvbdknx03l" path="res://UI/Inventory/InventoryItem.cs" id="1_epgrr"]
 [ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="1_hop2o"]
 [ext_resource type="Texture2D" uid="uid://exklgghsg0e5" path="res://Weapons/203mm_cannon/203mm_cannon_inv_sprite.png" id="2_epgrr"]
+[ext_resource type="FontFile" uid="uid://d2rks27jo02t5" path="res://WIPAssets/Fonts/tinypixel.otf" id="4_4lsdh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4lsdh"]
 shader = ExtResource("1_hop2o")
@@ -10,7 +11,7 @@ shader_parameter/pixel_size = 8.0
 shader_parameter/handle_edges = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cht8l"]
-size = Vector2(284, 184)
+size = Vector2(240, 162)
 
 [node name="203MmCannonInvItme" type="Control" unique_id=672607815]
 layout_mode = 3
@@ -39,11 +40,12 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 111.0
+offset_left = 90.0
 offset_top = 44.0
-offset_right = 139.0
+offset_right = 118.0
 offset_bottom = 86.0
 grow_horizontal = 0
+theme_override_fonts/font = ExtResource("4_4lsdh")
 theme_override_font_sizes/font_size = 30
 text = "4"
 

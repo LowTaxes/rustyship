@@ -4,21 +4,21 @@
 [ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="1_05wmu"]
 [ext_resource type="Texture2D" uid="uid://3yq1blr82bj2" path="res://Weapons/203mm_cannon/203mm_cannon_turret.png" id="3_5fjjv"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gw1o7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_05wmu"]
 shader = ExtResource("1_05wmu")
 shader_parameter/pixel_size = 8.0
 shader_parameter/handle_edges = false
 
 [node name="203MmCannonBase" type="Sprite2D" unique_id=1296524469]
-material = SubResource("ShaderMaterial_gw1o7")
+material = SubResource("ShaderMaterial_05wmu")
 texture = ExtResource("1_5rs6k")
 
 [node name="203MmCannonTurret" type="Sprite2D" parent="." unique_id=1521402585]
-material = SubResource("ShaderMaterial_gw1o7")
+material = SubResource("ShaderMaterial_05wmu")
 position = Vector2(69, -14)
 texture = ExtResource("3_5fjjv")
 
 [node name="203MmCannonTurret2" type="Sprite2D" parent="." unique_id=979399011]
-material = SubResource("ShaderMaterial_gw1o7")
+material = SubResource("ShaderMaterial_05wmu")
 position = Vector2(70, 13)
 texture = ExtResource("3_5fjjv")

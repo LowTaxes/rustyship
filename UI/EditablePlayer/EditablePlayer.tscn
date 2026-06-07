@@ -10,9 +10,9 @@ zoom = Vector2(0.5, 0.5)
 [node name="EditablePlayer" type="Control" parent="." unique_id=1531624050]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -2000.0
-offset_top = -320.0
-offset_right = -1960.0
-offset_bottom = -280.0
+offset_left = -2094.0
+offset_top = -148.0
+offset_right = -2054.0
+offset_bottom = -108.0
 mouse_filter = 2
 script = ExtResource("1_inusx")

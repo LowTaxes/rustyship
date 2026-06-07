@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="1_lr87y"]
 [ext_resource type="Script" uid="uid://bv6fvbdknx03l" path="res://UI/Inventory/InventoryItem.cs" id="1_vpqyu"]
 [ext_resource type="Texture2D" uid="uid://cmrbyc0tglvtf" path="res://Weapons/autocannon/autocannon_inv_item_sprite.png" id="2_vpqyu"]
+[ext_resource type="FontFile" uid="uid://d2rks27jo02t5" path="res://WIPAssets/Fonts/tinypixel.otf" id="4_6tdk7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6tdk7"]
 shader = ExtResource("1_lr87y")
@@ -10,7 +11,7 @@ shader_parameter/pixel_size = 8.0
 shader_parameter/handle_edges = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81hpf"]
-size = Vector2(144, 72)
+size = Vector2(160, 80)
 
 [node name="AutocannonInvItem" type="Control" unique_id=1613340080]
 layout_mode = 3
@@ -38,11 +39,12 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 50.0
-offset_top = -8.0
-offset_right = 78.0
-offset_bottom = 34.0
+offset_left = 56.0
+offset_top = 11.0
+offset_right = 84.0
+offset_bottom = 53.0
 grow_horizontal = 0
+theme_override_fonts/font = ExtResource("4_6tdk7")
 theme_override_font_sizes/font_size = 30
 text = "4"
 

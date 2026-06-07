@@ -59,6 +59,14 @@ public partial class EnemyPreview : Control
 			
 		}
 
+		PackedScene ship_model_scene = ResourceLoader.Load<PackedScene>(ConstantData.GetShipModelUID(ConstantData.GetLevelShipTemplateID(new_level_id)));
+		ShipModel ship_model = ship_model_scene.Instantiate<ShipModel>();
+		ship_model.Position += new Vector2(ship_preview_control.Size.X/2, ship_preview_control.Size.Y/2);
+
+		float scale = ship_preview_control.Size.X / ship_model.Texture.GetWidth();
+		ship_model.Scale = new Vector2(scale, scale);
+
+		ship_preview_control.AddChild(ship_model);
 	}
 
 	private void _On_Selected()

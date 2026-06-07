@@ -13,6 +13,7 @@ public partial class EditablePlayer : Control
 	ShipModel ship_model;
 	List<Hardpoint> active_hardpoints;
 	public bool hardpoint_editing = false;
+	public Vector2 outer_position;
 	
 	
 	public override void _Ready()
@@ -26,6 +27,7 @@ public partial class EditablePlayer : Control
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.CanEditHardpoints, new Callable(this, "_CanEditHardpoints"));
 
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.ChangeToNextScene, new Callable(this, "_ChangeToNextScene"));
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.ToBattle, new Callable(this, "_ToBattle"));
 
 
 		//get ship and run data
@@ -48,10 +50,10 @@ public partial class EditablePlayer : Control
 			//Debug.Print("hi");
 			AddChild(active_hardpoints[i]);
 			active_hardpoints[i].Position += active_hardpoints[i].placement_position;
-			Sprite2D weapon_model = ResourceLoader.Load<PackedScene>(ConstantData.GetWeaponModelUID(active_hardpoints[i].attatched_weaponID)).Instantiate<Sprite2D>();
-			active_hardpoints[i].AddChild(weapon_model);
-			weapon_model.LookAt(new Vector2(weapon_model.GlobalPosition.X, weapon_model.GlobalPosition.Y-1));
+			
+			active_hardpoints[i].SetWeaponModelSprite(active_hardpoints[i].attatched_weaponID);
 		}
+		outer_position = this.Position;
 
 		Tween tween = GetTree().CreateTween();
 		tween.TweenProperty(this, "position", new Vector2(0,this.Position.Y), 1);
@@ -149,6 +151,12 @@ public partial class EditablePlayer : Control
 			array_attatched_items.Add(curr_item);
 		}
 		RunData.Instance.p_active_inv = array_attatched_items;
+	}
+
+	private void _ToBattle()
+	{
+		Tween tween = GetTree().CreateTween();
+		tween.TweenProperty(this, "position", outer_position, .5);
 	}
 
 	
