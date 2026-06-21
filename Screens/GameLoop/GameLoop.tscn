@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dsuudes54lbx3" path="res://Screens/GameLoop/GameLoop.cs" id="1_pufhl"]
 [ext_resource type="Shader" uid="uid://px7wljgnx6qv" path="res://WIPAssets/Shaders/pixelated_16.gdshader" id="2_7b0jq"]
-[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="2_n6itl"]
+[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated_8.gdshader" id="2_n6itl"]
 [ext_resource type="VideoStream" uid="uid://c73lbh7pdl41b" path="res://WIPAssets/waves_1.ogv" id="3_aeulu"]
 [ext_resource type="Texture2D" uid="uid://ijdj872hweis" path="res://WIPAssets/wave_static.png" id="4_msvx0"]
+[ext_resource type="Texture2D" uid="uid://cbn6etdeke6w6" path="res://Ships/NavalCamo/NavalCamo.png" id="6_ubbqw"]
+[ext_resource type="PackedScene" uid="uid://tmwh3dr3v4s8" path="res://BattleItems/Weapons/203mm_cannon/203_mm_cannon_base.tscn" id="7_n6itl"]
+[ext_resource type="PackedScene" uid="uid://cmbunrqtfr00l" path="res://BattleItems/Weapons/autocannon/autocannon.tscn" id="8_5gcab"]
+[ext_resource type="Texture2D" uid="uid://bkl4fcfrj7nuk" path="res://BattleItems/Defensive/HealthBasicLight/HealthBasicLightBattleModel.png" id="9_uekwm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w8a1q"]
 shader = ExtResource("2_7b0jq")
@@ -28,6 +32,7 @@ zoom = Vector2(0.5, 0.5)
 metadata/_edit_lock_ = true
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1259685134]
+visible = false
 z_index = -1
 material = SubResource("ShaderMaterial_w8a1q")
 offset_left = -1195.0
@@ -39,7 +44,6 @@ mouse_filter = 2
 stream = ExtResource("3_aeulu")
 volume_db = -80.0
 speed_scale = 0.509
-autoplay = true
 expand = true
 loop = true
 metadata/_edit_lock_ = true
@@ -52,9 +56,29 @@ scale = Vector2(2.357502, 2.3885016)
 texture = ExtResource("4_msvx0")
 
 [node name="Panel" type="Panel" parent="." unique_id=805561041]
+z_index = -10
 offset_left = -1174.0
 offset_top = -660.0
 offset_right = 1194.0
 offset_bottom = 666.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7b0jq")
+
+[node name="NavalCamo" type="Sprite2D" parent="." unique_id=2110603637]
+position = Vector2(-1035, -951)
+texture = ExtResource("6_ubbqw")
+
+[node name="Panel" type="Panel" parent="NavalCamo" unique_id=1673803210]
+offset_left = -123.0
+offset_right = -71.0
+offset_bottom = 52.0
+
+[node name="203MmCannonBase" parent="NavalCamo" unique_id=1296524469 instance=ExtResource("7_n6itl")]
+position = Vector2(-14, 24)
+
+[node name="AutocannonBase" parent="NavalCamo" unique_id=1010064939 instance=ExtResource("8_5gcab")]
+position = Vector2(-217, -3)
+
+[node name="HealthBasicLightBattleModel" type="Sprite2D" parent="NavalCamo" unique_id=251809449]
+position = Vector2(-291, 39)
+texture = ExtResource("9_uekwm")

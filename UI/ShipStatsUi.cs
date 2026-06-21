@@ -56,29 +56,19 @@ public partial class ShipStatsUi : Control
     }
 	
 
-	private void _OnPlayerDamageTaken(double damage, double armor_damage_modifier, double crit_chance)
+	private void _OnPlayerDamageTaken(double damage, double armor_damage_modifier)
 	{
-		RandomNumberGenerator random_number_generator = new RandomNumberGenerator();
-		double rand = random_number_generator.RandfRange(0,1);
-		bool is_crit = false;
-		double crit_damage_modifier = 1;
-		if(crit_chance>rand)
-		{
-			is_crit=true;
-		}
-		if(is_crit)
-		{
-			crit_damage_modifier = 2;
-		}
+		
+		
 		if(player_armor_bar.Value > 0)
 		{
-			player_armor_bar.Value-=damage*armor_damage_modifier*crit_damage_modifier;
+			player_armor_bar.Value-=damage*armor_damage_modifier;
 			player_armor_bar.GetChild<Label>(0).Text = player_armor_bar.Value + "/" + player_armor_bar.MaxValue;
 			
 		}
 		else if(player_health_bar.Value > 0)
 		{
-			player_health_bar.Value-=damage*crit_damage_modifier;
+			player_health_bar.Value-=damage;
 			player_health_bar.GetChild<Label>(0).Text = player_health_bar.Value + "/" + player_health_bar.MaxValue;
 			
 		}
@@ -89,29 +79,18 @@ public partial class ShipStatsUi : Control
 			GetTree().ChangeSceneToPacked(enemy_selection);
 		}
 	}
-	private void _OnEnemyDamageTaken(double damage, double armor_damage_modifier, double crit_chance)
+	private void _OnEnemyDamageTaken(double damage, double armor_damage_modifier)
 	{
-		RandomNumberGenerator random_number_generator = new RandomNumberGenerator();
-		double rand = random_number_generator.RandfRange(0,1);
-		bool is_crit = false;
-		double crit_damage_modifier = 1;
-		if(crit_chance>rand)
-		{
-			is_crit=true;
-		}
-		if(is_crit)
-		{
-			crit_damage_modifier = 2;
-		}
+		
 		if(enemy_armor_bar.Value > 0)
 		{
-			enemy_armor_bar.Value-=damage*armor_damage_modifier*crit_damage_modifier;
+			enemy_armor_bar.Value-=damage*armor_damage_modifier;
 			enemy_armor_bar.GetChild<Label>(0).Text = enemy_armor_bar.Value + "/" + enemy_armor_bar.MaxValue;
 			
 		}
 		else if(enemy_health_bar.Value > 0)
 		{
-			enemy_health_bar.Value-=damage*crit_damage_modifier;
+			enemy_health_bar.Value-=damage;
 			enemy_health_bar.GetChild<Label>(0).Text = enemy_health_bar.Value + "/" + enemy_health_bar.MaxValue;
 			
 		}

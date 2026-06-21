@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://baip04150onwf"]
+
+[ext_resource type="Script" uid="uid://bv6fvbdknx03l" path="res://UI/Inventory/InventoryItem.cs" id="1_epgrr"]
+[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated_8.gdshader" id="1_hop2o"]
+[ext_resource type="Texture2D" uid="uid://exklgghsg0e5" path="res://BattleItems/Weapons/203mm_cannon/203mm_cannon_inv_sprite.png" id="2_epgrr"]
+[ext_resource type="FontFile" uid="uid://d2rks27jo02t5" path="res://WIPAssets/Fonts/tinypixel.otf" id="4_4lsdh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4lsdh"]
+shader = ExtResource("1_hop2o")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cht8l"]
+size = Vector2(240, 162)
+
+[node name="203MmCannonInvItme" type="Control" unique_id=672607815]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_epgrr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=943760507]
+material = SubResource("ShaderMaterial_4lsdh")
+texture = ExtResource("2_epgrr")
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1620266696]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1781225419]
+shape = SubResource("RectangleShape2D_cht8l")
+metadata/_edit_lock_ = true
+
+[node name="ReferencePoint" type="Node2D" parent="Area2D" unique_id=972473283]
+position = Vector2(-120, -80)
+
+[node name="Label" type="Label" parent="." unique_id=1133183455]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 90.0
+offset_top = 44.0
+offset_right = 118.0
+offset_bottom = 86.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("4_4lsdh")
+theme_override_font_sizes/font_size = 30
+text = "4"

@@ -29,6 +29,14 @@
 		["heavy","heavy", "medium", "heavy", "medium"],
 		400,
         "uid://dw0pyrobfgxr5"
+	],
+
+	"NavalCamo":[
+		200,
+		200,
+		["heavy","heavy", "medium", "heavy", "medium"],
+		400,
+        "uid://b64t5e0s40vb8"
 	]
 
 

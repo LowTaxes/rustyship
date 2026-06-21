@@ -26,6 +26,7 @@ public partial class InventoryItem : Control
 
 	
 	
+	
 	public override void _Ready()
 	{
 
@@ -33,13 +34,27 @@ public partial class InventoryItem : Control
 		area2D = GetChild<Area2D>(1);
 		reference_point = area2D.GetChild<Node2D>(1);
 
+		area2D.MouseEntered += _On_Mouse_Entered;
+		area2D.MouseExited += _On_Mouse_Exited;
+		
+		
+
 		
 		if(!(weapon_name.Equals("empty")))
 		{
-			Array weapon_data = (Array)ConstantData.WeaponData[weapon_name];
-			Dictionary inv_size = (Dictionary) weapon_data[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SIZE];
-			size_x = (int) inv_size["x"];
-			size_y = (int) inv_size["y"];
+			if(ConstantData.GetBattleItemDesignation(weapon_name).Equals(Constants.WEAPON_DESIGNATION))
+			{
+				Vector2 size_v = ConstantData.GetWeaponInventoryItemSize(weapon_name);
+				size_x = (int)size_v.X;
+				size_y = (int)size_v.Y;
+			}
+			else if(ConstantData.GetBattleItemDesignation(weapon_name).Equals(Constants.DEFENSIVE_DESIGNATION))
+			{
+				Vector2 size_v = ConstantData.GetDefensiveInventoryItemSize(weapon_name);
+				size_x = (int)size_v.X;
+				size_y = (int)size_v.Y;
+			}
+			
 			
 
 		}
@@ -47,7 +62,24 @@ public partial class InventoryItem : Control
 	}
     public override void _Process(double delta)
     {
-        
+        if(this.GlobalPosition.Y < Constants.SEPERATOR_Y && !is_lootspawn)
+		{
+			Debug.Print("left storage area");
+			PackedScene new_hardpoint_scene = ResourceLoader.Load<PackedScene>("uid://1h4nrs17ravr");
+			Hardpoint new_hardpoint = new_hardpoint_scene.Instantiate<Hardpoint>();
+			GetNode("/root").AddChild(new_hardpoint);
+			new_hardpoint.attatched_weaponID = weapon_name;
+			new_hardpoint.level = level;
+			new_hardpoint.moveable = true;
+			new_hardpoint.mouse_hovering = true;
+			new_hardpoint.mouse_dragging = true;
+			new_hardpoint.Initialize(weapon_name);
+			new_hardpoint.Position = GetGlobalMousePosition();
+			GarbageCollector.all_hardpoints.Add(new_hardpoint);
+			GarbageCollector.all_inv_items.Remove(this);
+			this.QueueFree();
+			
+		}
     }
 
 
@@ -76,6 +108,7 @@ public partial class InventoryItem : Control
 					is_lootspawn = false;
 					SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.LootTaken);
 				}
+		
 				this.Reparent(GetNode("/root"), true);
 				mouse_dragging = true;
 				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.InvItemClicked.ToString(), this);
@@ -93,6 +126,8 @@ public partial class InventoryItem : Control
        
 		
     }
+
+	
 
 	
 

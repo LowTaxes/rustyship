@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b64t5e0s40vb8"]
+
+[ext_resource type="Texture2D" uid="uid://cbn6etdeke6w6" path="res://Ships/NavalCamo/NavalCamo.png" id="1_y81ix"]
+[ext_resource type="Script" uid="uid://dewasgvmwgwqm" path="res://Ships/ShipModel.cs" id="2_jolm6"]
+
+[node name="NavalCamoModel" type="Sprite2D" unique_id=1446637420]
+texture = ExtResource("1_y81ix")
+script = ExtResource("2_jolm6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1109612166]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=158321597]
+polygon = PackedVector2Array(-654, -40, -430, -78, -146, -112, 114, -111, 387, -67, 543, -25, 652, -17, 653, 19, 543, 30, 393, 62, 115, 108, -150, 110, -429, 76, -653, 48)

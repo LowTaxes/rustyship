@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bitywnov6avb8" path="res://UI/Inventory/PlayerStorage.cs" id="1_05wi7"]
 [ext_resource type="Script" uid="uid://bnbs4igcgxatg" path="res://UI/EditablePlayer/EditablePlayer.cs" id="2_8mwx7"]
-[ext_resource type="Script" uid="uid://dxruus0xfat2b" path="res://UI/EditingToBattle.cs" id="4_gkrqp"]
-[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="5_plw3h"]
+[ext_resource type="Script" path="res://UI/EditingToBattle.cs" id="4_gkrqp"]
+[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated_8.gdshader" id="5_plw3h"]
 [ext_resource type="Script" uid="uid://cbja04x7gto1l" path="res://UI/BottomDoors/LeftDoor.cs" id="7_ccf4u"]
 [ext_resource type="Texture2D" uid="uid://cm32g01janed6" path="res://rshipadobefiles/LeftDoor.png" id="7_i3f7b"]
 [ext_resource type="Script" uid="uid://la5xrqtemtpc" path="res://UI/BottomDoors/RightDoor.cs" id="7_wcns4"]

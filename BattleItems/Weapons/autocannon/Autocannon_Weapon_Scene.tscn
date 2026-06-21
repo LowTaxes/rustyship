@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dg1b4apqthgxp"]
+
+[ext_resource type="Script" uid="uid://btl558js2phu6" path="res://BattleItems/Weapons/Cannons.cs" id="1_gg0at"]
+[ext_resource type="PackedScene" uid="uid://cmbunrqtfr00l" path="res://BattleItems/Weapons/autocannon/autocannon.tscn" id="2_3qror"]
+
+[node name="AutocannonWeaponScene" type="Node2D" unique_id=189111056]
+script = ExtResource("1_gg0at")
+
+[node name="AutocannonBase" parent="." unique_id=1010064939 instance=ExtResource("2_3qror")]

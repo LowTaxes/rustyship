@@ -106,11 +106,15 @@ public partial class HardpointInventory : Control
 				closest_square.tile_y + k >= Constants.player_storage_size_y ||
 				rowed_grid_squares[closest_square.tile_y + k][closest_square.tile_x + i].occupied)
 				{
+					Debug.Print(rowed_grid_squares[closest_square.tile_y + k][closest_square.tile_x + i].occupied.ToString());
 					placeable = false;
 
 				}
 			}
 		}
+		Debug.Print(placeable.ToString());
+		Debug.Print((held_item==null).ToString());
+		Debug.Print(cur_hardpoint.weight_class.Equals(ConstantData.GetWeaponWeightClass(new_item.weapon_name)).ToString());
 		//Debug.Print(IsInstanceValid(held_item).ToString());
 		if(placeable && held_item==null && cur_hardpoint.weight_class.Equals(ConstantData.GetWeaponWeightClass(new_item.weapon_name)))
 		{
@@ -127,13 +131,13 @@ public partial class HardpointInventory : Control
 				cur_hardpoint.inv_x = closest_square.tile_x;
 				cur_hardpoint.inv_y = closest_square.tile_y;
 				cur_hardpoint.level = new_item.level;
-				cur_hardpoint.SetWeaponModelSprite(new_item.weapon_name);
+				cur_hardpoint.Initialize(new_item.weapon_name);
 				
 			}
 			new_item.attatched = true;
 			new_item.storage_x = closest_square.tile_x;
 			new_item.storage_y = closest_square.tile_y;
-
+			//Debug.Print("1");
 			for(int i = 0; i < new_item.size_x; i++)
 			{
 				for(int k = 0; k < new_item.size_y; k++)
@@ -142,7 +146,7 @@ public partial class HardpointInventory : Control
 				}
 
 			}
-
+			Debug.Print("hi");
 			float pos_x = grid_container.Position.X + (new_item.storage_x)*(Constants.inventory_square_size) + (new_item.sprite2D.Texture.GetWidth()/2) - Constants.inventory_square_size/2;
 			float pos_y = grid_container.Position.Y + (new_item.storage_y)*(Constants.inventory_square_size) + (new_item.sprite2D.Texture.GetHeight()/2) - Constants.inventory_square_size/2;
 			new_item.Position = new Vector2(pos_x, pos_y);
@@ -185,7 +189,7 @@ public partial class HardpointInventory : Control
 		if(cur_hardpoint != null)
 		{
 			cur_hardpoint.attatched_weaponID = "empty";
-			cur_hardpoint.SetWeaponModelSprite("empty");
+			cur_hardpoint.Initialize("empty");
 			
 		}
 		if(held_item != null)
@@ -290,6 +294,7 @@ public partial class HardpointInventory : Control
 		if(held_item is InventoryItem && IsInstanceValid(held_item))
 		{
 			held_item.Free();
+			held_item = null;
 		}
 
 		if(!weapon_name.Equals("empty"))

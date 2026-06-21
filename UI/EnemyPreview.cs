@@ -36,7 +36,7 @@ public partial class EnemyPreview : Control
 		weapons_box = GetNode<Control>("Details").GetNode<VBoxContainer>("Weapons");
 		enemy_name_label = GetNode<Label>("EnemyName");
 		
-		int old_level_index = Convert.ToInt32(RunData.Instance.level_id[0].ToString());
+		int old_level_index = Convert.ToInt32(RunData.level_id[0].ToString());
 		new_level_id = (old_level_index+1).ToString() + "-" + index.ToString();
 
 		enemy_name_label.Text = ConstantData.GetLevelEnemyName(new_level_id);
@@ -47,13 +47,13 @@ public partial class EnemyPreview : Control
 		armor_M_label.Text = "Armor M: " + ConstantData.GetLevelArmorModifierCount(new_level_id).ToString();
 		crit_M_label.Text = "Crit M: " + ConstantData.GetLevelCritModifierCount(new_level_id).ToString();
 
-		List<InventoryItem> active_items = ConstantData.GetLevelEnemyActiveInventoryItems(new_level_id);
-		for(int i = 0 ; i < active_items.Count; i++)
+		List<Hardpoint> active_hardpoints = ConstantData.GetLevelEnemyActiveHarpoints(new_level_id);
+		for(int i = 0 ; i < active_hardpoints.Count; i++)
 		{
-			if(!active_items[i].weapon_name.Equals("empty"))
+			if(!active_hardpoints[i].attatched_weaponID.Equals("empty"))
 			{
 				Label new_label = new Label();
-				new_label.Text = active_items[i].weapon_name + " / lvl " + active_items[i].level.ToString();
+				new_label.Text = active_hardpoints[i].attatched_weaponID + " / lvl " + active_hardpoints[i].level.ToString();
 				weapons_box.AddChild(new_label);
 			}
 			
@@ -71,33 +71,9 @@ public partial class EnemyPreview : Control
 
 	private void _On_Selected()
 	{
-		//Debug.Print("NewLevelID: " + new_level_id);
-		RunData.Instance.level_id = new_level_id;
-		/*
-		Dictionary run_data = new Dictionary();
-		//Debug.Print(RunData.GetPlayerActiveHardpoints().Count.ToString());
-		//Debug.Print(RunData.GetPlayerActiveInventoryItems().Count.ToString());
-		run_data.Add("player", new Array
-		{
-			RunData.Instance.p_ship_template_id,
-			RunData.Instance.p_health_m_count,
-			RunData.Instance.p_armor_m_count,
-			RunData.Instance.p_crit_chance_m_count,
-			RunData.Instance.p_level,
-			RunData.Instance.p_active_inv,
-			RunData.Instance.p_storage_inv,
-			RunData.Instance.level_id,
-			RunData.Instance.p_active_hardpoints,
-		});
+	
+		RunData.level_id = new_level_id;
 		
-		RunData.Instance.SaveToUserData(Json.Stringify(run_data));
-
-		//Debug.Print("NewLevelIDaftersaving: " + RunData.GetLevelID());
-		//Debug.Print(RunData.GetPlayerActiveHardpoints().Count.ToString());
-		//load editing screen
-		PackedScene editing_scene = ResourceLoader.Load<PackedScene>("uid://drqy04x8yiama");
-		GetTree().ChangeSceneToPacked(editing_scene);
-		*/
 	}
 		
 	

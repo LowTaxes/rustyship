@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cedh3uq18etis"]
 
 [ext_resource type="Texture2D" uid="uid://drs654f1iosgt" path="res://UI/Inventory/InventorySquare/Unselected_Inventory_Square.png" id="2_8dqt5"]
-[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="2_c4c7o"]
+[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated_8.gdshader" id="2_c4c7o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vb5ey"]
 shader = ExtResource("2_c4c7o")

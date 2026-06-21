@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bqvc710d7ncqg"]
+
+[ext_resource type="Texture2D" uid="uid://bkl4fcfrj7nuk" path="res://BattleItems/Defensive/HealthBasicLight/HealthBasicLightBattleModel.png" id="1_praan"]
+
+[node name="HealthBasicLightBattleModelScene" type="Sprite2D" unique_id=680367275]
+texture = ExtResource("1_praan")

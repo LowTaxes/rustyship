@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://db7cs3poxsgpi"]
 
-[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="1_wb04b"]
+[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated_8.gdshader" id="1_wb04b"]
 [ext_resource type="Texture2D" uid="uid://du4ojat5g0yf" path="res://Ships/HeavyCruiser/Heavy_CruiserModel.png" id="2_i3tcq"]
 [ext_resource type="Script" uid="uid://dewasgvmwgwqm" path="res://Ships/ShipModel.cs" id="3_630vw"]
 

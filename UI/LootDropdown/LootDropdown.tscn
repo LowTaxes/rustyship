@@ -59,9 +59,9 @@ script = ExtResource("3_uyvpf")
 
 [node name="lootspawn2" type="Control" parent="LootDropdown" unique_id=171582236]
 anchors_preset = 0
-offset_left = -83.0
+offset_left = -47.0
 offset_top = -104.0
-offset_right = 2.0
+offset_right = 38.0
 offset_bottom = 2.0
 mouse_filter = 2
 script = ExtResource("3_uyvpf")

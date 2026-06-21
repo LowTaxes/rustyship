@@ -1,26 +1,25 @@
 {
 	"1-1":[
-		"BattleCruiserBasic",
+		"NavalCamo",
 		"bob",
 		5,
 		3,
 		0,
 		1,
-		[{"level":1,"weaponID":"autocannon"},
-		{"level":3,"weaponID":"203mm"},
-		{"level":0,"weaponID":"empty"}]
+		[{"level":1,"weaponID":"autocannon","x":"-417","y":"0"},
+		{"level":3,"weaponID":"203mm","x":"339","y":"0"}]
 	],
 
 	"1-2":[
-		"BattleshipHV",
+		"NavalCamo",
 		"joe",
 		0,
 		0,
 		0,
 		1,
-		[{"level":1,"weaponID":"autocannon"},
-		{"level":3,"weaponID":"autocannon"},
-		{"level":1,"weaponID":"autocannon"}]
+		[{"level":1,"weaponID":"autocannon","x":"-417","y":"0"},
+		{"level":1,"weaponID":"autocannon","x":"0","y":"0"},
+		{"level":1,"weaponID":"autocannon","x":"339","y":"0"}]
 	],
 
 	"2-1":[
@@ -30,9 +29,9 @@
 		0,
 		0,
 		1,
-		[{"level":1,"weaponID":"203mm"},
-		{"level":3,"weaponID":"203mm"},
-		{"level":1,"weaponID":"203mm"}]
+		[{"level":1,"weaponID":"203mm","x":"-417","y":"0"},
+		{"level":1,"weaponID":"203mm","x":"0","y":"0"},
+		{"level":1,"weaponID":"203mm","x":"339","y":"0"}]
 	],
 
 	"2-2":[
@@ -42,9 +41,9 @@
 		0,
 		0,
 		1,
-		[{"level":1,"weaponID":"203mm"},
-		{"level":3,"weaponID":"autocannon"},
-		{"level":1,"weaponID":"203mm"}]
+		[{"level":1,"weaponID":"203mm","x":"-417","y":"0"},
+		{"level":1,"weaponID":"autocannon","x":"0","y":"0"},
+		{"level":1,"weaponID":"203mm","x":"339","y":"0"}]
 	]
 
 

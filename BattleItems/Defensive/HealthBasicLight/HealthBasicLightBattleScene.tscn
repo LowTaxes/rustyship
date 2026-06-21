@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cm17s8lh5tllb"]
+
+[ext_resource type="Script" uid="uid://bl6rinsi7sxep" path="res://BattleItems/Defensive/BasicDefensive.cs" id="1_ohngv"]
+[ext_resource type="PackedScene" uid="uid://bqvc710d7ncqg" path="res://BattleItems/Defensive/HealthBasicLight/HealthBasicLightBattleModelScene.tscn" id="2_rrhon"]
+
+[node name="HealthBasicLightBattleScene" type="Node2D" unique_id=333518870]
+script = ExtResource("1_ohngv")
+
+[node name="HealthBasicLightBattleModelScene" parent="." unique_id=680367275 instance=ExtResource("2_rrhon")]

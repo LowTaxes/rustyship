@@ -24,7 +24,8 @@ public partial class PlayerStorage : Control
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.InvItemClicked, new Callable(this, "_OnInvItemClicked"));
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.InvItemReleased, new Callable(this, "_OnInvItemReleased"));
 
-		SignalConnect.Instance.Connect(SignalConnect.SignalName.ChangeToNextScene, new Callable(this, "_ChangeToNextScene"));
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.ToBattle, new Callable(this, "_ToBattle"));
+
 
 		inventory_square_scene = GD.Load<PackedScene>("uid://b1wteem6372ip");
 		inventory_item_scene = GD.Load<PackedScene>("uid://cedh3uq18etis");
@@ -66,20 +67,15 @@ public partial class PlayerStorage : Control
 
 		held_items = new List<InventoryItem>();
 		
-		Array run_data_weapon_dicts = (Array) ((Array)RunData.Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.STORAGE_INVENTORY]; 
+		List<InventoryItem> p_storage_inv_items = RunData.GetPlayerStorageInventoryItems();
 
-		for(int i = 0; i < run_data_weapon_dicts.Count; i++)
+		for(int i = 0; i < p_storage_inv_items.Count; i++)
 		{
-			//Debug.Print(ConstantData.GetWeaponInvItemUID(((Dictionary)(run_data_weapon_dicts[i]))["weaponID"].ToString()));
-			PackedScene weapon_inv_item_scene = ResourceLoader.Load<PackedScene>(ConstantData.GetWeaponInvItemUID(((Dictionary)(run_data_weapon_dicts[i]))["weaponID"].ToString()));
-			InventoryItem new_item = weapon_inv_item_scene.Instantiate<InventoryItem>();
-			new_item.weapon_name = ((Dictionary)(run_data_weapon_dicts[i]))["weaponID"].ToString();
-			new_item.level = (int)((Dictionary)(run_data_weapon_dicts[i]))["level"];
-			new_item.storage_x = (int)((Dictionary)run_data_weapon_dicts[i])["x"];
-			new_item.storage_y = (int)((Dictionary)(run_data_weapon_dicts[i]))["y"];
+			InventoryItem new_item = p_storage_inv_items[i];
 
 			AddChild(new_item);
 			held_items.Add(new_item);
+			GarbageCollector.all_inv_items.Add(new_item);
 			/*
 			new_item.sprite_scale_x = ((float)Constants.inventory_square_size-Constants.pixel_size) / new_item.sprite2D.Texture.GetWidth() * new_item.size_x;
 			new_item.sprite_scale_y = ((float)Constants.inventory_square_size-Constants.pixel_size) / new_item.sprite2D.Texture.GetHeight() * new_item.size_y;
@@ -224,7 +220,8 @@ public partial class PlayerStorage : Control
 	{
 		held_items.Remove(inv_item);
 		inv_item.attatched = false;
-		inv_item.Reparent(GetNode("/root"));
+
+		//inv_item.Reparent(GetNode("/root"));
 
 		for(int i = 0; i < inv_item.size_x; i++)
 		{
@@ -236,19 +233,21 @@ public partial class PlayerStorage : Control
 		}
 	}
 
-	private void _ChangeToNextScene()
+	private void _ToBattle()
 	{
-		Array array_attatched_items = new Array();
+		
+		Array new_p_storage_inv_items = new Array();
 		for(int i = 0; i < held_items.Count; i++)
 		{
-			Dictionary curr_item = new Dictionary();
-			curr_item.Add("weaponID", held_items[i].weapon_name);
-			curr_item.Add("level", held_items[i].level);
-			curr_item.Add("x", held_items[i].storage_x);
-			curr_item.Add("y", held_items[i].storage_y);
-			array_attatched_items.Add(curr_item);
+			Dictionary inv_item_dict = new Dictionary();
+			inv_item_dict.Add("level", held_items[i].level);
+			inv_item_dict.Add("weaponID", held_items[i].weapon_name);
+			inv_item_dict.Add("x", held_items[i].storage_x);
+			inv_item_dict.Add("y", held_items[i].storage_y);
+			
+			new_p_storage_inv_items.Add(inv_item_dict);
 		}
-		RunData.Instance.p_storage_inv = array_attatched_items;
+		RunData.p_storage_inv = new_p_storage_inv_items;
 	}
 
 

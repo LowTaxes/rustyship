@@ -9,6 +9,8 @@ using Dictionary = Godot.Collections.Dictionary;
 using Array = Godot.Collections.Array;
 using FileAccess = Godot.FileAccess;
 using System.Collections.Generic;
+using System.Net;
+using System.ComponentModel.Design;
 public partial class RunData : Node
 {
 	public static RunData Instance;
@@ -20,15 +22,16 @@ public partial class RunData : Node
 
 
 	//Player Run Data
-	public string p_ship_template_id;
-	public int p_health_m_count;
-	public int p_armor_m_count;
-	public int p_crit_chance_m_count;
-	public int p_level;
-	public Array p_active_inv;
-	public Array p_storage_inv;
-	public string level_id;
-	public Array p_active_hardpoints;
+	public static string p_ship_template_id;
+	public static int p_health_m_count;
+	public static int p_armor_m_count;
+	public static int p_crit_chance_m_count;
+	public static int p_level;
+	public static Array p_active_inv;
+	public static Array p_storage_inv;
+	public static string level_id;
+	public static Array p_active_hardpoints;
+
 
 	//Enemy Run Data
 	public string e_ship_template_id;
@@ -48,13 +51,16 @@ public partial class RunData : Node
 
 	public void InitializeDataVariables()
 	{
-		p_ship_template_id = GetPlayerShipTemplateID();
-		p_health_m_count = GetPlayerHealthModifierCount();
-		p_armor_m_count = GetPlayerArmorModifierCount();
-		p_level = GetPlayerLevel();
+
+		Dictionary run_data = Instance.LoadUserData();
+
+		p_ship_template_id = ((Array)run_data["player"])[(int)Constants.RunDataEnum.SHIP_TEMPLATE_ID].ToString();
+		p_health_m_count = (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.HEALTH_MODIFIER_COUNT];
+		p_armor_m_count = (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.ARMOR_MODIFIER_COUNT];
+		p_level = (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.LEVEL];
 		p_active_inv = (Array)((Array)Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.ACTIVE_INVENTORY];
 		p_storage_inv = (Array)((Array)RunData.Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.STORAGE_INVENTORY];
-		level_id = GetLevelID();
+		level_id = (((Array)run_data["player"])[(int)Constants.RunDataEnum.LEVEL_ID]).ToString();
 		p_active_hardpoints = (Array)((Array)Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.ACTIVE_HARDPOINTS];
 		Debug.Print(p_active_hardpoints.Count.ToString());
 	}
@@ -120,40 +126,39 @@ public partial class RunData : Node
 
 	public static string GetPlayerShipTemplateID()
 	{
-		Dictionary run_data = Instance.LoadUserData();
-		return ((Array)run_data["player"])[(int)Constants.RunDataEnum.SHIP_TEMPLATE_ID].ToString();
+		return p_ship_template_id;
 	}
 	public static int GetPlayerHealthModifierCount()
 	{
-		Dictionary run_data = Instance.LoadUserData();
-		return (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.HEALTH_MODIFIER_COUNT];
+		
+		return p_health_m_count;
 	}
 
 	
 	public static int GetPlayerArmorModifierCount()
 	{
-		Dictionary run_data = Instance.LoadUserData();
-		return (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.ARMOR_MODIFIER_COUNT];
+		
+		return p_armor_m_count;
 	}
 	
 	public static int GetPlayerCritChanceModifierCount()
 	{
-		Dictionary run_data = Instance.LoadUserData();
-		return (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.CRIT_CHANCE_MODIFIER_COUNT];
+		
+		return p_crit_chance_m_count;//(int)((Array)run_data["player"])[(int)Constants.RunDataEnum.CRIT_CHANCE_MODIFIER_COUNT];
 	}
 	
 
 	public static int GetPlayerLevel()
 	{
-		Dictionary run_data = Instance.LoadUserData();
-		return (int)((Array)run_data["player"])[(int)Constants.RunDataEnum.LEVEL];
+		
+		return p_level;
 	}
 
 	public static List<InventoryItem> GetPlayerActiveInventoryItems()
 	{
 		List<InventoryItem> return_list = new List<InventoryItem>();
 
-		Array active_inventory_items = (Array)((Array)Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.ACTIVE_INVENTORY];
+		Array active_inventory_items = p_active_inv;
 		for (int i = 0; i < active_inventory_items.Count; i ++)
 		{
 			Dictionary new_item_dict = (Dictionary)active_inventory_items[i];
@@ -165,15 +170,36 @@ public partial class RunData : Node
 		return return_list;
 	}
 
+	public static List<InventoryItem> GetPlayerStorageInventoryItems()
+	{
+		List<InventoryItem> return_list = new List<InventoryItem>();
+
+		Array storage_inventory_items = p_storage_inv;
+		for (int i = 0; i < storage_inventory_items.Count; i ++)
+		{
+			Dictionary new_item_dict = (Dictionary)(storage_inventory_items[i]);
+			PackedScene weapon_inv_item_scene = ResourceLoader.Load<PackedScene>(ConstantData.GetWeaponInvItemUID(new_item_dict["weaponID"].ToString()));
+			InventoryItem new_inv_item = weapon_inv_item_scene.Instantiate<InventoryItem>();
+
+			new_inv_item.weapon_name = new_item_dict["weaponID"].ToString();
+			new_inv_item.level = (int)new_item_dict["level"];
+			new_inv_item.storage_x = (int)new_item_dict["x"];
+			new_inv_item.storage_y = (int)new_item_dict["y"];
+			return_list.Add(new_inv_item);
+		}
+		return return_list;
+	}
+
 	public static List<Hardpoint> GetPlayerActiveHardpoints()
 	{
 		List<Hardpoint> return_list = new List<Hardpoint>();
 
-		Array active_hardpoints = (Array)((Array)Instance.LoadUserData()["player"])[(int)Constants.RunDataEnum.ACTIVE_HARDPOINTS];
+		Array active_hardpoints = p_active_hardpoints;
 		for (int i = 0; i < active_hardpoints.Count; i ++)
 		{
 			Dictionary new_hardpoint_dict = (Dictionary)active_hardpoints[i];
 			Hardpoint new_hardpoint = (GD.Load<PackedScene>("uid://1h4nrs17ravr")).Instantiate<Hardpoint>();
+			
 			new_hardpoint.level = (int)new_hardpoint_dict["level"];
 			new_hardpoint.attatched_weaponID = new_hardpoint_dict["weaponID"].ToString();
 			new_hardpoint.placement_position = new Vector2((int)new_hardpoint_dict["x"], (int)new_hardpoint_dict["y"]);
@@ -189,9 +215,11 @@ public partial class RunData : Node
 
 	public static string GetLevelID()
 	{
-		Dictionary run_data = Instance.LoadUserData();
-		return (((Array)run_data["player"])[(int)Constants.RunDataEnum.LEVEL_ID]).ToString();
+		
+		return level_id;
 	}
+
+	
 
 
 

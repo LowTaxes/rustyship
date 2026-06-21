@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://y56svr5tngf1"]
 
 [ext_resource type="Script" uid="uid://bnbs4igcgxatg" path="res://UI/EditablePlayer/EditablePlayer.cs" id="1_inusx"]
+[ext_resource type="Texture2D" uid="uid://b60t41a77iyg3" path="res://Ships/ShipPlacementArea.png" id="2_h6d3m"]
 
 [node name="EditablePlayer" type="Node2D" unique_id=725873127]
 
@@ -16,3 +17,7 @@ offset_right = -2054.0
 offset_bottom = -108.0
 mouse_filter = 2
 script = ExtResource("1_inusx")
+
+[node name="ShipPlacementArea" type="Sprite2D" parent="EditablePlayer" unique_id=845241852]
+visible = false
+texture = ExtResource("2_h6d3m")

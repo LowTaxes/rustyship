@@ -3,8 +3,8 @@ using System;
 
 public partial class Constants : Node
 {
-	public static Vector2 PLAYER_START_LOCATION = new Vector2(0,200);
-	public static Vector2 ENEMY_START_LOCATION = new Vector2(0,-200);
+	public static Vector2 PLAYER_START_LOCATION = new Vector2(0,450);
+	public static Vector2 ENEMY_START_LOCATION = new Vector2(0,-450);
 	public static int player_storage_size_x = 10;
 	public static int player_storage_size_y = 5;
 	public static int inventory_square_size = 80;
@@ -13,6 +13,12 @@ public partial class Constants : Node
 	public static float armor_modifier = .1f;
 	public static float camera_zoom_dragging_modifier = 2;
 
+	public static int SEPERATOR_Y = 90;
+	public static int UPPER_SEPERATOR_Y = -200;
+
+	public static string WEAPON_DESIGNATION = "weapon";
+	public static string DEFENSIVE_DESIGNATION = "defensive";
+
 	
 	public enum WeaponDataEnum
 	{
@@ -20,16 +26,34 @@ public partial class Constants : Node
 		ARMOR_DAMAGE_MODIFIER,
 		CRIT_CHANCE,
 		FIRE_RATE,
+		MULTI_SHOT_TIMESPAN,
 		VOLLEY_COUNT,
 		BULLET_UID,
 		BULLET_SPEED,
 		SPREAD_RADIUS,
+		VOLLEY_SPREAD_RADIUS,
 		WEAPON_MODEL_UID,
 		INVENTORY_ITEM_SIZE,
 		INVENTORY_ITEM_SPRITE_UID,
 		INFO_SPRITE_UID,
 		INV_ITEM_UID,
+		BATTLE_SCENE_UID,
+		WEIGHT_CLASS,
+	}
+	public enum DefensiveDataEnum
+	{
+		HEALING,
+		FIRE_RATE,
+		MULTI_SHOT_TIMESPAN,
+		VOLLEY_COUNT,
+		BATTLE_MODEL_UID,
+		INVENTORY_ITEM_SIZE,
+		INVENTORY_ITEM_SPRITE_UID,
+		INV_ITEM_UID,
+		BATTLE_SCENE_UID,
 		WEIGHT_CLASS
+		
+
 	}
 
 	public enum ShipDataEnum
@@ -62,7 +86,7 @@ public partial class Constants : Node
 		ARMOR_MODIFIER_COUNT,
 		CRIT_CHANCE_MODIFIER_COUNT,
 		LEVEL,
-		ACTIVE_INVENTORY,
+		ENEMY_WEAPONS,
 		
 	}
 

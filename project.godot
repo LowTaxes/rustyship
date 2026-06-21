@@ -20,6 +20,7 @@ SignalConnect="*uid://b07jfi3akov50"
 Constants="*uid://clpk3q5nm4xjj"
 ConstantData="*uid://d2trn07mvv4oq"
 RunData="*uid://crsdlwnamb0mv"
+GarbageCollector="*uid://hexmewyu2uem"
 
 [display]
 

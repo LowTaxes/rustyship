@@ -26,7 +26,7 @@ public partial class LootDropdown : Control
 
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.EnemySelectPanelRetracted, new Callable(this, "_EnemySelectPanelRetracted"));
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.LootTaken, new Callable(this, "_LootTaken"));
-		SignalConnect.Instance.Connect(SignalConnect.SignalName.ToBattle, new Callable(this, "_ToBattle"));
+		
 	}
    
 
@@ -44,19 +44,17 @@ public partial class LootDropdown : Control
 	{
 		loot_taken_count += 1;
 
-		if(loot_taken_count >= 2)
+		if(loot_taken_count >= 1)
 		{
 			border_sprite.Texture = ResourceLoader.Load<Texture2D>("uid://vcr7at747b4a");
 			Tween tween = GetTree().CreateTween();
-			tween.TweenProperty(this, "position", inner_position, .5);
+			tween.TweenProperty(this, "position", outer_position, .25);
+			tween.Finished += () => SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.HardpointBarDropdown);
+			
 		}
 	}
 
-	private void _ToBattle()
-	{
-		Tween tween = GetTree().CreateTween();
-		tween.TweenProperty(this, "position", outer_position, .5);
-	}
+	
 	
 	
 

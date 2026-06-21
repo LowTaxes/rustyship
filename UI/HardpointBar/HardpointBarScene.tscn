@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bpibjr0x7urnd"]
+
+[ext_resource type="Script" uid="uid://hu57mm4wyaxf" path="res://UI/HardpointBar/HardpointBarScene.cs" id="1_jo23j"]
+[ext_resource type="Texture2D" uid="uid://dudcsmueecpnj" path="res://UI/LootDropdown/SeperatorBar.png" id="2_asa7f"]
+[ext_resource type="Script" uid="uid://dg7eqipa10ekr" path="res://UI/HardpointBar/HardpointBar.cs" id="3_asa7f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgy0u"]
+bg_color = Color(0, 0.45882353, 0.47058824, 1)
+
+[node name="HardpointBarScene" type="Node2D" unique_id=1660837221]
+script = ExtResource("1_jo23j")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=718508202]
+zoom = Vector2(0.5, 0.5)
+metadata/_edit_lock_ = true
+
+[node name="UpperBorder" type="Panel" parent="." unique_id=1846565773]
+offset_left = -1154.0
+offset_top = -1506.0
+offset_right = 1151.0
+offset_bottom = -687.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vgy0u")
+
+[node name="UpperSeperator" type="Sprite2D" parent="." unique_id=182815151]
+position = Vector2(0, -668)
+texture = ExtResource("2_asa7f")
+
+[node name="HardpointBar" type="ScrollContainer" parent="." unique_id=1014565421]
+offset_left = -905.0
+offset_top = -940.0
+offset_right = 834.0
+offset_bottom = -700.0
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="HardpointBar" unique_id=1211700789]
+custom_minimum_size = Vector2(100, 240)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("3_asa7f")
+
+[node name="Panel" type="Panel" parent="." unique_id=1014369429]
+offset_left = -905.0
+offset_top = -940.0
+offset_right = 834.0
+offset_bottom = -700.0
+mouse_filter = 2

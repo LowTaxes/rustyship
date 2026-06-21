@@ -15,8 +15,7 @@ public partial class SignalConnect : Node
 
 	[Signal] public delegate void InvItemClickedEventHandler();
 	[Signal] public delegate void InvItemReleasedEventHandler();
-	[Signal] public delegate void ActiveItemAddedEventHandler();
-	[Signal] public delegate void ActiveItemRemovedEventHandler();
+
 	[Signal] public delegate void HardpointAddedEventHandler();
 	[Signal] public delegate void HardpointRemovedEventHandler();
 	[Signal] public delegate void CanEditHardpointsEventHandler();
@@ -27,7 +26,14 @@ public partial class SignalConnect : Node
 	[Signal] public delegate void EditablePlayerReadyEventHandler();
 	[Signal] public delegate void EnemySelectPanelRetractedEventHandler();
 	[Signal] public delegate void LootTakenEventHandler();
+	[Signal] public delegate void HardpointBarDropdownEventHandler();
+	
 	[Signal] public delegate void ToBattleEventHandler();
+	[Signal] public delegate void BattleSequenceBeginsEventHandler();
+	[Signal] public delegate void StartBattleTimerEventHandler();
+	[Signal] public delegate void WeaponsFreeEventHandler();
+
+	[Signal] public delegate void StartNewLoopEventHandler();
 
 
 

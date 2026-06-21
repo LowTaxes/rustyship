@@ -12,9 +12,10 @@ public partial class Lootspawn : Control
 		new_item.weapon_name = "autocannon";
 		new_item.level = 1;
 		new_item.is_lootspawn = true;
+		new_item.attatched = true;
 		
 		AddChild(new_item);
-
+		GarbageCollector.all_inv_items.Add(new_item);
 		
 	}
 

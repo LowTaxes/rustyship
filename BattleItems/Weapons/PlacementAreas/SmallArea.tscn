@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cmcstf16p78g4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vbpqv"]
+radius = 116.841774
+
+[node name="SmallArea" type="Area2D" unique_id=950755286]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=158466098]
+shape = SubResource("CircleShape2D_vbpqv")
+debug_color = Color(0.8659252, 0, 0.26009655, 0.34901962)

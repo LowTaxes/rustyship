@@ -1,20 +1,31 @@
 [gd_scene format=3 uid="uid://dw0pyrobfgxr5"]
 
-[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated.gdshader" id="1_fj3im"]
+[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated_8.gdshader" id="1_fj3im"]
 [ext_resource type="Texture2D" uid="uid://q2l0oqjvt2gn" path="res://Ships/Battleship/Battleship.png" id="2_b1r8s"]
 [ext_resource type="Script" uid="uid://dewasgvmwgwqm" path="res://Ships/ShipModel.cs" id="3_b1r8s"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fj3im"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b1r8s"]
 shader = ExtResource("1_fj3im")
 shader_parameter/pixel_size = 8.0
 shader_parameter/handle_edges = false
 
 [node name="BattleshipHV" type="Sprite2D" unique_id=533729998]
-material = SubResource("ShaderMaterial_fj3im")
+material = SubResource("ShaderMaterial_b1r8s")
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_b1r8s")
 script = ExtResource("3_b1r8s")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=35469994]
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=264594178]
+modulate = Color(4.1392445e-06, 0.7678772, 0.11330763, 1)
 polygon = PackedVector2Array(-864, -71, -524, -126, -255, -145, 199, -145, 578, -97, 834, -38, 904, -20, 908, 14, 836, 34, 594, 84, 218, 143, -273, 146, -534, 118, -862, 57)
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="." unique_id=45375850]
+visible = false
+offset_left = -865.3334
+offset_top = -160.0
+offset_right = 908.0
+offset_bottom = 149.33331

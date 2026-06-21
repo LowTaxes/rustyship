@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c75ici2ecsxfw"]
+
+[ext_resource type="Script" uid="uid://btl558js2phu6" path="res://BattleItems/Weapons/Cannons.cs" id="1_lxe1q"]
+[ext_resource type="PackedScene" uid="uid://tmwh3dr3v4s8" path="res://BattleItems/Weapons/203mm_cannon/203_mm_cannon_base.tscn" id="2_rk3bu"]
+
+[node name="203MmWeaponScene" type="Node2D" unique_id=918000397]
+script = ExtResource("1_lxe1q")
+
+[node name="203MmCannonBase" parent="." unique_id=1296524469 instance=ExtResource("2_rk3bu")]

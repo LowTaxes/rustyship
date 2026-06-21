@@ -64,6 +64,7 @@ texture = ExtResource("10_ni6d2")
 metadata/_edit_lock_ = true
 
 [node name="HardpointInventory" type="Control" parent="." unique_id=461111993]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 587.0
@@ -97,5 +98,13 @@ offset_right = 628.0
 offset_bottom = 699.0
 text = "To Battle"
 script = ExtResource("5_kerui")
+
+[node name="Control" type="Control" parent="." unique_id=844286604]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 352.0
+offset_top = 264.0
+offset_right = 824.0
+offset_bottom = 552.0
 
 [connection signal="pressed" from="Button" to="Button" method="_On_Pressed"]

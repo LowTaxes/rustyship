@@ -9,18 +9,16 @@ using System.Threading.Tasks;
 public partial class EditablePlayer : Control
 {
 	PackedScene ship_model_scene;
-	List<InventoryItem> attatched_inventory_items;
 	ShipModel ship_model;
 	List<Hardpoint> active_hardpoints;
-	public bool hardpoint_editing = false;
+	public bool hardpoint_editing = true;
 	public Vector2 outer_position;
+
+	public Sprite2D ship_placement_area;
 	
 	
 	public override void _Ready()
 	{
-
-		SignalConnect.Instance.Connect(SignalConnect.SignalName.ActiveItemAdded, new Callable(this, "_ActiveItemAdded"));
-		SignalConnect.Instance.Connect(SignalConnect.SignalName.ActiveItemRemoved, new Callable(this, "_ActiveItemRemoved"));
 
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.HardpointAdded, new Callable(this, "_HardpointAdded"));
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.HardpointRemoved, new Callable(this, "_HardpointRemoved"));
@@ -29,7 +27,14 @@ public partial class EditablePlayer : Control
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.ChangeToNextScene, new Callable(this, "_ChangeToNextScene"));
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.ToBattle, new Callable(this, "_ToBattle"));
 
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.InvItemClicked, new Callable(this, "_OnInvItemClicked"));
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.InvItemReleased, new Callable(this, "_OnInvItemReleased"));
 
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.HardpointRemoved, new Callable(this, "_OnHardpointRemoved"));
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.HardpointAdded, new Callable(this, "_OnHardpointAdded"));
+		
+		ship_placement_area = GetChild<Sprite2D>(0);
+		ship_placement_area.Visible = false;
 		//get ship and run data
 		Dictionary run_data = RunData.Instance.LoadUserData();
 		Array player_data = (Array) run_data["player"];
@@ -49,9 +54,9 @@ public partial class EditablePlayer : Control
 		{
 			//Debug.Print("hi");
 			AddChild(active_hardpoints[i]);
-			active_hardpoints[i].Position += active_hardpoints[i].placement_position;
-			
-			active_hardpoints[i].SetWeaponModelSprite(active_hardpoints[i].attatched_weaponID);
+			GarbageCollector.all_hardpoints.Add(active_hardpoints[i]);
+			active_hardpoints[i].Position = active_hardpoints[i].placement_position;
+			active_hardpoints[i].Initialize(active_hardpoints[i].attatched_weaponID);
 		}
 		outer_position = this.Position;
 
@@ -69,12 +74,15 @@ public partial class EditablePlayer : Control
 		{
 			for(int i = 0; i < active_hardpoints.Count; i++)
 			{
+				//Debug.Print(hardpoint.ToString());
+				//Debug.Print(active_hardpoints[i].ToString());
 				if(active_hardpoints[i] == hardpoint)
 				{
-					Debug.Print(active_hardpoints.Count.ToString());
+					//Debug.Print("1");
+					
 					active_hardpoints[i].moveable = true;
 					active_hardpoints.Remove(hardpoint);
-					Debug.Print(active_hardpoints.Count.ToString());
+					//Debug.Print("test");
 					
 
 				}
@@ -88,16 +96,53 @@ public partial class EditablePlayer : Control
 	{
 		Area2D model_area2d = ship_model.GetChild<Area2D>(0);
 		Array<Area2D> overlapping_areas = model_area2d.GetOverlappingAreas();
+
+		bool intersects_ship = false;
+		bool intersects_other_center_area = false;
+
+		//checks if hardpoint intersects with ship
 		for(int i = 0; i < overlapping_areas.Count;i++)
 		{
 			if(overlapping_areas[i] == hardpoint.area2D)
 			{
-				active_hardpoints.Add(hardpoint);
-				hardpoint.moveable = false;
-				hardpoint.Reparent(this);
-				hardpoint.placement_position = hardpoint.Position;
+				intersects_ship = true;			
 			}
 		}
+	
+		//checks if the hardpoint placement area intersects any hardpoints
+		for(int i = 0; i < hardpoint.placement_area.GetOverlappingAreas().Count; i++)
+		{
+			if(hardpoint.placement_area.GetOverlappingAreas()[i].Name.Equals("CentralArea") && hardpoint.placement_area.GetOverlappingAreas()[i] != hardpoint.area2D)
+			{
+				intersects_other_center_area = true;
+			}
+		}
+	
+		//checks if other hardpoint placement areas intersect this hardpoint
+		for(int i = 0; i<GarbageCollector.all_hardpoints.Count;i++)
+		{
+			for(int k = 0; k<GarbageCollector.all_hardpoints[i].placement_area.GetOverlappingAreas().Count; k++)
+			{
+				if(GarbageCollector.all_hardpoints[i].placement_area.GetOverlappingAreas()[k] == hardpoint.area2D && (GarbageCollector.all_hardpoints[i] != hardpoint))
+				{
+					intersects_other_center_area = true;
+				}
+			}
+		}
+
+		if(!intersects_other_center_area && intersects_ship)
+		{
+			active_hardpoints.Add(hardpoint);
+			hardpoint.Reparent(this);
+			hardpoint.placement_position = hardpoint.Position;
+			hardpoint.attatched = true;
+			//Debug.Print("placed");
+		}
+		else
+		{
+			//Debug.Print("failed");
+		}
+
 	}
 
 	private void _CanEditHardpoints(bool can_edit)
@@ -108,6 +153,13 @@ public partial class EditablePlayer : Control
 	private void _OnLoadInFinished()
 	{
 		SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.EditablePlayerReady.ToString());
+	}
+
+	private void _OnLoadOutFinished()
+	{
+		SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.BattleSequenceBegins.ToString());
+
+		
 	}
 
 /*
@@ -140,23 +192,55 @@ public partial class EditablePlayer : Control
 	}
 */
 
-	private void _ChangeToNextScene()
-	{
-		Array array_attatched_items = new Array();
-		for(int i = 0; i < attatched_inventory_items.Count; i++)
-		{
-			Dictionary curr_item = new Dictionary();
-			curr_item.Add("weaponID", attatched_inventory_items[i].weapon_name);
-			curr_item.Add("level", attatched_inventory_items[i].level);
-			array_attatched_items.Add(curr_item);
-		}
-		RunData.Instance.p_active_inv = array_attatched_items;
-	}
-
 	private void _ToBattle()
 	{
 		Tween tween = GetTree().CreateTween();
 		tween.TweenProperty(this, "position", outer_position, .5);
+		tween.Finished += _OnLoadOutFinished;
+		
+		Array new_p_active_hardpoints = new Array();
+		for(int i = 0; i < active_hardpoints.Count; i++)
+		{
+			Dictionary hardpoint_dict = new Dictionary();
+			hardpoint_dict.Add("level", active_hardpoints[i].level);
+			hardpoint_dict.Add("weaponID", active_hardpoints[i].attatched_weaponID);
+			hardpoint_dict.Add("x", active_hardpoints[i].placement_position.X);
+			hardpoint_dict.Add("y", active_hardpoints[i].placement_position.Y);
+			hardpoint_dict.Add("weight_class", active_hardpoints[i].weight_class);
+			hardpoint_dict.Add("inv_x", active_hardpoints[i].inv_x);
+			hardpoint_dict.Add("inv_y", active_hardpoints[i].inv_y);
+			new_p_active_hardpoints.Add(hardpoint_dict);
+		}
+		//Debug.Print(RunData.p_active_hardpoints.ToString());
+		RunData.p_active_hardpoints = new_p_active_hardpoints;
+		//Debug.Print(RunData.p_active_hardpoints.ToString());
+
+		
+	}
+
+	private void _OnInvItemClicked(InventoryItem inv_item)
+	{
+		ship_model.Visible = false;
+		ship_placement_area.Visible = true;
+	}
+
+	private void _OnInvItemReleased(InventoryItem inv_item)
+	{
+		ship_model.Visible = true;
+		ship_placement_area.Visible = false;
+
+	}
+
+	private void _OnHardpointRemoved(Hardpoint hardpoint)
+	{
+		ship_model.Visible = false;
+		ship_placement_area.Visible = true;
+	}
+
+	private void _OnHardpointAdded(Hardpoint hardpoint)
+	{
+		ship_model.Visible = true;
+		ship_placement_area.Visible = false;
 	}
 
 	

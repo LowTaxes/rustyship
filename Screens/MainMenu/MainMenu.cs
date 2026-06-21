@@ -20,7 +20,7 @@ public partial class MainMenu : Node2D
 
     public override void _Ready()
     {
-        main_scene = ResourceLoader.Load<PackedScene>("uid://b7a2h0hw00vtn");// combat screen
+        
 		game_loop_scene = ResourceLoader.Load<PackedScene>("uid://bkxbp4irv6s6o");
 		/*
 		User data should store:
@@ -99,11 +99,20 @@ public partial class MainMenu : Node2D
 		hardpoint_2.Add("inv_x", 0);
 		hardpoint_2.Add("inv_y", 0);
 
+		Dictionary hardpoint_3 = new Dictionary();
+		hardpoint_3.Add("level", 1);
+		hardpoint_3.Add("weaponID", "health_basic_light");
+		hardpoint_3.Add("x", -200);
+		hardpoint_3.Add("y", 0);
+		hardpoint_3.Add("weight_class", "light");
+		hardpoint_3.Add("inv_x", 0);
+		hardpoint_3.Add("inv_y", 0);
+
 
 		Dictionary run_data = new Dictionary();
 		run_data.Add("player", new Array
 		{
-			"BattleshipHV",
+			"NavalCamo",
 			0,
 			0,
 			0,
@@ -111,7 +120,7 @@ public partial class MainMenu : Node2D
 			new Array{light_2, medium_2, empty_1, empty_1, empty_1},
 			new Array{medium_1, light_1},
 			"0-0",
-			new Array{hardpoint_1, hardpoint_2},
+			new Array{hardpoint_1, hardpoint_2, hardpoint_3},
 		});
 
 		

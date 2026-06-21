@@ -17,6 +17,7 @@ public partial class ConstantData : Node
 	public static Dictionary WeaponData;
 	public static Dictionary ShipData;
 	public static Dictionary LevelData;
+	public static Dictionary DefensiveData;
 
 	
 	public override void _Ready()
@@ -26,6 +27,7 @@ public partial class ConstantData : Node
 		WeaponData = LoadJsonFile("WeaponData.json");
 		ShipData = LoadJsonFile("ShipData.json");
 		LevelData = LoadJsonFile("LevelData.json");
+		DefensiveData = LoadJsonFile("DefensiveData.json");
 
 		
 		
@@ -62,6 +64,26 @@ public partial class ConstantData : Node
 	}
 
 
+
+	public static string GetBattleItemDesignation(string battle_item_ID)
+	{
+		if(WeaponData.ContainsKey(battle_item_ID))
+		{
+			return Constants.WEAPON_DESIGNATION;
+		}
+		else if(DefensiveData.ContainsKey(battle_item_ID))
+		{
+			return Constants.DEFENSIVE_DESIGNATION;
+		}
+
+		return "none";
+	}
+
+
+
+
+
+
 	public static float GetShipTemplateHealth(string ship_ID)
 	{
 		return (float)((Array)ShipData[ship_ID])[(int)Constants.ShipDataEnum.MAX_HEALTH];
@@ -81,6 +103,11 @@ public partial class ConstantData : Node
 
 
 
+/////////////////////////////////////////////////////WEAPONINFO
+/// 
+/// 
+/// 
+/// 
 
 	public static double GetWeaponDamage(string weapon_name)
 	{
@@ -91,11 +118,48 @@ public partial class ConstantData : Node
 	{
 		return (double)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.FIRE_RATE];
 	}
+	public static double GetWeaponMultishotTimespan(string weapon_name)
+	{
+		return (double)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.MULTI_SHOT_TIMESPAN];
+	}
+
+	public static int GetWeaponVolleyCount(string weapon_name)
+	{
+		return (int)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.VOLLEY_COUNT];
+	}
 	public static int GetVolleyCount(string weapon_name)
 	{
 		return (int)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.VOLLEY_COUNT];
 	}
+	public static Vector2 GetWeaponInventoryItemSize(string weapon_name)
+	{
+		Dictionary inv_size = (Dictionary)(((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.INVENTORY_ITEM_SIZE]);
+		int size_x = (int) inv_size["x"];
+		int size_y = (int) inv_size["y"];
+		return new Vector2(size_x,size_y);
+	}
+
+	public static string GetWeaponBulletUID(string weapon_name)
+	{
+		return ((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.BULLET_UID].ToString();
+	}
 	
+	public static int GetWeaponBulletSpeed(string weapon_name)
+	{
+		return (int)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.BULLET_SPEED];
+	}
+
+	public static int GetWeaponSpreadRadius(string weapon_name)
+	{
+		return (int)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.SPREAD_RADIUS];
+	}
+
+	public static int GetWeaponVolleySpreadRadius(string weapon_name)
+	{
+		return (int)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.VOLLEY_SPREAD_RADIUS];
+	}
+
+
 	public static double GetWeaponArmorDamageModifier(string weapon_name)
 	{
 		return (double)((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.ARMOR_DAMAGE_MODIFIER];
@@ -123,12 +187,98 @@ public partial class ConstantData : Node
 	{
 		return (((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.INV_ITEM_UID]).ToString();
 	}
+	public static string GetWeaponSceneUID(string weapon_name)
+	{
+		return ((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.BATTLE_SCENE_UID].ToString();
+	}
 	public static string GetWeaponWeightClass(string weapon_name)
 	{
 		return (((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.WEIGHT_CLASS]).ToString();
 	}
+
+	/// 
+	/// 
+	/// 
+	/// 
+	/////////////////////////////////////////////////////WEAPON INFO
+
+
+
+
+
+
+
+	/////////////////////////////////////////////////////DEFENSIVE INFO
+	/// 
+	/// 
+	/// 
+	/// 
 	
+	public static double GetDefensiveHealing(string weapon_name)
+	{
+		return (double)((Array)DefensiveData[weapon_name])[(int)Constants.DefensiveDataEnum.HEALING];
+	}
+
+	public static double GetDefensiveFirerate(string weapon_name)
+	{
+		return (double)((Array)DefensiveData[weapon_name])[(int)Constants.DefensiveDataEnum.FIRE_RATE];
+	}
+	public static double GetDefensiveMultishotTimespan(string weapon_name)
+	{
+		return (double)((Array)DefensiveData[weapon_name])[(int)Constants.DefensiveDataEnum.MULTI_SHOT_TIMESPAN];
+	}
+
+	public static int GetDefensiveVolleyCount(string weapon_name)
+	{
+		return (int)((Array)DefensiveData[weapon_name])[(int)Constants.DefensiveDataEnum.VOLLEY_COUNT];
+	}
+	public static string GetDefensiveBattleModelUID(string weapon_name)
+	{
+		return ((Array)DefensiveData[weapon_name])[(int)Constants.DefensiveDataEnum.BATTLE_MODEL_UID].ToString();
+	}
+
+
+	public static Vector2 GetDefensiveInventoryItemSize(string weapon_name)
+	{
+		Dictionary inv_size = (Dictionary)((Array)DefensiveData[weapon_name])[(int)Constants.DefensiveDataEnum.INVENTORY_ITEM_SIZE];
+		int size_x = (int) inv_size["x"];
+		int size_y = (int) inv_size["y"];
+		return new Vector2(size_x,size_y);
+	}
+
+	public static string GetDefensiveInventoryItemSpriteUID(string weapon_name)
+	{
+		return ((Array)DefensiveData[weapon_name])[(int)Constants.DefensiveDataEnum.INVENTORY_ITEM_SPRITE_UID].ToString();
+	}
+
+	public static string GetDefensiveInventoryItemUID(string weapon_name)
+	{
+		return ((Array)DefensiveData[weapon_name])[(int)Constants.DefensiveDataEnum.INV_ITEM_UID].ToString();
+	}
+	public static string GetDefensiveBattleSceneUID(string weapon_name)
+	{
+		return ((Array)DefensiveData[weapon_name])[(int)Constants.DefensiveDataEnum.BATTLE_SCENE_UID].ToString();
+	}
+	public static string GetDefensiveWeightClass(string weapon_name)
+	{
+		return ((Array)DefensiveData[weapon_name])[(int)Constants.DefensiveDataEnum.WEIGHT_CLASS].ToString();
+	}
+
 	
+
+
+
+
+
+
+
+
+
+	/// 
+	/// 
+	/// 
+	/// 
+	/////////////////////////////////////////////////////DEFENSIVE INFO
 
 	public static List<string> GetShipHardpointWeightClasses(string ship_ID)
 	{
@@ -176,19 +326,20 @@ public partial class ConstantData : Node
 		return (int)((Array)LevelData[level_ID])[(int)Constants.LevelDataEnum.LEVEL];
 	}
 	
-	public static List<InventoryItem> GetLevelEnemyActiveInventoryItems(string level_ID)
+	public static List<Hardpoint> GetLevelEnemyActiveHarpoints(string level_ID)
 	{
-		List<InventoryItem> return_list = new List<InventoryItem>();
+		List<Hardpoint> return_list = new List<Hardpoint>();
 
-		Array active_inventory_items = (Array)((Array)(LevelData[level_ID]))[(int)Constants.LevelDataEnum.ACTIVE_INVENTORY];
-		for (int i = 0; i < active_inventory_items.Count; i ++)
+		Array active_hardpoints = (Array)((Array)(LevelData[level_ID]))[(int)Constants.LevelDataEnum.ENEMY_WEAPONS];
+		for (int i = 0; i < active_hardpoints.Count; i ++)
 		{
-			Dictionary new_item_dict = (Dictionary)active_inventory_items[i];
-			//Debug.Print(new_item_dict["weaponID"].ToString());
-			InventoryItem new_inv_item = (GD.Load<PackedScene>(ConstantData.GetWeaponInvItemUID(new_item_dict["weaponID"].ToString()))).Instantiate<InventoryItem>();
-			new_inv_item.weapon_name = new_item_dict["weaponID"].ToString();
-			new_inv_item.level = (int)new_item_dict["level"];
-			return_list.Add(new_inv_item);
+			Dictionary new_hardpoint_dict = (Dictionary)active_hardpoints[i];
+			Hardpoint new_hardpoint = (GD.Load<PackedScene>("uid://1h4nrs17ravr")).Instantiate<Hardpoint>();
+
+			new_hardpoint.level = (int)new_hardpoint_dict["level"];
+			new_hardpoint.attatched_weaponID = new_hardpoint_dict["weaponID"].ToString();
+			new_hardpoint.placement_position = new Vector2((int)new_hardpoint_dict["x"],(int)new_hardpoint_dict["y"]);
+			return_list.Add(new_hardpoint);
 		}
 		return return_list;
 	}

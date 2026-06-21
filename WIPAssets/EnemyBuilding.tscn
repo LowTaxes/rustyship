@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dtgxcv6ecpd54"]
+
+[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated_8.gdshader" id="1_gwptf"]
+[ext_resource type="Texture2D" uid="uid://du4ojat5g0yf" path="res://Ships/HeavyCruiser/Heavy_CruiserModel.png" id="2_mey5v"]
+[ext_resource type="Script" uid="uid://dewasgvmwgwqm" path="res://Ships/ShipModel.cs" id="3_45lrk"]
+[ext_resource type="PackedScene" uid="uid://cmbunrqtfr00l" path="res://BattleItems/Weapons/autocannon/autocannon.tscn" id="4_c2qs0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwgau"]
+shader = ExtResource("1_gwptf")
+shader_parameter/pixel_size = 8.0
+shader_parameter/handle_edges = false
+
+[node name="EnemyBuilding" type="Node2D" unique_id=575453302]
+
+[node name="HeavyCruiserHV" type="Sprite2D" parent="." unique_id=145218541]
+material = SubResource("ShaderMaterial_jwgau")
+texture = ExtResource("2_mey5v")
+script = ExtResource("3_45lrk")
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="HeavyCruiserHV" unique_id=1063795023]
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HeavyCruiserHV/Area2D" unique_id=1739616193]
+visible = false
+polygon = PackedVector2Array(-672, -88, 304, -88, 434.5758, -70.92047, 541, -57, 677, -10, 678, 8, 541, 56, 289, 90, -670, 89)
+
+[node name="AutocannonBase" parent="." unique_id=1010064939 instance=ExtResource("4_c2qs0")]
+position = Vector2(-417, -4)
+
+[node name="AutocannonBase2" parent="." unique_id=146477033 instance=ExtResource("4_c2qs0")]
+position = Vector2(-13, -8)
+
+[node name="AutocannonBase3" parent="." unique_id=2127436634 instance=ExtResource("4_c2qs0")]
+position = Vector2(348, 3)
