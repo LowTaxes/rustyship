@@ -52,7 +52,7 @@ public partial class EnemyShip : Node2D
 		
 
 		Tween tween = GetTree().CreateTween();
-		tween.TweenProperty(this, "position", new Vector2(Constants.ENEMY_START_LOCATION.X,Constants.ENEMY_START_LOCATION.Y), 1);
+		tween.TweenProperty(this, "position", new Vector2(Constants.ENEMY_START_LOCATION.X,Constants.ENEMY_START_LOCATION.Y), .5);
 		
 	}
 

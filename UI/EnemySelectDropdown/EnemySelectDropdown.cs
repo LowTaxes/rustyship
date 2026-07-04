@@ -26,7 +26,7 @@ public partial class EnemySelectDropdown : Control
 
 	private void _OnEditablePlayerReady()
 	{
-		Debug.Print("hi");
+		//Debug.Print("hi");
 		Tween tween = GetTree().CreateTween();
 		
 		tween.TweenProperty(this, "position", lowest_position, .5);

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://nyrdamuj2svr"]
+
+[ext_resource type="Script" uid="uid://bv6fvbdknx03l" path="res://UI/Inventory/InventoryItem.cs" id="1_55swl"]
+[ext_resource type="Texture2D" uid="uid://cxnde44f7mwbq" path="res://BattleItems/Defensive/ShieldBasicLight/ShieldBasicLightInvItemSprite.png" id="2_qb75y"]
+[ext_resource type="FontFile" uid="uid://d2rks27jo02t5" path="res://WIPAssets/Fonts/tinypixel.otf" id="3_clw1o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3k6p"]
+size = Vector2(80, 160)
+
+[node name="ShieldBasicLightInvItemScene" type="Control" unique_id=1051723869]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_55swl")
+
+[node name="HealthBasicLightInvItemSprite" type="Sprite2D" parent="." unique_id=1537107361]
+texture = ExtResource("2_qb75y")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1416828826]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=793802576]
+shape = SubResource("RectangleShape2D_m3k6p")
+metadata/_edit_lock_ = true
+
+[node name="ReferencePoint" type="Node2D" parent="Area2D" unique_id=630498873]
+position = Vector2(-40, -80)
+
+[node name="Label" type="Label" parent="." unique_id=1285514436]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 44.0
+offset_right = 46.0
+offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("3_clw1o")
+theme_override_font_sizes/font_size = 30
+text = "4"

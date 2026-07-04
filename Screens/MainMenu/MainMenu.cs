@@ -108,6 +108,24 @@ public partial class MainMenu : Node2D
 		hardpoint_3.Add("inv_x", 0);
 		hardpoint_3.Add("inv_y", 0);
 
+		Dictionary hardpoint_4 = new Dictionary();
+		hardpoint_4.Add("level", 1);
+		hardpoint_4.Add("weaponID", "shield_basic_light");
+		hardpoint_4.Add("x", 300);
+		hardpoint_4.Add("y", 0);
+		hardpoint_4.Add("weight_class", "light");
+		hardpoint_4.Add("inv_x", 0);
+		hardpoint_4.Add("inv_y", 0);
+
+		Dictionary hardpoint_5 = new Dictionary();
+		hardpoint_5.Add("level", 1);
+		hardpoint_5.Add("weaponID", "damage_support_flat_light");
+		hardpoint_5.Add("x", -500);
+		hardpoint_5.Add("y", 0);
+		hardpoint_5.Add("weight_class", "light");
+		hardpoint_5.Add("inv_x", 0);
+		hardpoint_5.Add("inv_y", 0);
+
 
 		Dictionary run_data = new Dictionary();
 		run_data.Add("player", new Array
@@ -120,7 +138,7 @@ public partial class MainMenu : Node2D
 			new Array{light_2, medium_2, empty_1, empty_1, empty_1},
 			new Array{medium_1, light_1},
 			"0-0",
-			new Array{hardpoint_1, hardpoint_2, hardpoint_3},
+			new Array{hardpoint_1, hardpoint_2, hardpoint_3, hardpoint_4, hardpoint_5},
 		});
 
 		

@@ -1,0 +1,35 @@
+{
+	"health_basic_light":[
+		10,
+		1,
+		0.01,
+		1,
+		"uid://bqvc710d7ncqg",
+		{"x":1,"y":2},
+		"uid://dcmnktmaoo6eu",
+		"uid://bnpv26b0ayyfq",
+		"uid://cm17s8lh5tllb",
+		"light",
+		"health",
+		8
+
+	],
+
+	"shield_basic_light":[
+		5,
+		1,
+		0.01,
+		1,
+		"uid://dpx46bq8tcw4m",
+		{"x":1,"y":2},
+		"uid://cxnde44f7mwbq",
+		"uid://nyrdamuj2svr",
+		"uid://brnxn2gfmbu07",
+		"light",
+		"shield",
+		8
+
+	]
+
+
+}

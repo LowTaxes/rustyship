@@ -11,5 +11,21 @@
 		"uid://cm17s8lh5tllb",
         "light"
 
+	],
+
+	"shield_basic_light":[
+		5,
+		1,
+		0.01,
+		1,
+		"uid://dpx46bq8tcw4m",
+		{"x":1,"y":2},
+		"uid://cxnde44f7mwbq",
+		"uid://nyrdamuj2svr",
+		"uid://brnxn2gfmbu07",
+        "light"
+
 	]
+
+
 }

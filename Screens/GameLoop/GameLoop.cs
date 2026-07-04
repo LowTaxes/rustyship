@@ -68,12 +68,17 @@ public partial class GameLoop : Node2D
 		battle = Battle_Scene.Instantiate<Node2D>();
 		hardpoint_bar = Hardpoint_Bar_Scene.Instantiate<Node2D>();
 
+		this.AddChild(hardpoint_bar);
+		/*
+		hardpointbar must be loaded before editable player so that the signals there can be connected before
+		editable player sends them
+		*/
 		this.AddChild(editable_player);
 		this.AddChild(enemy_select_dropdown);
 		this.AddChild(loot_dropdown);
 		this.AddChild(bottom_doors);
 		this.AddChild(battle);
-		this.AddChild(hardpoint_bar);
+		
 		
 		
 	}

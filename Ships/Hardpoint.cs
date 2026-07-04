@@ -1,6 +1,8 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+
 
 public partial class Hardpoint : Sprite2D
 {	
@@ -16,22 +18,37 @@ public partial class Hardpoint : Sprite2D
 	public bool mouse_hovering = false;
 	public bool mouse_dragging = false;
 	public bool attatched = false;
-	public Area2D area2D;
+	public Area2D core_area;
 	public Area2D placement_area;
+	public Area2D modifier_area;
+	public List<Modifier> active_modifiers;
+
+	public Sprite2D placement_arrow;
+	public Sprite2D placement_x;
 	public override void _Ready()
 	{
-		area2D = GetChild<Area2D>(0);
+		core_area = GetChild<Area2D>(0);
+		placement_area = GetChild<Area2D>(1);
+		modifier_area = GetChild<Area2D>(2);
+		placement_arrow = GetChild<Sprite2D>(3);
+		placement_x = GetChild<Sprite2D>(4);
 		
-		
+		active_modifiers = new List<Modifier>();
+
+		core_area.AreaEntered += CoreAreaEntered;
+		core_area.AreaExited += CoreAreaExited;
+
+		placement_arrow.Visible = false;
+		placement_x.Visible = false;
 		
 		
 	}
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
-        if(this.GlobalPosition.Y > Constants.SEPERATOR_Y)
+        if(this.GlobalPosition.Y > Constants.SEPERATOR_Y || this.GlobalPosition.Y < Constants.UPPER_SEPERATOR_Y)
 		{
-			Debug.Print("left hardpoint area");
+			//Debug.Print("left hardpoint area");
 			PackedScene new_inv_item_scene = null;
 			if(ConstantData.GetBattleItemDesignation(attatched_weaponID).Equals(Constants.WEAPON_DESIGNATION))
 			{
@@ -40,6 +57,10 @@ public partial class Hardpoint : Sprite2D
 			else if (ConstantData.GetBattleItemDesignation(attatched_weaponID).Equals(Constants.DEFENSIVE_DESIGNATION))
 			{
 				new_inv_item_scene = ResourceLoader.Load<PackedScene>(ConstantData.GetDefensiveInventoryItemUID(attatched_weaponID));
+			}
+			else if (ConstantData.GetBattleItemDesignation(attatched_weaponID).Equals(Constants.SUPPORT_DESIGNATION))
+			{
+				new_inv_item_scene = ResourceLoader.Load<PackedScene>(ConstantData.GetSupportInvItemUID(attatched_weaponID));
 			}
 		
 
@@ -71,56 +92,43 @@ public partial class Hardpoint : Sprite2D
 				attatched_weapon_model_sprite.Free();
 			}
 		}
+
+
 		else if(ConstantData.GetBattleItemDesignation(weaponID).Equals(Constants.WEAPON_DESIGNATION))
 		{
 			Sprite2D weapon_model = ResourceLoader.Load<PackedScene>(ConstantData.GetWeaponModelUID(weaponID)).Instantiate<Sprite2D>();
 			attatched_weapon_model_sprite = weapon_model;
 			AddChild(weapon_model);
+			MoveChild(weapon_model,0);
 			weapon_model.LookAt(new Vector2(weapon_model.GlobalPosition.X, weapon_model.GlobalPosition.Y-1));
+			placement_area.Scale *= ConstantData.GetWeaponPlacementRadius(weaponID);
 
-
-			if(ConstantData.GetWeaponWeightClass(weaponID).Equals("light"))
-			{
-				PackedScene placement_area_scene = ResourceLoader.Load<PackedScene>("uid://cmcstf16p78g4");//smallarea uid
-				Area2D new_area = placement_area_scene.Instantiate<Area2D>();
-				placement_area = new_area;
-				AddChild(new_area);
-				
-
-			}
-			else if(ConstantData.GetWeaponWeightClass(weaponID).Equals("medium"))
-			{
-				PackedScene placement_area_scene = ResourceLoader.Load<PackedScene>("uid://cfkgkj1nsleg0");//mediumarea uid
-				Area2D new_area = placement_area_scene.Instantiate<Area2D>();
-				placement_area = new_area;
-				AddChild(new_area);
-
-			}
-			else
-			{
-				PackedScene placement_area_scene = ResourceLoader.Load<PackedScene>("uid://dlwbsyypwmufy");//largearea uid
-				Area2D new_area = placement_area_scene.Instantiate<Area2D>();
-				placement_area = new_area;
-				AddChild(new_area);
-			}
+			weight_class = ConstantData.GetWeaponWeightClass(weaponID);
+			
 		}
-
 		else if (ConstantData.GetBattleItemDesignation(weaponID).Equals(Constants.DEFENSIVE_DESIGNATION))
 		{
 			Sprite2D defensive_model = ResourceLoader.Load<PackedScene>(ConstantData.GetDefensiveBattleModelUID(weaponID)).Instantiate<Sprite2D>();
 			attatched_weapon_model_sprite = defensive_model;
 			AddChild(defensive_model);
+			MoveChild(defensive_model,0);
+			placement_area.Scale *= ConstantData.GetDefensivePlacementRadius(weaponID);
 
+			weight_class = ConstantData.GetDefensiveWeightClass(weaponID);
 
-			PackedScene placement_area_scene = ResourceLoader.Load<PackedScene>("uid://cmcstf16p78g4");//smallarea uid
-			Area2D new_area = placement_area_scene.Instantiate<Area2D>();
-			placement_area = new_area;
-			AddChild(new_area);
+		}
+		else if (ConstantData.GetBattleItemDesignation(weaponID).Equals(Constants.SUPPORT_DESIGNATION))
+		{
+			Sprite2D support_model = ResourceLoader.Load<PackedScene>(ConstantData.GetSupportBattleModelUID(weaponID)).Instantiate<Sprite2D>();
+			attatched_weapon_model_sprite = support_model;
+			AddChild(support_model);
+			MoveChild(support_model,0);
+			
+			
+			placement_area.Scale = new Vector2(ConstantData.GetSupportPlacementRadius(weaponID),ConstantData.GetSupportPlacementRadius(weaponID));
+			modifier_area.Scale = new Vector2(ConstantData.GetSupportRadius(weaponID),ConstantData.GetSupportRadius(weaponID));
 
-
-
-
-
+			weight_class = ConstantData.GetSupportWeightClass(weaponID);
 		}
 
 		
@@ -149,12 +157,29 @@ public partial class Hardpoint : Sprite2D
 				mouse_dragging = true;
 				attatched = false;
 				//SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.HardpointInfoChange.ToString(), this, attatched_weaponID, inv_x, inv_y, level, weight_class);
-				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.HardpointRemoved.ToString(), this);
+				for(int i = 0; i < modifier_area.GetOverlappingAreas().Count; i++)
+				{
+					if(modifier_area.GetOverlappingAreas()[i].GetParent() is Hardpoint overlapping_hardpoint && overlapping_hardpoint != this)
+					{
+						if(modifier_area.OverlapsArea(overlapping_hardpoint.core_area) && !overlapping_hardpoint.placement_x.Visible)
+						{
+							overlapping_hardpoint.placement_arrow.Visible = true;
+						}
+					}
+				}
+				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.HardpointClicked.ToString(), this);
 			}
-			else if(mouse_event.IsActionReleased("left_click") && mouse_dragging)
+			else if(mouse_event.IsActionReleased("left_click"))
 			{
-				mouse_dragging = false;
-				SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.HardpointAdded.ToString(), this);
+				//placement_x.Visible = false;
+				placement_arrow.Visible = false;
+
+				if(mouse_dragging)
+				{
+					mouse_dragging = false;
+					SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.HardpointReleased.ToString(), this);
+				}
+				
 			}
 			if(@event is InputEventMouseMotion mouse_motion_event && moveable && mouse_dragging)
 			{
@@ -163,6 +188,84 @@ public partial class Hardpoint : Sprite2D
 			
 		}
 	}
+
+	//support specific methods
+	public Modifier GetModifier()
+	{
+		Modifier returned_modifer = null;
+		if(ConstantData.GetBattleItemDesignation(attatched_weaponID).Equals(Constants.SUPPORT_DESIGNATION))
+		{
+			returned_modifer = new Modifier(
+				ConstantData.GetSupportType(attatched_weaponID),
+				ConstantData.GetSupportModifierType(attatched_weaponID),
+				ConstantData.GetSupportWeightClassRestriction(attatched_weaponID),
+				ConstantData.GetSupportAmount(attatched_weaponID),
+				this
+			);
+		}
+		else
+		{
+			Debug.Print("This isn't a Support Hardpoint so it cant make a modifier");
+		}
+
+		return returned_modifer;
+	}
+	
+	private void CoreAreaEntered(Area2D area2D)
+	{
+		if(area2D.GetParent() is Hardpoint hardpoint_entered && hardpoint_entered != this)
+		{
+			if(core_area.OverlapsArea(hardpoint_entered.placement_area))
+			{
+				placement_x.Visible = true;
+				placement_arrow.Visible = false;
+			}
+			else if (core_area.OverlapsArea(hardpoint_entered.modifier_area) && !mouse_dragging && hardpoint_entered.mouse_dragging)
+			{
+				placement_x.Visible = false;
+				placement_arrow.Visible = true;
+			}
+		}
+	}
+	private void CoreAreaExited(Area2D area2D)
+	{
+		if(area2D.GetParent() is Hardpoint hardpoint_entered)
+		{
+			if(area2D == hardpoint_entered.modifier_area)
+			{
+				placement_arrow.Visible = false;
+			}
+
+			if(area2D == hardpoint_entered.placement_area)
+			{
+				//checks if its still overlapping any placement areas
+				bool overlapping = false;
+				for(int i = 0; i < core_area.GetOverlappingAreas().Count; i++)
+				{
+					if(core_area.GetOverlappingAreas()[i].GetParent() is Hardpoint other_hardpoint_entered && other_hardpoint_entered != this)
+					{
+						if(core_area.OverlapsArea(other_hardpoint_entered.placement_area))
+						{
+							overlapping = true;
+						}
+					}
+				}
+				if(!overlapping)
+				{
+					placement_x.Visible = false;
+				}
+				
+
+
+				if(core_area.OverlapsArea(hardpoint_entered.modifier_area) && !mouse_dragging)
+				{
+					placement_arrow.Visible = true;
+				}
+			}
+			
+		}
+	}
+
 	
 	
 	

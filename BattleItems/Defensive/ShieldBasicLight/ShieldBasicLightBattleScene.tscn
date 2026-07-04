@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://brnxn2gfmbu07"]
+
+[ext_resource type="Script" uid="uid://bl6rinsi7sxep" path="res://BattleItems/Defensive/BasicDefensive.cs" id="1_6mnnl"]
+[ext_resource type="PackedScene" uid="uid://dpx46bq8tcw4m" path="res://BattleItems/Defensive/ShieldBasicLight/ShieldBasicLightBattleModelScene.tscn" id="2_d7lwt"]
+
+[node name="ShieldBasicLightBattleScene" type="Node2D" unique_id=776960785]
+script = ExtResource("1_6mnnl")
+
+[node name="ShieldBasicLightBattleModelScene" parent="." unique_id=840570398 instance=ExtResource("2_d7lwt")]

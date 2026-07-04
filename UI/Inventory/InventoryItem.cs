@@ -17,6 +17,7 @@ public partial class InventoryItem : Control
 	public Sprite2D sprite2D;
 	public Area2D area2D;
 	public Node2D reference_point;
+	public Label level_label;
 	public bool mouse_hovering = false;
 	public bool mouse_dragging = false;
 	public bool attatched = false;
@@ -33,11 +34,12 @@ public partial class InventoryItem : Control
 		sprite2D = GetChild<Sprite2D>(0);
 		area2D = GetChild<Area2D>(1);
 		reference_point = area2D.GetChild<Node2D>(1);
+		level_label = GetChild<Label>(2);
 
 		area2D.MouseEntered += _On_Mouse_Entered;
 		area2D.MouseExited += _On_Mouse_Exited;
 		
-		
+		level_label.Text = level.ToString();
 
 		
 		if(!(weapon_name.Equals("empty")))
@@ -54,6 +56,12 @@ public partial class InventoryItem : Control
 				size_x = (int)size_v.X;
 				size_y = (int)size_v.Y;
 			}
+			else if(ConstantData.GetBattleItemDesignation(weapon_name).Equals(Constants.SUPPORT_DESIGNATION))
+			{
+				Vector2 size_v = ConstantData.GetSupportInvItemSize(weapon_name);
+				size_x = (int)size_v.X;
+				size_y = (int)size_v.Y;
+			}
 			
 			
 
@@ -62,9 +70,9 @@ public partial class InventoryItem : Control
 	}
     public override void _Process(double delta)
     {
-        if(this.GlobalPosition.Y < Constants.SEPERATOR_Y && !is_lootspawn)
+        if((this.GlobalPosition.Y < Constants.SEPERATOR_Y && this.GlobalPosition.Y > Constants.UPPER_SEPERATOR_Y) && !is_lootspawn)
 		{
-			Debug.Print("left storage area");
+			//Debug.Print(this.GlobalPosition.Y.ToString());
 			PackedScene new_hardpoint_scene = ResourceLoader.Load<PackedScene>("uid://1h4nrs17ravr");
 			Hardpoint new_hardpoint = new_hardpoint_scene.Instantiate<Hardpoint>();
 			GetNode("/root").AddChild(new_hardpoint);

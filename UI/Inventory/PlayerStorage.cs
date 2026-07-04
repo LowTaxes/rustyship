@@ -91,8 +91,7 @@ public partial class PlayerStorage : Control
 			float pos_x = (new_item.storage_x)*(Constants.inventory_square_size) + (new_item.sprite2D.Texture.GetWidth()/2);
 			float pos_y = (new_item.storage_y)*(Constants.inventory_square_size) + (new_item.sprite2D.Texture.GetHeight()/2);
 			
-			Label level_label = new_item.GetChild<Label>(2);
-			level_label.Text = new_item.level.ToString();
+			
 			/*
 			level_label.Position = new Vector2(-Constants.inventory_square_size*new_item.size_x/2,-Constants.inventory_square_size*new_item.size_y/2);
 			level_label.AddThemeConstantOverride("font_size", 30);

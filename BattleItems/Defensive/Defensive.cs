@@ -69,7 +69,7 @@ public partial class Defensive : Node2D
 		
 		if(shots_fired < volley_count)
 		{
-			Debug.Print("4");
+			//Debug.Print("4");
 			shots_fired+=1;
 			Heal();
 			multi_shot_timer.Start();

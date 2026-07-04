@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://1h4nrs17ravr"]
 
 [ext_resource type="Script" uid="uid://cgdetc718ceyn" path="res://Ships/Hardpoint.cs" id="1_dtjfk"]
+[ext_resource type="Texture2D" uid="uid://cepdwdbdgdjoe" path="res://UI/ShipEditingUI/ModifierPlacementArrow.png" id="2_uumqx"]
+[ext_resource type="Texture2D" uid="uid://d4cgrrp1icpil" path="res://UI/ShipEditingUI/PlacementX.png" id="3_7eydr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m2j3j"]
 size = Vector2(40, 40)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwo2k"]
-bg_color = Color(0.77591664, 0.07843367, 0, 1)
+[sub_resource type="CircleShape2D" id="CircleShape2D_dtjfk"]
+radius = 8.0
 
 [node name="Hardpoint" type="Sprite2D" unique_id=131088000]
 script = ExtResource("1_dtjfk")
@@ -16,13 +18,23 @@ script = ExtResource("1_dtjfk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CentralArea" unique_id=1196563741]
 shape = SubResource("RectangleShape2D_m2j3j")
 
-[node name="Panel" type="Panel" parent="." unique_id=57546676]
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qwo2k")
+[node name="PlacementArea" type="Area2D" parent="." unique_id=974275927]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlacementArea" unique_id=1105395246]
+shape = SubResource("CircleShape2D_dtjfk")
+
+[node name="ModifierArea" type="Area2D" parent="." unique_id=468990306]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModifierArea" unique_id=908405041]
+shape = SubResource("CircleShape2D_dtjfk")
+
+[node name="ModifierPlacementArrow" type="Sprite2D" parent="." unique_id=283026182]
+visible = false
+texture = ExtResource("2_uumqx")
+
+[node name="PlacementX" type="Sprite2D" parent="." unique_id=356048940]
+visible = false
+texture = ExtResource("3_7eydr")
 
 [connection signal="mouse_entered" from="CentralArea" to="." method="_OnMouseEntered"]
 [connection signal="mouse_exited" from="CentralArea" to="." method="_OnMouseExited"]

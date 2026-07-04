@@ -31,6 +31,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="shipshenanegans"
 
+[global_group]
+
+InventoryItem=""
+
 [input]
 
 left_click={
@@ -46,3 +50,4 @@ left_click={
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+2d/snap/snap_2d_transforms_to_pixel=true

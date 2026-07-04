@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d03dwloex1q4g"]
+
+[ext_resource type="Texture2D" uid="uid://dda2x3hfsfdit" path="res://BattleItems/Support/DamageSupportFlatLight/DamageSupportFlatLightBattleModel.png" id="1_khahr"]
+
+[node name="DamageSupportFlatLightBattleModelScene" type="Sprite2D" unique_id=984746494]
+texture = ExtResource("1_khahr")

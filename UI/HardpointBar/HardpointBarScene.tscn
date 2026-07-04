@@ -26,6 +26,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vgy0u")
 position = Vector2(0, -668)
 texture = ExtResource("2_asa7f")
 
+[node name="Panel" type="Panel" parent="." unique_id=1014369429]
+offset_left = -905.0
+offset_top = -940.0
+offset_right = 834.0
+offset_bottom = -700.0
+mouse_filter = 2
+
 [node name="HardpointBar" type="ScrollContainer" parent="." unique_id=1014565421]
 offset_left = -905.0
 offset_top = -940.0
@@ -40,10 +47,3 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("3_asa7f")
-
-[node name="Panel" type="Panel" parent="." unique_id=1014369429]
-offset_left = -905.0
-offset_top = -940.0
-offset_right = 834.0
-offset_bottom = -700.0
-mouse_filter = 2

@@ -6,13 +6,24 @@
 [ext_resource type="Script" uid="uid://dhc83j7qlqsvf" path="res://UI/Battle/LeftPanel.cs" id="5_n15ps"]
 [ext_resource type="Script" uid="uid://c2u7b83jkgr5c" path="res://UI/Battle/PlayerStats.cs" id="5_yoi3p"]
 [ext_resource type="Texture2D" uid="uid://b0uls1kk1y68m" path="res://UI/Battle/RightPanel.png" id="6_055q2"]
+[ext_resource type="Texture2D" uid="uid://db77a2liky5yq" path="res://UI/Battle/ShieldBar.png" id="6_wefwy"]
+[ext_resource type="Texture2D" uid="uid://cgl6dkwfrfeah" path="res://UI/Battle/HealthBar.png" id="7_n0nts"]
 [ext_resource type="FontFile" uid="uid://d2rks27jo02t5" path="res://WIPAssets/Fonts/tinypixel.otf" id="7_n15ps"]
 [ext_resource type="Script" uid="uid://1iwtxn1gbqdm" path="res://UI/Battle/BattleTimer.cs" id="7_sp83b"]
 [ext_resource type="Script" uid="uid://bav806oc7i5x2" path="res://UI/Battle/RightPanel.cs" id="7_yoi3p"]
 [ext_resource type="Script" uid="uid://cyx46u36omwxy" path="res://UI/Battle/EnemyStats.cs" id="8_xgrsg"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wefwy"]
-bg_color = Color(1, 0, 0, 0.4117647)
+[sub_resource type="Gradient" id="Gradient_wefwy"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.625, 0.6875, 0.875)
+colors = PackedColorArray(0.25777128, 0.467811, 0.73422015, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n0nts"]
+gradient = SubResource("Gradient_wefwy")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Battle" type="Node2D" unique_id=1297650440]
 
@@ -29,93 +40,16 @@ position = Vector2(2305, -319)
 script = ExtResource("2_qt7f3")
 
 [node name="LeftPanel2" type="Sprite2D" parent="." unique_id=1676336144]
+visible = false
 position = Vector2(-1369, 0)
 texture = ExtResource("4_sp83b")
 script = ExtResource("5_n15ps")
 
-[node name="PlayerStats" type="Control" parent="LeftPanel2" unique_id=1695584211]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -216.0
-offset_top = -648.0
-offset_right = 209.0
-offset_bottom = 647.0
-script = ExtResource("5_yoi3p")
-
-[node name="PlayerHealthBar" type="ProgressBar" parent="LeftPanel2/PlayerStats" unique_id=1141419982]
-layout_mode = 0
-offset_left = 162.0
-offset_top = 1187.0
-offset_right = 352.0
-offset_bottom = 1214.0
-theme_override_styles/background = SubResource("StyleBoxFlat_wefwy")
-show_percentage = false
-
-[node name="Label" type="Label" parent="LeftPanel2/PlayerStats/PlayerHealthBar" unique_id=549280151]
-layout_mode = 0
-offset_left = 76.0
-offset_top = 2.0
-offset_right = 116.0
-offset_bottom = 25.0
-
-[node name="PlayerArmorBar" type="ProgressBar" parent="LeftPanel2/PlayerStats" unique_id=1437048907]
-layout_mode = 0
-offset_left = 162.0
-offset_top = 1228.0
-offset_right = 352.0
-offset_bottom = 1255.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="LeftPanel2/PlayerStats/PlayerArmorBar" unique_id=1493560881]
-layout_mode = 0
-offset_left = 76.0
-offset_top = 2.0
-offset_right = 116.0
-offset_bottom = 25.0
-
 [node name="RightPanel2" type="Sprite2D" parent="." unique_id=1198035075]
+visible = false
 position = Vector2(1369, 0)
 texture = ExtResource("6_055q2")
 script = ExtResource("7_yoi3p")
-
-[node name="EnemyStats" type="Control" parent="RightPanel2" unique_id=2079277211]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -216.0
-offset_top = -648.0
-offset_right = 209.0
-offset_bottom = 647.0
-script = ExtResource("8_xgrsg")
-
-[node name="EnemyHealthBar" type="ProgressBar" parent="RightPanel2/EnemyStats" unique_id=1130627815]
-layout_mode = 0
-offset_left = 162.0
-offset_top = 1187.0
-offset_right = 352.0
-offset_bottom = 1214.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="RightPanel2/EnemyStats/EnemyHealthBar" unique_id=1769256242]
-layout_mode = 0
-offset_left = 76.0
-offset_top = 2.0
-offset_right = 116.0
-offset_bottom = 25.0
-
-[node name="EnemyArmorBar" type="ProgressBar" parent="RightPanel2/EnemyStats" unique_id=830313542]
-layout_mode = 0
-offset_left = 162.0
-offset_top = 1228.0
-offset_right = 352.0
-offset_bottom = 1255.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="RightPanel2/EnemyStats/EnemyArmorBar" unique_id=552313620]
-layout_mode = 0
-offset_left = 76.0
-offset_top = 2.0
-offset_right = 116.0
-offset_bottom = 25.0
 
 [node name="Label" type="Label" parent="." unique_id=1816823733]
 offset_left = -300.0
@@ -130,5 +64,69 @@ vertical_alignment = 1
 script = ExtResource("7_sp83b")
 
 [node name="Timer" type="Timer" parent="Label" unique_id=1135580058]
+
+[node name="PlayerStats" type="Control" parent="." unique_id=1695584211]
+layout_mode = 3
+anchor_left = 3.6720002
+anchor_top = 0.5
+anchor_right = 3.6720002
+anchor_bottom = 0.5
+offset_left = -1831.0001
+offset_top = 587.0
+offset_right = -1194.0
+offset_bottom = 639.0
+script = ExtResource("5_yoi3p")
+
+[node name="ShieldBarLower" type="TextureProgressBar" parent="PlayerStats" unique_id=1065749247]
+layout_mode = 0
+offset_right = 632.0
+offset_bottom = 40.0
+value = 100.0
+allow_greater = true
+texture_progress = ExtResource("6_wefwy")
+metadata/_edit_lock_ = true
+
+[node name="HealthBar" type="TextureProgressBar" parent="PlayerStats" unique_id=729437171]
+layout_mode = 0
+offset_right = 632.0
+offset_bottom = 40.0
+value = 100.0
+allow_greater = true
+texture_progress = ExtResource("7_n0nts")
+metadata/_edit_lock_ = true
+
+[node name="EnemyStats" type="Control" parent="." unique_id=2079277211]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1830.0
+offset_top = -631.0
+offset_right = 2468.0
+offset_bottom = -588.0
+scale = Vector2(-1, 1)
+script = ExtResource("8_xgrsg")
+
+[node name="ShieldBarLower" type="TextureProgressBar" parent="EnemyStats" unique_id=1027748471]
+layout_mode = 0
+offset_right = 632.0
+offset_bottom = 40.0
+value = 100.0
+allow_greater = true
+texture_progress = ExtResource("6_wefwy")
+metadata/_edit_lock_ = true
+
+[node name="HealthBar" type="TextureProgressBar" parent="EnemyStats" unique_id=2137250322]
+layout_mode = 0
+offset_right = 632.0
+offset_bottom = 40.0
+value = 100.0
+allow_greater = true
+texture_progress = ExtResource("7_n0nts")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="Sprite2D" parent="." unique_id=270364520]
+visible = false
+position = Vector2(-418.99997, 167.00002)
+scale = Vector2(9.531249, 9.531249)
+texture = SubResource("GradientTexture2D_n0nts")
 
 [connection signal="timeout" from="Label/Timer" to="Label" method="_OnTimeout"]

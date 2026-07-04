@@ -12,12 +12,13 @@ using System.Collections.Generic;
 public partial class ConstantData : Node
 {
 	public static ConstantData Instance;
-	string data_path = "res://Data/ConstantData/";
+	string data_path = "res://Data/JsonStorage/";
 
 	public static Dictionary WeaponData;
 	public static Dictionary ShipData;
 	public static Dictionary LevelData;
 	public static Dictionary DefensiveData;
+	public static Dictionary SupportData;
 
 	
 	public override void _Ready()
@@ -28,7 +29,7 @@ public partial class ConstantData : Node
 		ShipData = LoadJsonFile("ShipData.json");
 		LevelData = LoadJsonFile("LevelData.json");
 		DefensiveData = LoadJsonFile("DefensiveData.json");
-
+		SupportData = LoadJsonFile("SupportData.json");
 		
 		
 
@@ -74,6 +75,10 @@ public partial class ConstantData : Node
 		else if(DefensiveData.ContainsKey(battle_item_ID))
 		{
 			return Constants.DEFENSIVE_DESIGNATION;
+		}
+		else if (SupportData.ContainsKey(battle_item_ID))
+		{
+			return Constants.SUPPORT_DESIGNATION;
 		}
 
 		return "none";
@@ -196,6 +201,11 @@ public partial class ConstantData : Node
 		return (((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.WEIGHT_CLASS]).ToString();
 	}
 
+	public static int GetWeaponPlacementRadius(string weapon_name)
+	{
+		return (int)(((Array)WeaponData[weapon_name])[(int)Constants.WeaponDataEnum.PLACEMENT_RADIUS]);
+	}
+
 	/// 
 	/// 
 	/// 
@@ -264,13 +274,15 @@ public partial class ConstantData : Node
 		return ((Array)DefensiveData[weapon_name])[(int)Constants.DefensiveDataEnum.WEIGHT_CLASS].ToString();
 	}
 
+	public static string GetDefensiveHealingType(string weapon_name)
+	{
+		return ((Array)DefensiveData[weapon_name])[(int)Constants.DefensiveDataEnum.HEALING_TYPE].ToString();
+	}
+	public static int GetDefensivePlacementRadius(string weapon_name)
+	{
+		return (int)(((Array)DefensiveData[weapon_name])[(int)Constants.DefensiveDataEnum.PLACEMENT_RADIUS]);
+	}
 	
-
-
-
-
-
-
 
 
 
@@ -279,7 +291,87 @@ public partial class ConstantData : Node
 	/// 
 	/// 
 	/////////////////////////////////////////////////////DEFENSIVE INFO
+	
 
+	/////////////////////////////////////////////////////SUPPORT INFO
+	/// 
+	/// 
+	/// 
+	/// 
+	/// 
+	/// 
+	/// 
+
+
+	public static string GetSupportType(string weapon_name)
+	{
+		return ((Array)SupportData[weapon_name])[(int)Constants.SupportDataEnum.SUPPORT_TYPE].ToString();
+	}
+
+	public static string GetSupportModifierType(string weapon_name)
+	{
+		return ((Array)SupportData[weapon_name])[(int)Constants.SupportDataEnum.MODIFIER_TYPE].ToString();
+	}
+
+	public static double GetSupportAmount(string weapon_name)
+	{
+		return (double)((Array)SupportData[weapon_name])[(int)Constants.SupportDataEnum.SUPPORT_AMOUNT];
+	}
+
+	public static int GetSupportRadius(string weapon_name)
+	{
+		return (int)((Array)SupportData[weapon_name])[(int)Constants.SupportDataEnum.SUPPORT_RADIUS];
+	}
+
+	public static string GetSupportBattleModelUID(string weapon_name)
+	{
+		return ((Array)SupportData[weapon_name])[(int)Constants.SupportDataEnum.BATTLE_MODEL_UID].ToString();
+	}
+
+	public static Vector2 GetSupportInvItemSize(string weapon_name)
+	{
+		Dictionary size_dict = (Dictionary)((Array)SupportData[weapon_name])[(int)Constants.SupportDataEnum.INVENTORY_ITEM_SIZE];
+		return new Vector2((int)size_dict["x"], (int)size_dict["y"]);
+
+	}
+	public static string GetSupportInvItemSpriteUID(string weapon_name)
+	{
+		return ((Array)SupportData[weapon_name])[(int)Constants.SupportDataEnum.INVENTORY_ITEM_SPRITE_UID].ToString();
+	}
+
+	public static string GetSupportInvItemUID(string weapon_name)
+	{
+		return ((Array)SupportData[weapon_name])[(int)Constants.SupportDataEnum.INV_ITEM_UID].ToString();
+	}
+
+	public static string GetSupportBattleSceneUID(string weapon_name)
+	{
+		return ((Array)SupportData[weapon_name])[(int)Constants.SupportDataEnum.BATTLE_SCENE_UID].ToString();
+	}
+
+	public static string GetSupportWeightClass(string weapon_name)
+	{
+		return ((Array)SupportData[weapon_name])[(int)Constants.SupportDataEnum.WEIGHT_CLASS].ToString();
+	}
+	public static int GetSupportPlacementRadius(string weapon_name)
+	{
+		return (int)(((Array)SupportData[weapon_name])[(int)Constants.SupportDataEnum.PLACEMENT_RADIUS]);
+	}
+
+	public static string GetSupportWeightClassRestriction(string weapon_name)
+	{
+		return ((Array)SupportData[weapon_name])[(int)Constants.SupportDataEnum.WEIGHT_CLASS_RESTRICTION].ToString();
+	}
+
+	/// 
+	/// 
+	/// 
+	/// 
+	/// 
+	/// 
+	/// 
+	/// 
+	///////////////////////////////////////////////////////SUPPORT INFO
 	public static List<string> GetShipHardpointWeightClasses(string ship_ID)
 	{
 		List<string> return_list = new List<string>();

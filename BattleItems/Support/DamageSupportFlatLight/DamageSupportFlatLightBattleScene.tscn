@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://uinpgnysx1ii"]
+
+[ext_resource type="PackedScene" uid="uid://d03dwloex1q4g" path="res://BattleItems/Support/DamageSupportFlatLight/DamageSupportFlatLightBattleModelScene.tscn" id="1_phye7"]
+
+[node name="DamageSupportFlatLightBattleScene" type="Node2D" unique_id=622859391]
+
+[node name="DamageSupportFlatLightBattleModelScene" parent="." unique_id=984746494 instance=ExtResource("1_phye7")]

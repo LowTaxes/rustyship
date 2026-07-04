@@ -14,10 +14,18 @@ public partial class Constants : Node
 	public static float camera_zoom_dragging_modifier = 2;
 
 	public static int SEPERATOR_Y = 90;
-	public static int UPPER_SEPERATOR_Y = -200;
+	public static int UPPER_SEPERATOR_Y = -300;
 
 	public static string WEAPON_DESIGNATION = "weapon";
 	public static string DEFENSIVE_DESIGNATION = "defensive";
+	public static string SUPPORT_DESIGNATION = "support";
+	public static int HARDPOINT_BAR_SEPARATION = 20;
+	public static int HARDPOINT_BAR_HEIGHT = 240;
+
+
+	public static Color COLOR_RED = new Color(255, 44, 33);
+	public static Color COLOR_GREEN = new Color(0, 178, 255);
+	public static Color COLOR_YELLOW = new Color(255, 254, 56);
 
 	
 	public enum WeaponDataEnum
@@ -39,6 +47,7 @@ public partial class Constants : Node
 		INV_ITEM_UID,
 		BATTLE_SCENE_UID,
 		WEIGHT_CLASS,
+		PLACEMENT_RADIUS
 	}
 	public enum DefensiveDataEnum
 	{
@@ -51,9 +60,27 @@ public partial class Constants : Node
 		INVENTORY_ITEM_SPRITE_UID,
 		INV_ITEM_UID,
 		BATTLE_SCENE_UID,
-		WEIGHT_CLASS
+		WEIGHT_CLASS,
+		HEALING_TYPE,
+		PLACEMENT_RADIUS
 		
 
+	}
+
+	public enum SupportDataEnum
+	{
+		SUPPORT_TYPE,
+		MODIFIER_TYPE,
+		SUPPORT_AMOUNT,
+		SUPPORT_RADIUS,
+		BATTLE_MODEL_UID,
+		INVENTORY_ITEM_SIZE,
+		INVENTORY_ITEM_SPRITE_UID,
+		INV_ITEM_UID,
+		BATTLE_SCENE_UID,
+		WEIGHT_CLASS,
+		PLACEMENT_RADIUS,
+		WEIGHT_CLASS_RESTRICTION
 	}
 
 	public enum ShipDataEnum

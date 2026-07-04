@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dpx46bq8tcw4m"]
+
+[ext_resource type="Texture2D" uid="uid://bqqp1845kyyq6" path="res://BattleItems/Defensive/ShieldBasicLight/ShieldBasicLightBattleModel.png" id="1_onbpi"]
+
+[node name="ShieldBasicLightBattleModelScene" type="Sprite2D" unique_id=840570398]
+texture = ExtResource("1_onbpi")

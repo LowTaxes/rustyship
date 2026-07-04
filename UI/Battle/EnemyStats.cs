@@ -3,56 +3,101 @@ using System;
 
 public partial class EnemyStats : Control
 {
-	public ProgressBar enemy_health_bar;
-	public ProgressBar enemy_armor_bar;
+	public Vector2 outer_position;
+
+	public TextureProgressBar shield_bar_lower;
+	public TextureProgressBar health_bar;
+
+	private double max_health;
+	private double health;
+	private double shield;
 	public override void _Ready()
 	{
+		outer_position = this.Position;
+
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.EnemyDamageTaken, new Callable(this, "_OnEnemyDamageTaken"));
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.HealthHealed, new Callable(this, "_OnHealthHealed"));
+		SignalConnect.Instance.Connect(SignalConnect.SignalName.ShieldHealed, new Callable(this, "_OnShieldHealed"));
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.BattleSequenceBegins, new Callable(this, "_OnBattleSequenceBegins"));
-		
 
+		shield_bar_lower = GetChild<TextureProgressBar>(0);
+		health_bar = GetChild<TextureProgressBar>(1);
+
+		max_health = 150;	//temp
+		health = max_health; 
+		shield = 0;
 	}
-
 	private void _OnBattleSequenceBegins()
 	{
-		enemy_health_bar = GetChild<ProgressBar>(0);
-		enemy_armor_bar = GetChild<ProgressBar>(1);
-
-		string enemy_ship_template_id = ConstantData.GetLevelShipTemplateID(RunData.GetLevelID());
-
-		float enemy_max_health = ConstantData.GetShipTemplateHealth(enemy_ship_template_id) + (ConstantData.GetShipTemplateHealth(enemy_ship_template_id) * ConstantData.GetLevelHealthModifierCount(RunData.GetLevelID()) * Constants.health_modifier);
-		float enemy_max_armor = ConstantData.GetShipTemplateArmor(enemy_ship_template_id) + (ConstantData.GetShipTemplateArmor(enemy_ship_template_id) * ConstantData.GetLevelArmorModifierCount(RunData.GetLevelID()) * Constants.armor_modifier);
-
-		enemy_health_bar.MaxValue = enemy_max_health;
-		enemy_health_bar.Value = enemy_health_bar.MaxValue;
-		enemy_health_bar.GetChild<Label>(0).Text = enemy_health_bar.Value.ToString() + "/" + enemy_health_bar.MaxValue.ToString();
-
-		enemy_armor_bar.MaxValue = enemy_max_armor;
-		enemy_armor_bar.Value = enemy_armor_bar.MaxValue;
-		enemy_armor_bar.GetChild<Label>(0).Text = enemy_armor_bar.Value.ToString() + "/" + enemy_armor_bar.MaxValue.ToString();
+		Tween tween = GetTree().CreateTween();
+		tween.TweenProperty(this, "position", new Vector2(this.Position.X - 2300,this.Position.Y), .5);
 	}
-
-
 
 	private void _OnEnemyDamageTaken(double damage, double armor_damage_modifier)
 	{
-		
-		if(enemy_armor_bar.Value > 0)
+		double overflow = 0;
+		if(shield > 0)
 		{
-			enemy_armor_bar.Value-=damage*armor_damage_modifier;
-			enemy_armor_bar.GetChild<Label>(0).Text = enemy_armor_bar.Value + "/" + enemy_armor_bar.MaxValue;
-			
+			overflow = damage - shield;
+			shield -= damage;
+			if(shield < 0)
+			{
+				shield = 0;
+			}
 		}
-		else if(enemy_health_bar.Value > 0)
+		else
 		{
-			enemy_health_bar.Value-=damage;
-			enemy_health_bar.GetChild<Label>(0).Text = enemy_health_bar.Value + "/" + enemy_health_bar.MaxValue;
-			
+			health -= damage;
 		}
-		if(enemy_health_bar.Value<=0)
+		if(overflow > 0)
+		{
+			health -= overflow;
+		}
+		if(health <= 0)
 		{
 			SignalConnect.Instance.EmitSignal(SignalConnect.SignalName.StartNewLoop);
+		}
+		UpdateStatus();
+	}
+
+	private void _OnHealthHealed(double healing, bool is_player)
+	{
+		if(!is_player)
+		{
+			if(health < max_health)
+			{
+				health += healing;
+			}
+			if(health > max_health)
+			{
+				health = max_health;
+			}
+		}
+		UpdateStatus();
+	}
+
+	private void _OnShieldHealed(double healing, bool is_player)
+	{
+		if(!is_player)
+		{
+			shield += healing;
+		}
+		UpdateStatus();
+	}
+
+	private void UpdateStatus()
+	{
+		//mode 1 if total vitality is less than max health
+		if((health + shield <= max_health))
+		{
 			
+			health_bar.Value = (int)((100/max_health) * health);
+			shield_bar_lower.Value = (int)((100/max_health) * (health + shield));
+		}
+		else if ((health + shield) > max_health)
+		{
+			shield_bar_lower.Value = shield_bar_lower.MaxValue;
+			health_bar.Value = (100 / (shield + health)) * health;
 		}
 	}
 }

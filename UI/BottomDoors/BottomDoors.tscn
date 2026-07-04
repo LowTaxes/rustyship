@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://be1d0lkfgylie" path="res://UI/BottomDoors/BottomDoors.cs" id="1_yyvxu"]
 [ext_resource type="Script" uid="uid://b2w3qhidix158" path="res://UI/BottomDoors/ToBattleButton.cs" id="5_kerui"]
+[ext_resource type="Script" uid="uid://dqi33rnrbq7vk" path="res://UI/BottomDoors/BattleItemInfo.cs" id="7_3iqxn"]
+[ext_resource type="FontFile" uid="uid://d2rks27jo02t5" path="res://WIPAssets/Fonts/tinypixel.otf" id="8_wkpa1"]
 [ext_resource type="Script" uid="uid://bitywnov6avb8" path="res://UI/Inventory/PlayerStorage.cs" id="9_6aie6"]
 [ext_resource type="Texture2D" uid="uid://dv7j7k3qdhpa1" path="res://UI/BottomDoors/InventoryContainer2_nocrack.png" id="10_ni6d2"]
 [ext_resource type="Script" uid="uid://dtvcj10nilf2k" path="res://UI/BottomDoors/HardpointInventory.cs" id="10_ok8oj"]
@@ -99,12 +101,56 @@ offset_bottom = 699.0
 text = "To Battle"
 script = ExtResource("5_kerui")
 
-[node name="Control" type="Control" parent="." unique_id=844286604]
+[node name="BattleItemInfo" type="Control" parent="." unique_id=844286604]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 352.0
 offset_top = 264.0
 offset_right = 824.0
 offset_bottom = 552.0
+script = ExtResource("7_3iqxn")
+
+[node name="damage" type="Label" parent="BattleItemInfo" unique_id=195324883]
+layout_mode = 0
+offset_right = 472.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_wkpa1")
+theme_override_font_sizes/font_size = 35
+text = "Damage: -----"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="firerate" type="Label" parent="BattleItemInfo" unique_id=859551722]
+layout_mode = 0
+offset_top = 72.0
+offset_right = 472.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(0.9999997, 0.99466294, 0.2198154, 1)
+theme_override_fonts/font = ExtResource("8_wkpa1")
+theme_override_font_sizes/font_size = 35
+text = "Fire Rate: -----"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="weight_class" type="Label" parent="BattleItemInfo" unique_id=1937978331]
+layout_mode = 0
+offset_top = 144.0
+offset_right = 472.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(0.47007585, 0.47007585, 0.47007585, 1)
+theme_override_fonts/font = ExtResource("8_wkpa1")
+theme_override_font_sizes/font_size = 35
+text = "Weight Class: -----"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="placement_radius" type="Label" parent="BattleItemInfo" unique_id=1415508934]
+layout_mode = 0
+offset_top = 216.0
+offset_right = 472.0
+offset_bottom = 288.0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Button" to="Button" method="_On_Pressed"]

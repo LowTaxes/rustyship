@@ -33,3 +33,8 @@ All weapon stats that must be displayed:
 	-firerate
 	-armor damage modifier
 	-projectiles fired per volley
+	
+	
+UI IDEA:
+	InventoryItems will display either (damage X volleycount) or (damage * volleycount)
+	the bottom right screen will display damage, weight class, firerate, and placement radius when a hardpoint or inv item is clicked

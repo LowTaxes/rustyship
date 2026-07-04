@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cedh3uq18etis"]
 
+[ext_resource type="Script" uid="uid://bv6fvbdknx03l" path="res://UI/Inventory/InventoryItem.cs" id="1_c4c7o"]
 [ext_resource type="Texture2D" uid="uid://drs654f1iosgt" path="res://UI/Inventory/InventorySquare/Unselected_Inventory_Square.png" id="2_8dqt5"]
 [ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated_8.gdshader" id="2_c4c7o"]
 
@@ -18,6 +19,7 @@ anchors_preset = 0
 offset_right = 207.0
 offset_bottom = 206.0
 mouse_filter = 2
+script = ExtResource("1_c4c7o")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=857854086]
 material = SubResource("ShaderMaterial_vb5ey")

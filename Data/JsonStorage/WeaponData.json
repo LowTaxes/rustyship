@@ -20,8 +20,8 @@
 	],
 
 	"autocannon":[
-		1,
-		1,
+		5,
+		0.5,
 		0.01,
 		0.2,
 		0.01,
@@ -29,18 +29,19 @@
 		"uid://cbdlciicv5vn6",
 		20,
 		100,
-		10,
+		100,
 		"uid://cmbunrqtfr00l",
 		{"x":2,"y":1},
 		"uid://dem6gc8x0evym",
 		"uid://cwb520ghg1a4g",
 		"uid://cm70no81qpt1p",
 		"uid://dg1b4apqthgxp",
-		"light"
+		"light",
+		10
 	],
 
 	"203mm":[
-		10,
+		20,
 		1,
 		0.05,
 		0.5,
@@ -56,7 +57,8 @@
 		"uid://b3evjafulrtmj",
 		"uid://baip04150onwf",
 		"uid://c75ici2ecsxfw",
-		"medium"
+		"medium",
+		15
 	]
 
 

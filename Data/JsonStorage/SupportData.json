@@ -1,0 +1,17 @@
+{
+	"damage_support_flat_light":[
+		"damage",
+		"flat",
+		3,
+		30,
+		"uid://d03dwloex1q4g",
+		{"x":2,"y":1},
+		"uid://dr24krd5t5rik",
+		"uid://bbga2wr3ay375",
+		"uid://uinpgnysx1ii",
+		"light",
+		10,
+		"none"
+	]
+
+}
