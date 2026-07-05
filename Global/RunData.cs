@@ -178,7 +178,7 @@ public partial class RunData : Node
 		for (int i = 0; i < storage_inventory_items.Count; i ++)
 		{
 			Dictionary new_item_dict = (Dictionary)(storage_inventory_items[i]);
-			PackedScene weapon_inv_item_scene = ResourceLoader.Load<PackedScene>(ConstantData.GetWeaponInvItemUID(new_item_dict["weaponID"].ToString()));
+			PackedScene weapon_inv_item_scene = ResourceLoader.Load<PackedScene>(ConstantData.GetDefensiveInventoryItemUID(new_item_dict["weaponID"].ToString()));
 			InventoryItem new_inv_item = weapon_inv_item_scene.Instantiate<InventoryItem>();
 
 			new_inv_item.weapon_name = new_item_dict["weaponID"].ToString();

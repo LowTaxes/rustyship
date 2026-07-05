@@ -8,7 +8,7 @@ public partial class HardpointBarScene : Node2D
 	public override void _Ready()
 	{
 		outer_position = this.Position;
-		lower_position = new Vector2(this.Position.X, this.Position.Y + 300);
+		lower_position = new Vector2(this.Position.X, this.Position.Y + 42);
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.HardpointBarDropdown, new Callable(this, "_OnHardpointBardDropdown"));
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.ToBattle, new Callable(this, "_ToBattle"));
 	}

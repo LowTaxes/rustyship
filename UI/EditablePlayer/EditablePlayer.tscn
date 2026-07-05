@@ -6,15 +6,14 @@
 [node name="EditablePlayer" type="Node2D" unique_id=725873127]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=116675033]
-zoom = Vector2(0.5, 0.5)
 
 [node name="EditablePlayer" type="Control" parent="." unique_id=1531624050]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -2094.0
-offset_top = -148.0
-offset_right = -2054.0
-offset_bottom = -108.0
+offset_left = -244.0
+offset_top = -16.0
+offset_right = -204.0
+offset_bottom = 24.0
 mouse_filter = 2
 script = ExtResource("1_inusx")
 

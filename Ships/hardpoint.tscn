@@ -5,10 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://d4cgrrp1icpil" path="res://UI/ShipEditingUI/PlacementX.png" id="3_7eydr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m2j3j"]
+size = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uumqx"]
 size = Vector2(40, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dtjfk"]
-radius = 8.0
+radius = 1.0
 
 [node name="Hardpoint" type="Sprite2D" unique_id=131088000]
 script = ExtResource("1_dtjfk")
@@ -17,6 +20,10 @@ script = ExtResource("1_dtjfk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CentralArea" unique_id=1196563741]
 shape = SubResource("RectangleShape2D_m2j3j")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CentralArea" unique_id=1143967368]
+scale = Vector2(0.125, 0.125)
+shape = SubResource("RectangleShape2D_uumqx")
 
 [node name="PlacementArea" type="Area2D" parent="." unique_id=974275927]
 

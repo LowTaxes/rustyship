@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dgwugbk5idi1w" path="res://UI/BottomDoors/BottomPanel.png" id="13_iw6qo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4yhu"]
-size = Vector2(801, 400)
+size = Vector2(101, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hp8wr"]
 
@@ -18,13 +18,11 @@ size = Vector2(801, 400)
 script = ExtResource("1_yyvxu")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1900643265]
-zoom = Vector2(0.5, 0.5)
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1293397332]
-position = Vector2(0, 360)
+position = Vector2(0, 45)
 texture = ExtResource("13_iw6qo")
-metadata/_edit_lock_ = true
 
 [node name="PlayerStorage" type="Control" parent="." unique_id=794730882]
 layout_mode = 3
@@ -32,10 +30,10 @@ anchor_left = 3.055861
 anchor_top = -0.15604515
 anchor_right = 3.055861
 anchor_bottom = -0.15604515
-offset_left = -464.0
-offset_top = 152.0
-offset_right = -424.0
-offset_bottom = 192.0
+offset_left = -58.0
+offset_top = 19.0
+offset_right = -18.0
+offset_bottom = 59.0
 mouse_filter = 2
 script = ExtResource("9_6aie6")
 metadata/_edit_use_anchors_ = true
@@ -45,8 +43,8 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 19.85
 anchor_bottom = 10.15
-offset_right = 6.0
-offset_bottom = -6.0
+offset_right = -694.0
+offset_bottom = -356.0
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
@@ -55,7 +53,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerStorage/Area2D" unique_id=44277202]
-position = Vector2(399.5, 200)
+position = Vector2(49.5, 25)
 shape = SubResource("RectangleShape2D_o4yhu")
 metadata/_edit_lock_ = true
 
@@ -94,63 +92,70 @@ shape = SubResource("RectangleShape2D_hp8wr")
 metadata/_edit_lock_ = true
 
 [node name="Button" type="Button" parent="." unique_id=1161109462]
-offset_left = 435.0
-offset_top = 653.0
-offset_right = 628.0
-offset_bottom = 699.0
+offset_left = 50.0
+offset_top = 83.0
+offset_right = 94.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 2
 text = "To Battle"
 script = ExtResource("5_kerui")
 
 [node name="BattleItemInfo" type="Control" parent="." unique_id=844286604]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 352.0
-offset_top = 264.0
-offset_right = 824.0
-offset_bottom = 552.0
+offset_left = 44.0
+offset_top = 33.0
+offset_right = 103.0
+offset_bottom = 69.0
+mouse_filter = 2
 script = ExtResource("7_3iqxn")
 
 [node name="damage" type="Label" parent="BattleItemInfo" unique_id=195324883]
 layout_mode = 0
-offset_right = 472.0
-offset_bottom = 72.0
+offset_right = 59.0
+offset_bottom = 9.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("8_wkpa1")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 5
 text = "Damage: -----"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="firerate" type="Label" parent="BattleItemInfo" unique_id=859551722]
 layout_mode = 0
-offset_top = 72.0
-offset_right = 472.0
-offset_bottom = 144.0
+offset_top = 9.0
+offset_right = 59.0
+offset_bottom = 18.0
 theme_override_colors/font_color = Color(0.9999997, 0.99466294, 0.2198154, 1)
 theme_override_fonts/font = ExtResource("8_wkpa1")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 5
 text = "Fire Rate: -----"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="weight_class" type="Label" parent="BattleItemInfo" unique_id=1937978331]
 layout_mode = 0
-offset_top = 144.0
-offset_right = 472.0
-offset_bottom = 216.0
+offset_top = 18.0
+offset_right = 59.0
+offset_bottom = 27.0
 theme_override_colors/font_color = Color(0.47007585, 0.47007585, 0.47007585, 1)
 theme_override_fonts/font = ExtResource("8_wkpa1")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 5
 text = "Weight Class: -----"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="placement_radius" type="Label" parent="BattleItemInfo" unique_id=1415508934]
 layout_mode = 0
-offset_top = 216.0
-offset_right = 472.0
-offset_bottom = 288.0
+offset_top = 27.0
+offset_right = 164.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 7
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="Button" to="Button" method="_On_Pressed"]

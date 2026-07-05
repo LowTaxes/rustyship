@@ -1,14 +1,8 @@
 [gd_scene format=3 uid="uid://cm70no81qpt1p"]
 
-[ext_resource type="Shader" uid="uid://8n264c37jhqu" path="res://WIPAssets/Shaders/pixelated_8.gdshader" id="1_lr87y"]
 [ext_resource type="Script" uid="uid://bv6fvbdknx03l" path="res://UI/Inventory/InventoryItem.cs" id="1_vpqyu"]
 [ext_resource type="Texture2D" uid="uid://cmrbyc0tglvtf" path="res://BattleItems/Weapons/autocannon/autocannon_inv_item_sprite.png" id="2_vpqyu"]
 [ext_resource type="FontFile" uid="uid://d2rks27jo02t5" path="res://WIPAssets/Fonts/tinypixel.otf" id="4_6tdk7"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6tdk7"]
-shader = ExtResource("1_lr87y")
-shader_parameter/pixel_size = 8.0
-shader_parameter/handle_edges = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81hpf"]
 size = Vector2(160, 80)
@@ -20,7 +14,6 @@ mouse_filter = 2
 script = ExtResource("1_vpqyu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=160931504]
-material = SubResource("ShaderMaterial_6tdk7")
 texture = ExtResource("2_vpqyu")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=202031811]

@@ -28,7 +28,6 @@ script = ExtResource("1_pufhl")
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1830395599]
-zoom = Vector2(0.5, 0.5)
 metadata/_edit_lock_ = true
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1259685134]

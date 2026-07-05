@@ -3,24 +3,24 @@ using System;
 
 public partial class Constants : Node
 {
-	public static Vector2 PLAYER_START_LOCATION = new Vector2(0,450);
-	public static Vector2 ENEMY_START_LOCATION = new Vector2(0,-450);
+	public static Vector2 PLAYER_START_LOCATION = new Vector2(0,57);
+	public static Vector2 ENEMY_START_LOCATION = new Vector2(0,-57);
 	public static int player_storage_size_x = 10;
 	public static int player_storage_size_y = 5;
-	public static int inventory_square_size = 80;
-	public static int pixel_size = 8;
+	public static int inventory_square_size = 10;
+	public static int pixel_size = 1;
 	public static float health_modifier = .1f;
 	public static float armor_modifier = .1f;
-	public static float camera_zoom_dragging_modifier = 2;
+	public static float camera_zoom_dragging_modifier = 1;
 
-	public static int SEPERATOR_Y = 90;
-	public static int UPPER_SEPERATOR_Y = -300;
+	public static int SEPERATOR_Y = 10;
+	public static int UPPER_SEPERATOR_Y = -30;
 
 	public static string WEAPON_DESIGNATION = "weapon";
 	public static string DEFENSIVE_DESIGNATION = "defensive";
 	public static string SUPPORT_DESIGNATION = "support";
-	public static int HARDPOINT_BAR_SEPARATION = 20;
-	public static int HARDPOINT_BAR_HEIGHT = 240;
+	public static int HARDPOINT_BAR_SEPARATION = 10;
+	public static int HARDPOINT_BAR_HEIGHT = 30;
 
 
 	public static Color COLOR_RED = new Color(255, 44, 33);

@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://d2rks27jo02t5" path="res://WIPAssets/Fonts/tinypixel.otf" id="2_5uhtl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq032"]
-size = Vector2(80, 160)
+size = Vector2(10, 20)
 
 [node name="HealthBasicLightInvItemScene" type="Control" unique_id=5127804]
 layout_mode = 3
@@ -28,14 +28,14 @@ shape = SubResource("RectangleShape2D_aq032")
 metadata/_edit_lock_ = true
 
 [node name="ReferencePoint" type="Node2D" parent="Area2D" unique_id=1180502820]
-position = Vector2(-40, -80)
+position = Vector2(-5, -10)
 
 [node name="Label" type="Label" parent="." unique_id=282535766]
 layout_mode = 1
-offset_left = 18.0
-offset_top = 44.0
-offset_right = 46.0
-offset_bottom = 86.0
+offset_left = 2.0
+offset_top = 5.0
+offset_right = 8.0
+offset_bottom = 11.0
 theme_override_fonts/font = ExtResource("2_5uhtl")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 4
 text = "4"

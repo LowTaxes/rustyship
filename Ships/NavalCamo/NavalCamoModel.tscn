@@ -10,4 +10,5 @@ script = ExtResource("2_jolm6")
 [node name="Area2D" type="Area2D" parent="." unique_id=1109612166]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=158321597]
+scale = Vector2(0.125, 0.125)
 polygon = PackedVector2Array(-654, -40, -430, -78, -146, -112, 114, -111, 387, -67, 543, -25, 652, -17, 653, 19, 543, 30, 393, 62, 115, 108, -150, 110, -429, 76, -653, 48)

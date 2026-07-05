@@ -57,13 +57,13 @@ public partial class MainMenu : Node2D
 		storage_inv_size.Add("y", 6);
 
 		Dictionary light_1 = new Dictionary();
-		light_1.Add("weaponID", "autocannon");
+		light_1.Add("weaponID", "health_basic_light");
 		light_1.Add("level", 1);
 		light_1.Add("x", 3);
 		light_1.Add("y", 3);
 
 		Dictionary medium_1 = new Dictionary();
-		medium_1.Add("weaponID", "203mm");
+		medium_1.Add("weaponID", "health_basic_light");
 		medium_1.Add("level", 4);
 		medium_1.Add("x", 1);
 		medium_1.Add("y", 1);
@@ -84,7 +84,7 @@ public partial class MainMenu : Node2D
 		Dictionary hardpoint_1 = new Dictionary();
 		hardpoint_1.Add("level", 1);
 		hardpoint_1.Add("weaponID", "autocannon");
-		hardpoint_1.Add("x", 0);
+		hardpoint_1.Add("x", -200);
 		hardpoint_1.Add("y", 0);
 		hardpoint_1.Add("weight_class", "light");
 		hardpoint_1.Add("inv_x", 0);
@@ -102,7 +102,7 @@ public partial class MainMenu : Node2D
 		Dictionary hardpoint_3 = new Dictionary();
 		hardpoint_3.Add("level", 1);
 		hardpoint_3.Add("weaponID", "health_basic_light");
-		hardpoint_3.Add("x", -200);
+		hardpoint_3.Add("x", 0);
 		hardpoint_3.Add("y", 0);
 		hardpoint_3.Add("weight_class", "light");
 		hardpoint_3.Add("inv_x", 0);
@@ -111,7 +111,7 @@ public partial class MainMenu : Node2D
 		Dictionary hardpoint_4 = new Dictionary();
 		hardpoint_4.Add("level", 1);
 		hardpoint_4.Add("weaponID", "shield_basic_light");
-		hardpoint_4.Add("x", 300);
+		hardpoint_4.Add("x", 50);
 		hardpoint_4.Add("y", 0);
 		hardpoint_4.Add("weight_class", "light");
 		hardpoint_4.Add("inv_x", 0);
@@ -120,7 +120,7 @@ public partial class MainMenu : Node2D
 		Dictionary hardpoint_5 = new Dictionary();
 		hardpoint_5.Add("level", 1);
 		hardpoint_5.Add("weaponID", "damage_support_flat_light");
-		hardpoint_5.Add("x", -500);
+		hardpoint_5.Add("x", -50);
 		hardpoint_5.Add("y", 0);
 		hardpoint_5.Add("weight_class", "light");
 		hardpoint_5.Add("inv_x", 0);
@@ -138,7 +138,7 @@ public partial class MainMenu : Node2D
 			new Array{light_2, medium_2, empty_1, empty_1, empty_1},
 			new Array{medium_1, light_1},
 			"0-0",
-			new Array{hardpoint_1, hardpoint_2, hardpoint_3, hardpoint_4, hardpoint_5},
+			new Array{hardpoint_3, hardpoint_4, hardpoint_5},
 		});
 
 		

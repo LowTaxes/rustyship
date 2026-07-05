@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://d2rks27jo02t5" path="res://WIPAssets/Fonts/tinypixel.otf" id="2_yp8tg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci1pd"]
-size = Vector2(160, 80)
+size = Vector2(20, 10)
 
 [node name="DamageSupportFlatLightInvItemScene" type="Control" unique_id=2012324523]
 layout_mode = 3
@@ -23,14 +23,13 @@ shape = SubResource("RectangleShape2D_ci1pd")
 metadata/_edit_lock_ = true
 
 [node name="ReferencePoint" type="Node2D" parent="Area2D" unique_id=1448986426]
-position = Vector2(-80, -40)
+position = Vector2(-10, -5)
 
 [node name="Label" type="Label" parent="." unique_id=1378241630]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 9.0
-offset_right = 82.0
-offset_bottom = 51.0
+offset_left = 6.0
+offset_right = 11.0
+offset_bottom = 6.0
 theme_override_fonts/font = ExtResource("2_yp8tg")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 4
 text = "4"

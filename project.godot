@@ -24,8 +24,13 @@ GarbageCollector="*uid://hexmewyu2uem"
 
 [display]
 
+window/size/viewport_width=288
+window/size/viewport_height=162
+window/size/window_width_override=1152
+window/size/window_height_override=648
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/canvas_textures/default_texture_filter=1
 
 [dotnet]
 
@@ -49,5 +54,6 @@ left_click={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 2d/snap/snap_2d_transforms_to_pixel=true

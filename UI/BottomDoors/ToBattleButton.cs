@@ -7,7 +7,7 @@ public partial class ToBattleButton : Button
 	public override void _Ready()
 	{
 		SignalConnect.Instance.Connect(SignalConnect.SignalName.LootTaken.ToString(), new Callable(this, "_LootTaken"));
-		upper_position = new Vector2(this.Position.X, 588);
+		upper_position = new Vector2(this.Position.X, this.Position.Y - 13);
 	}
 
 	private void _LootTaken()

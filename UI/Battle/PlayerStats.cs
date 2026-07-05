@@ -31,7 +31,7 @@ public partial class PlayerStats : Control
 	private void _OnBattleSequenceBegins()
 	{
 		Tween tween = GetTree().CreateTween();
-		tween.TweenProperty(this, "position", new Vector2(this.Position.X + 2300, this.Position.Y), .5);
+		tween.TweenProperty(this, "position", new Vector2(this.Position.X + 287, this.Position.Y), .5);
 	}
 
 	private void _OnPlayerDamageTaken(double damage, double armor_damage_modifier)

@@ -11,7 +11,6 @@ bg_color = Color(0, 0.45882353, 0.47058824, 1)
 [node name="LootDropdown" type="Node2D" unique_id=639368358]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=418339744]
-zoom = Vector2(0.5, 0.5)
 
 [node name="LootDropdown" type="Control" parent="." unique_id=210334446]
 layout_mode = 3
@@ -24,17 +23,16 @@ metadata/_edit_lock_ = true
 
 [node name="UpperBorder" type="Panel" parent="LootDropdown" unique_id=906067875]
 layout_mode = 0
-offset_left = -1153.0
-offset_top = -596.0
-offset_right = 1152.0
-offset_bottom = 223.0
+offset_left = -144.0
+offset_top = 371.0
+offset_right = 144.0
+offset_bottom = 562.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tqjx5")
 
 [node name="UpperSeperator" type="Sprite2D" parent="LootDropdown" unique_id=64634217]
-position = Vector2(3, 242)
+position = Vector2(0, 564)
 texture = ExtResource("3_tqjx5")
-metadata/_edit_lock_ = true
 
 [node name="Parachute" type="Sprite2D" parent="LootDropdown" unique_id=1925210899]
 position = Vector2(-617, -290)
@@ -50,27 +48,27 @@ texture = ExtResource("4_tqjx5")
 
 [node name="lootspawn1" type="Control" parent="LootDropdown" unique_id=1511753632]
 anchors_preset = 0
-offset_left = -656.0
-offset_top = -80.0
-offset_right = -569.0
-offset_bottom = 26.0
+offset_left = -88.0
+offset_top = 479.0
+offset_right = -1.0
+offset_bottom = 585.0
 mouse_filter = 2
 script = ExtResource("3_uyvpf")
 
 [node name="lootspawn2" type="Control" parent="LootDropdown" unique_id=171582236]
 anchors_preset = 0
-offset_left = -47.0
-offset_top = -104.0
-offset_right = 38.0
-offset_bottom = 2.0
+offset_left = -14.0
+offset_top = 463.0
+offset_right = 71.0
+offset_bottom = 569.0
 mouse_filter = 2
 script = ExtResource("3_uyvpf")
 
 [node name="lootspawn3" type="Control" parent="LootDropdown" unique_id=711832634]
 anchors_preset = 0
-offset_left = 536.0
-offset_top = -61.0
-offset_right = 642.0
-offset_bottom = 45.0
+offset_left = 110.0
+offset_top = 526.0
+offset_right = 216.0
+offset_bottom = 632.0
 mouse_filter = 2
 script = ExtResource("3_uyvpf")
